@@ -1,0 +1,21 @@
+{
+ "people": [
+  {
+   "firstName": "Dorothy",
+   "lastName": "Plume",
+   "email": "dorothy@aldermanor-pm.com",
+   "phone": "5550461102",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "dorothy@aldermanor-pm.com",
+   "to": "oracle@guios.dev",
+   "subject": "Re: move-in inspection notes for Unit 4B",
+   "body": "Thanks for the walkthrough notes. The scuffed hallway paint is cosmetic, so it won't be scheduled. If anything urgent comes up, flag it by email and I'll get it into the repair queue."
+  }
+ ]
+}

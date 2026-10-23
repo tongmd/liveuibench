@@ -1,0 +1,46 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Raghavan",
+   "email": "priya.raghavan@example.com",
+   "phone": "5550731001",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Oduya",
+   "email": "marcus.oduya@example.com",
+   "phone": "5550731002",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/contracts/executed-log.md",
+   "content": "HALL-2026-011 | Chen family reunion | executed Jun 14\nHALL-2026-012 | Larkspur Quartet spring recital | executed Jun 29\n"
+  },
+  {
+   "path": "/contracts/hall-2026-012/rental-agreement-signed.md",
+   "content": "Rental agreement HALL-2026-012 between Fernwood Grange and the Larkspur Quartet for the spring recital on Jul 5, 2026. Rental fee $150, refundable deposit $60. Signed by both parties.\n"
+  }
+ ],
+ "emails": [
+  {
+   "from": "priya.raghavan@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Signed: HALL-2026-013 rental agreement",
+   "body": "Hi, signed copy of the HALL-2026-013 agreement for the Thistledown pop-up market on Aug 9 attached. Looking forward to it! — Priya"
+  },
+  {
+   "from": "marcus.oduya@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Signed: HALL-2026-014 rental agreement",
+   "body": "Hello, here is our signed HALL-2026-014 agreement for the Oakleaf wedding reception on Sep 12. Please send the countersigned copy when ready. — Marcus"
+  }
+ ]
+}

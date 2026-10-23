@@ -1,0 +1,52 @@
+{
+ "people": [
+  {
+   "firstName": "Parkview",
+   "lastName": "Dental",
+   "email": "frontdesk@parkviewdental.example.com",
+   "phone": "5550800006",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Cedarline",
+   "lastName": "Veterinary",
+   "email": "reception@cedarlinevet.example.com",
+   "phone": "5550800007",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Parkview",
+   "lastName": "Dental",
+   "phone": "5550800006",
+   "email": "frontdesk@parkviewdental.example.com",
+   "relationship": "dental office"
+  },
+  {
+   "firstName": "Cedarline",
+   "lastName": "Veterinary",
+   "phone": "5550800007",
+   "email": "reception@cedarlinevet.example.com",
+   "relationship": "veterinary clinic"
+  }
+ ],
+ "sms": [
+  {
+   "at": "2023-05-15T09:12:00",
+   "fromPhone": "5550800006",
+   "toPhone": "5550100001",
+   "message": "Parkview Dental: You're confirmed with Dr. Hoffbauer on Mon May 22 at 7:45 AM. Please arrive 15 minutes early and bring a photo ID. Reply C to confirm."
+  },
+  {
+   "at": "2023-05-16T14:30:00",
+   "fromPhone": "5550800007",
+   "toPhone": "5550100001",
+   "message": "Cedarline Veterinary: Biscuit is booked with Dr. Ravindran on Wed May 24 at 9:10 AM. No food after midnight before the visit. Reply YES to confirm."
+  }
+ ]
+}

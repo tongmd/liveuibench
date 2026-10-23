@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "hannah.new@gmail.com",
+      "firstName": "Hannah",
+      "lastName": "Newton",
+      "phone": "5550107301"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "derek.old@gmail.com",
+      "firstName": "Derek",
+      "lastName": "Oldham",
+      "phone": "5550107303"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "marco.new@gmail.com",
+      "firstName": "Marco",
+      "lastName": "Newell",
+      "phone": "5550107302"
+    }
+  ]
+}

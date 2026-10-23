@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Ava",
+      "lastName": "Brooks",
+      "email": "ava@house.com",
+      "phone": "5550220014",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Noah",
+      "lastName": "Fields",
+      "email": "noah@house.com",
+      "phone": "5550220015",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Kai",
+      "lastName": "Watanabe",
+      "email": "kai@house.com",
+      "phone": "5550220016",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

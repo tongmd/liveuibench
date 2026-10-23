@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Priya",
+      "lastName": "Raman",
+      "email": "priya@mail.com",
+      "phone": "5550100930",
+      "apps": [
+        "todoist"
+      ]
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Fuentes",
+      "email": "diego@mail.com",
+      "phone": "5550100931",
+      "apps": [
+        "todoist"
+      ]
+    },
+    {
+      "firstName": "Lena",
+      "lastName": "Kovacs",
+      "email": "lena@mail.com",
+      "phone": "5550100932",
+      "apps": [
+        "todoist"
+      ]
+    }
+  ]
+}

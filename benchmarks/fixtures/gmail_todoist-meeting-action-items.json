@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Rosa",
+      "lastName": "Kim",
+      "email": "rosa.kim@example.com",
+      "phone": "5550166622",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "rosa.kim@example.com",
+      "to": [
+        "oracle@guios.dev"
+      ],
+      "subject": "Q3 Planning meeting recap",
+      "body": "Recap of today's Q3 Planning meeting. Action items: send budget draft; book venue. Thanks, Rosa"
+    },
+    {
+      "from": "rosa.kim@example.com",
+      "to": [
+        "oracle@guios.dev"
+      ],
+      "subject": "Design Review meeting recap",
+      "body": "Recap of the Design Review meeting. Action items: update mockups. Thanks, Rosa"
+    }
+  ]
+}

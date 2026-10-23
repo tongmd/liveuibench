@@ -1,0 +1,69 @@
+{
+  "people": [
+    {
+      "firstName": "Kevin",
+      "lastName": "Ramos",
+      "email": "kev.roomie@gmail.com",
+      "phone": "5550300801",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Diane",
+      "lastName": "Kwan",
+      "email": "mom@gmail.com",
+      "phone": "5550300802",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Rex",
+      "lastName": "Dalton",
+      "email": "rex.dalton@gmail.com",
+      "phone": "5550300803",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556737291504368,
+      "expiryYear": 2027,
+      "expiryMonth": 6,
+      "cvv": 613,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-08T10:30:00",
+      "amount": 120
+    }
+  ],
+  "venmoIncomingRequests": [
+    {
+      "at": "2023-05-14T09:20:00",
+      "fromEmail": "kev.roomie@gmail.com",
+      "amount": 45,
+      "description": "utilities"
+    },
+    {
+      "at": "2023-05-15T11:05:00",
+      "fromEmail": "mom@gmail.com",
+      "amount": 30,
+      "description": "groceries"
+    },
+    {
+      "at": "2023-05-16T19:45:00",
+      "fromEmail": "rex.dalton@gmail.com",
+      "amount": 200,
+      "description": "urgent favor"
+    }
+  ]
+}

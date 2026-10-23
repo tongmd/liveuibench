@@ -1,0 +1,69 @@
+{
+ "people": [
+  {
+   "firstName": "Waverly",
+   "lastName": "Thibodeaux",
+   "email": "waverly.thibodeaux@example.com",
+   "phone": "5550820369",
+   "apps": [
+    "gmail",
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Tarek",
+   "lastName": "Boustani",
+   "email": "tarek.boustani@example.com",
+   "phone": "5550820147",
+   "apps": [
+    "gmail",
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Lenora",
+   "lastName": "Fairweather",
+   "email": "lenora.fairweather@example.com",
+   "phone": "5550820258",
+   "apps": [
+    "gmail",
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Yusra",
+   "lastName": "Granholm",
+   "email": "yusra.granholm@ridgemontalumni.org",
+   "phone": "5550820473",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-10T08:40",
+   "from": "yusra.granholm@ridgemontalumni.org",
+   "to": "oracle@guios.dev",
+   "subject": "Homecoming tailgate parking assignment for the Class of 2015 crew",
+   "body": "Hello! Your alumni tailgate spot for homecoming Saturday is confirmed: you are in Lot 14C on the north side of the stadium. Gates open to tailgaters at 8:00 AM and all vehicles must be parked before kickoff traffic closes the access road. Grills are allowed in this lot; open fires are not. See you there — Yusra Granholm, Ridgemont Alumni Office"
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-08T09:00:00",
+   "amount": 180
+  }
+ ],
+ "venmoIncomingRequests": [
+  {
+   "at": "2023-05-12T19:05:00",
+   "fromEmail": "waverly.thibodeaux@example.com",
+   "amount": 35,
+   "description": "canopy tent split for homecoming"
+  }
+ ]
+}

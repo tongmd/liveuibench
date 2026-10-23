@@ -1,0 +1,49 @@
+{
+ "people": [
+  {
+   "firstName": "Lena",
+   "lastName": "Kovacs",
+   "email": "lena.kovacs@example.com",
+   "phone": "5550731188",
+   "apps": [
+    "venmo",
+    "gmail"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/photos/inbox/owl-moon-front.jpg",
+   "content": "JPG photo fixture: Owl Moon linocut print, straight-on front shot"
+  },
+  {
+   "path": "/photos/inbox/owl-moon-detail.jpg",
+   "content": "JPG photo fixture: Owl Moon linocut print, carved-texture detail closeup"
+  },
+  {
+   "path": "/photos/inbox/owl-moon-styled.jpg",
+   "content": "JPG photo fixture: Owl Moon linocut print styled on an oak desk"
+  }
+ ],
+ "todoistProjects": [
+  {
+   "at": "2023-05-10T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Inkfern Prints Orders",
+   "tasks": [
+    {
+     "content": "Order #2103 — 'Fox at Dusk' print for Dana R."
+    },
+    {
+     "content": "Order #2096 — 'Tide Pools' print for Miguel A."
+    }
+   ]
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-08T08:30:00",
+   "amount": 150
+  }
+ ]
+}

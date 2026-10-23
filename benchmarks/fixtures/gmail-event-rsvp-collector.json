@@ -1,0 +1,90 @@
+{
+ "people": [
+  {
+   "firstName": "Ana",
+   "lastName": "Silva",
+   "email": "ana@familymail.com",
+   "phone": "5550167201",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Leo",
+   "lastName": "Silva",
+   "email": "leo@familymail.com",
+   "phone": "5550167202",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Mira",
+   "lastName": "Chen",
+   "email": "mira@familymail.com",
+   "phone": "5550167203",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Theo",
+   "lastName": "Brooks",
+   "email": "theo@familymail.com",
+   "phone": "5550167204",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "oracle@guios.dev",
+   "to": "ana@familymail.com",
+   "subject": "You're invited: Cousins Reunion 2026 - Ana",
+   "body": "Hi Ana! You're invited to the Cousins Reunion 2026, the weekend of July 18 at the lake house. Can you make it?",
+   "replies": [
+    {
+     "from": "ana@familymail.com",
+     "body": "Yesss count me in, wouldn't miss it!!"
+    }
+   ]
+  },
+  {
+   "from": "oracle@guios.dev",
+   "to": "leo@familymail.com",
+   "subject": "You're invited: Cousins Reunion 2026 - Leo",
+   "body": "Hi Leo! You're invited to the Cousins Reunion 2026, the weekend of July 18 at the lake house. Can you make it?",
+   "replies": [
+    {
+     "from": "leo@familymail.com",
+     "body": "Ah bummer - that weekend really doesn't work for us, so it's a no from me. Sorry!"
+    }
+   ]
+  },
+  {
+   "from": "oracle@guios.dev",
+   "to": "mira@familymail.com",
+   "subject": "You're invited: Cousins Reunion 2026 - Mira",
+   "body": "Hi Mira! You're invited to the Cousins Reunion 2026, the weekend of July 18 at the lake house. Can you make it?",
+   "replies": [
+    {
+     "from": "mira@familymail.com",
+     "body": "Oh fun! Let me check work schedules and circle back."
+    }
+   ]
+  },
+  {
+   "from": "oracle@guios.dev",
+   "to": "theo@familymail.com",
+   "subject": "You're invited: Cousins Reunion 2026 - Theo",
+   "body": "Hi Theo! You're invited to the Cousins Reunion 2026, the weekend of July 18 at the lake house. Can you make it?",
+   "replies": [
+    {
+     "from": "theo@familymail.com",
+     "body": "Thanks for the invite! Need to look at flights before I can commit either way."
+    }
+   ]
+  }
+ ]
+}

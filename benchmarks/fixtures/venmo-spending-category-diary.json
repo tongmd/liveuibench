@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Jesse",
+      "lastName": "Moran",
+      "email": "jesse.moran@gmail.com",
+      "phone": "5550301001",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556123409871122,
+      "expiryYear": 2027,
+      "expiryMonth": 12,
+      "cvv": 481,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-01T09:30:00",
+      "amount": 500
+    }
+  ]
+}

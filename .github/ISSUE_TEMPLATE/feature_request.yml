@@ -1,0 +1,22 @@
+name: Feature request
+description: Propose a concrete workflow or capability.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What task is difficult or unavailable today?
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Give an example interaction and its expected outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and alternatives
+      description: Note the relevant harness, provider, evaluator, or deployment constraints.

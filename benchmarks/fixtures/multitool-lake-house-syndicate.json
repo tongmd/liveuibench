@@ -1,0 +1,38 @@
+{
+ "people": [
+  {
+   "firstName": "Tove",
+   "lastName": "Brandvold",
+   "email": "tove.brandvold@example.com",
+   "phone": "5550772411",
+   "apps": [
+    "gmail",
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Marcel",
+   "lastName": "Duval",
+   "email": "marcel.duval@example.com",
+   "phone": "5550772412",
+   "apps": [
+    "gmail",
+    "splitwise"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "tove.brandvold@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "May walkthrough — house side list",
+   "body": "Did my walkthrough Saturday morning. Two problems on my side of the place: the boathouse door latch has rusted through and will not turn, and an ice dam pulled down a six-foot gutter section over the porch. Both should go on the board before opening weekend. Let me know when the gutter people are booked. — Tove"
+  },
+  {
+   "from": "marcel.duval@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Winter damage — waterfront list",
+   "body": "Walked the waterfront yesterday. Two things for the list from me: two rungs snapped off the dock ladder, and the flag halyard is frayed to threads and needs replacing. I can take small jobs myself once they are on the list. — Marcel"
+  }
+ ]
+}

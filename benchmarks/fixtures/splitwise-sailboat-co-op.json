@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Petra",
+      "lastName": "Novak",
+      "email": "petra@windwardmail.com",
+      "phone": "5550400003",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Ibarra",
+      "email": "tomas@windwardmail.com",
+      "phone": "5550400004",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Anika",
+      "lastName": "Sorensen",
+      "email": "anika@windwardmail.com",
+      "phone": "5550400005",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

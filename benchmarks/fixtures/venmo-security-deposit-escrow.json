@@ -1,0 +1,40 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Natarajan",
+   "email": "priya.natarajan.dep@gmail.com",
+   "phone": "5550462201",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Owen",
+   "lastName": "Gallagher",
+   "email": "owen.gallagher.dep@gmail.com",
+   "phone": "5550462202",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "adminCards": [
+  {
+   "ownerEmail": "oracle@guios.dev",
+   "cardName": "Visa",
+   "ownerName": "Guios Oracle",
+   "cardNumber": 4556737412210088,
+   "expiryYear": 2027,
+   "expiryMonth": 9,
+   "cvv": 417,
+   "bankBalance": 5000
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-08T09:15:00",
+   "amount": 40
+  }
+ ]
+}

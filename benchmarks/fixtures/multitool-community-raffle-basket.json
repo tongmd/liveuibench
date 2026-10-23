@@ -1,0 +1,56 @@
+{
+ "people": [
+  {
+   "firstName": "Marjorie",
+   "lastName": "Tovar",
+   "email": "marjorie.tovar@example.com",
+   "phone": "5550738201",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Desmond",
+   "lastName": "Ikande",
+   "email": "desmond.ikande@example.com",
+   "phone": "5550738202",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Kendra",
+   "lastName": "Boyle",
+   "email": "kendra.boyle@example.com",
+   "phone": "5550738203",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Jerome",
+   "lastName": "Ferrell",
+   "email": "jerome.ferrell@example.com",
+   "phone": "5550738204",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-15T10:05",
+   "from": "marjorie.tovar@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "My pledge for the raffle basket",
+   "body": "Hi! Count me in for the Spring Fair raffle. I'd like to pledge $20 toward the prize basket, and I can drop the cash off on your porch Friday afternoon. So glad you're running this again. - Marjorie"
+  },
+  {
+   "at": "2023-05-16T19:40",
+   "from": "desmond.ikande@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Raffle basket pledge",
+   "body": "Happy to help the fair along! Pledging $12 for the prize basket fund. Let me know if you need volunteers at the ticket table on the day too. - Desmond"
+  }
+ ]
+}

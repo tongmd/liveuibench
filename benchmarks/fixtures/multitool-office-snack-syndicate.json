@@ -1,0 +1,34 @@
+{
+ "people": [
+  {
+   "firstName": "Kenji",
+   "lastName": "Uehara",
+   "email": "kenji.uehara@example.com",
+   "phone": "5550142207",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Odette",
+   "lastName": "Marsh",
+   "email": "odette.marsh@example.com",
+   "phone": "5550217344",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Bram",
+   "lastName": "Feldman",
+   "email": "bram.feldman@example.com",
+   "phone": "5550142568",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  }
+ ]
+}

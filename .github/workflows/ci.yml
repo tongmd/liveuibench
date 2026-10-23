@@ -1,0 +1,85 @@
+name: Offline checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: offline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --workspace @guios/dsh-plugin --include-workspace-root --no-audit --no-fund
+      - run: npm test
+      - run: node .github/scripts/check-docs.mjs
+      - run: npm run check:release
+      - name: Retain offline fixture reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-fixture-reports
+          path: |
+            .test-runs/**/report*.json
+            .test-runs/**/report*.md
+          if-no-files-found: ignore
+          include-hidden-files: true
+          retention-days: 7
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TMPDIR: ${{ runner.temp }}/liveui-browser
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: mkdir -p "$TMPDIR"
+      - run: npm ci --workspace @guios/dsh-plugin --include-workspace-root --no-audit --no-fund
+      - run: npm run build
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+        with:
+          chrome-version: stable
+          install-dependencies: true
+      - name: Check model, harness, and evaluator controls
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: npm run test:runtime-ui
+      - name: Check model driver decisions and repair bounds
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: npm run test:driver
+      - name: Check HTML-app behavior and persistence
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: npm run test:evaluator
+      - name: Check desktop and mobile app catalog
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: npm run test:catalog
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-fixture-evidence
+          path: |
+            ${{ runner.temp }}/liveui-browser/**/*.png
+            ${{ runner.temp }}/liveui-browser/**/report.json
+            ${{ runner.temp }}/liveui-browser/**/failure.json
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,0 +1,57 @@
+{
+ "people": [
+  {
+   "firstName": "Doreen",
+   "lastName": "Falk",
+   "email": "doreen.falk@example.com",
+   "phone": "5550671001",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Gus",
+   "lastName": "Brubaker",
+   "email": "gus.brubaker@example.com",
+   "phone": "5550671002",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Marisol",
+   "lastName": "Ybarra",
+   "email": "marisol.ybarra@example.com",
+   "phone": "5550671003",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Doreen",
+   "lastName": "Falk",
+   "phone": "5550671001",
+   "email": "doreen.falk@example.com",
+   "relationship": "client"
+  },
+  {
+   "firstName": "Gus",
+   "lastName": "Brubaker",
+   "phone": "5550671002",
+   "email": "gus.brubaker@example.com",
+   "relationship": "client"
+  },
+  {
+   "firstName": "Marisol",
+   "lastName": "Ybarra",
+   "phone": "5550671003",
+   "email": "marisol.ybarra@example.com",
+   "relationship": "client"
+  }
+ ]
+}

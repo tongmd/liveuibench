@@ -1,0 +1,28 @@
+{
+ "people": [
+  {
+   "firstName": "Camille",
+   "lastName": "Fontaine",
+   "email": "camille.fontaine@example.com",
+   "phone": "5550104472",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Roy",
+   "lastName": "Fontaine",
+   "email": "roy.fontaine@example.com",
+   "phone": "5550104518",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/storm-prep/pantry-inventory.txt",
+   "content": "bottled water on hand: 9 gallons\ncanned food on hand: 14 cans\npropane canisters: 2\n"
+  }
+ ]
+}

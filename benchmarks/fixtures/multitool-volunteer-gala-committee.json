@@ -1,0 +1,34 @@
+{
+ "people": [
+  {
+   "firstName": "Imogen",
+   "lastName": "Pemberton",
+   "email": "imogen.pemberton@thistlepost.net",
+   "phone": "5550329201",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Cormac",
+   "lastName": "Bankole",
+   "email": "cormac.bankole@driftmail.org",
+   "phone": "5550329202",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Soraya",
+   "lastName": "Merritt",
+   "email": "soraya.merritt@quillbox.net",
+   "phone": "5550329203",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  }
+ ]
+}

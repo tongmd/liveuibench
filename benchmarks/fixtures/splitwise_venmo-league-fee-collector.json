@@ -1,0 +1,34 @@
+{
+ "people": [
+  {
+   "firstName": "Dario",
+   "lastName": "Quintero",
+   "email": "dario.quintero.setters@gmail.com",
+   "phone": "5550918273",
+   "apps": [
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Marisol",
+   "lastName": "Beltran",
+   "email": "marisol.beltran.setters@gmail.com",
+   "phone": "5550918274",
+   "apps": [
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Femi",
+   "lastName": "Adeyemi",
+   "email": "femi.adeyemi.setters@gmail.com",
+   "phone": "5550918275",
+   "apps": [
+    "splitwise",
+    "venmo"
+   ]
+  }
+ ]
+}

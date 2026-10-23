@@ -1,0 +1,52 @@
+{
+ "people": [
+  {
+   "firstName": "Odette",
+   "lastName": "Marsh",
+   "email": "odette.marsh@example.com",
+   "phone": "5550217344",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Tobias",
+   "lastName": "Finch",
+   "email": "tobias.finch@example.com",
+   "phone": "5550217419",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/studio/wip/marmalade-watercolor-final.png",
+   "content": "PNG fixture: Marmalade watercolor portrait, final 600dpi scan"
+  },
+  {
+   "path": "/studio/wip/marmalade-pencil-sketch-v1.png",
+   "content": "PNG fixture: Marmalade initial pencil sketch for client approval"
+  },
+  {
+   "path": "/studio/wip/juniper-ink-rough.png",
+   "content": "PNG fixture: Juniper ink rough, first pass"
+  }
+ ],
+ "venmoTransactions": [
+  {
+   "at": "2023-05-12T10:20:00",
+   "fromEmail": "odette.marsh@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 60,
+   "description": "Marmalade portrait deposit"
+  },
+  {
+   "at": "2023-05-14T16:45:00",
+   "fromEmail": "tobias.finch@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 40,
+   "description": "Juniper portrait deposit"
+  }
+ ]
+}

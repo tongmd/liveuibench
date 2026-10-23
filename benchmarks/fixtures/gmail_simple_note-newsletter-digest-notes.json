@@ -1,0 +1,57 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "email": "letters@gridandgradient.studio",
+   "phone": "5550731428",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Tomas",
+   "lastName": "Lindqvist",
+   "email": "trail@peakweek.club",
+   "phone": "5550862519",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Raman",
+   "email": "stove@simmerletter.kitchen",
+   "phone": "5550947362",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "letters@gridandgradient.studio",
+   "to": "oracle@guios.dev",
+   "subject": "Grid & Gradient #112 — The quiet return of serif logos",
+   "body": "Grid & Gradient #112. This week I audited forty rebrands shipped over the past year and one pattern jumped out: the geometric sans-serif era is quietly ending, and retina-density screens killed the old rendering excuse. The one-line takeaway: Serif logos are back because screens finally got sharp enough to render them. See you next Thursday. — Marisol"
+  },
+  {
+   "from": "trail@peakweek.club",
+   "to": "oracle@guios.dev",
+   "subject": "Peak Week — Larch madness comes early",
+   "body": "Peak Week, your weekly trail brief. Rangers across the North Cascades are reporting golden needles a full fortnight ahead of the usual calendar, and the high passes are still snow-free. The one-line takeaway: Larch needles are turning two weeks early, so book your October hikes for late September. Boots on. — Tomas"
+  },
+  {
+   "from": "stove@simmerletter.kitchen",
+   "to": "oracle@guios.dev",
+   "subject": "Simmer #86 — Brown butter is a flavor, not a step",
+   "body": "Simmer #86. I baked the same chocolate chip recipe four times this week changing only the butter, and the nutty batch wasn't even close. The one-line takeaway: Browning the butter first turns an ordinary cookie recipe into a bakery one. Stay hungry. — Priya"
+  }
+ ],
+ "notes": [
+  {
+   "title": "Weekly Digest — Week of Jul 13",
+   "content": "Grid & Gradient: Logos are drifting warmer — expect ochre everywhere by spring.\nPeak Week: Midweek permits go unclaimed, so hike on Wednesdays.\nSimmer: Salting the pasta water is your only chance to season the noodle itself."
+  }
+ ]
+}

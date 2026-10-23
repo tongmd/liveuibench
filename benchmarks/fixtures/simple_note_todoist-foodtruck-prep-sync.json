@@ -1,0 +1,29 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-05-12T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Sunbird weekend prep",
+   "tasks": [
+    {
+     "content": "Marinate 25 lb pork shoulder for the al pastor"
+    },
+    {
+     "content": "Dice 15 lb tomatillos for the salsa verde"
+    },
+    {
+     "content": "Batch 3 gallons of hibiscus agua fresca"
+    },
+    {
+     "content": "Press 200 tortillas and stack them in the warmer"
+    },
+    {
+     "content": "Swap both 40 lb propane tanks at the depot"
+    },
+    {
+     "content": "Print 60 menu cards with the weekend special"
+    }
+   ]
+  }
+ ]
+}

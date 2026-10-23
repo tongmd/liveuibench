@@ -1,0 +1,49 @@
+{
+  "people": [
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "ella@gmail.com",
+      "firstName": "Ella",
+      "lastName": "Nguyen",
+      "phone": "5550107101"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "raj@gmail.com",
+      "firstName": "Raj",
+      "lastName": "Patel",
+      "phone": "5550107102"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "sofia@gmail.com",
+      "firstName": "Sofia",
+      "lastName": "Alvarez",
+      "phone": "5550107103"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "wen@gmail.com",
+      "firstName": "Wen",
+      "lastName": "Liu",
+      "phone": "5550107104"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "omar.gift@gmail.com",
+      "firstName": "Omar",
+      "lastName": "Diaz",
+      "phone": "5550107105"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+ "people": [
+  {
+   "firstName": "Denny",
+   "lastName": "Okafor",
+   "email": "denny.okafor@example.com",
+   "phone": "5550917410",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Renata",
+   "lastName": "Voss",
+   "email": "renata.voss@example.com",
+   "phone": "5550917411",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "todoistProjects": [
+  {
+   "at": "2023-05-13T18:30:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Shop Chore Bounty Board",
+   "tasks": [
+    {
+     "content": "True the wobbly rear wheel on the blue cruiser — $8 bounty"
+    },
+    {
+     "content": "Patch the flat on the cargo trike — $4 bounty"
+    },
+    {
+     "content": "Degrease the loaner fleet drivetrains — $3 bounty"
+    }
+   ]
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-14T09:00:00",
+   "amount": 60
+  }
+ ]
+}

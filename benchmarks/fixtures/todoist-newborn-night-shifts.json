@@ -1,0 +1,13 @@
+{
+  "people": [
+    {
+      "firstName": "Sam",
+      "lastName": "Rivera",
+      "email": "sam@home.net",
+      "phone": "5550100929",
+      "apps": [
+        "todoist"
+      ]
+    }
+  ]
+}

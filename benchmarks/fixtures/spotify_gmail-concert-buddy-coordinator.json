@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Callie",
+   "lastName": "Brennan",
+   "email": "callie.brennan@copperkite.net",
+   "phone": "5550731144",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Dario",
+   "lastName": "Fontaine",
+   "email": "dario.fontaine@lanternhill.io",
+   "phone": "5550731177",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ]
+}

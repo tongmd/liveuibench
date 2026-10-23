@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Nair",
+   "email": "priya.nair@example.com",
+   "phone": "5550100304",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Wes",
+   "lastName": "Calloway",
+   "email": "wes.calloway@example.com",
+   "phone": "5550100872",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/zines/issue-06/pages.md",
+   "content": "Issue 6 final page plan fixture: p1 cover — Rooftop Gardens photo essay; p2-5 shop interviews; p6 letters; p7 stockists; p8 back cover."
+  },
+  {
+   "path": "/zines/issue-06/print-notes.md",
+   "content": "Issue 6 print notes fixture: 90 copies, saddle-stitched, trimmed to 5.5x8.5, delivered to stockists June 2."
+  },
+  {
+   "path": "/zines/templates/masthead.md",
+   "content": "GRAVEL & STATIC masthead template fixture: title block, issue number line, editor contact line."
+  }
+ ]
+}

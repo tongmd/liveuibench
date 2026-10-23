@@ -1,0 +1,40 @@
+{
+ "people": [
+  {
+   "firstName": "Nadia",
+   "lastName": "Solano",
+   "email": "nadia.solano@example.com",
+   "phone": "5550761101",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Grant",
+   "lastName": "Pulaski",
+   "email": "grant.pulaski@example.com",
+   "phone": "5550761102",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Yuki",
+   "lastName": "Tanabe",
+   "email": "yuki.tanabe@example.com",
+   "phone": "5550761103",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/photoday/price-sheet.txt",
+   "content": "Alder Street Headshots - price sheet\nHeadshot sitting fee: $145 per session\nRetouch add-on: $60\nRush 48-hour gallery delivery: $35\n"
+  }
+ ]
+}

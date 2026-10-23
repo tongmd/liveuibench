@@ -1,0 +1,42 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "email": "mom@familymail.com",
+   "phone": "5550167101",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Ray",
+   "lastName": "Vega",
+   "email": "ray@familymail.com",
+   "phone": "5550167102",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "frontdesk@lakesideclinic.com",
+   "to": "oracle@guios.dev",
+   "subject": "Appointment reminder: Dr. Patel on May 24",
+   "body": "This is a reminder of the appointment with Dr. Patel on Wednesday, May 24 at 10:00 AM. Please arrive 15 minutes early and bring your insurance card."
+  },
+  {
+   "from": "carla@familymail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Vega family reunion - July weekend planning",
+   "body": "Hi! Kicking off planning for our July reunion weekend. Dates, lake house options, and a carpool list inside - please pass this along to whoever handles logistics."
+  },
+  {
+   "from": "news@cityrec.org",
+   "to": "oracle@guios.dev",
+   "subject": "Summer rec program schedule is out",
+   "body": "The summer recreation program schedule is now available. Registration opens June 1."
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "people": [
+  {
+   "firstName": "Miles",
+   "lastName": "Beckstrom",
+   "email": "miles.beckstrom@familymail.dev",
+   "phone": "5550472218",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Nora",
+   "lastName": "Beckstrom",
+   "email": "nora.beckstrom@familymail.dev",
+   "phone": "5550472219",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "title": "Sunday Calls with Grandpa Walt",
+   "content": "Jun 14 - Walt fixed the porch screen himself; hip feeling steadier\nJun 21 - County fair stories; he wants everyone to visit in August"
+  }
+ ]
+}

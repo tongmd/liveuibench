@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Sadie",
+      "lastName": "Brenner",
+      "email": "sadie.brenner.sits@gmail.com",
+      "phone": "5550401201",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556737412209933,
+      "expiryYear": 2027,
+      "expiryMonth": 9,
+      "cvv": 274,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-07T08:50:00",
+      "amount": 150
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Amara",
+   "lastName": "Osei",
+   "email": "a.osei@kestrel-college.edu",
+   "phone": "5550287341",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Devendra",
+   "lastName": "Rao",
+   "email": "d.rao@kestrel-college.edu",
+   "phone": "5550419276",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "a.osei@kestrel-college.edu",
+   "to": "oracle@guios.dev",
+   "subject": "GEOL 210 syllabus — key dates for the semester",
+   "body": "Welcome to GEOL 210: Sedimentary Records. Key dates for the semester: Field trip report due Sep 26. Midterm exam on Oct 17. Mineral ID practical on Nov 7. Final exam on Dec 12. Office hours are Tuesdays at 3pm in Hutton 214."
+  },
+  {
+   "from": "d.rao@kestrel-college.edu",
+   "to": "oracle@guios.dev",
+   "subject": "STAT 245 syllabus and semester schedule",
+   "body": "Welcome to STAT 245: Applied Regression. The semester hinges on three dates: Project proposal due Oct 3. Midterm exam on Oct 21. Final project presentation on Dec 5. Weekly homework is graded on completion and is never emailed."
+  }
+ ]
+}

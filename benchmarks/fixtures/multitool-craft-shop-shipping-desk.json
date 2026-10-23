@@ -1,0 +1,13 @@
+{
+  "people": [
+    {
+      "firstName": "Odette",
+      "lastName": "Marchand",
+      "email": "odette.marchand@example.com",
+      "phone": "5550460101",
+      "apps": [
+        "phone"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+ "people": [
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "imani.okafor@willowmail.dev",
+   "firstName": "Imani",
+   "lastName": "Okafor",
+   "phone": "5550316274"
+  },
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "theo.lindqvist@willowmail.dev",
+   "firstName": "Theo",
+   "lastName": "Lindqvist",
+   "phone": "5550872945"
+  },
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "marisol.vega@willowmail.dev",
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "phone": "5550493187"
+  }
+ ],
+ "notes": [
+  {
+   "title": "Table #11 — Hand-Pulled Noodle Night",
+   "content": "Host: Theo\nMenu: biang biang noodles, smashed cucumber salad, black sesame ice cream\nGroceries $74.00 — $18.50 each"
+  },
+  {
+   "title": "Table #12 — Cast-Iron Paella",
+   "content": "Host: Marisol\nMenu: seafood paella, pan con tomate, crema catalana\nGroceries $96.20 — $24.05 each"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "people": [
+  {
+   "firstName": "Nora",
+   "lastName": "Hartwell",
+   "email": "nora.hartwell@example.com",
+   "phone": "5550860003",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/glasswork/templates/transom-grid-template.svg",
+   "content": "SVG fixture: rectangular transom grid layout — six-column border grid with lead-line cut paths sized for a 30x12in opening\n"
+  },
+  {
+   "path": "/glasswork/templates/rose-window-blossom-template.svg",
+   "content": "SVG fixture: round rose-window blossom layout — twelve petal repeats around a central roundel\n"
+  },
+  {
+   "path": "/glasswork/commissions/keller-magnolia-sidelight/keller-magnolia-pattern-v1.svg",
+   "content": "SVG fixture: magnolia sidelight cutting list from last spring's Keller commission — 48 pieces, opalescent white blooms\n"
+  }
+ ]
+}

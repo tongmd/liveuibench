@@ -1,0 +1,40 @@
+{
+  "people": [
+    {
+      "firstName": "Omar",
+      "lastName": "Reyes",
+      "email": "omar@example.com",
+      "phone": "5550100202",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Bea",
+      "lastName": "Solano",
+      "email": "bea@work.com",
+      "phone": "5550220023",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Raj",
+      "lastName": "Iyer",
+      "email": "raj@work.com",
+      "phone": "5550220024",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Nina",
+      "lastName": "Park",
+      "email": "nina@work.com",
+      "phone": "5550220025",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

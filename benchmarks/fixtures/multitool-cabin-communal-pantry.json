@@ -1,0 +1,28 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Raman",
+   "email": "priya.raman@example.com",
+   "phone": "5550100871",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Wes",
+   "lastName": "Calloway",
+   "email": "wes.calloway@example.com",
+   "phone": "5550100872",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "title": "Cabin Pantry Inventory",
+   "content": "Communal pantry — Birch Hollow cabin. AA batteries: OUT (lantern drawer empty). Dish soap: LOW (one inch left in the bottle). Food storage containers: LOW — two cracked lids, replace the set. Firewood: full rack. Coffee filters: plenty."
+  }
+ ]
+}

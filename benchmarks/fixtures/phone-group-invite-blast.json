@@ -1,0 +1,40 @@
+{
+ "people": [
+  {
+   "firstName": "Theo",
+   "lastName": "Marsh",
+   "email": "theo.marsh@example.com",
+   "phone": "5550133301",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Grace",
+   "lastName": "Lin",
+   "email": "grace.lin@example.com",
+   "phone": "5550133302",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Owen",
+   "lastName": "Pierce",
+   "email": "owen.pierce@example.com",
+   "phone": "5550133303",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Nadia",
+   "lastName": "Rahim",
+   "email": "nadia.rahim@example.com",
+   "phone": "5550133304",
+   "apps": [
+    "phone"
+   ]
+  }
+ ]
+}

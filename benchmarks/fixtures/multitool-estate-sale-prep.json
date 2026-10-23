@@ -1,0 +1,28 @@
+{
+ "people": [
+  {
+   "firstName": "Nora",
+   "lastName": "Whitfield",
+   "email": "nora.whitfield@example.com",
+   "phone": "5550172236",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Calvin",
+   "lastName": "Whitfield",
+   "email": "calvin.whitfield@example.com",
+   "phone": "5550172410",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/estate-sale/dining-room/inventory.md",
+   "content": "walnut dining table with six chairs — $300\nchina hutch — needs appraisal\n"
+  }
+ ]
+}

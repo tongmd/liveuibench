@@ -1,0 +1,31 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Raghunathan",
+   "email": "priya.raghunathan.party@example.com",
+   "phone": "5550841101",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Ostrowski",
+   "email": "marcus.ostrowski.party@example.com",
+   "phone": "5550841102",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "venmoTransactions": [
+  {
+   "at": "2023-05-05T21:12:00",
+   "fromEmail": "priya.raghunathan.party@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 5,
+   "description": "DJ tip: Dancing in a Field of Thorns"
+  }
+ ]
+}

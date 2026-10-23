@@ -1,62 +1,42 @@
-.env
-.env.*
-!.env.example
-data/
+# Dependencies and builds
 node_modules/
 dist/
 dist-server/
-screenshots/
+dist-legacy-web/
+.expo/
+dist-expo-*/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# User state, generated apps, and test scratch
+data/
+generated-apps/
+generated-apps-*/
+artifacts/
+.test-runs/
 logs/
 tmp/
-.expo/
-dist-expo-shell/
-dist-expo-ios/
-dist-expo-android/
-generated-apps-test/
-generated-apps-benchmark/
-generated-apps-quality/
-generated-apps-check/
-generated-apps-preview-*/
-generated-apps-visual-iteration-*/
-artifacts/*.png
-artifacts/*-report.json
-artifacts/current-*/
-artifacts/gallery-visual-audit-current/
-artifacts/gui-results/
-artifacts/gui-review*/
-artifacts/icon-audit-*/
-artifacts/live-visual-audit*/
-artifacts/noncrud-*/
-artifacts/noncrud-*
-artifacts/runtime-review/
-artifacts/svg-icon-results/
-artifacts/visual-iteration-*/
-artifacts/workflowgen/**/generated-apps/
-artifacts/workflowgen/**/report.partial.json
-server/ui-click-test.mjs
-server/ui-click-connect-test.mjs
-.DS_Store
-*.log
-*.aux
-*.blg
-*.fdb_latexmk
-*.fls
-*.out
 *.db
 *.db-shm
 *.db-wal
+*.log
+
+# Local environment and editor state
+.appworld*/
+.venv/
+.claude/
+.agents/
+.aris/
+.DS_Store
+*.bak
+*.backup
 packages/*/src/*.js
 
-# Local venvs / tool state / experiment outputs (not source)
-.appworld-venv/
-.appworld-data/
-.appworld/
-.claude/
-.aris/
-.agents/
-generated-apps/
-generated-apps-*/
-data-*/
-# Keep paper-referenced trajectory figures, ignore raw eval/demo run dumps
-artifacts/
-!artifacts/.gitkeep
+# Python deployment test caches
+__pycache__/
+*.pyc

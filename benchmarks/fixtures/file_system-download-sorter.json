@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "/downloads/invoice.pdf",
+      "content": "PDF invoice fixture"
+    },
+    {
+      "path": "/downloads/cat.jpg",
+      "content": "JPG image fixture"
+    },
+    {
+      "path": "/downloads/report.pdf",
+      "content": "PDF report fixture"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+ "files": [
+  {
+   "path": "/papers/transformers/attention-is-all-you-need.pdf",
+   "content": "PDF placeholder — Attention Is All You Need (sequence transduction with self-attention). 15 pages."
+  },
+  {
+   "path": "/papers/transformers/bert-pretraining.pdf",
+   "content": "PDF placeholder — BERT: deep bidirectional pre-training for language understanding. 16 pages."
+  },
+  {
+   "path": "/papers/rl/proximal-policy-optimization.pdf",
+   "content": "PDF placeholder — Proximal Policy Optimization algorithms. 12 pages."
+  }
+ ],
+ "notes": [
+  {
+   "title": "Paper summary: Proximal Policy Optimization",
+   "content": "Status: read\nTakeaway: Clipped surrogate objective keeps policy updates stable without a KL penalty."
+  }
+ ]
+}

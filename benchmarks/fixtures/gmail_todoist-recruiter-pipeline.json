@@ -1,0 +1,64 @@
+{
+  "people": [
+    {
+      "firstName": "Dana",
+      "lastName": "Reyes",
+      "email": "recruiting@datadog.example.com",
+      "phone": "5550220010",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Felix",
+      "lastName": "Nguyen",
+      "email": "recruiting@figma.example.com",
+      "phone": "5550100406",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Sana",
+      "lastName": "Iqbal",
+      "email": "recruiting@stripe.example.com",
+      "phone": "5550220011",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "recruiting@datadog.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Datadog — Software Engineer opportunity",
+      "body": "Hi, I'd love to chat about an SWE role at Datadog. Are you open to a call this week? — Dana",
+      "replies": [
+        {
+          "from": "oracle@guios.dev",
+          "body": "Hi Dana, yes — happy to talk. Send over some times."
+        }
+      ]
+    },
+    {
+      "from": "recruiting@stripe.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Stripe recruiting — next steps",
+      "body": "Thanks for your interest in Stripe. Could you share your availability for a screen? — Sana",
+      "replies": [
+        {
+          "from": "oracle@guios.dev",
+          "body": "Hi Sana, attaching my availability — any afternoon works."
+        }
+      ]
+    },
+    {
+      "from": "recruiting@figma.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Figma — product engineering role",
+      "body": "Hi! Your background looks like a great fit for our product engineering team. Would you like to set up an intro chat? — Felix",
+      "replies": []
+    }
+  ]
+}

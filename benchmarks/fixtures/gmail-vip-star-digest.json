@@ -1,0 +1,93 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "email": "mom@familymail.com",
+   "phone": "5550167101",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Adaeze",
+   "lastName": "Okafor",
+   "email": "dr.okafor@clinicmail.com",
+   "phone": "5550210005",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Foundation",
+   "lastName": "Board",
+   "email": "board@myfoundation.org",
+   "phone": "5550210006",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Peter",
+   "lastName": "Grady",
+   "email": "landlord@propmgmt.com",
+   "phone": "5550210007",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Dealblast",
+   "lastName": "Promos",
+   "email": "coupons@dealblast.com",
+   "phone": "5550210008",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "mom@familymail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Sunday dinner plans?",
+   "body": "Are you coming over this Sunday? I'm making the lemon chicken you like."
+  },
+  {
+   "from": "mom@familymail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Photos from the lake trip",
+   "body": "Finally went through the lake photos. The one of you two on the dock is my favorite."
+  },
+  {
+   "from": "dr.okafor@clinicmail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your lab results are ready to review",
+   "body": "Your recent lab results are in. Everything looks stable; please book a follow-up at your convenience."
+  },
+  {
+   "from": "board@myfoundation.org",
+   "to": "oracle@guios.dev",
+   "subject": "Q2 board meeting agenda",
+   "body": "Here is the Q2 agenda outline: grants review, budget vote, new trustee introductions."
+  },
+  {
+   "from": "landlord@propmgmt.com",
+   "to": "oracle@guios.dev",
+   "subject": "Lease renewal paperwork for unit 4B",
+   "body": "Your lease is up at the end of next month. Renewal terms are unchanged; let me know and I'll send the paperwork."
+  },
+  {
+   "from": "coupons@dealblast.com",
+   "to": "oracle@guios.dev",
+   "subject": "48-hour flash sale on patio furniture",
+   "body": "Up to 50% off patio sets for the next 48 hours only."
+  },
+  {
+   "from": "coupons@dealblast.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your weekly deal roundup",
+   "body": "This week's top deals across electronics, home, and outdoor."
+  }
+ ]
+}

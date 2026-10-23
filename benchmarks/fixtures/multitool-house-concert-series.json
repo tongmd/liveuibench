@@ -1,0 +1,44 @@
+{
+ "people": [
+  {
+   "firstName": "June",
+   "lastName": "Okafor",
+   "email": "june.okafor@example.com",
+   "phone": "5550480001",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Wren",
+   "lastName": "Delgado",
+   "email": "wren.delgado@example.com",
+   "phone": "5550118402",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Oskar",
+   "lastName": "Lindqvist",
+   "email": "oskar.lindqvist@example.com",
+   "phone": "5550118403",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Tabitha",
+   "lastName": "Moreau",
+   "email": "tabitha.moreau@example.com",
+   "phone": "5550118404",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  }
+ ]
+}

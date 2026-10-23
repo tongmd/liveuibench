@@ -1,0 +1,34 @@
+{
+ "people": [
+  {
+   "firstName": "Lachlan",
+   "lastName": "Fenn",
+   "email": "lachlan.fenn@example.com",
+   "phone": "5550740301",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Suki",
+   "lastName": "Kolstad",
+   "email": "suki.kolstad@example.com",
+   "phone": "5550740302",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "title": "Darts Night Ledger",
+   "content": "Thu Apr 6: Lachlan +$22, Suki -$14\nThu Apr 13: Lachlan +$9, Suki -$11\nRunning: I owe Lachlan $31, Suki owes me $25"
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-08T10:30:00",
+   "amount": 120
+  }
+ ]
+}

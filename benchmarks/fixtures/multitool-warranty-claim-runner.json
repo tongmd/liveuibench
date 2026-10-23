@@ -1,0 +1,41 @@
+{
+ "people": [
+  {
+   "firstName": "Yusuf",
+   "lastName": "Grantham",
+   "email": "yusuf.grantham@meridianappliancecare.com",
+   "phone": "5550982314",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  }
+ ],
+ "amazonOrders": [
+  {
+   "at": "2023-04-06T13:45",
+   "items": [
+    {
+     "query": "Breville Barista Pro Espresso Machine"
+    }
+   ],
+   "address": {
+    "name": "Home",
+    "streetAddress": "72 Beacon Row",
+    "city": "Asheville",
+    "state": "North Carolina",
+    "country": "USA",
+    "zipCode": 28801
+   }
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-15T09:40",
+   "from": "yusuf.grantham@meridianappliancecare.com",
+   "to": "oracle@guios.dev",
+   "subject": "Meridian Appliance Care warranty claim WCR-58213 opened",
+   "body": "Hi, this is Yusuf Grantham at the Meridian Appliance Care warranty desk. Your warranty claim WCR-58213 for your Breville espresso machine is now open. To move it forward, please reply to this address with your proof of purchase from your Amazon order history, and quote the claim reference on every message. If we need anything else, someone from this desk will call you."
+  }
+ ]
+}

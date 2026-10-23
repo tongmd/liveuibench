@@ -1,0 +1,23 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-05-12T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Maple Litter Foster Board",
+   "tasks": [
+    {
+     "content": "Bottle-feed Clover - 70 ml every 4 hours"
+    },
+    {
+     "content": "Bottle-feed Bramble - 65 ml every 4 hours"
+    },
+    {
+     "content": "Deworming round 2 - both kittens"
+    },
+    {
+     "content": "Spay surgery consult at Cedar Hollow Animal Clinic - Clover"
+    }
+   ]
+  }
+ ]
+}

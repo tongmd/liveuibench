@@ -1,0 +1,43 @@
+{
+ "people": [
+  {
+   "firstName": "Terrell",
+   "lastName": "Ogundipe",
+   "email": "terrell.ogundipe@example.com",
+   "phone": "5550367204",
+   "apps": [
+    "venmo",
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Sasha",
+   "lastName": "Petrakis",
+   "email": "sasha.petrakis@example.com",
+   "phone": "5550367215",
+   "apps": [
+    "venmo",
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Beau",
+   "lastName": "Trammell",
+   "email": "beau.trammell@example.com",
+   "phone": "5550367226",
+   "apps": [
+    "venmo",
+    "splitwise",
+    "phone"
+   ]
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-06T09:00:00",
+   "amount": 75
+  }
+ ]
+}

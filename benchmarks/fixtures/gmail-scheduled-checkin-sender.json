@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Priya",
+      "lastName": "Nair",
+      "email": "priya@acme.co",
+      "phone": "5550220001",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Sam",
+      "lastName": "Ortega",
+      "email": "sam@vela.io",
+      "phone": "5550220002",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ]
+}

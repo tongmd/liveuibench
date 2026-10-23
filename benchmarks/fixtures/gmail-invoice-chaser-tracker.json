@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Marla",
+      "lastName": "Marlowe",
+      "email": "billing@marlowedesign.com",
+      "phone": "5550109311",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Rosa",
+      "lastName": "Rivera",
+      "email": "accounts@riverastudios.com",
+      "phone": "5550109312",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Ted",
+      "lastName": "Tenpenny",
+      "email": "invoices@tenpennymedia.com",
+      "phone": "5550109313",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ]
+}

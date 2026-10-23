@@ -1,0 +1,52 @@
+{
+ "people": [
+  {
+   "firstName": "Colleen",
+   "lastName": "Alcaraz",
+   "email": "colleen.alcaraz@example.com",
+   "phone": "5550946201",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Samir",
+   "lastName": "Bishara",
+   "email": "samir.bishara@example.com",
+   "phone": "5550946202",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Yuki",
+   "lastName": "Amemiya",
+   "email": "yuki.amemiya@example.com",
+   "phone": "5550946203",
+   "apps": [
+    "splitwise",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Lenore",
+   "lastName": "Fairbanks",
+   "email": "lenore.fairbanks@harborsideyouthleague.org",
+   "phone": "5550946204",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-13T09:15",
+   "from": "lenore.fairbanks@harborsideyouthleague.org",
+   "to": "oracle@guios.dev",
+   "subject": "Harborside Youth League fall registration invoice for the Brookfield Comets U11",
+   "body": "Hello, this is the fall season registration invoice for the Brookfield Comets U11. Team registration fee: $360, due May 30. Invoice reference HYL2214. Please reply to this email once payment is arranged so I can mark your roster active for the fall schedule. Lenore Fairbanks, Registrar, Harborside Youth League"
+  }
+ ]
+}

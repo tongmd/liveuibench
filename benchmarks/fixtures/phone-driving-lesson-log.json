@@ -1,0 +1,42 @@
+{
+ "people": [
+  {
+   "firstName": "Rohan",
+   "lastName": "Acharya",
+   "email": "rohan.acharya@example.com",
+   "phone": "5550620001",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Rohan",
+   "lastName": "Acharya",
+   "phone": "5550620001",
+   "email": "rohan.acharya@example.com",
+   "relationship": "husband"
+  }
+ ],
+ "sms": [
+  {
+   "at": "2023-05-06T17:30:00",
+   "fromPhone": "5550100001",
+   "toPhone": "5550620001",
+   "message": "Drive log 2023-05-06: 1.5 hours, neighborhood loops, sunny and dry"
+  },
+  {
+   "at": "2023-05-10T20:45:00",
+   "fromPhone": "5550100001",
+   "toPhone": "5550620001",
+   "message": "Drive log 2023-05-10: 1.0 hours, River Road at night, clear night"
+  },
+  {
+   "at": "2023-05-14T16:10:00",
+   "fromPhone": "5550100001",
+   "toPhone": "5550620001",
+   "message": "Drive log 2023-05-14: 2.0 hours, highway merges, light rain"
+  }
+ ]
+}

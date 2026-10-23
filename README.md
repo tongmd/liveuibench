@@ -1,185 +1,128 @@
-# GUIOS
+# LiveUIBench
 
-**An agent-native application runtime.** Say one sentence, and an agent generates an app whose interface, state, and behavior it maintains — live, interactive, and genuinely usable.
+**Evaluate an agent through the applications people keep using.**
 
-GUIOS is also the reference runtime for **LiveUIBench**, a behavioral benchmark for *agent-generated* GUI workflow surfaces, described in our upcoming paper:
+LiveUIBench evaluates **open → submit → revise → reopen** workflows, including the interface, service actions, and saved state. This repository also includes **LiveUIAgent**, the application runtime used to generate, run, personalize, and evaluate apps with selectable models and harnesses.
 
-> **LiveUIBench: A Behavioral Benchmark for Agent-as-GUI Workflow Surfaces** (under review)
-> Paper site: https://liveguibench.pages.dev/ · Project site: https://guios.pages.dev/
+[Paper](https://arxiv.org/abs/2610.27977v1) · [LiveUIAgent](http://liveui.example.org/liveui/) · [Quickstart](docs/QUICKSTART.md) · [Benchmark guide](docs/benchmarks/README.md) · [Deployment](deploy/README.md) · [Documentation](docs/README.md)
 
----
+The hosted application requires authentication. This repository remains private; access to the application and access to the repository are managed separately.
 
-## What is GUIOS?
+![Agent as App: personal applications and changing requirements share a runtime while retaining interface behavior and saved information.](paper/agent-as-app-teaser.png)
 
-Most "AI builds an app" systems generate code. GUIOS generates **spec packages**: an app is a bundle of `manifest.json`, `ui.json`, `actions.json`, `data.schema.json`, `agents.json`, memory, tests, and assets — validated, versioned, diffable, and rendered by a single universal runtime on Web, iOS, and Android.
+*Figure 1 from Zhang et al., [arXiv:2610.27977v1](https://arxiv.org/abs/2610.27977v1), reproduced unchanged under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).*
 
-```text
-User Message → App Spec → Validation → Registry → Universal Renderer → Agent Backend Actions
-```
+## Run LiveUIAgent
 
-- **Whiteboard-first UX** — you type a natural-language intention into the bottom dock; a multi-agent pipeline (requirement → planner → UI → action → data → asset → safety → layout) produces an app card you can open immediately.
-- **No client-side business logic** — every button, form, and list event dispatches to a unified agent gateway (`/agent/run`, `/agent/action`, `/agent/patch-app`, `/agent/query-state`, …). The frontend renders; agents act.
-- **One spec, three platforms** — the same `ui.json` renders through a shared component registry on Web (Vite/React), iOS, and Android (Expo / React Native).
-- **Safety by construction** — generated specs are restricted to a whitelisted component set; `script`, `iframe`, `raw_html`, `custom_js`, and shell access are forbidden; SVG assets are sanitized; actions must declare capability permissions.
-- **Real-service grounding** — app actions can invoke real executable APIs (via [AppWorld](https://appworld.dev)) and write the returned entities back into visible UI state.
+Use **Node.js 22.19 or newer**. Install the runtime and DSH plugin without the optional mobile dependencies:
 
-Architecture details (in Chinese): [docs/ARCHITECTURE.zh-CN.md](docs/ARCHITECTURE.zh-CN.md).
-
-## Quickstart
-
-Requirements: Node.js ≥ 20, an OpenAI-compatible LLM endpoint.
-
-```bash
-npm install
+```sh
+git clone https://github.com/tongmd/liveuibench.git
+cd liveuibench
+npm ci --workspace @guios/dsh-plugin --include-workspace-root
 cp .env.example .env
-
-# LLM configuration (OpenAI-compatible)
-export OPENAI_API_KEY=sk-...
-export OPENAI_API_BASE=https://your-endpoint/v1
-export GUIOS_ORCHESTRATOR_MODEL=<model-name>
-
-npm run dev        # server on :8787 + Vite client
+npm run build
+npm start
 ```
 
-Open the client, type an intention (e.g. *"an app where each week I set the vibe for my commute and it builds a fresh playlist, remembering last week's picks"*), and watch the app card appear.
+Open **http://127.0.0.1:8787**. In Settings, enter an OpenAI-compatible API base, API key, and model; then describe an application. The server can start without model credentials, but generation requires a configured provider. You can also set these values in `.env`. See [configuration](docs/CONFIGURATION.md) for provider settings and storage paths.
 
-Other useful commands:
+The toolbar selects a model and harness for new apps:
 
-```bash
-npm test                     # smoke test
-npm run test:cross-platform  # cross-platform spec rendering checks
-npm run shell:web            # Expo universal shell (also shell:ios / shell:android)
-npm run build && npm start   # production build
+| Harness | Generated application | Setup |
+| --- | --- | --- |
+| `native` | Validated app specification rendered by the shared runtime | Available with the local server |
+| `dsh` | Complete HTML application with storage and AI bridges | Requires a configured DSH service and authenticated identity |
+
+Existing apps retain their original harness. DSH model/provider overrides depend on the connected service's advertised capabilities; unavailable selections return errors. The separate [native DSH plugin](packages/dsh-plugin/README.md) embeds LiveUIAgent in a DSH web profile.
+
+For development, `npm run dev` serves the current frontend and watches the backend. [Example requests](examples/README.md) show the HTTP entry points.
+
+## Run the benchmark
+
+The bundled snapshot contains **319 cases: 147 `dev` and 172 `public_test`**, with 230 fixture files. Sealed cases are excluded. The [provenance manifest](benchmarks/provenance.json) records the dataset and fixture hashes; these identify the snapshot and do not certify every annotation as human verified.
+
+Start with the offline runner smoke test:
+
+```sh
+npm run bench:liveui -- --mock
 ```
 
-Optional real-API grounding (used by the demo and the benchmark) requires a local AppWorld world:
+This uses a dedicated fixture dataset and mock runtime. Reports are labeled `mode: "mock"`, `comparable: false`; they are runner checks, not model results.
 
-```bash
-python3 -m venv .appworld-venv
-.appworld-venv/bin/pip install appworld
-appworld install && appworld download data --root .
-bash scripts/livegui/reset-appworld.sh   # pristine world on :9000
+For a real evaluation, install AppWorld separately and export provider credentials into the runner's environment (`OPENAI_API_BASE`, `OPENAI_API_KEY`, and any shared model routes). The parallel runner creates a fresh runtime, database, and AppWorld instance for each case; it does not reuse desktop settings or load the local `.env`:
+
+```sh
+npm run bench:parallel -- \
+  --workers 2 \
+  --appworld-bin /absolute/path/to/appworld \
+  --appworld-root /absolute/path/to/appworld-data \
+  --harness native --model YOUR_MODEL \
+  --split dev --limit 2 --evaluator both \
+  --out artifacts/liveuibench/native-dev
 ```
 
----
+Use `--split all --limit 319` to select the complete bundled snapshot after a small run succeeds. Managed parallel execution currently supports native only. Each selected case consumes model calls; `--evaluator both` also runs the independent behavior evaluator. No live evaluation starts during installation or CI. The [benchmark guide](docs/benchmarks/README.md) covers serial execution, fixture preparation, evaluator modes, evidence, and strict failure accounting.
 
-## LiveUIBench: the dataset
+### Read the evidence correctly
 
-**`benchmarks/liveuibench.json`** (v0.2.0) is a hand-audited behavioral suite that asks a deceptively simple question:
+| Check | What it measures |
+| --- | --- |
+| Scripted native workflow | Deterministic assertions over programmatic app actions, responses, traces, and state |
+| Independent behavior evaluator | Separate bounded interactions and a model-based judgment; runs after scripted reopen scoring |
+| Native GUI evaluator | Structural/default-render checks; a proxy, not a perceptual quality score |
+| DSH GUI and behavior evaluation | Actual Chrome DOM, interactions, screenshots, and persisted HTML-app state |
 
-> *Can an agent turn an end-user intention into a working app — one that users can open, operate, revise, and reopen, and that actually drives the real services it names?*
+Workflow pass rates use the deterministic scripted assertions; GUI and independent evaluator results are reported separately. Assertion values and case audit metadata are excluded from generation. Fixture contacts are also excluded by default; `--fixture-contacts` enables an assisted diagnostic setting that must be reported separately.
 
-This differs from GUI-agent benchmarks (which **operate** existing software) — here the agent must **create** the environment that later interactions operate.
+DSH cannot currently provide all of the native AppWorld trace and database evidence. Unsupported assertions remain failed, and DSH benchmark runs are diagnostic rather than directly comparable to native scores. Reports preserve failures, selected-case denominators, configuration, and artifacts. This software release does not by itself reproduce the paper's results.
 
-### Composition
+## Deploy
 
-| | |
-|---|---|
-| Cases | **140 released** (65 dev / 75 public test); a 79-case sealed test split is withheld for hosted evaluation and contamination control |
-| Splits | **65 dev / 75 public test**, stratified by domain (+ 79 sealed, withheld) |
-| Domains | 11 AppWorld app domains: spotify, amazon, gmail, phone, venmo, splitwise, todoist, simple_note, file_system + 2 cross-app |
-| Episodes | 4 per core case, fixed order: **open → submit → revise → reopen** (448 in the released splits; 764 in the full suite) |
-| Assertions | **2,172 deterministic assertions** in the full suite (1,265 released) — no LLM judge in scoring |
-| World fixtures | seedable world fixtures for precondition-dependent cases (80 released) |
+The deployment script installs a versioned release behind an authenticated Nginx `/liveui/` route, with persistent state and health-checked rollback:
 
-Each case carries a natural-language intention, e.g.:
-
-> *"I want an app where each week I set the vibe for my drive to work and it builds a fresh commute playlist, remembering what I picked last week so I can tweak it instead of starting over."*
-
-and episode-level user messages with deterministic assertions checked against execution traces, per-action API-call records, and before/after database diffs (counts below are for the full 219-case suite):
-
-| Assertion type | Count | Checks |
-|---|---|---|
-| `route_enters_orchestrator` | 382 | UI events reach the agent workflow |
-| `visible_result_grounded` | 382 | the concrete returned entity becomes visible state |
-| `appworld_api_called` | 376 | the *named* real API is actually invoked |
-| `appworld_db_changed` | 268 | the application database changes |
-| `input_available` / `action_available` / `route_exists` / `state_persists` | 191 each | first-screen affordances & reopen persistence |
-
-### Five executable contracts
-
-A case is **resolved** only if every contract holds in every episode — no partial credit:
-
-1. **Visible task state** — opening the app renders the needed controls
-2. **App-scoped action routing** — events enter the agent workflow
-3. **Real-API grounding** — *naming an API is not calling it*: the named API must be invoked and the database must change
-4. **Grounded visible update** — the returned entity becomes user-visible state
-5. **Reopen persistence** — the entity survives teardown
-
-The suite went through two live-world soundness audits (an 8-criterion review producing 187 repairs, and a "could a correct app fail?" sweep producing 61 expectation rewrites, 118 fixtures, and 7 quarantined cases). An online LLM behavior evaluator agreed with the deterministic assertions on 14/15 probed cases — external validity, not scoring.
-
-### LiveUIBench-6K (synthetic companion)
-
-`benchmarks/workflowgen/cases.livegui-bench-6k.json` (legacy filename; not checked in — regenerate with `npm run benchmark:workflowgen:6k`) scales the same episode/assertion format programmatically: **6,000 cases** (600 dev / 2,400 public / 3,000 hidden), 24,000 episodes, 72,000 assertions, plus GUI/icon/interaction quality rubrics.
-
-### Running the benchmark
-
-```bash
-# AppWorld-grounded behavioral suite (the paper's numbers)
-bash scripts/livegui/reset-appworld.sh          # pristine world before EVERY run
-npm run benchmark:appworld                       # → artifacts/appworld-bench/<run>/report.json
-bash scripts/livegui/run-behavior-eval.sh        # one-command behavioral runner
-
-# Synthetic 6K suite
-npm run benchmark:workflowgen -- \
-  --cases benchmarks/workflowgen/cases.livegui-bench-6k.json \
-  --split dev --limit 10 --model <model> \
-  --out artifacts/workflowgen/my-run --continue-on-failure
-npm run benchmark:workflowgen:summary            # report.json → summary + LaTeX tables
+```sh
+npm run deploy -- \
+  --host DEPLOY_HOST \
+  --remote-env /etc/liveuiagent.env \
+  --nginx-site /etc/nginx/sites-available/liveui \
+  --auth-file /etc/nginx/liveui.htpasswd
 ```
 
-Ablation: set `GUIOS_APPWORLD_GROUNDING=off` to disable the real-API executor. Do **not** run the demo and the benchmark concurrently against the same `:9000` world.
+Replace `DEPLOY_HOST` with your SSH host or alias. The remote environment and password file stay outside Git. See [deployment prerequisites and options](deploy/README.md), including first-time setup. The application expects a trusted gateway to establish user identity; `X-Guios-User` is not an authentication mechanism for an exposed backend.
 
-Ground rules for submissions: no fallback app packages, no task-type templates in the generator, no hidden business logic in the frontend. Leaderboard claims on the sealed split require a hosted run with archived app packages, reports, and cost/latency metadata.
+## Develop and test
 
----
+```sh
+npm test                    # Build and offline runtime/plugin/benchmark tests
+npm run test:parallel       # Isolated worker orchestration tests
+npm run test:deploy         # Deployment script checks
+npm run check:release       # Source, credentials, and asset provenance checks
 
-## The paper
-
-**LiveUIBench: A Behavioral Benchmark for Agent-as-GUI Workflow Surfaces** evaluates frontier systems on the 191-case core suite (public-75 split, temperature 0.2, pristine world per run). Headline results:
-
-| System | FWR | APR | Route | API | DB | Grounded | Persist |
-|---|---|---|---|---|---|---|---|
-| Direct-answer control | 0.00 | 0.00 | 0 | 0 | 0 | 0 | 0 |
-| Hidden-state control | 0.00 | 0.82 | 1.00 | 1.00 | 1.00 | 0.00 | 1.00 |
-| livegui-agent (gpt-5.4) | **0.05** | 0.67 | 0.92 | 0.16 | 0.18 | 0.73 | 0.72 |
-| livegui-agent (opus-4.7) | **0.15** | 0.72 | 0.99 | 0.23 | 0.27 | 0.80 | 0.75 |
-| No-grounding ablation | 0.00 | 0.67 | 1.00 | 0.00 | 0.00 | 0.84 | 0.76 |
-
-FWR = Full Workflow Resolution (primary, all-or-nothing per case); APR = Assertion Pass Rate (diagnostic only).
-
-Key findings:
-
-1. **The APR–FWR illusion** — a scripted control that does real API work but never shows a result scores APR 0.82 with FWR 0. Assertion-level scores overstate competence by construction.
-2. **Real-API grounding is the bottleneck** — surface contracts (routing 0.92–0.99, persistence ~0.75) are largely solved, but only 16–23% of required API invocations actually happen.
-3. **Model discrimination** — opus-4.7 resolves ~3× more full workflows than gpt-5.4, and the gap concentrates in the API contract: the benchmark measures tool-grounding, not surface fluency.
-4. **Multi-party state is unsolved** — spotify and file_system cases resolve; multi-party ledger domains (venmo / splitwise / todoist collaboration) resolve **zero** for both models, with API-call-level forensics in the appendix (divisor anchoring, wrong-service binding, duplicate-write inflation).
-
-Every reported number is compiled from run artifacts by checked-in scripts; `npm run paper:check` verifies 68/68 claim-traceability gates. No sealed-split leaderboard claims are made. See the paper site for the manuscript: https://liveguibench.pages.dev/
-
-## Repository layout
-
-```text
-apps/shell/            Expo universal client (Web / iOS / Android)
-src/                   Vite web shell
-server/                Agent gateway, multi-agent runtime, benchmark runners
-packages/app-spec/     Shared spec types + component whitelist
-benchmarks/
-  liveuibench.json     LiveUIBench v0.2.0 — 140 released behavioral cases (dev + public)
-  intentions/          Source intentions, extensions, overrides, world fixtures
-  workflowgen/         LiveUIBench-6K synthetic suite schema + generator
-scripts/livegui/       AppWorld reset + behavioral eval runners
-site/                  Project website (guios.pages.dev)
+# Requires an installed Chrome/Chromium executable in CHROME_PATH.
+npm run test:runtime-ui
+npm run test:evaluator
+npm run test:catalog
 ```
 
-## Citation
+CI runs offline checks and real-browser tests against local fixtures, and retains screenshots. It does not supply model credentials or contact a live AppWorld service. See [contribution guidance](CONTRIBUTING.md) and [security boundaries](SECURITY.md).
 
-Citation information will be added once the paper is public. Until then, please link to this repository and https://liveguibench.pages.dev/.
+The current frontend lives in `frontend/snapshot/` with editable sidecar resources and a verified hash manifest. `legacy-web/` is an earlier React implementation; its build is separate. The optional Expo shell in `apps/shell/` requires all workspace dependencies and separate mobile validation.
 
-## Contributing
+## Cite
 
-Issues and PRs are welcome — especially new benchmark cases (see `benchmarks/intentions/README.md` for the case format), renderer components, and evaluation harness improvements. Benchmark case changes must pass the soundness audit criteria (satisfiability under a correct app, seedable preconditions, deterministic assertions).
+Tong Zhang, Yuxuan Cheng, Ruimin Zhang, Yun Peng, and Tao Xie. **LiveUIBench: Evaluating Agent as App Workflows.** arXiv:2610.27977v1, 2026.
 
-## License
+```bibtex
+@misc{zhang2026liveuibench,
+  title = {{LiveUIBench}: Evaluating Agent as App Workflows},
+  author = {Zhang, Tong and Cheng, Yuxuan and Zhang, Ruimin and Peng, Yun and Xie, Tao},
+  year = {2026},
+  eprint = {2610.27977},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.SE},
+  url = {https://arxiv.org/abs/2610.27977v1}
+}
+```
 
-Apache License 2.0 — see [LICENSE](LICENSE).
+[CITATION.cff](CITATION.cff), [complete BibTeX](citation.bib), and the [paper assets and provenance](paper/README.md) are included. Code is licensed under [Apache-2.0](LICENSE); the paper and its figure have their own license documented above.

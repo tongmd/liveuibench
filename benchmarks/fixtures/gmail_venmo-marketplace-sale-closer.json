@@ -1,0 +1,38 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Raman",
+   "email": "priya.raman@plumtree-mail.com",
+   "phone": "5550287401",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Webb",
+   "email": "marcus.webb@rowanpost.net",
+   "phone": "5550287402",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "priya.raman@plumtree-mail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Marketplace: walnut dresser",
+   "body": "Hi, it's Priya from the Marketplace listing. I can do $120 for the walnut dresser if you can hold it until the weekend — Saturday morning works best for pickup. Send me the address and I'll bring my brother's truck."
+  },
+  {
+   "from": "marcus.webb@rowanpost.net",
+   "to": "oracle@guios.dev",
+   "subject": "Hybrid commuter bike still available?",
+   "body": "Hey, Marcus here about the bike — $85 as we discussed in chat works for me. I'm free Sunday afternoon; email me where to come and I can Venmo you the same day."
+  }
+ ]
+}

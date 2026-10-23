@@ -1,0 +1,82 @@
+{
+ "people": [
+  {
+   "firstName": "Ingrid",
+   "lastName": "Halvorsen",
+   "email": "ingrid.halvorsen@copperlinemutual.com",
+   "phone": "5550872104",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Calvin",
+   "lastName": "Osei",
+   "email": "calvin.osei@oseiroofing.com",
+   "phone": "5550872101",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Serena",
+   "lastName": "Whitfield",
+   "email": "serena.whitfield@whitfieldroof.com",
+   "phone": "5550872102",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Tavo",
+   "lastName": "Marsh",
+   "email": "tavo.marsh@marshbrosroofing.com",
+   "phone": "5550872103",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-08T14:05",
+   "from": "ingrid.halvorsen@copperlinemutual.com",
+   "to": "oracle@guios.dev",
+   "subject": "Claim CLM-58214-HW: two written repair quotes needed",
+   "body": "Hello, this is Ingrid Halvorsen, the adjuster assigned to your hail damage claim CLM-58214-HW. Before Copperline Mutual can release repair funds I need two written itemized quotes from licensed roofing contractors in the claim packet. Please have each contractor reference claim number CLM-58214-HW on the paperwork, and get both quotes to me by August 15. - Ingrid Halvorsen, Copperline Mutual Claims",
+   "replies": []
+  },
+  {
+   "at": "2023-05-09T09:30",
+   "from": "oracle@guios.dev",
+   "to": "calvin.osei@oseiroofing.com",
+   "subject": "Written quote request - hail roof claim - Osei Roofing & Exteriors",
+   "body": "Hi Calvin - the hailstorm two weeks back cracked shingles across the south slope of our roof and our insurance adjuster needs written itemized quotes before she releases the claim funds. Could you email me a written itemized quote for the tear-off and re-shingle? Happy to schedule a walkround. Thanks!",
+   "replies": [
+    {
+     "from": "calvin.osei@oseiroofing.com",
+     "body": "Hi - came by and measured this afternoon. Written itemized quote for the tear-off and re-shingle: tear-off and disposal $3,900, architectural shingles and underlayment $6,480, labor and flashing $2,380 - total $12,760. Licensed and insured, and happy to send anything else your adjuster needs. - Calvin Osei, Osei Roofing & Exteriors"
+    }
+   ]
+  },
+  {
+   "at": "2023-05-09T09:40",
+   "from": "oracle@guios.dev",
+   "to": "serena.whitfield@whitfieldroof.com",
+   "subject": "Written quote request - hail roof claim - Whitfield Roof Co",
+   "body": "Hi Serena - the hailstorm two weeks back cracked shingles across the south slope of our roof and our insurance adjuster needs written itemized quotes before she releases the claim funds. Could you email me a written itemized quote for the tear-off and re-shingle? Happy to schedule a walkround. Thanks!",
+   "replies": []
+  },
+  {
+   "at": "2023-05-09T09:50",
+   "from": "oracle@guios.dev",
+   "to": "tavo.marsh@marshbrosroofing.com",
+   "subject": "Written quote request - hail roof claim - Marsh Brothers Roofing",
+   "body": "Hi Tavo - the hailstorm two weeks back cracked shingles across the south slope of our roof and our insurance adjuster needs written itemized quotes before she releases the claim funds. Could you email me a written itemized quote for the tear-off and re-shingle? Happy to schedule a walkround. Thanks!",
+   "replies": []
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "people": [
+  {
+   "firstName": "Ramona",
+   "lastName": "Beaulieu",
+   "email": "ramona.beaulieu@cascademutualins.com",
+   "phone": "5550183001",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Norma",
+   "lastName": "Pryce",
+   "email": "norma.pryce@example.com",
+   "phone": "5550183002",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "ramona.beaulieu@cascademutualins.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your Cascade Mutual claim CM-4471820 has been opened",
+   "body": "Hello, this is Ramona Beaulieu, the field adjuster assigned to claim CM-4471820 for the burst-pipe water damage at 18 Alder Court. To keep your claim moving I need clear photos of every damaged area, gathered in one place before your inspection. Please note your $850 deductible applies to this claim. You can reach me by reply or at 5550183001. Regards, Ramona Beaulieu, Cascade Mutual Insurance."
+  },
+  {
+   "from": "ramona.beaulieu@cascademutualins.com",
+   "to": "oracle@guios.dev",
+   "subject": "Claim CM-4471820 - inspection scheduled",
+   "body": "Confirming your on-site inspection for Tuesday the 12th at 9:30 AM. Please have all of your damage photos gathered before I arrive so we can walk through them room by room. Regards, Ramona Beaulieu, Cascade Mutual Insurance."
+  },
+  {
+   "from": "norma.pryce@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Alder Court yard sale sign-ups",
+   "body": "Hi neighbor! The street yard sale is two weekends out - let me know if you want a table out front. No rush at all. - Norma"
+  }
+ ],
+ "files": [
+  {
+   "path": "/photos/water-damage/kitchen-ceiling.jpg",
+   "content": "JPG photo fixture: kitchen ceiling water stain and sagging drywall over the stove"
+  },
+  {
+   "path": "/photos/water-damage/hallway-floor.jpg",
+   "content": "JPG photo fixture: warped hallway floorboards outside the linen closet"
+  },
+  {
+   "path": "/photos/water-damage/pantry-wall.jpg",
+   "content": "JPG photo fixture: peeling paint and damp drywall on the pantry wall"
+  },
+  {
+   "path": "/photos/camera-roll/laundry-room.jpg",
+   "content": "JPG photo fixture: laundry room ceiling crack directly below the upstairs bathroom"
+  }
+ ]
+}

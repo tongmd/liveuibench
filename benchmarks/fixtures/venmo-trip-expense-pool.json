@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Kai",
+      "lastName": "Nakamura",
+      "email": "kai@gmail.com",
+      "phone": "5550100407",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Luna",
+      "lastName": "Ortiz",
+      "email": "luna@gmail.com",
+      "phone": "5550100408",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Theo",
+      "lastName": "Brandt",
+      "email": "theo@gmail.com",
+      "phone": "5550100409",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+ "people": [
+  {
+   "firstName": "Noor",
+   "lastName": "Haddad",
+   "email": "noor.haddad@example.com",
+   "phone": "5550993101",
+   "apps": [
+    "phone",
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Rory",
+   "lastName": "Callahan",
+   "email": "rory.callahan@example.com",
+   "phone": "5550993102",
+   "apps": [
+    "phone",
+    "splitwise"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "title": "White Bean Chili — recipe",
+   "content": "Serves 6. Two cans cannellini beans, one yellow onion, two poblanos, a quart of veggie stock. Saute the onion and poblanos, add beans and stock, simmer 25 minutes, and double the smoked paprika — trust me. Finish with lime and crushed tortilla chips. Freezes well in quart jars."
+  }
+ ]
+}

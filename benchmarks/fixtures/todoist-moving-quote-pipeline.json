@@ -1,0 +1,23 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-04-18T18:30:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Mulberry Street Move - Bids In",
+   "tasks": [
+    {
+     "content": "Two Rivers Transfer - bid $790, cheapest but adds a stair surcharge on site"
+    },
+    {
+     "content": "Sturdy Oak Moving - bid $865, crew of two, no weekend slots"
+    },
+    {
+     "content": "Petrelli Bros Moving - bid $915, three-man crew and they'll take the upright piano"
+    },
+    {
+     "content": "Beacon Hill Haulers - bid $980, only if we move on a Tuesday"
+    }
+   ]
+  }
+ ]
+}

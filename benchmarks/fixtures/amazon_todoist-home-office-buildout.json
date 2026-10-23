@@ -1,0 +1,20 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-05-10T18:30:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Spare Room Office Prep",
+   "tasks": [
+    {
+     "content": "Measure the desk alcove clear width"
+    },
+    {
+     "content": "Lay the rug and chair mat"
+    },
+    {
+     "content": "Hang the blackout curtain to kill screen glare"
+    }
+   ]
+  }
+ ]
+}

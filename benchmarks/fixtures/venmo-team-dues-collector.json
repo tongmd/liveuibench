@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "amy.kick@gmail.com",
+      "firstName": "Amy",
+      "lastName": "Kowalski",
+      "phone": "5550107201"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "joe.kick@gmail.com",
+      "firstName": "Joe",
+      "lastName": "Kaminski",
+      "phone": "5550107202"
+    },
+    {
+      "apps": [
+        "venmo"
+      ],
+      "email": "raul.kick@gmail.com",
+      "firstName": "Raul",
+      "lastName": "Ortiz",
+      "phone": "5550107203"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+ "people": [
+  {
+   "firstName": "Maria",
+   "lastName": "Alvarez",
+   "email": "maria.alvarez@example.com",
+   "phone": "5550142233",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Danny",
+   "lastName": "Alvarez",
+   "email": "danny.alvarez@example.com",
+   "phone": "5550188821",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Maria",
+   "lastName": "Alvarez",
+   "phone": "5550142233",
+   "email": "maria.alvarez@example.com",
+   "birthday": "1968-07-19",
+   "relationship": "aunt"
+  },
+  {
+   "firstName": "Danny",
+   "lastName": "Alvarez",
+   "phone": "5550188821",
+   "email": "danny.alvarez@example.com",
+   "birthday": "1994-11-02",
+   "relationship": "cousin"
+  }
+ ]
+}

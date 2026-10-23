@@ -1,0 +1,50 @@
+{
+ "people": [
+  {
+   "firstName": "Elena",
+   "lastName": "Vasquez",
+   "email": "vasquez@marlowecollege.edu",
+   "phone": "5550412907",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Okafor",
+   "email": "okafor@marlowecollege.edu",
+   "phone": "5550418356",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "vasquez@marlowecollege.edu",
+   "to": "oracle@guios.dev",
+   "subject": "Your Aldercroft letter — my checklist and a question",
+   "body": "Delighted to write your Aldercroft letter — here is everything I need from you, numbered so nothing gets lost.\n1) Your unofficial transcript from the registrar\n2) The final title of your research statement\n3) A bulleted list of the results you want me to emphasize\nWhen Marcus commits to a date, forward me his whole thread — I want our letters to complement each other, not repeat.\nWhich chapter is the true spine of your dissertation — the sediment cores or the wetland surveys?"
+  },
+  {
+   "from": "okafor@marlowecollege.edu",
+   "to": "oracle@guios.dev",
+   "subject": "Aldercroft letter — timing and one requirement",
+   "body": "Count me in for the Aldercroft letter.\n1) The sediment core photo appendix, as one PDF\n2) Your camp dates for the fall field season\nMy station rotation runs through August 14, so nothing on my side moves before then."
+  }
+ ],
+ "files": [
+  {
+   "path": "/fellowship/essays/research-statement-v4.md",
+   "content": "Rivers remember their floodplains long after the levees go up.\nMy research maps a century of sediment cores against restored-wetland surveys to show where floodwater actually goes when levees are set back.\nDraft 4 — the methods paragraph still runs long.\n"
+  },
+  {
+   "path": "/fellowship/essays/personal-essay-v2.md",
+   "content": "The summer our basement flooded twice, I started keeping a notebook of where the water went.\nDraft 2 — needs a stronger closing paragraph.\n"
+  },
+  {
+   "path": "/fellowship/packet/cv-aldercroft.md",
+   "content": "Curriculum vitae — river geomorphology, sediment transport, wetland restoration.\nUpdated July for the Aldercroft cycle.\n"
+  }
+ ]
+}

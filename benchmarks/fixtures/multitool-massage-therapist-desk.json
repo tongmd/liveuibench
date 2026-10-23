@@ -1,0 +1,31 @@
+{
+ "people": [
+  {
+   "firstName": "Dario",
+   "lastName": "Ferreira",
+   "email": "dario.ferreira@example.com",
+   "phone": "5550187226",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Maeve",
+   "lastName": "Lindqvist",
+   "email": "maeve.lindqvist@example.com",
+   "phone": "5550187341",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-17T19:05",
+   "from": "dario.ferreira@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Checking in after Tuesday's deep tissue",
+   "body": "Hi, Dario here. My upper back and neck are still pretty sore two days after Tuesday's session - is that amount of soreness normal, and is there anything I should do at home before next week's appointment?"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+  "people": [
+    {
+      "firstName": "Ship",
+      "lastName": "Notifications",
+      "email": "ship-notify@orders.example.com",
+      "phone": "5550220013",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "ship-notify@orders.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Your order has shipped: Running Shoes",
+      "body": "Good news — your order has shipped! Item: Running Shoes. Carrier: UPS. Estimated delivery: May 16, 2023."
+    },
+    {
+      "from": "ship-notify@orders.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Your order has shipped: Coffee Beans",
+      "body": "Good news — your order has shipped! Item: Coffee Beans. Carrier: USPS. Estimated delivery: May 17, 2023."
+    }
+  ]
+}

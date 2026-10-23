@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Dana",
+      "lastName": "Wu",
+      "email": "dana@studioline.com",
+      "phone": "5550220003",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Iggy",
+      "lastName": "Roth",
+      "email": "iggy@northbeam.io",
+      "phone": "5550100404",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Sol",
+      "lastName": "Marin",
+      "email": "sol@quietbrand.co",
+      "phone": "5550100405",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ]
+}

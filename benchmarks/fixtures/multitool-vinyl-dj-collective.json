@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Rico",
+   "lastName": "Delgado",
+   "email": "rico.delgado@example.com",
+   "phone": "5550860007",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Sana",
+   "lastName": "Iqbal",
+   "email": "sana.iqbal@example.com",
+   "phone": "5550100582",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+  "people": [
+    {
+      "firstName": "Greta",
+      "lastName": "Jansen",
+      "email": "greta.jansen@example.com",
+      "phone": "5550460001",
+      "apps": [
+        "phone"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Greta",
+      "lastName": "Jansen",
+      "phone": "5550460001",
+      "email": "greta.jansen@example.com",
+      "relationship": "sister"
+    }
+  ],
+  "sms": [
+    {
+      "at": "2023-05-13T08:40:00",
+      "fromPhone": "5550100001",
+      "toPhone": "5550460001",
+      "message": "Heading out on Quarry Loop, expect me back by 3pm"
+    },
+    {
+      "at": "2023-05-13T14:50:00",
+      "fromPhone": "5550100001",
+      "toPhone": "5550460001",
+      "message": "Back at the car - made it down safe"
+    }
+  ]
+}

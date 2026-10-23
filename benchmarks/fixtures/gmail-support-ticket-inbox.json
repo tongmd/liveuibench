@@ -1,0 +1,66 @@
+{
+ "people": [
+  {
+   "firstName": "Dana",
+   "lastName": "Fox",
+   "email": "dana.fox@example.com",
+   "phone": "5550167401",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Webb",
+   "email": "marcus.webb@example.com",
+   "phone": "5550167402",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Shah",
+   "email": "priya.shah@example.com",
+   "phone": "5550167403",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Status",
+   "lastName": "Ping",
+   "email": "no-reply@statusping.com",
+   "phone": "5550167404",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "dana.fox@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Refund request for order #1182",
+   "body": "Hi, my order #1182 arrived broken and I'd like a refund. Can you help me sort this out?"
+  },
+  {
+   "from": "marcus.webb@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Login not working since yesterday",
+   "body": "I can't sign into my account since yesterday - it says invalid password even after a reset. This issue is blocking me, please help."
+  },
+  {
+   "from": "priya.shah@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Issue with my renewal - charged twice",
+   "body": "I was charged twice for my renewal this month. Can you look into this issue and refund the duplicate charge?"
+  },
+  {
+   "from": "no-reply@statusping.com",
+   "to": "oracle@guios.dev",
+   "subject": "Weekly uptime report",
+   "body": "Automated notification: all monitored services were operational this week. No action needed."
+  }
+ ]
+}

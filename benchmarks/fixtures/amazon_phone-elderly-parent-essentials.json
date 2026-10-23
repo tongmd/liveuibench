@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Rosalind",
+   "lastName": "Mercer",
+   "email": "rosalind.mercer@example.com",
+   "phone": "5550317744",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Rosalind",
+   "lastName": "Mercer",
+   "phone": "5550317744",
+   "email": "rosalind.mercer@example.com",
+   "relationship": "mother"
+  }
+ ]
+}

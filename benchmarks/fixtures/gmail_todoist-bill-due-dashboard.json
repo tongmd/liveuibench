@@ -1,0 +1,36 @@
+{
+  "people": [
+    {
+      "firstName": "ConEd",
+      "lastName": "Billing",
+      "email": "billing@coned.example.com",
+      "phone": "5550100410",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Verizon",
+      "lastName": "Billing",
+      "email": "billing@verizon.example.com",
+      "phone": "5550100411",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "billing@coned.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "ConEd Electric statement — May 2023",
+      "body": "Your ConEd Electric statement is ready. Amount due: $142. Due date: May 25, 2023."
+    },
+    {
+      "from": "billing@verizon.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Verizon statement — May 2023",
+      "body": "Your Verizon statement is ready. Amount due: $89. Due date: May 21, 2023."
+    }
+  ]
+}

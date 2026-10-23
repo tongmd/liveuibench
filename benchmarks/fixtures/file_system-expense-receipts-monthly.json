@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "/receipts/2026-06/coffee.jpg",
+      "content": "JPG receipt fixture: coffee 4.50"
+    },
+    {
+      "path": "/receipts/2026-06/taxi.jpg",
+      "content": "JPG receipt fixture: taxi 18.00"
+    }
+  ]
+}

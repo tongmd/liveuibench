@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Odette",
+      "lastName": "Pryce",
+      "email": "odette@larkspurmail.com",
+      "phone": "5550400010",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Hollis",
+      "lastName": "Vance",
+      "email": "hollis@larkspurmail.com",
+      "phone": "5550400011",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

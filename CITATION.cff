@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use LiveUIBench or LiveUIAgent in research, please cite the arXiv preprint below."
+type: software
+title: "LiveUIBench"
+authors:
+  - family-names: Zhang
+    given-names: Tong
+  - family-names: Cheng
+    given-names: Yuxuan
+  - family-names: Zhang
+    given-names: Ruimin
+  - family-names: Peng
+    given-names: Yun
+  - family-names: Xie
+    given-names: Tao
+preferred-citation:
+  type: article
+  title: "LiveUIBench: Evaluating Agent as App Workflows"
+  authors:
+    - family-names: Zhang
+      given-names: Tong
+    - family-names: Cheng
+      given-names: Yuxuan
+    - family-names: Zhang
+      given-names: Ruimin
+    - family-names: Peng
+      given-names: Yun
+    - family-names: Xie
+      given-names: Tao
+  year: 2026
+  month: 10
+  date-published: "2026-10-20"
+  journal: "arXiv"
+  doi: "10.48550/arXiv.2610.27977"
+  url: "https://arxiv.org/abs/2610.27977v1"
+  version: "v1"
+  identifiers:
+    - type: other
+      value: "arXiv:2610.27977v1 [cs.SE]"

@@ -1,0 +1,14 @@
+{
+  "people": [
+    {
+      "firstName": "Buildwell",
+      "lastName": "Contractors",
+      "email": "buildwell@contractors.com",
+      "phone": "5550220037",
+      "apps": [
+        "gmail",
+        "todoist"
+      ]
+    }
+  ]
+}

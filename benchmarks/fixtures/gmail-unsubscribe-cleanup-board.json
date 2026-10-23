@@ -1,0 +1,75 @@
+{
+ "people": [
+  {
+   "firstName": "ShopNow",
+   "lastName": "Deals",
+   "email": "deals@shopnow.com",
+   "phone": "5550210015",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "TravelFare",
+   "lastName": "Offers",
+   "email": "offers@travelfare.com",
+   "phone": "5550210016",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "GadgetWorld",
+   "lastName": "Promo",
+   "email": "promo@gadgetworld.com",
+   "phone": "5550210017",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "offers@travelfare.com",
+   "to": "oracle@guios.dev",
+   "subject": "Fare alert: $99 flights to Las Vegas",
+   "body": "Book by Friday for $99 each way to Las Vegas."
+  },
+  {
+   "from": "offers@travelfare.com",
+   "to": "oracle@guios.dev",
+   "subject": "Last-minute getaway deals inside",
+   "body": "Weekend escapes from $149. Limited seats."
+  },
+  {
+   "from": "offers@travelfare.com",
+   "to": "oracle@guios.dev",
+   "subject": "Summer flight sale starts now",
+   "body": "Our biggest summer sale: up to 40% off select routes."
+  },
+  {
+   "from": "promo@gadgetworld.com",
+   "to": "oracle@guios.dev",
+   "subject": "New arrivals: smart home gadgets",
+   "body": "Fresh smart home gear just landed. See what's new."
+  },
+  {
+   "from": "promo@gadgetworld.com",
+   "to": "oracle@guios.dev",
+   "subject": "Clearance: up to 60% off headphones",
+   "body": "Headphone clearance event. Up to 60% off while stock lasts."
+  },
+  {
+   "from": "deals@shopnow.com",
+   "to": "oracle@guios.dev",
+   "subject": "Flash sale: 40% off everything today",
+   "body": "One day only: 40% off sitewide with code FLASH40."
+  },
+  {
+   "from": "deals@shopnow.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your weekend deals are here",
+   "body": "Hand-picked weekend deals across every department."
+  }
+ ]
+}

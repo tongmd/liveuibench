@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Mel",
+      "lastName": "Draper",
+      "email": "mel@sib.com",
+      "phone": "5550100437",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Draper",
+      "email": "jon@sib.com",
+      "phone": "5550100438",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

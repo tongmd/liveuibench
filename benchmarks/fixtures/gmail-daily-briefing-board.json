@@ -1,0 +1,54 @@
+{
+  "people": [
+    {
+      "firstName": "CalendarSync",
+      "lastName": "Alerts",
+      "email": "alerts@calendarsync.com",
+      "phone": "5550510001",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "NewsDaily",
+      "lastName": "Digest",
+      "email": "digest@newsdaily.com",
+      "phone": "5550510002",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "FinanceCo",
+      "lastName": "Review",
+      "email": "review@financeco.com",
+      "phone": "5550510003",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "backdatedEmails": [
+    {
+      "at": "2023-05-18T02:10",
+      "from": "alerts@calendarsync.com",
+      "to": "oracle@guios.dev",
+      "subject": "Calendar sync completed overnight",
+      "body": "Your calendars finished syncing overnight. 3 events were updated and 1 duplicate was removed. This is an automated notification; no action is needed."
+    },
+    {
+      "at": "2023-05-18T05:30",
+      "from": "digest@newsdaily.com",
+      "to": "oracle@guios.dev",
+      "subject": "Your NewsDaily morning digest",
+      "body": "Good morning. Here are the top stories we picked for you overnight, plus the markets snapshot and today's weather. Tap any headline to read more."
+    },
+    {
+      "at": "2023-05-18T06:45",
+      "from": "review@financeco.com",
+      "to": "oracle@guios.dev",
+      "subject": "Quarterly statement ready for your review",
+      "body": "Your Q1 statement is ready for review. Please look it over when you have a moment and confirm the closing balance before month-end. Reply with any questions."
+    }
+  ]
+}

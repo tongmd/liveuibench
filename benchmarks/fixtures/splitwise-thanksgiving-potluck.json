@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Frank",
+      "lastName": "Marsh",
+      "email": "uncle@fam.com",
+      "phone": "5550100434",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Casey",
+      "lastName": "Marsh",
+      "email": "cousin@fam.com",
+      "phone": "5550100435",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Ruth",
+      "lastName": "Marsh",
+      "email": "aunt@fam.com",
+      "phone": "5550100436",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

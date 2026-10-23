@@ -1,0 +1,17 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-05-10T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "TrailCooking",
+   "tasks": [
+    {
+     "content": "Ultralight coffee setup"
+    },
+    {
+     "content": "3-day fasting hike"
+    }
+   ]
+  }
+ ]
+}

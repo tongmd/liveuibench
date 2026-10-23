@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Wren",
+   "lastName": "Kowalski",
+   "email": "wren.kowalski@example.com",
+   "phone": "5550734418",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Mateo",
+   "lastName": "Alvarez",
+   "email": "mateo.alvarez@example.com",
+   "phone": "5550734429",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ]
+}

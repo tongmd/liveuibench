@@ -1,0 +1,17 @@
+{
+ "todoistProjects": [
+  {
+   "at": "2023-04-18T19:30:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Repertoire Ladder",
+   "tasks": [
+    {
+     "content": "Serenade of the Silver Moon - Polishing"
+    },
+    {
+     "content": "Cherry Blossom Tears - Learning"
+    }
+   ]
+  }
+ ]
+}

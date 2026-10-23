@@ -1,0 +1,63 @@
+{
+  "people": [
+    {
+      "firstName": "Ravi",
+      "lastName": "Kulkarni",
+      "email": "ravi.kulkarni@example.com",
+      "phone": "5550410001",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Elsa",
+      "lastName": "Bergman",
+      "email": "elsa.bergman@example.com",
+      "phone": "5550410002",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Lindqvist",
+      "email": "tomas.lindqvist@example.com",
+      "phone": "5550410003",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Noel",
+      "lastName": "Vasquez",
+      "email": "noel.vasquez@example.com",
+      "phone": "5550410004",
+      "apps": [
+        "phone"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Ravi",
+      "lastName": "Kulkarni",
+      "phone": "5550410001",
+      "email": "ravi.kulkarni@example.com",
+      "relationship": "oncall"
+    },
+    {
+      "firstName": "Elsa",
+      "lastName": "Bergman",
+      "phone": "5550410002",
+      "email": "elsa.bergman@example.com",
+      "relationship": "oncall"
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Lindqvist",
+      "phone": "5550410003",
+      "email": "tomas.lindqvist@example.com",
+      "relationship": "oncall"
+    }
+  ]
+}

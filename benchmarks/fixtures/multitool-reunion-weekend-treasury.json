@@ -1,0 +1,35 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "email": "marisol.vega@example.com",
+   "phone": "5550460014",
+   "apps": [
+    "gmail",
+    "splitwise",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Ruben",
+   "lastName": "Vega",
+   "email": "ruben.vega@example.com",
+   "phone": "5550188522",
+   "apps": [
+    "gmail",
+    "splitwise",
+    "venmo"
+   ]
+  }
+ ],
+ "venmoTransactions": [
+  {
+   "at": "2023-05-02T11:15:00",
+   "fromEmail": "marisol.vega@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 145,
+   "description": "Reunion early chip-in"
+  }
+ ]
+}

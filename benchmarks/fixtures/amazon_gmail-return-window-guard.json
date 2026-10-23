@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Deshawn",
+   "lastName": "Cole",
+   "email": "deshawn.cole@audionest-outlet.dev",
+   "phone": "5550194271",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Annika",
+   "lastName": "Sorensen",
+   "email": "annika.sorensen@maplerow-kitchen.dev",
+   "phone": "5550186342",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ]
+}

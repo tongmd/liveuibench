@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Ilona",
+      "lastName": "Quezada",
+      "email": "ilona.quezada.guitar@gmail.com",
+      "phone": "5550461101",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556737412204611,
+      "expiryYear": 2027,
+      "expiryMonth": 9,
+      "cvv": 417,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-08T09:40:00",
+      "amount": 120
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+ "people": [
+  {
+   "firstName": "Ines",
+   "lastName": "Marques",
+   "email": "ines.marques@aurelia-embassy.example.com",
+   "phone": "5550730201",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Tomas",
+   "lastName": "Reyes",
+   "email": "tomas.reyes@aurelia-embassy.example.com",
+   "phone": "5550730202",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Petra",
+   "lastName": "Wilde",
+   "email": "petra.wilde@example.com",
+   "phone": "5550730203",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "ines.marques@aurelia-embassy.example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your long-stay visa application AUR-2026-04417 — required documents",
+   "body": "Dear applicant, your long-stay visa application has been registered under reference AUR-2026-04417. Before your appointment, please prepare the following required documents: passport valid for at least six months, two recent passport photos, proof of accommodation letter, three months of bank statements, and travel medical insurance certificate. All documents must be originals. Kind regards, Ines Marques, Consular Section, Embassy of Aurelia."
+  },
+  {
+   "from": "tomas.reyes@aurelia-embassy.example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Biometrics appointment scheduled — reference AUR-2026-04417",
+   "body": "Your biometrics appointment for application AUR-2026-04417 is scheduled for March 12 at 09:30 at the Embassy of Aurelia, consular window 4. Please reply to this email to confirm your attendance. Bring all required documents listed by the Consular Section. Tomas Reyes, Appointments Desk, Embassy of Aurelia."
+  },
+  {
+   "from": "petra.wilde@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Weekend hiking newsletter: five new trail writeups",
+   "body": "This week's roundup covers five new trail writeups, a gear-repair clinic on Saturday, and a photo thread from the ridge loop. Lace up and enjoy the miles!"
+  }
+ ]
+}

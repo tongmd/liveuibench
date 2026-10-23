@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Elise",
+   "lastName": "Tran",
+   "email": "elise.tran@example.com",
+   "phone": "5550118207",
+   "apps": [
+    "phone"
+   ]
+  },
+  {
+   "firstName": "Dana",
+   "lastName": "Whitfield",
+   "email": "d.whitfield@westhill-hs.org",
+   "phone": "5550118344",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "d.whitfield@westhill-hs.org",
+   "to": "oracle@guios.dev",
+   "subject": "Elise — application deadlines to hold",
+   "body": "Hi — following up on yesterday's meeting about Elise's list. Two dates to hold on your calendar: Maplewood College early action closes November 1, and Harrington University regular decision closes January 5. I'd also like Elise's personal statement draft in my hands by October 20 so we have time for two revision passes before anything goes out."
+  },
+  {
+   "from": "d.whitfield@westhill-hs.org",
+   "to": "oracle@guios.dev",
+   "subject": "Essay angle for the personal statement",
+   "body": "One more thought from our brainstorm — Elise lit up telling the robotics team story, rebuilding the drivetrain the night before the regional. That's the essay. Have her start there rather than the volunteering angle; it's the one only she can write."
+  }
+ ]
+}

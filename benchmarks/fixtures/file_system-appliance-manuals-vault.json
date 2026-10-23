@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "/appliances/dishwasher/manual.pdf",
+      "content": "PDF fixture: dishwasher manual"
+    },
+    {
+      "path": "/appliances/dishwasher/warranty.md",
+      "content": "Warranty fixture: dishwasher covered through 2024-09"
+    },
+    {
+      "path": "/appliances/old-microwave/manual.pdf",
+      "content": "PDF fixture: microwave manual"
+    },
+    {
+      "path": "/appliances/old-microwave/warranty.md",
+      "content": "Warranty fixture: microwave coverage long expired"
+    }
+  ]
+}

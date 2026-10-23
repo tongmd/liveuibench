@@ -1,0 +1,38 @@
+{
+  "people": [
+    {
+      "firstName": "Piotr",
+      "lastName": "Nowak",
+      "email": "piotr.nowak@example.com",
+      "phone": "5550470001",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Bree",
+      "lastName": "Sandoval",
+      "email": "bree.sandoval@example.com",
+      "phone": "5550470002",
+      "apps": [
+        "phone"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Piotr",
+      "lastName": "Nowak",
+      "phone": "5550470001",
+      "email": "piotr.nowak@example.com",
+      "relationship": "friend"
+    },
+    {
+      "firstName": "Bree",
+      "lastName": "Sandoval",
+      "phone": "5550470002",
+      "email": "bree.sandoval@example.com",
+      "relationship": "friend"
+    }
+  ]
+}

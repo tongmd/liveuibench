@@ -1,0 +1,13 @@
+{
+  "people": [
+    { "firstName": "Priya", "lastName": "Nair", "email": "priya.nair@example.com", "phone": "5550100304", "apps": ["gmail"] },
+    { "firstName": "Tom", "lastName": "Weber", "email": "tom.weber@example.com", "phone": "5550220004", "apps": ["gmail"] },
+    { "firstName": "Elena", "lastName": "Rossi", "email": "elena.rossi@example.com", "phone": "5550220005", "apps": ["gmail"] }
+  ],
+  "emails": [
+    { "from": "oracle@guios.dev", "to": "priya.nair@example.com", "subject": "Q3 vendor contract — need your sign-off", "body": "Hi Priya, attaching the Q3 vendor contract. Could you review and sign off this week?" },
+    { "from": "oracle@guios.dev", "to": "tom.weber@example.com", "subject": "Invoice #2214 payment timeline", "body": "Hi Tom, following up on invoice #2214 — when can we expect payment?" },
+    { "from": "oracle@guios.dev", "to": "elena.rossi@example.com", "subject": "Office lease renewal terms", "body": "Hi Elena, did you get a chance to look at the lease renewal terms I sent?",
+      "replies": [{ "from": "elena.rossi@example.com", "body": "Yes — terms look fine to me, go ahead." }] }
+  ]
+}

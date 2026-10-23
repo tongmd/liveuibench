@@ -1,0 +1,40 @@
+{
+  "people": [
+    {
+      "firstName": "Ivan",
+      "lastName": "Petrov",
+      "email": "ivan@camp.com",
+      "phone": "5550100439",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Rue",
+      "lastName": "Adler",
+      "email": "rue@camp.com",
+      "phone": "5550100440",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Hal",
+      "lastName": "Turner",
+      "email": "hal@camp.com",
+      "phone": "5550100441",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Zoe",
+      "lastName": "Lang",
+      "email": "zoe@camp.com",
+      "phone": "5550100442",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

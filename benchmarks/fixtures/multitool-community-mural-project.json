@@ -1,0 +1,28 @@
+{
+ "people": [
+  {
+   "firstName": "Tunde",
+   "lastName": "Bakare",
+   "email": "tunde.bakare@example.com",
+   "phone": "5550731184",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Sylvie",
+   "lastName": "Arceneaux",
+   "email": "sylvie.arceneaux@example.com",
+   "phone": "5550731185",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "title": "Approved Mural Design — Grandview Underpass",
+   "content": "Final design signed off by the arts council after the community vote.\nPalette:\n- Sky band: cerulean blue\n- Hills: sage green\n- River: deep teal\n- Lettering: warm ivory\nLayout: three sections across the 40-ft retaining wall — Hills, River, Lettering — with the sky band running the full width."
+  }
+ ]
+}

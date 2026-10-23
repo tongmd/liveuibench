@@ -1,0 +1,57 @@
+{
+ "people": [
+  {
+   "firstName": "Lena",
+   "lastName": "Vogel",
+   "email": "lead@vendor.com",
+   "phone": "5550210018",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Paul",
+   "lastName": "Marsh",
+   "email": "pm@client.com",
+   "phone": "5550210019",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Dana",
+   "lastName": "Sato",
+   "email": "design@studio.com",
+   "phone": "5550210020",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "lead@vendor.com",
+   "to": "oracle@guios.dev",
+   "subject": "Atlas migration cutover schedule",
+   "body": "Proposed cutover window for the Atlas migration is the first weekend of June. Can you confirm the freeze dates?"
+  },
+  {
+   "from": "pm@client.com",
+   "to": "oracle@guios.dev",
+   "subject": "Atlas data mapping questions",
+   "body": "Two open questions on the Atlas field mappings before we sign off: how are legacy IDs handled, and who owns the dedupe rules?"
+  },
+  {
+   "from": "design@studio.com",
+   "to": "oracle@guios.dev",
+   "subject": "Atlas dashboard asset handoff",
+   "body": "Final Atlas dashboard assets are in the shared folder, exported at 1x and 2x."
+  },
+  {
+   "from": "design@studio.com",
+   "to": "oracle@guios.dev",
+   "subject": "Q3 Rebrand kickoff agenda",
+   "body": "Agenda for the Q3 Rebrand kickoff call: goals, timeline, owners, and the first logo directions."
+  }
+ ]
+}

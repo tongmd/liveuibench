@@ -1,0 +1,96 @@
+{
+ "people": [
+  {
+   "firstName": "SkyJet",
+   "lastName": "Airways",
+   "email": "receipts@skyjetair.com",
+   "phone": "5550210009",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "CloudSketch",
+   "lastName": "Billing",
+   "email": "billing@cloudsketch.io",
+   "phone": "5550210010",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Bistro",
+   "lastName": "Luna",
+   "email": "receipts@bistroluna.com",
+   "phone": "5550210011",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Circuit",
+   "lastName": "Depot",
+   "email": "orders@circuitdepot.com",
+   "phone": "5550210012",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Tara",
+   "lastName": "Nguyen",
+   "email": "tara@trailmail.com",
+   "phone": "5550210013",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "BookClub",
+   "lastName": "Digest",
+   "email": "digest@bookclubmail.com",
+   "phone": "5550210014",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "receipts@skyjetair.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your flight receipt: SEA to DEN",
+   "body": "Thanks for flying SkyJet. Receipt for flight SJ412, Seattle to Denver. Total charged: $286.40."
+  },
+  {
+   "from": "billing@cloudsketch.io",
+   "to": "oracle@guios.dev",
+   "subject": "Invoice #2041 for your CloudSketch subscription",
+   "body": "Your monthly CloudSketch Pro invoice. Amount charged: $29.00 to the card on file."
+  },
+  {
+   "from": "receipts@bistroluna.com",
+   "to": "oracle@guios.dev",
+   "subject": "Receipt for your dinner at Bistro Luna",
+   "body": "Thanks for dining with us. Receipt total: $74.85 including tip, table 12."
+  },
+  {
+   "from": "orders@circuitdepot.com",
+   "to": "oracle@guios.dev",
+   "subject": "Order confirmation: USB-C dock and cable kit",
+   "body": "Your order confirmation from Circuit Depot. USB-C dock and cable kit, total $58.99."
+  },
+  {
+   "from": "tara@trailmail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Weekend hike on Saturday?",
+   "body": "Want to hit the Rattlesnake Ledge trail this Saturday morning? Forecast looks clear."
+  },
+  {
+   "from": "digest@bookclubmail.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your weekly reading digest",
+   "body": "Five essays worth your time this week, picked by the club."
+  }
+ ]
+}

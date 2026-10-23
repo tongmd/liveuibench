@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "/photos/iceland-2026/glacier.jpg",
+      "content": "JPG photo fixture: glacier hike"
+    },
+    {
+      "path": "/photos/iceland-2026/waterfall.jpg",
+      "content": "JPG photo fixture: waterfall stop"
+    }
+  ]
+}

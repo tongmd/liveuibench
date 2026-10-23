@@ -1,0 +1,67 @@
+{
+ "people": [
+  {
+   "apps": [
+    "phone"
+   ],
+   "email": "marisol.vega@example.com",
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "phone": "5550460014"
+  },
+  {
+   "apps": [
+    "phone"
+   ],
+   "email": "devon.okafor@example.com",
+   "firstName": "Devon",
+   "lastName": "Okafor",
+   "phone": "5550731448"
+  },
+  {
+   "apps": [
+    "phone"
+   ],
+   "email": "priya.ramaswamy@example.com",
+   "firstName": "Priya",
+   "lastName": "Ramaswamy",
+   "phone": "5550731449"
+  }
+ ],
+ "contacts": [
+  {
+   "email": "marisol.vega@example.com",
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "phone": "5550460014",
+   "relationship": "housemate"
+  },
+  {
+   "email": "devon.okafor@example.com",
+   "firstName": "Devon",
+   "lastName": "Okafor",
+   "phone": "5550731448",
+   "relationship": "housemate"
+  }
+ ],
+ "sms": [
+  {
+   "at": "2023-05-15T10:42:00",
+   "fromPhone": "5550460014",
+   "toPhone": "5550100001",
+   "message": "Package came for you — I stashed it behind the porch planter so it won't cook in the sun."
+  },
+  {
+   "at": "2023-05-15T13:05:00",
+   "fromPhone": "5550731448",
+   "toPhone": "5550100001",
+   "message": "Kitchen faucet is dripping again. Should I call Bluewater Plumbing or wait for you?"
+  },
+  {
+   "at": "2023-05-15T15:20:00",
+   "fromPhone": "5550460014",
+   "toPhone": "5550100001",
+   "message": "Your mom rang the landline twice, says it's not urgent — call her when you surface."
+  }
+ ]
+}

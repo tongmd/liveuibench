@@ -1,0 +1,42 @@
+{
+ "files": [
+  {
+   "path": "/rooms/filing-plan.md",
+   "content": "kitchen — counter appliances\nbedroom — air quality gear\n"
+  }
+ ],
+ "amazonOrders": [
+  {
+   "at": "2023-04-24T10:05",
+   "items": [
+    {
+     "query": "Keurig K-Elite Single Serve K-Cup Pod Coffee Maker"
+    }
+   ],
+   "address": {
+    "name": "Home",
+    "streetAddress": "418 Alder Court",
+    "city": "Portland",
+    "state": "Oregon",
+    "country": "USA",
+    "zipCode": 97214
+   }
+  },
+  {
+   "at": "2023-05-06T15:30",
+   "items": [
+    {
+     "query": "Levoit LV-H132 HEPA Air Purifier"
+    }
+   ],
+   "address": {
+    "name": "Home",
+    "streetAddress": "418 Alder Court",
+    "city": "Portland",
+    "state": "Oregon",
+    "country": "USA",
+    "zipCode": 97214
+   }
+  }
+ ]
+}

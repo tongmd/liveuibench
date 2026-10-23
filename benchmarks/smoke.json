@@ -1,0 +1,82 @@
+{
+  "name": "Offline runtime contract fixture \u2014 not LiveUIBench results",
+  "cases": [
+    {
+      "id": "offline-notebook-contract",
+      "split": "dev",
+      "intentions": [
+        {
+          "intention": "Make a notebook for my weekend plans."
+        }
+      ],
+      "episodes": [
+        {
+          "id": "open",
+          "kind": "open",
+          "assertions": [
+            {
+              "type": "input_available",
+              "value": true
+            },
+            {
+              "type": "action_available",
+              "value": true
+            },
+            {
+              "type": "route_exists",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "submit",
+          "kind": "submit",
+          "userMessage": "Save my weekend ideas.",
+          "assertions": [
+            {
+              "type": "route_enters_orchestrator",
+              "value": true
+            },
+            {
+              "type": "appworld_api_called",
+              "value": "simple_note.create_note"
+            },
+            {
+              "type": "appworld_db_changed",
+              "value": "simple_note"
+            },
+            {
+              "type": "visible_result_grounded",
+              "value": "Weekend plan"
+            }
+          ]
+        },
+        {
+          "id": "revise",
+          "kind": "revise",
+          "userMessage": "Please add Sunday details.",
+          "assertions": [
+            {
+              "type": "appworld_db_changed",
+              "value": "simple_note"
+            },
+            {
+              "type": "visible_result_grounded",
+              "value": "Weekend plan updated"
+            }
+          ]
+        },
+        {
+          "id": "reopen",
+          "kind": "reopen",
+          "assertions": [
+            {
+              "type": "state_persists",
+              "value": "Weekend plan updated"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

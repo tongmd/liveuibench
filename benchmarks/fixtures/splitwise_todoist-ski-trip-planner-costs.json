@@ -1,0 +1,43 @@
+{
+ "people": [
+  {
+   "firstName": "Marit",
+   "lastName": "Solheim",
+   "email": "marit.solheim@example.com",
+   "phone": "5550962841",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Quentin",
+   "lastName": "Baptiste",
+   "email": "quentin.baptiste@example.com",
+   "phone": "5550962842",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ],
+ "todoistProjects": [
+  {
+   "at": "2023-05-10T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Birchwater Lake Reunion Prep",
+   "tasks": [
+    {
+     "content": "Reserve the Birchwater lake house"
+    },
+    {
+     "content": "Book the pontoon boat for Saturday"
+    },
+    {
+     "content": "Pack the screened-porch card games"
+    },
+    {
+     "content": "Print the lake trail map"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "people": [
+  {
+   "firstName": "Miles",
+   "lastName": "Grady",
+   "email": "billing@myisp.com",
+   "phone": "5550167301",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Bea",
+   "lastName": "Nolan",
+   "email": "notify@bankalerts.com",
+   "phone": "5550167302",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Lucky",
+   "lastName": "Draw",
+   "email": "winner@sketchy-lotto.biz",
+   "phone": "5550167303",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "billing@myisp.com",
+   "to": "oracle@guios.dev",
+   "subject": "Your May internet bill is ready",
+   "body": "Your monthly statement for account 4471 is ready. Amount due: $62.50 by June 5. Log in to view or pay your bill."
+  },
+  {
+   "from": "notify@bankalerts.com",
+   "to": "oracle@guios.dev",
+   "subject": "Low balance alert on your checking account",
+   "body": "Your checking account balance fell below $100 on May 17. Review recent transactions if you don't recognize this activity."
+  },
+  {
+   "from": "winner@sketchy-lotto.biz",
+   "to": "oracle@guios.dev",
+   "subject": "CONGRATULATIONS You have WON the mega lotto",
+   "body": "You have been selected to receive $2,000,000! Reply immediately with your bank details to claim your prize before it expires."
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+  "people": [
+    {
+      "firstName": "Harriet",
+      "lastName": "Cole",
+      "email": "harriet.cole@example.com",
+      "phone": "5550420001",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Jonas",
+      "lastName": "Weber",
+      "email": "jonas.weber@example.com",
+      "phone": "5550420002",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Tessa",
+      "lastName": "Nguyen",
+      "email": "tessa.nguyen@example.com",
+      "phone": "5550420003",
+      "apps": [
+        "phone"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Harriet",
+      "lastName": "Cole",
+      "phone": "5550420001",
+      "email": "harriet.cole@example.com",
+      "relationship": "client"
+    },
+    {
+      "firstName": "Jonas",
+      "lastName": "Weber",
+      "phone": "5550420002",
+      "email": "jonas.weber@example.com",
+      "relationship": "client"
+    },
+    {
+      "firstName": "Tessa",
+      "lastName": "Nguyen",
+      "phone": "5550420003",
+      "email": "tessa.nguyen@example.com",
+      "relationship": "client"
+    }
+  ],
+  "sms": [
+    {
+      "at": "2023-05-02T09:15:00",
+      "fromPhone": "5550100001",
+      "toPhone": "5550420001",
+      "message": "Hi Harriet - sending over the logo drafts today."
+    },
+    {
+      "at": "2023-05-09T14:30:00",
+      "fromPhone": "5550100001",
+      "toPhone": "5550420002",
+      "message": "Invoice attached for April work - let me know it looks right."
+    },
+    {
+      "at": "2023-05-16T11:05:00",
+      "fromPhone": "5550100001",
+      "toPhone": "5550420003",
+      "message": "Great call today - revised scope coming Friday."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+ "people": [
+  {
+   "firstName": "Sigrid",
+   "lastName": "Ferrant",
+   "email": "sigrid.ferrant.client@example.com",
+   "phone": "5550682001",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Caleb",
+   "lastName": "Ostrander",
+   "email": "caleb.ostrander.client@example.com",
+   "phone": "5550682002",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "adminCards": [
+  {
+   "ownerEmail": "oracle@guios.dev",
+   "cardName": "Visa",
+   "ownerName": "Guios Oracle",
+   "cardNumber": 4556737412209912,
+   "expiryYear": 2027,
+   "expiryMonth": 9,
+   "cvv": 391,
+   "bankBalance": 5000
+  }
+ ],
+ "venmoTransactions": [
+  {
+   "at": "2023-05-12T09:40:00",
+   "fromEmail": "sigrid.ferrant.client@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 650,
+   "description": "saltgrass-bakery logo suite — final"
+  }
+ ],
+ "files": [
+  {
+   "path": "/vault/saltgrass-bakery/manifest.md",
+   "content": "Client: Sigrid Ferrant\nJob: saltgrass-bakery logo suite\nPrice: $650\nStatus: locked — awaiting payment\n"
+  },
+  {
+   "path": "/vault/saltgrass-bakery/saltgrass-bakery-logo-master.svg",
+   "content": "vector master — saltgrass bakery primary mark and monogram\n"
+  },
+  {
+   "path": "/vault/saltgrass-bakery/saltgrass-bakery-brand-sheet.pdf",
+   "content": "brand sheet — palette, type specimens, clear-space rules\n"
+  },
+  {
+   "path": "/released/ledger.md",
+   "content": "flores-yoga — released to Tamsin Flores — $300 paid\nTotal collected: $300\n"
+  },
+  {
+   "path": "/released/flores-yoga/flores-yoga-spring-poster.pdf",
+   "content": "print-ready poster — flores yoga spring schedule\n"
+  }
+ ]
+}

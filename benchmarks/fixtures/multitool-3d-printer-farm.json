@@ -1,0 +1,26 @@
+{
+ "notes": [
+  {
+   "title": "Filament shelf",
+   "content": "PLA Black: 6 spools. PLA White: 3 spools. PETG Clear: 2 spools. TPU Gray: 1 spool."
+  },
+  {
+   "title": "Kestrel calibration",
+   "content": "Z-offset -0.145. E-steps 419.5. First layer 215C, bed 60C."
+  },
+  {
+   "title": "Heron calibration",
+   "content": "Z-offset -0.230. E-steps 424.0. First layer 220C, bed 70C."
+  }
+ ],
+ "files": [
+  {
+   "path": "/printfarm/queue/dragon-lamp-v2.gcode",
+   "content": "; dragon-lamp-v2 | PLA Black | 0.20mm layers | est 9h40m | textured plate\n; sliced for Kestrel\n"
+  },
+  {
+   "path": "/printfarm/queue/gear-bracket-a3.gcode",
+   "content": "; gear-bracket-a3 | PETG Clear | 0.16mm layers | est 3h05m | smooth plate\n; sliced for Heron\n"
+  }
+ ]
+}

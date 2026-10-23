@@ -1,0 +1,21 @@
+{
+  "people": [],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556737412209911,
+      "expiryYear": 2027,
+      "expiryMonth": 9,
+      "cvv": 528,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-09T10:20:00",
+      "amount": 220
+    }
+  ]
+}

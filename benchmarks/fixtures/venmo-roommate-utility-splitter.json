@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Mia",
+      "lastName": "Torres",
+      "email": "mia@gmail.com",
+      "phone": "5550220044",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Devon",
+      "lastName": "Price",
+      "email": "devon@gmail.com",
+      "phone": "5550220045",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Priya",
+      "lastName": "Shah",
+      "email": "priya@gmail.com",
+      "phone": "5550220046",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ]
+}

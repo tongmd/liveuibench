@@ -1,0 +1,67 @@
+{
+  "people": [
+    {
+      "firstName": "Jake",
+      "lastName": "Moran",
+      "email": "jake@bp.com",
+      "phone": "5550220027",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Tony",
+      "lastName": "Ricci",
+      "email": "tony@bp.com",
+      "phone": "5550220028",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Will",
+      "lastName": "Foster",
+      "email": "will@bp.com",
+      "phone": "5550220029",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Dev",
+      "lastName": "Patel",
+      "email": "dev@bp.com",
+      "phone": "5550220030",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Cole",
+      "lastName": "Danner",
+      "email": "cole@bp.com",
+      "phone": "5550220031",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Finn",
+      "lastName": "Murphy",
+      "email": "finn@bp.com",
+      "phone": "5550220032",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Reid",
+      "lastName": "Larson",
+      "email": "reid@bp.com",
+      "phone": "5550220033",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

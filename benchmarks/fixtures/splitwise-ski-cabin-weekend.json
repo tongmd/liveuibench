@@ -1,0 +1,49 @@
+{
+  "people": [
+    {
+      "firstName": "Dana",
+      "lastName": "Whitfield",
+      "email": "dana@ski.com",
+      "phone": "5550220018",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Ortega",
+      "email": "luis@ski.com",
+      "phone": "5550220019",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Pat",
+      "lastName": "Nolan",
+      "email": "pat@ski.com",
+      "phone": "5550220020",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Gwen",
+      "lastName": "Harper",
+      "email": "gwen@ski.com",
+      "phone": "5550220021",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Omar",
+      "lastName": "Aziz",
+      "email": "omar@ski.com",
+      "phone": "5550220022",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

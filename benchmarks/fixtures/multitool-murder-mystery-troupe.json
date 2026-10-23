@@ -1,0 +1,52 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Etxeberria",
+   "email": "marisol.etxeberria@example.com",
+   "phone": "5550731204",
+   "apps": [
+    "gmail",
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Duncan",
+   "lastName": "Ashcombe",
+   "email": "duncan.ashcombe@example.com",
+   "phone": "5550731315",
+   "apps": [
+    "gmail",
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Raghunathan",
+   "email": "priya.raghunathan@example.com",
+   "phone": "5550731426",
+   "apps": [
+    "gmail",
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Ozzie",
+   "lastName": "Ferrante",
+   "email": "rentals@bellamyprophouse.com",
+   "phone": "5550731537",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-12T10:23",
+   "from": "rentals@bellamyprophouse.com",
+   "to": "oracle@guios.dev",
+   "subject": "Invoice — prop and effects rental for your Gullwing Manor show",
+   "body": "Thanks for renting with Bellamy Prop House for your murder-mystery dinner show. Here is the itemized invoice for your order: fog machine with timer remote — $58; brass candelabra pair — $27; breakaway wine glasses, set of six — $44; colonel's dress uniform with medals — $35. Your rental total comes to $164, charged to the card on file. Everything will be packed and ready for pickup Friday afternoon; returns are due Sunday by noon. Reply to this thread if you need to adjust your return time. Break a leg out there. — Ozzie Ferrante, Bellamy Prop House"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+  "people": [
+    {
+      "firstName": "Jordan",
+      "lastName": "Teen",
+      "email": "jordan.teen@gmail.com",
+      "phone": "5550300701",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Sam",
+      "lastName": "Teen",
+      "email": "sam.teen@gmail.com",
+      "phone": "5550300702",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ],
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4556737586899855,
+      "expiryYear": 2027,
+      "expiryMonth": 8,
+      "cvv": 417,
+      "bankBalance": 5000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-12T09:15:00",
+      "amount": 250
+    }
+  ]
+}

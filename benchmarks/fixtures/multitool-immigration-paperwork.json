@@ -1,0 +1,56 @@
+{
+ "people": [
+  {
+   "firstName": "Rosa",
+   "lastName": "Alvarez",
+   "email": "rosa.alvarez@alvarezboonelaw.com",
+   "phone": "5550860002",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Tran",
+   "email": "marcus.tran@alvarezboonelaw.com",
+   "phone": "5550472291",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "marcus.tran@alvarezboonelaw.com",
+   "to": "oracle@guios.dev",
+   "subject": "I-485 interview evidence checklist — case ALB-2419",
+   "body": "Hi — ahead of your adjustment interview, Rosa needs the following evidence scanned to us: Certified copy of your birth certificate with English translation. Copy of every passport page with a stamp or visa. Marriage certificate issued by the county clerk. Two years of federal tax transcripts. Form I-864 Affidavit of Support signed by your sponsor. Please have everything to us by August 14 so Rosa can assemble the interview binder. Your USCIS receipt number is IOE0044172688 for reference. — Marcus Tran, paralegal, Alvarez & Boone"
+  },
+  {
+   "from": "rosa.alvarez@alvarezboonelaw.com",
+   "to": "oracle@guios.dev",
+   "subject": "Interview notice arrived",
+   "body": "Good news — the interview notice came in today. Your interview is scheduled for September 18 at 8:30 AM at the Fairview Field Office, 210 Commerce Way. Marcus is collecting the remaining evidence for the binder; we will schedule a full prep session the week before. — Rosa Alvarez"
+  }
+ ],
+ "files": [
+  {
+   "path": "/scans/scan-0141.pdf",
+   "content": "Scanned document fixture: certified copy of birth certificate, Registro Civil de Cartagena, with attached certified English translation by Lena Ortiz, ATA #44812."
+  },
+  {
+   "path": "/scans/scan-0142.pdf",
+   "content": "Scanned document fixture: passport pages 4 through 9, each page bearing an entry stamp or visa — F-1 visa issued 2018, H-1B visa issued 2022, entry stamps at JFK and O'Hare."
+  },
+  {
+   "path": "/scans/scan-0143.pdf",
+   "content": "Scanned document fixture: marriage certificate issued by the Linn County clerk, June 3, 2024, registering the marriage of the applicant and Dana Whitmore."
+  }
+ ],
+ "notes": [
+  {
+   "title": "Green card timeline",
+   "content": "Feb 3 — retained Alvarez & Boone for the marriage-based green card.\nMar 21 — I-130 and I-485 filed.\nApr 2 — receipt notice IOE0044172688 arrived.\nMay 29 — biometrics done at the downtown ASC."
+  }
+ ]
+}

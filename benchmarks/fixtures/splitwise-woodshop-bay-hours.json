@@ -1,0 +1,22 @@
+{
+ "people": [
+  {
+   "firstName": "Maren",
+   "lastName": "Okerlund",
+   "email": "maren@grainandkerf.net",
+   "phone": "5550880071",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Casimir",
+   "lastName": "Quintrell",
+   "email": "casimir@grainandkerf.net",
+   "phone": "5550880072",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ]
+}

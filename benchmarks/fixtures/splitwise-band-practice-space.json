@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Silas",
+      "lastName": "Quade",
+      "email": "silas@riffroom.com",
+      "phone": "5550400001",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Wren",
+      "lastName": "Kowalski",
+      "email": "wren@riffroom.com",
+      "phone": "5550400002",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

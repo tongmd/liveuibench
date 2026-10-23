@@ -1,0 +1,46 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Sokolow",
+   "email": "marisol.sokolow.cpa@gmail.com",
+   "phone": "5550730118",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/documents/w2-copperleaf-2025.txt",
+   "content": "W-2 Wage and Tax Statement, tax year 2025\nEmployer: Copperleaf Studios\nBox 1 wages: $84,200\nBox 2 federal income tax withheld: $9,150\n"
+  },
+  {
+   "path": "/documents/1099-int-ferndale-2025.txt",
+   "content": "Form 1099-INT, tax year 2025\nPayer: Ferndale Credit Union\nBox 1 interest income: $312\n"
+  },
+  {
+   "path": "/documents/property-tax-receipt-2025.txt",
+   "content": "County property tax statement, tax year 2025\nParcel 114-208\nPaid in full: $4,880\n"
+  },
+  {
+   "path": "/documents/banana-bread-recipe.txt",
+   "content": "Mash three ripe bananas, fold into the batter, bake 55 minutes at 350F.\n"
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-06T09:00:00",
+   "amount": 320
+  }
+ ],
+ "venmoIncomingRequests": [
+  {
+   "at": "2023-05-14T10:20:00",
+   "fromEmail": "marisol.sokolow.cpa@gmail.com",
+   "amount": 240,
+   "description": "2025 tax prep invoice"
+  }
+ ]
+}

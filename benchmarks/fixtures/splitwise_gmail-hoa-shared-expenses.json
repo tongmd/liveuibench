@@ -1,0 +1,34 @@
+{
+ "people": [
+  {
+   "firstName": "Priya",
+   "lastName": "Raghunathan",
+   "email": "priya.raghunathan.rowanberry@gmail.com",
+   "phone": "5550774821",
+   "apps": [
+    "splitwise",
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Walt",
+   "lastName": "Kowalczyk",
+   "email": "walt.kowalczyk.rowanberry@gmail.com",
+   "phone": "5550774822",
+   "apps": [
+    "splitwise",
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Ines",
+   "lastName": "Barbosa",
+   "email": "ines.barbosa.rowanberry@gmail.com",
+   "phone": "5550774823",
+   "apps": [
+    "splitwise",
+    "gmail"
+   ]
+  }
+ ]
+}

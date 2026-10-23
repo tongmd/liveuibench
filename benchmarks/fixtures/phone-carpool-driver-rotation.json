@@ -1,0 +1,54 @@
+{
+  "people": [
+    {
+      "firstName": "Kayla",
+      "lastName": "Brooks",
+      "email": "kayla.brooks@example.com",
+      "phone": "5550430001",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Nora",
+      "lastName": "Vance",
+      "email": "nora.vance@example.com",
+      "phone": "5550430002",
+      "apps": [
+        "phone"
+      ]
+    },
+    {
+      "firstName": "Mateo",
+      "lastName": "Silva",
+      "email": "mateo.silva@example.com",
+      "phone": "5550430003",
+      "apps": [
+        "phone"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Kayla",
+      "lastName": "Brooks",
+      "phone": "5550430001",
+      "email": "kayla.brooks@example.com",
+      "relationship": "carpool"
+    },
+    {
+      "firstName": "Nora",
+      "lastName": "Vance",
+      "phone": "5550430002",
+      "email": "nora.vance@example.com",
+      "relationship": "carpool"
+    },
+    {
+      "firstName": "Mateo",
+      "lastName": "Silva",
+      "phone": "5550430003",
+      "email": "mateo.silva@example.com",
+      "relationship": "carpool"
+    }
+  ]
+}

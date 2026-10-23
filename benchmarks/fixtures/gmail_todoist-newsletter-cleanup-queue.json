@@ -1,0 +1,51 @@
+{
+  "people": [
+    {
+      "firstName": "The",
+      "lastName": "Hustle",
+      "email": "newsletter@thehustle.example.com",
+      "phone": "5550220006",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Morning",
+      "lastName": "Brew",
+      "email": "newsletter@morningbrew.example.com",
+      "phone": "5550220007",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Stratechery",
+      "lastName": "Newsletter",
+      "email": "newsletter@stratechery.example.com",
+      "phone": "5550220008",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "newsletter@stratechery.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Stratechery: Aggregation and the Streaming Wars",
+      "body": "Issue of May 17, 2023. Aggregation theory meets the streaming wars: how bundling reshapes leverage across Netflix, Disney, and the studios."
+    },
+    {
+      "from": "newsletter@morningbrew.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Morning Brew: Markets, Money, and More",
+      "body": "Issue of May 9, 2023. Your daily dose of business news: markets wrap, retail earnings, and the week ahead."
+    },
+    {
+      "from": "newsletter@thehustle.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "The Hustle: Weekly Digest",
+      "body": "Issue of May 16, 2023. This week in tech and business: five stories founders are talking about."
+    }
+  ]
+}

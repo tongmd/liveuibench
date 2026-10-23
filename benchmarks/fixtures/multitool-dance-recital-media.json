@@ -1,0 +1,16 @@
+{
+ "files": [
+  {
+   "path": "/dance-media/README.txt",
+   "content": "Filing convention: /dance-media/<show>/edits/<class>-<routine>-edit-v<N>.txt — bump the version, never overwrite; the locked cut is renamed to 'final'.\n"
+  },
+  {
+   "path": "/dance-media/winter-gala/edits/ballet3-snowfall-edit-final.txt",
+   "content": "Edit final: trimmed to 3:05, fade out over the closing bars. Locked for Winter Gala tech.\n"
+  },
+  {
+   "path": "/dance-media/winter-gala/edits/hiphop-juniors-frostbite-edit-final.txt",
+   "content": "Edit final: trimmed to 2:10, hard cut after the last hit. Locked for Winter Gala tech.\n"
+  }
+ ]
+}

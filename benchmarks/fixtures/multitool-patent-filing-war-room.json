@@ -1,0 +1,43 @@
+{
+ "people": [
+  {
+   "firstName": "Ingrid",
+   "lastName": "Kaufmann",
+   "email": "ingrid.kaufmann@example.com",
+   "phone": "5550834071",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/patent/claims/claims-v3.md",
+   "content": "Claim set v3 — self-venting fermentation lid — docket KD-2071\n23 claims total: independent claims 1 and 14; dependent claims 2-13 and 15-23.\n\n1. A self-venting fermentation lid comprising: a lid body sized to a wide-mouth jar; a vent chamber; and a threshold ring rotatable by a user to set a release pressure.\n2. The lid of claim 1, wherein the threshold ring detents in half-psi steps.\n3. The lid of claim 1, wherein the vent chamber reseats itself after each release.\n4. The lid of claim 3, wherein reseating occurs without user contact.\n5. The lid of claim 1, wherein the lid body is dishwasher-safe polypropylene.\n6. The lid of claim 1, further comprising a gasket seated in a channel of the lid body.\n7. The lid of claim 6, wherein the gasket is food-grade silicone.\n8. The lid of claim 1, wherein the threshold ring carries printed pressure markings.\n9. The lid of claim 8, wherein the markings run from 0.5 to 3.0 psi.\n10. The lid of claim 1, wherein the vent chamber exhausts through a one-way duckbill port.\n11. The lid of claim 10, wherein the duckbill port is replaceable without tools.\n12. The lid of claim 1, wherein the threshold ring locks at a chosen setting.\n13. The lid of claim 12, wherein the lock is a quarter-turn bayonet.\n14. A method of fermenting under a user-set pressure threshold, comprising: sealing a vessel with the lid of claim 1; rotating the threshold ring to a chosen release pressure; and allowing the vent chamber to release and reseat without user intervention.\n15. The method of claim 14, wherein the chosen release pressure is between 0.5 and 3.0 psi.\n16. The method of claim 14, further comprising exchanging the duckbill port between batches.\n17. The method of claim 14, wherein sealing comprises engaging wide-mouth jar threads.\n18. The method of claim 14, further comprising rinsing the vent chamber in place.\n19. The method of claim 14, wherein the vessel is a glass jar of at least one quart.\n20. The method of claim 14, wherein each release is logged audibly by a click of the reseating vent chamber.\n21. The lid of claim 1, further comprising a sensor housing over-molded in silicone on the lid body.\n22. The lid of claim 21, wherein the sensor housing carries a pressure-indicator pip visible from above.\n23. The lid of claim 21, wherein the sensor housing is tinted amber.\n"
+  },
+  {
+   "path": "/patent/claims/claims-v2.md",
+   "content": "Claim set v2 — self-venting fermentation lid — docket KD-2071. 26 claims; superseded by v3 after the May 12 trim. Kept for the record only — do not edit.\n"
+  }
+ ],
+ "notes": [
+  {
+   "title": "Prior-art log — fermenting lid",
+   "content": "US 7,210,556 (Kim) — manual burp valve on a mason-jar lid.\ndistinguished: user opens it by hand; no set-and-forget threshold.\n"
+  }
+ ],
+ "emails": [
+  {
+   "from": "ingrid.kaufmann@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Docket KD-2071 — non-provisional fees and claim count",
+   "body": "Hi — before we file, the numbers. At the small-entity rate the USPTO charges $130 filing, $280 search, and $320 examination, plus $50 for each claim past twenty. Your v3 set stands at 23 claims, so you are three over the cap: either trim the set or budget the overage. One hard date: the non-provisional must be on file by August 21 to keep your provisional priority. — Ingrid Kaufmann, Kestrel & Doyle LLP"
+  },
+  {
+   "from": "ingrid.kaufmann@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "KD-2071 search report — two references to distinguish",
+   "body": "The examiner search report flags two references we should get ahead of in the remarks: US 8,642,077 (Hollenbeck), a spring-loaded lid vent with a fixed factory release, and US 9,157,304 (Brandt), a hand-primed diaphragm valve for fermentation crocks. Send me your distinguishing argument for each and I will fold them into the response. — Ingrid Kaufmann, Kestrel & Doyle LLP"
+  }
+ ]
+}

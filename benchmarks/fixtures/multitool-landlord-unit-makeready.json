@@ -1,0 +1,69 @@
+{
+ "people": [
+  {
+   "firstName": "Odalys",
+   "lastName": "Delgadillo",
+   "email": "odalys@delgadillopainting.com",
+   "phone": "5550164001",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Harlan",
+   "lastName": "Boyce",
+   "email": "harlan@boycecarpetcare.com",
+   "phone": "5550164002",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Yolanda",
+   "lastName": "Halloway",
+   "email": "yolanda.halloway@example.com",
+   "phone": "5550164003",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "odalys@delgadillopainting.com",
+   "to": "oracle@guios.dev",
+   "subject": "Quote MP-2214 - repaint Unit 2B, 12 Brixton Lane",
+   "body": "Hi, thanks for walking me through the unit. Quote MP-2214 comes to $480 to repaint the bedroom walls and touch up the trim in Unit 2B at 12 Brixton Lane. My crew can start Thursday, August 6, and we are out in two days. Reply to confirm and I'll pencil you in. - Odalys Delgadillo, Delgadillo Painting"
+  },
+  {
+   "from": "harlan@boycecarpetcare.com",
+   "to": "oracle@guios.dev",
+   "subject": "Unit 2B carpet steam clean - your quote",
+   "body": "Hello, steam cleaning the living room carpet in Unit 2B with stain treatment included comes to $175. I have Monday, August 10 open if that works with your painter's schedule. - Harlan Boyce, Boyce Carpet Care"
+  },
+  {
+   "from": "yolanda.halloway@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "Is Unit 2B still available for September 1?",
+   "body": "Hi, I saw the listing for 12 Brixton Lane and I'd love a tour next week if the September 1 move-in is still on the table. Any weekday evening works for me. - Yolanda Halloway"
+  }
+ ],
+ "files": [
+  {
+   "path": "/photos/moveout-2b/bathroom-shower-mildew.jpg",
+   "content": "JPG photo fixture: mildew-blackened shower curtain and caulk line in the Unit 2B bathroom"
+  },
+  {
+   "path": "/photos/moveout-2b/bedroom-wall-scuffs.jpg",
+   "content": "JPG photo fixture: furniture scuffs and nail holes across the Unit 2B bedroom walls"
+  },
+  {
+   "path": "/photos/moveout-2b/living-room-carpet-stain.jpg",
+   "content": "JPG photo fixture: dark spill stain in the middle of the Unit 2B living room carpet"
+  },
+  {
+   "path": "/photos/moveout-2b/hallway-thermostat-dead.jpg",
+   "content": "JPG photo fixture: blank dead thermostat screen on the Unit 2B hallway wall"
+  }
+ ]
+}

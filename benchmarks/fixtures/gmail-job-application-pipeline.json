@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Nora",
+      "lastName": "Winfield",
+      "email": "talent@northwind.io",
+      "phone": "5550109314",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Cole",
+      "lastName": "Bolton",
+      "email": "recruiting@cobaltsystems.com",
+      "phone": "5550109315",
+      "apps": [
+        "gmail"
+      ]
+    },
+    {
+      "firstName": "Fern",
+      "lastName": "Ferro",
+      "email": "careers@ferroanalytics.com",
+      "phone": "5550109316",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ]
+}

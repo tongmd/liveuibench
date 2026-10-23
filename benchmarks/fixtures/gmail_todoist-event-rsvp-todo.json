@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Omar",
+   "lastName": "Bell",
+   "email": "omar.bell@example.com",
+   "phone": "5550220012",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Nair",
+   "email": "priya.nair@example.com",
+   "phone": "5550100304",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "priya.nair@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "You're invited: Priya's Birthday Dinner",
+   "body": "You're invited! Join us for Priya's Birthday Dinner on May 20, 2023 at 7pm at Casa Lisboa. Please let me know if you can make it."
+  },
+  {
+   "from": "omar.bell@example.com",
+   "to": "oracle@guios.dev",
+   "subject": "You're invited: Team Offsite",
+   "body": "You're invited! The Team Offsite is on May 27, 2023, starting 9am at the lakeside lodge. RSVP when you get a chance."
+  }
+ ]
+}

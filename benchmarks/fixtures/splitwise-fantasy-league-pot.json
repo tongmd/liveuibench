@@ -1,0 +1,94 @@
+{
+  "people": [
+    {
+      "firstName": "Alan",
+      "lastName": "Pierce",
+      "email": "alan@league.com",
+      "phone": "5550220034",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Brett",
+      "lastName": "Cole",
+      "email": "brett@league.com",
+      "phone": "5550220035",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Carl",
+      "lastName": "Dunn",
+      "email": "carl@league.com",
+      "phone": "5550220036",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Dave",
+      "lastName": "Wren",
+      "email": "dave@league.com",
+      "phone": "5550100425",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Evan",
+      "lastName": "Sharp",
+      "email": "evan@league.com",
+      "phone": "5550100426",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Fred",
+      "lastName": "Nash",
+      "email": "fred@league.com",
+      "phone": "5550100427",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Gary",
+      "lastName": "Holt",
+      "email": "gary@league.com",
+      "phone": "5550100428",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Hank",
+      "lastName": "Ellis",
+      "email": "hank@league.com",
+      "phone": "5550100429",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Ian",
+      "lastName": "Boyd",
+      "email": "ian@league.com",
+      "phone": "5550100430",
+      "apps": [
+        "splitwise",
+        "venmo"
+      ]
+    }
+  ]
+}

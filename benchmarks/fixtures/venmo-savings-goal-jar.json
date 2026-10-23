@@ -1,0 +1,21 @@
+{
+  "_note": "Un-quarantines venmo-savings-goal-jar. The old quarantine assumed a card-less world where any app-invented card is rejected by /admin/validate_card. That is only true for UNregistered cards: registering the tuple via POST /admin/payment_card first makes attach + add_to_venmo_balance succeed (probed live 2026-07-30 on the running world at :9000). cardName must be one of the admin enum values {Visa, MasterCard, American Express, Discover, HSBC, Wells Fargo, Chase} — a free-form nickname makes the admin endpoint return 500.",
+  "adminCards": [
+    {
+      "ownerEmail": "oracle@guios.dev",
+      "cardName": "Visa",
+      "ownerName": "Guios Oracle",
+      "cardNumber": 4000000000001234,
+      "expiryYear": 2025,
+      "expiryMonth": 8,
+      "cvv": 456,
+      "bankBalance": 100000
+    }
+  ],
+  "venmoBalance": [
+    {
+      "at": "2023-05-14T10:00:00",
+      "amount": 120
+    }
+  ]
+}

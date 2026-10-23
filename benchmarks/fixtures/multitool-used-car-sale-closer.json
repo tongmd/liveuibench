@@ -1,0 +1,39 @@
+{
+ "people": [
+  {
+   "firstName": "Marisol",
+   "lastName": "Vega",
+   "email": "marisol.vega@quailmail.net",
+   "phone": "5550921001",
+   "apps": [
+    "gmail",
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Grant",
+   "lastName": "Foley",
+   "email": "grant.foley@thornpost.com",
+   "phone": "5550921002",
+   "apps": [
+    "gmail",
+    "phone"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "marisol.vega@quailmail.net",
+   "to": "oracle@guios.dev",
+   "subject": "Your Honda Fit listing - still available?",
+   "body": "Hi - I saw your 2016 Honda Fit listed at $7,800. Would you take $7,400? I'd want to drive it first; Saturday morning is best for me. If it drives as clean as it looks I can move fast."
+  },
+  {
+   "from": "grant.foley@thornpost.com",
+   "to": "oracle@guios.dev",
+   "subject": "Honda Fit - I'll pay full asking",
+   "body": "I'll pay your full $7,800 asking price if it checks out in person. The catch is I'm only free on Sundays. Can you set up a Sunday test drive and not sell it out from under me before then?"
+  }
+ ]
+}

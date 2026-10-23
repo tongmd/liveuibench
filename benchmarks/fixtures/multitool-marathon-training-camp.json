@@ -1,0 +1,21 @@
+{
+ "people": [
+  {
+   "firstName": "Dara",
+   "lastName": "Okonjo",
+   "email": "dara.okonjo@example.com",
+   "phone": "5550166201",
+   "apps": [
+    "phone"
+   ]
+  }
+ ],
+ "sms": [
+  {
+   "at": "2023-05-15T07:30:00",
+   "fromPhone": "5550166201",
+   "toPhone": "5550100001",
+   "message": "Week 1 of 16, Harborline Chess Marathon build: Mon tactics 40 puzzles, Wed calculation 25 puzzles, Fri endgame 15 puzzles, Sun annotate 2 games. Keep your rapid games at 15+10."
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "people": [
+  {
+   "firstName": "Nadia",
+   "lastName": "Okafor",
+   "email": "nadia.okafor@example.com",
+   "phone": "5550800001",
+   "apps": [
+    "venmo",
+    "gmail"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/flips/maple-highboy/before-maple-highboy-front.jpg",
+   "content": "[photo] Maple Highboy - front, as found at the Elm Street estate sale: chipped top, water rings, original brass pulls.\n"
+  },
+  {
+   "path": "/flips/maple-highboy/before-maple-highboy-drawers.jpg",
+   "content": "[photo] Maple Highboy - drawers out, split runner on drawer three, veneer lifting on the left side.\n"
+  }
+ ]
+}

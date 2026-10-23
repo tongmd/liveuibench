@@ -1,0 +1,52 @@
+{
+ "people": [
+  {
+   "firstName": "Gordon",
+   "lastName": "Petrakis",
+   "email": "gordon.petrakis@cedarridgemrc.org",
+   "phone": "5550137204",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Rosa",
+   "lastName": "Mancini",
+   "email": "rosa.mancini@cedarridgemrc.org",
+   "phone": "5550137311",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "amazonOrders": [
+  {
+   "at": "2023-04-21T16:40",
+   "items": [
+    {
+     "query": "3M Temflex 1700 Vinyl Electrical Tape"
+    },
+    {
+     "query": "Ace Heat Shrink Tubing Kit"
+    }
+   ],
+   "address": {
+    "name": "Home",
+    "streetAddress": "18 Alder Bench Road",
+    "city": "Spokane",
+    "state": "Washington",
+    "country": "USA",
+    "zipCode": 99201
+   }
+  }
+ ],
+ "backdatedEmails": [
+  {
+   "at": "2023-05-13T19:22",
+   "from": "gordon.petrakis@cedarridgemrc.org",
+   "to": "oracle@guios.dev",
+   "subject": "Cedar Ridge fall open house - layout tours November 8",
+   "body": "Hi all, Gordon here. The club voted last night: our fall open house is set for November 8, and Maple Yard is on the public tour list. Please have your track power and wiring buttoned up well before then - visitors will be running trains all afternoon. Rosa is collecting wiring status updates for the newsletter, so send us a note once your bus and feeders are in. - Gordon Petrakis, Cedar Ridge Model Railroad Club"
+  }
+ ]
+}

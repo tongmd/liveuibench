@@ -1,0 +1,48 @@
+{
+ "people": [
+  {
+   "firstName": "Nadia",
+   "lastName": "Okafor",
+   "email": "nadia.okafor@fernmail.net",
+   "phone": "5550731101",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Tomas",
+   "lastName": "Rivera",
+   "email": "tomas.rivera@copperpost.com",
+   "phone": "5550731102",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "June",
+   "lastName": "Calloway",
+   "email": "june.calloway@willowbox.net",
+   "phone": "5550731103",
+   "apps": [
+    "gmail",
+    "venmo"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "nadia.okafor@fernmail.net",
+   "to": "oracle@guios.dev",
+   "subject": "Brightleaf asks for May",
+   "body": "Hi! For May we'd love the usual two things: refresh the class schedule page for the summer session, and get the May newsletter out to our list. Retainer on the 1st as always — send the request whenever you kick things off."
+  },
+  {
+   "from": "tomas.rivera@copperpost.com",
+   "to": "oracle@guios.dev",
+   "subject": "Riverbend site work for May",
+   "body": "Morning — for this month's retainer please run the plugin updates across the store and put together the uptime report for Q2 planning. Fire over the Venmo request when you start and I'll approve it same day."
+  }
+ ]
+}

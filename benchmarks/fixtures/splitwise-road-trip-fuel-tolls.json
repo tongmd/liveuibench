@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "firstName": "Ash",
+      "lastName": "Rivera",
+      "email": "ash@road.com",
+      "phone": "5550100431",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Bo",
+      "lastName": "Lindgren",
+      "email": "bo@road.com",
+      "phone": "5550100432",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Cy",
+      "lastName": "Nguyen",
+      "email": "cy@road.com",
+      "phone": "5550100433",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+ "people": [
+  {
+   "firstName": "Stratechery",
+   "lastName": "Digest",
+   "email": "digest@stratechery.com",
+   "phone": "5550210001",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "TheHustle",
+   "lastName": "Crew",
+   "email": "hello@thehustle.co",
+   "phone": "5550210002",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Platformer",
+   "lastName": "News",
+   "email": "news@platformer.news",
+   "phone": "5550210003",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "digest@stratechery.com",
+   "to": "oracle@guios.dev",
+   "subject": "Stratechery: The AI platform shift",
+   "body": "This week: how aggregation theory maps onto the emerging AI platform landscape."
+  },
+  {
+   "from": "hello@thehustle.co",
+   "to": "oracle@guios.dev",
+   "subject": "The Hustle: The $2B vending machine empire",
+   "body": "How one operator rolled up vending routes into a nine-figure business."
+  },
+  {
+   "from": "news@platformer.news",
+   "to": "oracle@guios.dev",
+   "subject": "Platformer: Inside the trust and safety shake-up",
+   "body": "What the latest round of trust-and-safety departures means for platform governance."
+  },
+  {
+   "from": "digest@stratechery.com",
+   "to": "oracle@guios.dev",
+   "subject": "Stratechery: Streaming bundle economics",
+   "body": "Rebundling is here. Why the streaming wars end where cable began."
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+  "people": [
+    {
+      "firstName": "Store",
+      "lastName": "Orders",
+      "email": "orders@store.example.com",
+      "phone": "5550220009",
+      "apps": [
+        "gmail"
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "from": "orders@store.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Order confirmation: Sony WH-1000XM5 Headphones",
+      "body": "Order confirmation for your records. Item: Sony WH-1000XM5 Headphones. Price: $399. Purchased: May 1, 2023."
+    },
+    {
+      "from": "orders@store.example.com",
+      "to": "oracle@guios.dev",
+      "subject": "Order confirmation: Anker Power Bank",
+      "body": "Order confirmation (resend for your records). Item: Anker Power Bank. Price: $59. Purchased: November 25, 2021."
+    }
+  ]
+}

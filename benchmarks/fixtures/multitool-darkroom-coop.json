@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Beata",
+   "lastName": "Wozniak",
+   "email": "beata.wozniak@example.com",
+   "phone": "5550479311",
+   "apps": [
+    "splitwise"
+   ]
+  },
+  {
+   "firstName": "Ilias",
+   "lastName": "Papadakis",
+   "email": "ilias.papadakis@example.com",
+   "phone": "5550479322",
+   "apps": [
+    "splitwise"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "path": "/negatives/roll18_frame04.tif",
+   "content": "Negative scan placeholder — roll 18, frame 04: the flooded quarry at dusk, 35mm."
+  },
+  {
+   "path": "/negatives/roll18_frame09.tif",
+   "content": "Negative scan placeholder — roll 18, frame 09: Beata under the red safelight at the enlarger, 35mm."
+  },
+  {
+   "path": "/negatives/roll19_frame02.tif",
+   "content": "Negative scan placeholder — roll 19, frame 02: bicycles on Tallow Lane in morning fog, 35mm."
+  }
+ ]
+}

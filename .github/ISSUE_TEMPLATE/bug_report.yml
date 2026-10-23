@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a reproducible runtime, interface, or runner problem.
+body:
+  - type: markdown
+    attributes:
+      value: "For security concerns, follow SECURITY.md. Remove credentials, private endpoints, and user data from all examples."
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Describe the action that triggered the problem and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include steps or a sanitized request. For benchmark issues, include the case ID, split, and dataset hash.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, OS, Node version, browser, harness, and model identifier; do not include API keys.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add sanitized logs, report excerpts, or screenshots, and state whether the run used mocks or a real provider.

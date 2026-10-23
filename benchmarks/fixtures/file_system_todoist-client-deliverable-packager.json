@@ -1,0 +1,31 @@
+{
+ "files": [
+  {
+   "path": "/deliverables/harborlight-rebrand/brand-guide.md",
+   "content": "# Harborlight rebrand — brand guide\n\nPrimary mark: lighthouse monogram, navy on cream.\nType: Archer for display, Source Sans for body.\nUsage: keep 2x clear space around the monogram.\n"
+  },
+  {
+   "path": "/deliverables/harborlight-rebrand/logo-notes.md",
+   "content": "Round 3 approved by client 5/9.\nDeliver: SVG + PNG at 512/1024, mono variant for embroidery.\n"
+  },
+  {
+   "path": "/deliverables/copperkettle-menu/menu-notes.md",
+   "content": "Copper Kettle menu redesign.\nTwo-fold A4, seasonal insert slot on right panel.\nPrint spec: 300gsm uncoated, vendor proof due before send.\n"
+  }
+ ],
+ "todoistProjects": [
+  {
+   "at": "2023-05-12T09:00:00",
+   "ownerEmail": "oracle@guios.dev",
+   "name": "Client Deliverables",
+   "tasks": [
+    {
+     "content": "Harborlight rebrand"
+    },
+    {
+     "content": "Copper Kettle menu redesign"
+    }
+   ]
+  }
+ ]
+}

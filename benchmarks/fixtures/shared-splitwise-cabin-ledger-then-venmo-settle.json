@@ -1,0 +1,24 @@
+{
+  "people": [
+    {
+      "apps": [
+        "splitwise",
+        "venmo"
+      ],
+      "email": "maya.chen@example.com",
+      "firstName": "Maya",
+      "lastName": "Chen",
+      "phone": "5550100241"
+    },
+    {
+      "apps": [
+        "splitwise",
+        "venmo"
+      ],
+      "email": "devon.roth@example.com",
+      "firstName": "Devon",
+      "lastName": "Roth",
+      "phone": "5550100242"
+    }
+  ]
+}

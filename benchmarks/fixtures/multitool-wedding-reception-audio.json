@@ -1,0 +1,36 @@
+{
+ "people": [
+  {
+   "firstName": "Rosalind",
+   "lastName": "Beck",
+   "email": "rosalind.beck@vinylhawk.net",
+   "phone": "5550664821",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Raman",
+   "email": "priya.raman@lumenpost.net",
+   "phone": "5550719348",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "rosalind.beck@vinylhawk.net",
+   "to": "oracle@guios.dev",
+   "subject": "Sept 12 reception — need your final music program",
+   "body": "Hi! Locking my prep for your Sept 12 reception. Please send one final cue sheet before Sept 5: the first dance track, the dinner set in play order with its total run time, and the send-off song. I cue everything off exact track lengths, so run times matter. — Rosalind"
+  },
+  {
+   "from": "priya.raman@lumenpost.net",
+   "to": "oracle@guios.dev",
+   "subject": "Dinner set picks — final",
+   "body": "Love — these are my final three for dinner, in play order, no more changes I promise: 1. Moonlit Sighs, 2. Mystic Rhythms, 3. Shadow Dance. Slot them between the first dance and the send-off. — P"
+  }
+ ]
+}

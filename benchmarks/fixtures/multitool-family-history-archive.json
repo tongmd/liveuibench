@@ -1,0 +1,66 @@
+{
+ "people": [
+  {
+   "firstName": "Doreen",
+   "lastName": "Abernathy",
+   "email": "doreen.abernathy@familypost.net",
+   "phone": "5550341207",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Silas",
+   "lastName": "Whitfield",
+   "email": "silas.whitfield@familypost.net",
+   "phone": "5550341288",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "doreen.abernathy@familypost.net",
+   "to": "oracle@guios.dev",
+   "subject": "Grandma's wedding details for the archive",
+   "body": "For the archive: Mom and Dad were married on June 3, 1957 at St. Ambrose Church in Duluth. Her maiden name was Hazel Marie Calloway. I scanned their wedding portrait but it came out blurry — I'll redo it next weekend."
+  },
+  {
+   "from": "silas.whitfield@familypost.net",
+   "to": "oracle@guios.dev",
+   "subject": "Found the ship manifest!",
+   "body": "Big find at the county historical society: Great-grandpa Elias Calloway arrived at Ellis Island on the SS Verbania in March 1921 — his name is right there on the manifest line. Also, ask Grandma about the bakery on Fremont Street next time you see her — Dad always swore it was hers."
+  },
+  {
+   "from": "news@heritagequarterly.com",
+   "to": "oracle@guios.dev",
+   "subject": "Heritage Quarterly: fall issue is out",
+   "body": "The fall issue of Heritage Quarterly is now available, featuring courthouse research tips and a guide to dating old photographs. Renew by September 30 to keep your subscription."
+  }
+ ],
+ "notes": [
+  {
+   "title": "Interview #1 — Hazel — Duluth childhood",
+   "content": "Grew up on Raleigh Street in Duluth; walked down to the harbor to watch the ore boats; her father Elias worked the grain elevators after coming over from the old country."
+  },
+  {
+   "title": "Interview #2 — Hazel — meeting Grandpa",
+   "content": "Met Frank Whitfield at a church social in 1955; he fixed her bicycle chain before he ever asked her name; they married two years later."
+  }
+ ],
+ "files": [
+  {
+   "path": "/scans/scan_0041.jpg",
+   "content": "Scanned image fixture: birth certificate, Hazel Marie Calloway, born 1936, St. Louis County, Minnesota."
+  },
+  {
+   "path": "/scans/scan_0042.jpg",
+   "content": "Scanned image fixture: property deed, Fremont Street building, recorded 1948."
+  },
+  {
+   "path": "/scans/scan_0043.jpg",
+   "content": "Scanned image fixture: photograph of a bakery storefront with a striped awning, two women in aprons out front."
+  }
+ ]
+}

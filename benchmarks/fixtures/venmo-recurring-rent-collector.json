@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Carla",
+      "lastName": "Mendez",
+      "email": "carla.renter@gmail.com",
+      "phone": "5550220049",
+      "apps": [
+        "venmo"
+      ]
+    },
+    {
+      "firstName": "Ben",
+      "lastName": "Fischer",
+      "email": "ben.renter@gmail.com",
+      "phone": "5550220050",
+      "apps": [
+        "venmo"
+      ]
+    }
+  ]
+}

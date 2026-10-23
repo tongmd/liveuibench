@@ -1,0 +1,24 @@
+{
+ "files": [
+  {
+   "path": "/sheet-music/chopin/index.md",
+   "content": "Nocturne Op. 9 No. 2 - piano\nRaindrop Prelude - piano\n"
+  },
+  {
+   "path": "/sheet-music/chopin/nocturne-op9-no2-piano.pdf",
+   "content": "Scanned score: Nocturne Op. 9 No. 2 (piano), 4 pages\n"
+  },
+  {
+   "path": "/sheet-music/chopin/raindrop-prelude-piano.pdf",
+   "content": "Scanned score: Raindrop Prelude (piano), 6 pages\n"
+  },
+  {
+   "path": "/sheet-music/faure/index.md",
+   "content": "Apres un reve - cello\n"
+  },
+  {
+   "path": "/sheet-music/faure/apres-un-reve-cello.pdf",
+   "content": "Scanned score: Apres un reve (cello), 3 pages\n"
+  }
+ ]
+}

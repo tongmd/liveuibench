@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "firstName": "Dana",
+      "lastName": "Greer",
+      "email": "greerfam@nb.com",
+      "phone": "5550100413",
+      "apps": [
+        "splitwise"
+      ]
+    },
+    {
+      "firstName": "Kenji",
+      "lastName": "Tanaka",
+      "email": "tanaka@nb.com",
+      "phone": "5550220026",
+      "apps": [
+        "splitwise"
+      ]
+    }
+  ]
+}

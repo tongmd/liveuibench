@@ -1,0 +1,76 @@
+{
+ "people": [
+  {
+   "firstName": "Nadia",
+   "lastName": "Osei",
+   "email": "nadia.osei@brightpost.net",
+   "phone": "5550244101",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Marcus",
+   "lastName": "Webb",
+   "email": "marcus.webb@ferngate.com",
+   "phone": "5550244102",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Iris",
+   "lastName": "Kwan",
+   "email": "iris.kwan@copperleafmail.com",
+   "phone": "5550244103",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Talia",
+   "lastName": "Reyes",
+   "email": "talia.reyes@brightpost.net",
+   "phone": "5550244104",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Camille",
+   "lastName": "Fortin",
+   "email": "camille@meadowlarkbakes.com",
+   "phone": "5550244201",
+   "apps": [
+    "gmail"
+   ]
+  },
+  {
+   "firstName": "Petra",
+   "lastName": "Novak",
+   "email": "petra@juniperpartyco.com",
+   "phone": "5550244202",
+   "apps": [
+    "gmail"
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "from": "camille@meadowlarkbakes.com",
+   "to": "oracle@guios.dev",
+   "subject": "Baby shower cake quote - Meadowlark Bakes",
+   "body": "Hi! For the shower on August 8 I can do a two-tier Lemon-Raspberry cake that serves sixteen for $68. Just reply confirming the flavor and you're on my calendar for that Saturday - I only bake two cakes a weekend so the sooner the better."
+  },
+  {
+   "from": "petra@juniperpartyco.com",
+   "subject": "Balloon arch for Aug 8 - need your delivery hour",
+   "to": "oracle@guios.dev",
+   "body": "Your sage-and-cream balloon arch is built and comes to $95. I can deliver any hour that Saturday morning - reply with the delivery time that works and I'll route the van. No reply, no van!"
+  }
+ ]
+}

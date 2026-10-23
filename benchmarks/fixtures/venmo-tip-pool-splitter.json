@@ -1,0 +1,49 @@
+{
+ "people": [
+  {
+   "firstName": "Rocco",
+   "lastName": "Delgado",
+   "email": "rocco.delgado.bar@gmail.com",
+   "phone": "5550731501",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Sayuri",
+   "lastName": "Mott",
+   "email": "sayuri.mott.bar@gmail.com",
+   "phone": "5550731502",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Ansel",
+   "lastName": "Okoye",
+   "email": "ansel.okoye.bar@gmail.com",
+   "phone": "5550731503",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "adminCards": [
+  {
+   "ownerEmail": "oracle@guios.dev",
+   "cardName": "Visa",
+   "ownerName": "Guios Oracle",
+   "cardNumber": 4556737412208844,
+   "expiryYear": 2027,
+   "expiryMonth": 6,
+   "cvv": 382,
+   "bankBalance": 5000
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-06T10:20:00",
+   "amount": 240
+  }
+ ]
+}

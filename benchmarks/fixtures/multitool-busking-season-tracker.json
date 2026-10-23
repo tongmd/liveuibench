@@ -1,0 +1,53 @@
+{
+ "people": [
+  {
+   "firstName": "Anneke",
+   "lastName": "Cendejas",
+   "email": "anneke.cendejas@example.com",
+   "phone": "5550694412",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Maribel",
+   "lastName": "Gatlin",
+   "email": "maribel.gatlin@example.com",
+   "phone": "5550694417",
+   "apps": [
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Emmett",
+   "lastName": "Yarrow",
+   "email": "emmett.yarrow@example.com",
+   "phone": "5550694423",
+   "apps": [
+    "venmo"
+   ]
+  }
+ ],
+ "venmoBalance": [
+  {
+   "at": "2023-05-11T09:00:00",
+   "amount": 40
+  }
+ ],
+ "venmoTransactions": [
+  {
+   "at": "2023-05-12T21:05:00",
+   "fromEmail": "maribel.gatlin@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 14,
+   "description": "guitar duo by the fountain!!"
+  },
+  {
+   "at": "2023-05-12T21:40:00",
+   "fromEmail": "emmett.yarrow@example.com",
+   "toEmail": "oracle@guios.dev",
+   "amount": 8,
+   "description": "loved the last song"
+  }
+ ]
+}

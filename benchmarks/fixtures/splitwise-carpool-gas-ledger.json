@@ -1,0 +1,31 @@
+{
+ "people": [
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "priya.raghunathan@maplebrookmail.com",
+   "firstName": "Priya",
+   "lastName": "Raghunathan",
+   "phone": "5550312478"
+  },
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "marcus.delgado@maplebrookmail.com",
+   "firstName": "Marcus",
+   "lastName": "Delgado",
+   "phone": "5550893261"
+  },
+  {
+   "apps": [
+    "splitwise"
+   ],
+   "email": "ren.tanaka@maplebrookmail.com",
+   "firstName": "Ren",
+   "lastName": "Tanaka",
+   "phone": "5550457190"
+  }
+ ]
+}

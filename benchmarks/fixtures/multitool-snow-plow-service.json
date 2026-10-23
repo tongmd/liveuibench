@@ -1,0 +1,65 @@
+{
+ "people": [
+  {
+   "firstName": "Hank",
+   "lastName": "Delgado",
+   "email": "hank.delgado@example.com",
+   "phone": "5550942201",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Nair",
+   "email": "priya.nair@example.com",
+   "phone": "5550100304",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  },
+  {
+   "firstName": "Walt",
+   "lastName": "Jensen",
+   "email": "walt.jensen@example.com",
+   "phone": "5550942203",
+   "apps": [
+    "phone",
+    "venmo"
+   ]
+  }
+ ],
+ "contacts": [
+  {
+   "firstName": "Hank",
+   "lastName": "Delgado",
+   "phone": "5550942201",
+   "email": "hank.delgado@example.com",
+   "relationship": "client"
+  },
+  {
+   "firstName": "Priya",
+   "lastName": "Nair",
+   "phone": "5550100304",
+   "email": "priya.nair@example.com",
+   "relationship": "client"
+  },
+  {
+   "firstName": "Walt",
+   "lastName": "Jensen",
+   "phone": "5550942203",
+   "email": "walt.jensen@example.com",
+   "relationship": "client"
+  }
+ ],
+ "sms": [
+  {
+   "at": "2023-05-14T18:20:00",
+   "fromPhone": "5550942203",
+   "toPhone": "5550100001",
+   "message": "Storm looks real for tonight. When you get to 6 Tamarack Circle can you clear the sidewalk apron too? Happy to add the $15 you quoted."
+  }
+ ]
+}
