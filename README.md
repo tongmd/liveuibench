@@ -4,7 +4,7 @@
 
 Describe an app, use it, and revise it while keeping your data. Choose a model and harness, manage Memory, and evaluate complete workflows with LiveUIBench.
 
-[LiveUIAgent](http://liveui.example.org/liveui/) · [Paper](https://arxiv.org/abs/2610.27977v1) · [Benchmark](benchmarks/README.md) · [Deployment](deploy/README.md)
+[LiveUIAgent](http://liveui.example.org/liveui/) · [arXiv paper](https://arxiv.org/abs/2610.27977) · [BibTeX](citation.bib) · [Benchmark](benchmarks/README.md) · [Deployment](deploy/README.md)
 
 ![LiveUIAgent applications and workflows](paper/agent-as-app-teaser.png)
 
@@ -94,7 +94,7 @@ The served frontend is in `frontend/snapshot/`. After editing it, run `node scri
   eprint = {2610.27977},
   archivePrefix = {arXiv},
   primaryClass = {cs.SE},
-  url = {https://arxiv.org/abs/2610.27977v1}
+  url = {https://arxiv.org/abs/2610.27977}
 }
 ```
 

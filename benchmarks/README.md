@@ -1,5 +1,7 @@
 # LiveUIBench
 
+[arXiv paper](https://arxiv.org/abs/2610.27977) · [BibTeX](../citation.bib)
+
 **319 cases: 147 dev + 172 public test**, with 230 initial-world fixtures. Each workflow generates an app, opens it, submits data, revises a request, and reopens saved state. Sealed test cases are excluded.
 
 ## Parallel evaluation
