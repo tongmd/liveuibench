@@ -9,7 +9,7 @@ import {patchDeliverySnapshot} from '../scripts/liveuibench/appworld-delivery.js
 import {parseArgs,runBenchmark,selectCases,redact,comparableProtocol} from '../scripts/liveuibench/run.js';
 import {mockTransport} from '../scripts/liveuibench/mock-runtime.js';
 import {httpTransport} from '../scripts/liveuibench/transport.js';
-import {apiWasCalled,checkAssertion} from '../liveuiagent/server/liveui-benchmark.js';
+import {apiWasCalled,checkAssertion} from '../scripts/liveuibench/scorer.js';
 import {runGuiEvaluatorAgent} from '../liveuiagent/server/gui-evaluator-agent.js';
 
 const tmp=await fs.mkdtemp(path.join(os.tmpdir(),'liveui-bench-test-'));
