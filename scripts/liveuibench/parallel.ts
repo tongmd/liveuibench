@@ -46,14 +46,14 @@ async function treeIdentity(directory:string){
 }
 export async function runParallel(config:ReturnType<typeof parseParallelArgs>){
  const {options:o,workers,appworldBin,appworldRoot}=config;
- await fs.access(appworldBin);await fs.access(path.join(root,'dist-server/server/index.js'));
+ await fs.access(appworldBin);await fs.access(path.join(root,'liveuiagent/dist-server/server/index.js'));
  const source=await fs.readFile(o.cases,'utf8');const cases=selectCases(JSON.parse(source),o);
  for(const dir of ['base_dbs','api_docs'])await fs.access(path.join(appworldRoot,'data',dir));
  await fs.mkdir(path.dirname(o.out),{recursive:true});await fs.mkdir(o.out);
  const report:any={benchmark:'LiveUIBench',mode:'live',protocol:'managed-isolated-v1',harness:o.harness,model:o.model,workers,plannedCases:cases.length,
   datasetSha256:createHash('sha256').update(source).digest('hex'),startedAt:new Date().toISOString(),status:'running',comparable:!o.fixtureContacts,results:[],
   limitations:['Scripted workflow assertions are simulator proxies. Independent agent and GUI evaluator results are reported separately.',...(o.fixtureContacts?['Assisted fixture-contact injection enabled; not comparable to unassisted runs.']:[])]};
- const inputs={baseDbs:await treeIdentity(path.join(appworldRoot,'data/base_dbs')),apiDocs:await treeIdentity(path.join(appworldRoot,'data/api_docs')),runtimeBuild:await treeIdentity(path.join(root,'dist-server')),runnerSource:await treeIdentity(path.join(root,'scripts/liveuibench'))};
+ const inputs={baseDbs:await treeIdentity(path.join(appworldRoot,'data/base_dbs')),apiDocs:await treeIdentity(path.join(appworldRoot,'data/api_docs')),runtimeBuild:await treeIdentity(path.join(root,'liveuiagent/dist-server')),runnerSource:await treeIdentity(path.join(root,'scripts/liveuibench'))};
  await writeJson(path.join(o.out,'input-manifest.json'),inputs);
  report.inputIdentity=Object.fromEntries(Object.entries(inputs).map(([name,value])=>[name,{sha256:value.sha256,files:value.files,bytes:value.bytes}]));
  const active=new Set<ReturnType<typeof spawn>>();let interrupted=false;

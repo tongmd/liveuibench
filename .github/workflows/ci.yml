@@ -1,100 +1,22 @@
-name: Offline checks
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
+name: Checks
+on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
-concurrency:
-  group: offline-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
-  runtime:
+  benchmark:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          submodules: recursive
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm ci --workspace @guios/dsh-plugin --include-workspace-root --no-audit --no-fund
-      - run: npm test
-      - run: node .github/scripts/check-docs.mjs
-      - run: npm run check:release
-      - name: Retain offline fixture reports
-        id: offline-artifacts
-        continue-on-error: true
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: offline-fixture-reports
-          path: |
-            .test-runs/**/report*.json
-            .test-runs/**/report*.md
-          if-no-files-found: ignore
-          include-hidden-files: true
-          retention-days: 7
-      - name: Report unavailable offline artifacts
-        if: always() && steps.offline-artifacts.outcome == 'failure'
-        run: |
-          echo "::warning::Offline tests and artifact upload have separate outcomes. Artifact upload failed; check account storage quota and this step's log."
-          echo "Offline artifact upload failed. Test results remain in the job logs; raw files were not retained by Actions." >> "$GITHUB_STEP_SUMMARY"
-  browser:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Prepare browser temporary directory
-        run: |
-          mkdir -p "$RUNNER_TEMP/liveui-browser"
-          echo "TMPDIR=$RUNNER_TEMP/liveui-browser" >> "$GITHUB_ENV"
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci --workspace @guios/dsh-plugin --include-workspace-root --no-audit --no-fund
+      - run: npm run setup
       - run: npm run build
-      - uses: browser-actions/setup-chrome@v2
-        id: chrome
-        with:
-          chrome-version: stable
-          install-dependencies: true
-      - name: Check model, harness, and evaluator controls
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: npm run test:runtime-ui
-      - name: Check model driver decisions and repair bounds
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: npm run test:driver
-      - name: Check HTML-app behavior and persistence
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: npm run test:evaluator
-      - name: Check desktop and mobile app catalog
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: npm run test:catalog
-      - name: Retain browser evidence
-        id: browser-artifacts
-        continue-on-error: true
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: browser-fixture-evidence
-          path: |
-            ${{ runner.temp }}/liveui-browser/**/*.png
-            ${{ runner.temp }}/liveui-browser/**/report.json
-            ${{ runner.temp }}/liveui-browser/**/failure.json
-          if-no-files-found: warn
-          retention-days: 7
-      - name: Report unavailable browser artifacts
-        if: always() && steps.browser-artifacts.outcome == 'failure'
-        run: |
-          echo "::warning::Browser tests and artifact upload have separate outcomes. Artifact upload failed; check account storage quota and this step's log."
-          echo "Browser artifact upload failed. Test results remain in the job logs; screenshots were not retained by Actions. Reproduce with the documented Chrome test commands." >> "$GITHUB_STEP_SUMMARY"
+      - run: npm test
+      - run: npm run bench:liveui -- --mock
+      - run: npm run check:docs
+      - run: npm run check:release

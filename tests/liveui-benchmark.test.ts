@@ -9,8 +9,8 @@ import {patchDeliverySnapshot} from '../scripts/liveuibench/appworld-delivery.js
 import {parseArgs,runBenchmark,selectCases,redact,comparableProtocol} from '../scripts/liveuibench/run.js';
 import {mockTransport} from '../scripts/liveuibench/mock-runtime.js';
 import {httpTransport} from '../scripts/liveuibench/transport.js';
-import {apiWasCalled,checkAssertion} from '../server/liveui-benchmark.js';
-import {runGuiEvaluatorAgent} from '../server/gui-evaluator-agent.js';
+import {apiWasCalled,checkAssertion} from '../liveuiagent/server/liveui-benchmark.js';
+import {runGuiEvaluatorAgent} from '../liveuiagent/server/gui-evaluator-agent.js';
 
 const tmp=await fs.mkdtemp(path.join(os.tmpdir(),'liveui-bench-test-'));
 test.after(()=>fs.rm(tmp,{recursive:true,force:true}));
@@ -29,7 +29,7 @@ test('offline fixture executes open, submit, revise, fresh reopen, GUI, and code
 
 test('real HTTP transport executes same full workflow and preserves response artifacts',async()=>{
  const runtime=mockTransport();const calls:string[]=[];const server=http.createServer(async(req,res)=>{
-  const chunks:Buffer[]=[];for await(const c of req)chunks.push(c);const body=chunks.length?JSON.parse(Buffer.concat(chunks).toString()):undefined;calls.push(req.url!);assert.match(String(req.headers['x-guios-user']),/^bench-/);
+  const chunks:Buffer[]=[];for await(const c of req)chunks.push(c);const body=chunks.length?JSON.parse(Buffer.concat(chunks).toString()):undefined;calls.push(req.url!);assert.match(String(req.headers['x-liveuiagent-user']),/^bench-/);
   try{const result=await runtime.request(req.url!,body);res.setHeader('Content-Type','application/json');res.end(JSON.stringify(result));}catch(e:any){res.statusCode=500;res.end(JSON.stringify({error:e.message}));}
  });await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
  try{const port=(server.address() as any).port;const o=options('http');Object.assign(o,{mode:'live',worldMode:'prepared',apiBase:`http://127.0.0.1:${port}`});const r=await runBenchmark(o);assert.equal(r.status,'passed');assert.equal(r.comparable,false);assert.deepEqual(calls,['/agent/run','/agent/action','/agent/action','/agent/query-state']);assert.ok((await fs.readdir(path.join(o.out,smoke.cases[0].id))).some(f=>f.startsWith('http-')));}finally{await new Promise<void>(r=>server.close(()=>r()));}
@@ -83,7 +83,7 @@ test('DSH actual Chrome workflow uses HTTP AI/store bridge and retains unsupport
  for(const c of chromeCandidates){try{await fs.access(c);chrome=c;break;}catch{}}
  if(!chrome){t.skip('Chrome unavailable; DSH browser test is explicitly unexecuted');return;}
  let store:any={};let turns=0;const appId='dsh_00000000-0000-0000-0000-000000000001';const calls:string[]=[];
- const html=`<!doctype html><html><head><style>body{padding:24px;font:16px system-ui}input,button{padding:12px}</style></head><body><h1>Notebook</h1><label for="note">Note</label><input id="note"><button id="save">Save note</button><p id="result"></p><script>const result=document.querySelector('#result');result.textContent=localStorage.getItem('note')||'Ready';document.querySelector('#save').onclick=async()=>{const r=await guios.ai(document.querySelector('#note').value,{});result.textContent=r.text;localStorage.setItem('note',r.text)};</script></body></html>`;
+ const html=`<!doctype html><html><head><style>body{padding:24px;font:16px system-ui}input,button{padding:12px}</style></head><body><h1>Notebook</h1><label for="note">Note</label><input id="note"><button id="save">Save note</button><p id="result"></p><script>const result=document.querySelector('#result');result.textContent=localStorage.getItem('note')||'Ready';document.querySelector('#save').onclick=async()=>{const r=await liveuiagent.ai(document.querySelector('#note').value,{});result.textContent=r.text;localStorage.setItem('note',r.text)};</script></body></html>`;
  const server=http.createServer(async(req,res)=>{const chunks:Buffer[]=[];for await(const c of req)chunks.push(c);const body=chunks.length?JSON.parse(Buffer.concat(chunks).toString()):undefined;calls.push(req.url!);res.setHeader('Content-Type','application/json');let result:any;
   if(req.url==='/agent/run')result={type:'app_created',appPackage:{manifest:{appId,name:'Notebook',intent:{kind:'complete_app'}}},execution:{harness:'dsh',model:'fixture-dsh'}};
   else if(req.url===`/agent/complete/apps/${appId}/action`){turns++;res.statusCode=202;result={id:'job-'+turns,status:'queued'};}

@@ -1,0 +1,3 @@
+[submodule "liveuiagent"]
+	path = liveuiagent
+	url = https://github.com/tongmd/liveuiagent.git

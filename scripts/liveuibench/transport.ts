@@ -5,7 +5,7 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
   if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) throw new Error('api-base must be an HTTP(S) URL without credentials/query/fragment');
   return { user, async request(route, body, method = body === undefined ? 'GET' : 'POST') {
     const started = Date.now();
-    const response = await fetch(base.replace(/\/$/,'') + route, {method, headers:{'Content-Type':'application/json','X-Guios-User':user,...(authorization?{Authorization:authorization}:{})},body:body === undefined ? undefined : JSON.stringify(body),signal:AbortSignal.timeout(timeoutMs)});
+    const response = await fetch(base.replace(/\/$/,'') + route, {method, headers:{'Content-Type':'application/json','X-LiveUIAgent-User':user,...(authorization?{Authorization:authorization}:{})},body:body === undefined ? undefined : JSON.stringify(body),signal:AbortSignal.timeout(timeoutMs)});
     const raw = await response.text();
     let data:any;try { data=JSON.parse(raw); } catch { throw new Error(`${route}: non-JSON HTTP ${response.status}`); }
     await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data});

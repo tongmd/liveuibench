@@ -14,15 +14,16 @@ const storage=evidence.storage;
 const env={...process.env,DOTENV_CONFIG_PATH:'/dev/null',HOST:'127.0.0.1',PORT:String(evidence.runtimePort),
  DB_PATH:path.join(storage,'runtime.db'),GENERATED_APPS_DIR:path.join(storage,'apps'),
  LIVEUI_EVALUATION_DIR:path.join(storage,'evaluations'),LIVEUIBENCH_RUN_ID:evidence.runId,
- GUIOS_DSH_API_BASE:'',LIVEUI_DEFAULT_HARNESS:'native',GUIOS_APPWORLD_GROUNDING:'on',
+ LIVEUIAGENT_DSH_API_BASE:'',LIVEUI_DEFAULT_HARNESS:'native',LIVEUIAGENT_APPWORLD_GROUNDING:'on',
  APPWORLD_ENABLED:'true',APPWORLD_API_BASE:`http://127.0.0.1:${evidence.worldPort}`,
- APPWORLD_SNAPSHOT_ROOT:path.join(storage,'snapshots'),GUIOS_FRONTEND_URL:o.apiBase,LIVEUI_FRONTEND_URL:o.apiBase,
+ APPWORLD_SNAPSHOT_ROOT:path.join(storage,'snapshots'),LIVEUIAGENT_FRONTEND_URL:o.apiBase,LIVEUI_FRONTEND_URL:o.apiBase,
  LIVEUIBENCH_WORLD_STATE_DIR:path.join(storage,'world-control'),
  LIVEUIBENCH_APPWORLD_BIN:config.appworldBin,LIVEUIBENCH_APPWORLD_ROOT:config.worldRoot,
  LIVEUIBENCH_APPWORLD_PORT:String(evidence.worldPort)};
+Object.assign(env,{LIVEUI_ORACLE_FIRST_NAME:'Guios',LIVEUI_ORACLE_EMAIL:'oracle@guios.dev',LIVEUI_ORACLE_PASSWORD:'guios-oracle-1'});
 Object.assign(process.env,env);
 const log=await fs.open(path.join(storage,'runtime.log'),'wx');
-const server=spawn(process.execPath,[path.join(root,'dist-server/server/index.js')],{cwd:root,env,stdio:['ignore',log.fd,log.fd]});
+const server=spawn(process.execPath,[path.join(root,'liveuiagent/dist-server/server/index.js')],{cwd:path.join(root,'liveuiagent'),env,stdio:['ignore',log.fd,log.fd]});
 let spawnError:Error|undefined;server.once('error',e=>{spawnError=e;});
 await log.close();
 let cleaning:Promise<void>|undefined;

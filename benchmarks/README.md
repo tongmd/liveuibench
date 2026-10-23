@@ -51,7 +51,7 @@ npm run bench:liveui -- \
   --out artifacts/liveuibench/native-one
 ```
 
-Enable AppWorld in `guios.config.json` and set `APPWORLD_API_BASE` on the server. Keep grounding enabled. `prepared` accepts one case; `unmanaged` uses existing world state. Neither establishes per-case isolation. Authenticated access uses the `LIVEUIBENCH_AUTHORIZATION` environment variable.
+Enable AppWorld in `liveuiagent/liveuiagent.config.json` and set `APPWORLD_API_BASE` on the server. The managed runner configures the published fixture identity automatically; use it for fixture-backed comparable runs. Keep grounding enabled. `prepared` accepts one case; `unmanaged` uses existing world state. Neither establishes per-case isolation. Authenticated access uses the `LIVEUIBENCH_AUTHORIZATION` environment variable.
 
 For automatic serial preparation, pass `--prepare-hook "$PWD/scripts/liveuibench/prepare-appworld.mjs"` and export `LIVEUIBENCH_APPWORLD_BIN`, `LIVEUIBENCH_APPWORLD_ROOT`, and `LIVEUIBENCH_APPWORLD_PORT`. Point the dedicated server's `APPWORLD_API_BASE` at that port. The hook resets and seeds its own world once per case; it must never target a shared production world. Serial hook processes remain running until explicitly stopped; their PID is recorded under `artifacts/appworld-PORT/process.json`.
 
