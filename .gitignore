@@ -1,5 +1,5 @@
 # Dependencies and builds
-node_modules/
+node_modules
 dist/
 dist-server/
 dist-legacy-web/

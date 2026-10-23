@@ -1,6 +1,6 @@
 # LiveUIBench
 
-[Paper](https://arxiv.org/abs/2610.27977) | [Project page](https://liveuibench.pages.dev/) | [Dataset and evaluation](benchmarks/README.md) | [LiveUIAgent](https://github.com/tongmd/liveuiagent) | [BibTeX](citation.bib)
+[Paper](https://arxiv.org/abs/2610.27977) | [Dataset and evaluation](benchmarks/README.md) | [LiveUIAgent](https://github.com/tongmd/liveuiagent) | [BibTeX](citation.bib)
 
 LiveUIBench evaluates Agent as App workflows: an application must respond to changing goals, execute service actions, preserve saved information, and remain useful on return visits. This repository contains the evaluation data, fixtures, runners, and metrics. The application runtime is maintained separately in LiveUIAgent and pinned here as the `liveuiagent/` Git submodule.
 
@@ -69,6 +69,6 @@ To update the runtime, review the new LiveUIAgent commit, update the submodule p
 }
 ```
 
-[BibTeX](citation.bib) · [CITATION.cff](CITATION.cff) · [Paper PDF](paper/liveuibench-arxiv-v1.pdf).
+[BibTeX](citation.bib) · [CITATION.cff](CITATION.cff) · [Paper PDF](https://arxiv.org/pdf/2610.27977).
 
 Code: [Apache-2.0](LICENSE). Paper and figure: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
