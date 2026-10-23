@@ -38,9 +38,11 @@ jobs:
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      TMPDIR: ${{ runner.temp }}/liveui-browser
     steps:
+      - name: Prepare browser temporary directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/liveui-browser"
+          echo "TMPDIR=$RUNNER_TEMP/liveui-browser" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
@@ -48,7 +50,6 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: mkdir -p "$TMPDIR"
       - run: npm ci --workspace @guios/dsh-plugin --include-workspace-root --no-audit --no-fund
       - run: npm run build
       - uses: browser-actions/setup-chrome@v2
