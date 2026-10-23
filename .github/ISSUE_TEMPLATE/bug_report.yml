@@ -3,7 +3,7 @@ description: Report a reproducible runtime, interface, or runner problem.
 body:
   - type: markdown
     attributes:
-      value: "For security concerns, follow SECURITY.md. Remove credentials, private endpoints, and user data from all examples."
+      value: "Report security concerns privately to the repository owner. Remove credentials, private endpoints, and user data from all examples."
   - type: textarea
     id: behavior
     attributes:

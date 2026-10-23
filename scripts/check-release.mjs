@@ -9,7 +9,7 @@ const files = [...new Set(execFileSync('git', ['ls-files', '--cached', '--others
 const findings = [];
 // The requested public/dev evaluation corpus is deliberately distributable.
 // Keep other benchmark trees excluded, and verify this one against provenance.
-const allowedBench = new Set(['docs/benchmarks/README.md', 'benchmarks/README.md', 'benchmarks/provenance.json', 'benchmarks/smoke.json', 'benchmarks/liveuibench.json']);
+const allowedBench = new Set(['benchmarks/README.md', 'benchmarks/provenance.json', 'benchmarks/smoke.json', 'benchmarks/liveuibench.json']);
 try {
   const provenance = JSON.parse(await readFile('benchmarks/provenance.json', 'utf8'));
   const datasetBytes = await readFile('benchmarks/liveuibench.json');
