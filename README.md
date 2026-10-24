@@ -1,5 +1,7 @@
 # LiveUIBench
 
+[Project page](https://liveuibench.stonezhang.com/) | [Paper (arXiv)](https://arxiv.org/abs/2610.27977)
+
 [Paper](https://arxiv.org/abs/2610.27977) | [Dataset and evaluation](benchmarks/README.md) | [LiveUIAgent](https://github.com/tongmd/liveuiagent) | [BibTeX](citation.bib)
 
 LiveUIBench evaluates Agent as App workflows: an application must respond to changing goals, execute service actions, preserve saved information, and remain useful on return visits. This repository contains the evaluation data, fixtures, runners, and metrics. The application runtime is maintained separately in LiveUIAgent and pinned here as the `liveuiagent/` Git submodule.
