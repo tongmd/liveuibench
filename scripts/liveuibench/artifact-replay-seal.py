@@ -7,6 +7,9 @@ def write(p,v):p.parent.mkdir(parents=True,exist_ok=True,mode=0o700);p.write_tex
 def seal(case_root,dataset,account_root,source_manifest,out):
  case_root=pathlib.Path(case_root).resolve();out=pathlib.Path(out).resolve()
  if not json.loads((case_root/'cleanup.json').read_text()).get('complete'):raise ValueError('Source case must have completed owned cleanup before sealing')
+ source_identity=json.loads(pathlib.Path(source_manifest).read_text());worker_identity=json.loads((case_root/'worker-plan.json').read_text())
+ if worker_identity.get('sourceManifestSha256')!=sha(source_manifest):raise ValueError('Source case was not generated from the supplied frozen source manifest')
+ if source_identity.get('files',{}).get('bench/benchmarks/liveuibench.json')!=sha(dataset):raise ValueError('Replay dataset differs from the original frozen generation/evaluation dataset')
  raw=json.loads(pathlib.Path(dataset).read_text());cases=raw if isinstance(raw,list) else raw['cases'];case=next(c for c in cases if c['id']==case_root.name)
  groups=case.get('episodeGroups') or [{'intentionIndex':0,'episodes':case.get('episodes',[])}];out.mkdir(parents=True,exist_ok=False,mode=0o700);manifest={'schema':'liveuibench-artifact-replay-v1','caseId':case['id'],'generationSourceSha256':sha(source_manifest),'originalSourceCommits':json.loads(pathlib.Path(source_manifest).read_text()).get('commits'),'groups':[]}
  db=sqlite3.connect('file:'+str(case_root/'runtime.db')+'?mode=ro',uri=True)
