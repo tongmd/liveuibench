@@ -39,13 +39,13 @@ def import_case(root,expected,case_id,owner,prefix,account_root,runtime_db,recei
   atom(directory/'state.json',{'apps':apps,'jobs':[],'memory':{'manual':'','entries':[]},'memoryFormatVersion':1,'seedVersion':1});db.commit()
  except Exception:db.rollback();raise
  finally:db.close()
- receipt={'caseId':case_id,'owner':owner,'ownerPrefix':prefix,'accountRoot':str(account_root),'accountHash':directory.name,'groups':mapping,'reusedArtifact':True,'generationModelCalls':0,'sourceArtifactManifestSha256':expected,'initialStore':'fresh empty object; original source store/world/auth never copied'};atom(pathlib.Path(receipt_dir)/(hashlib.sha256(owner.encode()).hexdigest()+'.json'),receipt);return receipt
+ receipt={'caseId':case_id,'owner':owner,'ownerPrefix':prefix,'accountRoot':str(account_root),'runtimeDb':str(pathlib.Path(runtime_db).resolve()),'accountHash':directory.name,'groups':mapping,'reusedArtifact':True,'generationModelCalls':0,'sourceArtifactManifestSha256':expected,'initialStore':'fresh empty object; original source store/world/auth never copied'};atom(pathlib.Path(receipt_dir)/(hashlib.sha256(owner.encode()).hexdigest()+'.json'),receipt);return receipt
 
 def load_or_import(config,owner):
  receipt_file=pathlib.Path(config['receiptDir'])/(hashlib.sha256(owner.encode()).hexdigest()+'.json')
  if receipt_file.exists():
   value=json.loads(receipt_file.read_text())
-  if value.get('owner')!=owner or value.get('ownerPrefix')!=config['ownerPrefix'] or value.get('accountRoot')!=str(pathlib.Path(config['accountRoot']).resolve()) or value.get('sourceArtifactManifestSha256')!=config['manifestSha256'] or value.get('caseId')!=config['caseId']:raise ValueError('Existing replay receipt identity mismatch')
+  if value.get('owner')!=owner or value.get('ownerPrefix')!=config['ownerPrefix'] or value.get('accountRoot')!=str(pathlib.Path(config['accountRoot']).resolve()) or value.get('runtimeDb')!=str(pathlib.Path(config['runtimeDb']).resolve()) or value.get('sourceArtifactManifestSha256')!=config['manifestSha256'] or value.get('caseId')!=config['caseId']:raise ValueError('Existing replay receipt identity mismatch')
   verify(config['manifestRoot'],config['manifestSha256']);return value
  return import_case(config['manifestRoot'],config['manifestSha256'],config['caseId'],owner,config['ownerPrefix'],config['accountRoot'],config['runtimeDb'],config['receiptDir'])
 if __name__=='__main__':

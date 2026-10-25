@@ -78,3 +78,7 @@ npm run bench:liveui -- --mock
 ```
 
 These use dedicated fixtures without model calls or AppWorld. Reports are marked `mode: "mock"` and `comparable: false`.
+
+Artifact replay is a separate DSH diagnostic mode. Seal a completed case with `python3 scripts/liveuibench/artifact-replay-seal.py --case-root CASE_ROOT --dataset DATASET --account-root DSH_DATA --generation-source-manifest SOURCE_MANIFEST --out SEALED_DIR`, then pass `--artifact-replay CONFIG.json` to the same one-case live DSH command above. The configuration supplies `caseId`, `manifestRoot`, `manifestSha256`, `importer`, `importerSha256`, `ownerPrefix` (a unique `artifact-replay-RUNID-` namespace), `accountRoot`, `runtimeDb`, and `receiptDir` as isolated management paths. The sealer requires the original first browser-delivery snapshot to match the generation output; missing groups remain unavailable and retain their evaluation denominator.
+
+Replay imports byte-identical delivered HTML into a new owner with empty stores and original scoped service plans. All available groups are registered before the runtime first loads that owner, so this is not the original sequential generation protocol and is never comparable. Reports explicitly identify reused artifacts, the source manifest, and zero generation-model calls for replay. Original generation costs remain separate; replay's real native actions can still incur model/API calls and business mutations. Runtime package loading, browser interaction, and the original business assertions still execute normally.

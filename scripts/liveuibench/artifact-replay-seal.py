@@ -28,10 +28,13 @@ def seal(case_root,dataset,account_root,source_manifest,out):
     if not metadata or metadata.get('revision')!=1:raise ValueError('Original immutable initial-revision metadata unavailable')
     account=pathlib.Path(account_root)/'accounts'/source_state.parent.name;html=account/'apps'/metadata['id']/'index.html';work=account/'runs'/metadata['lastJobId']/'work/index.html'
     if html.is_symlink() or work.is_symlink() or sha(html)!=sha(work):raise ValueError('Delivered HTML differs from original generation job output')
+    delivered=generation.parent/'delivered-1.html'
+    if delivered.is_symlink() or not delivered.is_file():raise ValueError('Original first browser delivery snapshot unavailable')
+    if sha(html)!=sha(delivered):raise ValueError('Artifact differs from original first browser delivery snapshot')
     binding=db.execute('SELECT owner,plan_json,request_text,revision FROM complete_service_bindings WHERE app_id=? AND generation_job_id=? AND (revision IS NULL OR revision=?)',(app_id,metadata['lastJobId'],metadata['revision'])).fetchall()
     if len(binding)!=1:raise ValueError('Original generation-scoped service binding unavailable or ambiguous')
     folder=out/('group-'+str(i+1));folder.mkdir(mode=0o700);shutil.copy2(html,folder/'index.html');shutil.copy2(generation,folder/'generation.json');write(folder/'metadata.json',metadata);write(folder/'service-binding.json',{'plan':json.loads(binding[0][1]),'request':binding[0][2],'originalBindingRevision':binding[0][3]})
-    entry.update(available=True,originalAppId=app_id,originalGenerationJobId=metadata['lastJobId'],execution=generated['execution'],originalStateSha256=sha(source_state))
+    entry.update(available=True,originalAppId=app_id,originalGenerationJobId=metadata['lastJobId'],execution=generated['execution'],originalStateSha256=sha(source_state),originalBrowserDeliverySha256=sha(delivered),originalBrowserDeliveryPath=str(delivered.relative_to(case_root)))
     for key,name in [('html','index.html'),('generation','generation.json'),('metadata','metadata.json'),('serviceBinding','service-binding.json')]:entry[key]=str((folder/name).relative_to(out));entry[key+'Sha256']=sha(folder/name)
    except (FileNotFoundError,ValueError,KeyError,StopIteration) as error:entry['reason']=str(error) if not isinstance(error,FileNotFoundError) else 'Original delivered group artifact is unavailable'
  finally:db.close()
