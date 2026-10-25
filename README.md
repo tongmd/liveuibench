@@ -4,7 +4,6 @@
 
 LiveUIBench evaluates Agent as App workflows: an application must respond to changing goals, execute service actions, preserve saved information, and remain useful on return visits. This repository contains the evaluation data, fixtures, runners, and metrics. The application runtime is maintained separately in LiveUIAgent and pinned here as the `liveuiagent/` Git submodule.
 
-Corresponding author: Tao Xie.
 
 ## Get Started
 
