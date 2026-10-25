@@ -44,6 +44,19 @@ npm run bench:parallel -- \
   --out artifacts/liveuibench/native-dev
 ```
 
+The serial runner also supports `--native-interaction visible-gui-v1 --skip-agent-evaluator --gui-max-steps 20 --gui-max-clicks 8 --gui-episode-ms 1200000 --timeout-ms 1200000`. This separate GUI protocol operates actual visible fields and bound buttons using only the current episode message. It requires the matching LiveUIAgent planner endpoint; provider credentials stay on the runtime server. One episode deadline covers all planning and GUI operations. Unknown action outcomes stop further writes. Planner requests, logical inference invocations, GUI clicks and forwarded runtime actions are recorded separately; underlying provider request counts remain unknown unless observed. Original assertions still determine success. These results are separate from legacy API-payload evaluations.
+
+```bash
+npm run bench:liveui -- \
+  --harness dsh --model YOUR_MODEL --split dev --limit 1 \
+  --world-mode isolated --prepare-hook /absolute/path/to/prepare-hook \
+  --native-interaction visible-gui-v1 --skip-agent-evaluator \
+  --gui-episode-ms 1200000 --gui-max-steps 20 --gui-max-clicks 8 \
+  --timeout-ms 1200000 --out artifacts/liveuibench/native-visible-gui
+```
+
+Legacy behavior-only evaluation still uses the API-payload transport and does not assess GUI operation.
+
 Each case owns its runtime process, SQLite database, application registry, AppWorld instance, and evidence directory. Use a fresh output directory for each run. See the [evaluation guide](benchmarks/README.md) for metrics, complete runs, serial evaluation, and diagnostic harnesses.
 
 ## Development

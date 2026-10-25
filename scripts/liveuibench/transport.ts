@@ -42,7 +42,7 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
     }
     let data:any;try { data=JSON.parse(response.raw); } catch { throw new Error(`${route}: non-JSON HTTP ${response.status}`); }
     await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data});
-    if (response.status<200||response.status>=300) throw new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`);
+    if (response.status<200||response.status>=300) throw Object.assign(new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`),route==='/evaluator/interaction-step'&&Number.isInteger(data.plannerModelCalls)&&data.plannerModelCalls>=0&&data.plannerModelCalls<=1?{plannerModelCalls:data.plannerModelCalls}:{});
     if(response.status===202 && (data.id || data.jobId)) {
       const jobId=data.id || data.jobId;let job={status:'queued',...data};
       while(['queued','running'].includes(job.status)) {

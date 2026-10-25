@@ -6,13 +6,14 @@ import {fileURLToPath} from 'node:url';
 import puppeteer from 'puppeteer-core';
 import type {Transport} from './transport.js';
 import {nativeChromeExecutable,nativeFetchAcknowledgementBootstrap,waitForNativeFetchAcknowledgement} from './native-browser-support.js';
+import {readNativeGuiSurface,applyNativeGuiStep,type NativeGuiStep} from './native-interaction.js';
 import {executableActionByOrdinal} from './scorer.js';
 
 /** Uses the product's actual Native A2UI web renderer, not an alternate test
  * renderer. The local server supplies shell metadata; only explicit query/action
  * requests cross the trusted transport. Browser never receives credentials. */
 export class NativeAppBrowser {
- private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;private unresolved=false;
+ private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;private unresolved=false;private businessActionCalls=0;private actionInFlight=false;private clickAwaitingConfirmation=false;private guiInteractionActive=false;private guiProtocolEnabled=false;private guiGate?:{actionId:string;used:boolean};private attemptedActionRequests=0;
  constructor(private transport:Transport,private appId:string,private out:string,private pkg:any,private harness:'native'|'dsh',private model:string,private chrome?:string,private rendererRoot=fileURLToPath(new URL('../../liveuiagent/frontend/snapshot/',import.meta.url)),private timeoutMs=900000){}
  async open(){
   const manifest=JSON.parse(await fs.readFile(path.join(this.rendererRoot,'manifest.json'),'utf8'));const resources=manifest.resources||[{file:manifest.file,sha256:manifest.sha256}];const files=new Map<string,Buffer>();
@@ -20,7 +21,7 @@ export class NativeAppBrowser {
   if(!files.has('index.html'))throw Error('Native renderer missing entry point');this.rendererSha=createHash('sha256').update(files.get('index.html')!).digest('hex');
   this.server=http.createServer(async(req,res)=>{const json=(v:any,status=200)=>{res.writeHead(status,{'content-type':'application/json'});res.end(JSON.stringify(v));};try{const route=new URL(req.url!,'http://local').pathname.replace(/^\/liveui/,'')||'/';let raw='';for await(const c of req)raw+=c;const body=raw?JSON.parse(raw):{};
    if(route==='/agent/query-state')return json(await this.transport.request(route,body));
-   if(route==='/agent/action'){try{if(body.appId!==this.appId)throw Error('Native renderer action target mismatch');this.actionResult=await this.transport.request(route,{...body,harness:this.harness,llm:{model:this.model}});return json(this.actionResult);}catch(e:any){this.actionError=e;return json({error:e.message},500);}}
+   if(route==='/agent/action'){try{this.attemptedActionRequests++;if(this.guiProtocolEnabled){const gate=this.guiGate;const actual=String(body.actionId||'').replace(/^actions\./,'');if(!gate||gate.used||body.appId!==this.appId||actual!==gate.actionId){this.unresolved=true;throw Error('Unarmed, duplicate or mismatched Native GUI action request; no action forwarded');}gate.used=true;}if(this.unresolved||this.actionInFlight){this.unresolved=true;throw Error('Duplicate or unresolved Native action; do not retry');}if(body.appId!==this.appId)throw Error('Native renderer action target mismatch');this.businessActionCalls++;this.actionInFlight=true;if(this.guiProtocolEnabled)this.clickAwaitingConfirmation=true;this.actionResult=await this.transport.request(route,{...body,harness:this.harness,llm:{model:this.model}});return json(this.actionResult);}catch(e:any){this.actionError=e;this.unresolved=true;return json({error:e.message},500);}finally{this.actionInFlight=false;}}
    if(route==='/agent/settings')return json({user:{models:[]},server:{models:[this.model],hasApiKey:true},effective:{model:this.model,models:[this.model],keySource:'server'},warnings:[]});
    if(route==='/agent/runtime-settings')return json({harness:this.harness,choices:[{id:this.harness,label:this.harness,available:true}],model:{id:this.model,delivery:'native'}});
    if(route==='/agent/models')return json({models:[this.model],default:this.model});
@@ -39,7 +40,9 @@ export class NativeAppBrowser {
   if(!dom.visibleText.trim()||dom.iframeCount||this.errors.length)throw Error('Native renderer did not produce an error-free visible component surface: '+this.errors.join('; '));
   return{...dom,evaluator:'actual-native-a2ui-browser',scope:'actual product renderer DOM; action click verified separately',rendererSha256:this.rendererSha,errors:[...this.errors],passed:Boolean(dom.visibleText.trim())&&dom.iframeCount===0&&this.errors.length===0};
  }
+ async snapshotInteraction(name:string){const gui=await this.snapshot(name);const surface=await readNativeGuiSurface(this.page);return{...gui,...surface,inputCount:surface.fields.length,actionCount:surface.buttons.length,protocol:'native-visible-gui-v1'};}
  async submit(message:string,ordinal=1){
+  if(this.guiProtocolEnabled)throw Error('Visible GUI protocol cannot be bypassed with legacy submit');
   if(this.unresolved)throw Error('Native UI action remains unresolved; further actions are blocked, do not retry.');
   const {actionId}=executableActionByOrdinal(this.pkg,ordinal);
   // A natural-language episode cannot safely fill several structured fields.
@@ -56,6 +59,40 @@ export class NativeAppBrowser {
  while(this.actionResult===undefined&&!this.actionError){if(Date.now()>deadline){this.unresolved=true;throw Error('Native GUI action response timed out; do not retry.');}await new Promise(r=>setTimeout(r,50));}
   try{await waitForNativeFetchAcknowledgement(this.page,turn,deadline);}catch(e){this.unresolved=true;throw e;}if(this.actionError)throw this.actionError;
   if(this.actionResult.appPackage)this.pkg=this.actionResult.appPackage;return{actionResult:this.actionResult,gui:await this.snapshot('native-action'),interactionScope:'actual native renderer input and bound button click'};
+ }
+ async interact(message:string,options:{maxSteps:number;maxClicks?:number;deadlineMs?:number}){
+  if(this.guiInteractionActive)throw Error('Native GUI episode already active; concurrent actions are blocked');
+  if(this.unresolved)throw Error('Native UI action remains unresolved; do not retry');
+  if(!Number.isInteger(options.maxSteps)||options.maxSteps<1||options.maxSteps>40)throw Error('Invalid Native GUI step budget');
+  const maxClicks=options.maxClicks??8;if(!Number.isInteger(maxClicks)||maxClicks<1||maxClicks>40)throw Error('Invalid Native GUI click budget');if(options.deadlineMs!==undefined&&(!Number.isFinite(options.deadlineMs)||options.deadlineMs<=0))throw Error('Invalid Native GUI episode deadline');
+  const deadline=Date.now()+Math.min(this.timeoutMs,options.deadlineMs??this.timeoutMs);
+  const observations:any[]=[];const actionResults:any[]=[];let pendingStep:NativeGuiStep|undefined;let pendingSnapshot:any;let plannerModelCalls=0;let plannerRequests=0;let unknownPlannerInvocations=0;let guiClicks=0;const plannerExecutions:any[]=[];const initialCalls=this.businessActionCalls;const initialAttempts=this.attemptedActionRequests;this.guiInteractionActive=true;this.guiProtocolEnabled=true;
+  const bounded=async<T>(promise:Promise<T>):Promise<T>=>{let timer:any;try{return await Promise.race([promise,new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(Error('Native GUI episode deadline exceeded')),Math.max(1,deadline-Date.now()));})]);}finally{clearTimeout(timer);}};
+  try{for(let i=0;i<options.maxSteps;i++){
+   if(this.unresolved)throw Error('Native GUI action remains unresolved; do not retry');if(Date.now()>=deadline)throw Error('Native GUI episode deadline exceeded');
+   const snapshot=await bounded(readNativeGuiSurface(this.page));
+   plannerRequests++;let planned:any;try{planned=await bounded(this.transport.request('/evaluator/interaction-step',{appId:this.appId,harness:this.harness,model:this.model,userMessage:message,snapshot,observations,remainingBudgetMs:Math.max(1,Math.floor(deadline-Date.now())),stepsRemaining:options.maxSteps-i,clicksRemaining:maxClicks-guiClicks}));}catch(error:any){if(error?.plannerModelCalls===0||error?.plannerModelCalls===1)plannerModelCalls+=error.plannerModelCalls;else unknownPlannerInvocations++;throw error;}
+   plannerExecutions.push({execution:{harness:planned.execution?.harness??null,model:planned.execution?.model??null},providerRequests:Number.isInteger(planned.providerRequests)&&planned.providerRequests>=0?planned.providerRequests:null});
+   if(planned.plannerModelCalls===0||planned.plannerModelCalls===1)plannerModelCalls+=planned.plannerModelCalls;else unknownPlannerInvocations++;
+   if(planned.execution?.harness!==this.harness||planned.execution?.model!==this.model||planned.plannerModelCalls!==1)throw Error('Native GUI planner execution mismatch');
+   const step:NativeGuiStep=planned.step;
+   if(!step||!['fill','select','check','click','done','unsupported'].includes(step.kind))throw Error('Invalid Native GUI planner step');
+   if(step.kind==='unsupported')throw Object.assign(Error('Unsupported Native GUI episode: '+(step.reason||'no supported visible operation')),{code:'native_gui_unsupported'});
+   if(step.kind==='done')return{protocol:'native-visible-gui-v1',interactionStatus:'done',unresolved:false,rendererSha256:this.rendererSha,budget:{episodeMs:Math.min(this.timeoutMs,options.deadlineMs??this.timeoutMs),maxSteps:options.maxSteps,maxClicks},steps:observations,guiClicks,plannerExecutions,plannerRequests,plannerModelCalls,plannerModelCallsKnown:plannerModelCalls,unknownPlannerInvocations,plannerCallScope:'logical step inference invocations; provider retry attempts unknown',businessActionCalls:this.businessActionCalls-initialCalls,attemptedActionRequests:this.attemptedActionRequests-initialAttempts,actionResults,lastActionResult:actionResults.at(-1),actionResult:actionResults.at(-1),gui:await bounded(this.snapshotInteraction('native-interaction'))};
+   pendingStep=step;pendingSnapshot=snapshot;const before=this.businessActionCalls;this.actionResult=undefined;this.actionError=undefined;
+   const turn=step.kind==='click'?await this.page.evaluate(()=>(window as any).__liveuiBenchNativeFetch.begin()):undefined;
+   if(step.kind==='click'){if(guiClicks>=maxClicks)throw Error('Native GUI click budget exhausted');guiClicks++;const button=snapshot.buttons.find((b:any)=>b.target===step.target);if(!button||button.disabled)throw Error('Native GUI click target is not a current enabled bound action');this.guiGate={actionId:String(button.actionId).replace(/^actions\./,''),used:false};}else this.guiGate=undefined;
+   await bounded(applyNativeGuiStep(this.page,step));if(this.unresolved||this.actionError)throw this.actionError||Error('Unarmed Native GUI action rejected');
+   if(step.kind==='click'){
+    while(this.actionResult===undefined&&!this.actionError){if(Date.now()>=deadline)throw Error('Native GUI action response timed out; do not retry');await new Promise(r=>setTimeout(r,20));}
+    await waitForNativeFetchAcknowledgement(this.page,turn,deadline);
+    if(this.unresolved||this.actionError)throw this.actionError||Error('Duplicate Native action detected');
+    if(this.businessActionCalls-before!==1)throw Error('Native GUI click did not invoke exactly one action');
+    actionResults.push(this.actionResult);if(this.actionResult.appPackage)this.pkg=this.actionResult.appPackage;
+   }else if(this.businessActionCalls!==before)throw Error('Native GUI field change unexpectedly invoked an action');
+   this.guiGate=undefined;observations.push({step,ok:true,snapshot:await bounded(readNativeGuiSurface(this.page))});if(step.kind==='click')this.clickAwaitingConfirmation=false;pendingStep=undefined;pendingSnapshot=undefined;
+  }throw Error('Native GUI step budget exhausted');
+  }catch(e){if(pendingStep)observations.push({step:pendingStep,ok:false,error:String(e),snapshot:pendingSnapshot});if(this.actionInFlight||this.clickAwaitingConfirmation)this.unresolved=true;await fs.mkdir(this.out,{recursive:true});const report={protocol:'native-visible-gui-v1',interactionStatus:this.unresolved?'unresolved':(e as any)?.code==='native_gui_unsupported'?'unsupported':'failed',unresolved:this.unresolved,rendererSha256:this.rendererSha,budget:{episodeMs:Math.min(this.timeoutMs,options.deadlineMs??this.timeoutMs),maxSteps:options.maxSteps,maxClicks},steps:observations,guiClicks,plannerExecutions,plannerRequests,plannerModelCalls,plannerModelCallsKnown:plannerModelCalls,unknownPlannerInvocations,plannerCallScope:'logical step inference invocations; provider retry attempts unknown',businessActionCalls:this.businessActionCalls-initialCalls,attemptedActionRequests:this.attemptedActionRequests-initialAttempts,actionResults,error:String(e)};await fs.writeFile(path.join(this.out,'native-interaction-failure.json'),JSON.stringify(report,null,2));if(e&&typeof e==='object')Object.assign(e,{nativeGuiInteraction:report});throw e;}finally{this.guiGate=undefined;this.guiInteractionActive=false;}
  }
  async close(){
   const browser=this.browser;this.browser=null;
