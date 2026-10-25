@@ -65,11 +65,11 @@ function check(a:Assertion,o:Observation,history:Map<string,{owner:string;observ
  if(a.type==='dom-absent')return matches.length===0;
  if(a.type==='dom-count')return nodes.filter(n=>n.visible===true).length===a.count;
  if(a.type==='dom-bounds')return matches.length>0&&matches.every(n=>{const b=n.bounds;return b&&Number.isFinite(b.width)&&Number.isFinite(b.height)&&(a.minWidth===undefined||b.width>=a.minWidth)&&(a.maxWidth===undefined||b.width<=a.maxWidth)&&(a.minHeight===undefined||b.height>=a.minHeight)&&(a.maxHeight===undefined||b.height<=a.maxHeight)});
- if(a.type==='dom-style-number')return matches.length>0&&matches.every(n=>{const v=parseFloat(n.computedStyle?.[a.property!]??'');return Number.isFinite(v)&&(a.min===undefined||v>=a.min)&&(a.max===undefined||v<=a.max)});
+ if(a.type==='dom-style-number')return matches.length>0&&matches.every(n=>{const raw=n.computedStyle?.[a.property!]??'';const v=/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:px)?$/.test(raw)?parseFloat(raw):NaN;return Number.isFinite(v)&&(a.min===undefined||v>=a.min)&&(a.max===undefined||v<=a.max)});
  return matches.length>0&&matches.every(n=>n.computedStyle?.[a.property!]===a.value);
 }
-export async function runCase(c:Case,adapter:Adapter){
- validateCase(c);requireValue(adapter.capabilities&&Object.values(adapter.capabilities).length===5&&Object.values(adapter.capabilities).every(v=>v===true),'Adapter capabilities unsupported');const appIds=new Map<string,string>(),conversations=new Set<string>();const execution={kind:adapter.mode,comparable:false,realModelCalls:adapter.mode==='fixture'?0:null};const history=new Map<string,{owner:string;observation:Observation}>();const results:any[]=[];
+async function executeCase(c:Case,adapter:Adapter,results:any[]){
+ validateCase(c);requireValue(['real','fixture'].includes(adapter.mode),'Invalid adapter mode');requireValue(adapter.capabilities&&['sessionReset','reopen','scopedMemory','persistentState','computedDOM'].every(key=>(adapter.capabilities as any)[key]===true),'Adapter capabilities unsupported');const appIds=new Map<string,string>(),conversations=new Set<string>();const execution={kind:adapter.mode,comparable:false,realModelCalls:adapter.mode==='fixture'?0:null};const history=new Map<string,{owner:string;observation:Observation}>();
  for(const session of c.sessions){const context:Context={caseId:c.id,owner:session.owner??c.owner,sessionId:session.id};
   const sessionReceipt=await adapter.beginSession(context,{resetConversation:true,preserveOwnerState:true});
   requireValue(sessionReceipt?.owner===context.owner&&sessionReceipt.conversationReset===true&&typeof sessionReceipt.conversationId==='string'&&sessionReceipt.conversationId.length&&!conversations.has(sessionReceipt.conversationId)&&typeof sessionReceipt.appId==='string'&&sessionReceipt.appId.length,'Missing fresh-session receipt');
@@ -94,4 +94,13 @@ export async function runCase(c:Case,adapter:Adapter){
   }}finally{await adapter.endSession?.(context);}
  }
  return {caseId:c.id,execution,executionMode:adapter.mode,modelEvaluated:false, realExecution:adapter.mode==='real',passed:results.every(r=>r.status==='passed'),steps:results};
+}
+
+export async function runCase(c:Case,adapter:Adapter){
+ validateCase(c);const results:any[]=[];let report:any;let failure:string|undefined;
+ try{report=await executeCase(c,adapter,results);}catch(error){failure=error instanceof Error?error.message:'Adapter failure';}
+ const byId=new Map(results.map(result=>[result.stepId,result]));
+ const steps=c.sessions.flatMap(session=>session.steps.map(step=>byId.get(step.id)??{stepId:step.id,status:'not-run',reason:failure??'Earlier terminal action',assertions:step.assertions.map(a=>({id:a.id,passed:false,status:'not-run'}))}));
+ const assertions=steps.flatMap(step=>step.assertions);
+ return {...report,caseId:c.id,execution:{kind:adapter.mode,comparable:false,realModelCalls:adapter.mode==='fixture'?0:null},modelEvaluated:false,realExecution:adapter.mode==='real',passed:!failure&&steps.every(step=>step.status==='passed'),failure,plannedSteps:steps.length,executedSteps:results.length,plannedAssertions:assertions.length,passedAssertions:assertions.filter(a=>a.passed).length,steps};
 }
