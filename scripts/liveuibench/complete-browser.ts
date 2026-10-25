@@ -15,8 +15,17 @@ export class CompleteAppBrowser extends RuntimeBrowser {
   override async submit(message: string, ordinal = 1) {
     this.bridgeResults = [];
     const before = await this.snapshot();
-    if (!Number.isInteger(ordinal) || ordinal < 1 || !before.buttons.filter(item => !item.disabled)[ordinal - 1]) throw Error(`No visible action ordinal ${ordinal}`);
-    const plan = planFormSubmission(before.fields, message);
+    const selectedButton = before.buttons.filter(item => !item.disabled)[ordinal - 1];
+    if (!Number.isInteger(ordinal) || ordinal < 1 || !selectedButton) throw Error(`No visible action ordinal ${ordinal}`);
+    const formTargets = await this.frame!.evaluate(target => {
+      const button = Array.from(document.querySelectorAll<HTMLElement>('[data-liveui-eval-id]')).find(node => node.getAttribute('data-liveui-eval-id') === target);
+      if (!button) throw Error('Selected action disappeared before form mapping');
+      const form = (button as HTMLButtonElement | HTMLInputElement).form;
+      // Native form ownership includes controls outside the form linked by form=.
+      return form ? Array.from(form.elements).map(control => control.getAttribute('data-liveui-eval-id')).filter((id): id is string => Boolean(id)) : null;
+    }, selectedButton.target);
+    const fields = formTargets === null ? before.fields : before.fields.filter(field => formTargets.includes(field.target));
+    const plan = planFormSubmission(fields, message);
     // Validate the whole plan before touching controls; ambiguous input is a failure.
     for (const step of plan) await this.perform(step);
     const button = (await this.snapshot()).buttons.filter(item => !item.disabled)[ordinal - 1];
