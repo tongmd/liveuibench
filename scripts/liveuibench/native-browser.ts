@@ -1,4 +1,4 @@
-import {nativeActionFingerprint} from '../../liveuiagent/server/native-action-not-started.js';
+import {nativeActionFingerprint,normalizeNativeActionId} from '../../liveuiagent/server/native-action-not-started.js';
 import {verifiedNativeActionNotStarted} from './transport.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -16,15 +16,41 @@ import {executableActionByOrdinal} from './scorer.js';
  * requests cross the trusted transport. Browser never receives credentials. */
 export class NativeAppBrowser {
  private knownNotStartedErrors=new WeakSet<object>();private refusedPayloads=new Set<string>();
- private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;private unresolved=false;private businessActionCalls=0;private actionInFlight=false;private clickAwaitingConfirmation=false;private guiInteractionActive=false;private guiProtocolEnabled=false;private guiGate?:{actionId:string;used:boolean};private attemptedActionRequests=0;
+ private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;private unresolved=false;private businessActionCalls=0;private actionInFlight=false;private clickAwaitingConfirmation=false;private guiInteractionActive=false;private guiProtocolEnabled=false;private guiGate?:{actionId:string;used:boolean;requestKey?:string;response?:Promise<any>;complete?:boolean};private attemptedActionRequests=0;
  constructor(private transport:Transport,private appId:string,private out:string,private pkg:any,private harness:'native'|'dsh',private model:string,private chrome?:string,private rendererRoot=fileURLToPath(new URL('../../liveuiagent/frontend/snapshot/',import.meta.url)),private timeoutMs=900000){}
+
+ private async forwardAction(body:any){try{if(this.unresolved||this.actionInFlight){this.unresolved=true;throw Error('Duplicate or unresolved Native action; do not retry');}if(body.appId!==this.appId)throw Error('Native renderer action target mismatch');const fingerprint=nativeActionFingerprint({appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload});if(this.refusedPayloads.has(fingerprint)){const blocked=Error('This exact Native payload already failed before executor entry; automatic replay is blocked. A different later operation may be evaluated.');this.knownNotStartedErrors.add(blocked);throw blocked;}this.businessActionCalls++;this.actionInFlight=true;if(this.guiProtocolEnabled)this.clickAwaitingConfirmation=true;this.actionResult=await this.transport.request('/agent/action',{...body,harness:this.harness,llm:{model:this.model}});return this.actionResult;}catch(e:any){this.actionError=e;const proof=verifiedNativeActionNotStarted(e,{appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload});if(!this.unresolved&&(proof||this.knownNotStartedErrors.has(e))){this.knownNotStartedErrors.add(e);if(proof)this.refusedPayloads.add(nativeActionFingerprint({appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload}));if(this.guiProtocolEnabled)this.clickAwaitingConfirmation=true;}else this.unresolved=true;throw e;}finally{this.actionInFlight=false;}}
+ private async receiveAction(body:any){
+  this.attemptedActionRequests++;
+  const gate=this.guiGate;
+  if(!this.guiProtocolEnabled)return this.forwardAction(body);
+  const actual=normalizeNativeActionId(String(body.actionId||''));
+  const reject=()=>{this.unresolved=true;return Error('Unarmed, duplicate or mismatched Native GUI action request; no action forwarded');};
+  if(!gate||body.appId!==this.appId||actual!==gate.actionId||this.unresolved)throw reject();
+  const uuid=typeof body.requestId==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.requestId);
+  const key=uuid?JSON.stringify([body.requestId,this.appId,actual,nativeActionFingerprint({appId:this.appId,actionId:actual,eventPayload:body.eventPayload})]):undefined;
+  if(gate.used){
+   if(!key||key!==gate.requestKey||!gate.response||gate.complete===false)throw reject();
+   const result=await gate.response;if(!gate.complete)throw reject();return result;
+  }
+  gate.used=true;gate.requestKey=key;
+  // Assign the promise before yielding: one armed physical click has at most one backend dispatch.
+  gate.response=this.forwardAction(body).then(result=>{
+   gate.complete=result?.workflowExecution?.status==='completed'&&typeof result.workflowExecution.executionId==='string'&&result.workflowExecution.executionId.length>0;
+   if(result?.type==='action_receipt'||['unknown','partial','outcome_unknown'].includes(result?.workflowExecution?.status)||['unknown','partial','outcome_unknown'].includes(result?.state)){
+    this.unresolved=true;throw Error('Native action response is not a complete operation result; do not retry');
+   }
+   return result;
+  },error=>{gate.complete=false;throw error;});
+  return gate.response;
+ }
  async open(){
   const manifest=JSON.parse(await fs.readFile(path.join(this.rendererRoot,'manifest.json'),'utf8'));const resources=manifest.resources||[{file:manifest.file,sha256:manifest.sha256}];const files=new Map<string,Buffer>();
   for(const r of resources){if(!/^[a-zA-Z0-9_.-]+$/.test(r.file))throw Error('Unsafe Native renderer resource');const b=await fs.readFile(path.join(this.rendererRoot,r.file));if(createHash('sha256').update(b).digest('hex')!==r.sha256)throw Error('Native renderer source SHA mismatch');files.set(r.file,b);}
   if(!files.has('index.html'))throw Error('Native renderer missing entry point');this.rendererSha=createHash('sha256').update(files.get('index.html')!).digest('hex');
   this.server=http.createServer(async(req,res)=>{const json=(v:any,status=200)=>{res.writeHead(status,{'content-type':'application/json'});res.end(JSON.stringify(v));};try{const route=new URL(req.url!,'http://local').pathname.replace(/^\/liveui/,'')||'/';let raw='';for await(const c of req)raw+=c;const body=raw?JSON.parse(raw):{};
    if(route==='/agent/query-state')return json(await this.transport.request(route,body));
-   if(route==='/agent/action'){try{this.attemptedActionRequests++;if(this.guiProtocolEnabled){const gate=this.guiGate;const actual=String(body.actionId||'').replace(/^actions\./,'');if(!gate||gate.used||body.appId!==this.appId||actual!==gate.actionId){this.unresolved=true;throw Error('Unarmed, duplicate or mismatched Native GUI action request; no action forwarded');}gate.used=true;}if(this.unresolved||this.actionInFlight){this.unresolved=true;throw Error('Duplicate or unresolved Native action; do not retry');}if(body.appId!==this.appId)throw Error('Native renderer action target mismatch');const fingerprint=nativeActionFingerprint({appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload});if(this.refusedPayloads.has(fingerprint)){const blocked=Error('This exact Native payload already failed before executor entry; automatic replay is blocked. A different later operation may be evaluated.');this.knownNotStartedErrors.add(blocked);throw blocked;}this.businessActionCalls++;this.actionInFlight=true;if(this.guiProtocolEnabled)this.clickAwaitingConfirmation=true;this.actionResult=await this.transport.request(route,{...body,harness:this.harness,llm:{model:this.model}});return json(this.actionResult);}catch(e:any){this.actionError=e;const proof=verifiedNativeActionNotStarted(e,{appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload});if(!this.unresolved&&(proof||this.knownNotStartedErrors.has(e))){this.knownNotStartedErrors.add(e);if(proof)this.refusedPayloads.add(nativeActionFingerprint({appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload}));if(this.guiProtocolEnabled)this.clickAwaitingConfirmation=true;}else this.unresolved=true;return json({error:e.message,...(proof?{nativeActionNotStarted:proof}:{})},500);}finally{this.actionInFlight=false;}}
+   if(route==='/agent/action'){try{return json(await this.receiveAction(body));}catch(e:any){this.actionError=e;const proof=verifiedNativeActionNotStarted(e,{appId:body.appId,actionId:body.actionId,eventPayload:body.eventPayload});return json({error:e.message,...(proof?{nativeActionNotStarted:proof}:{})},500);}}
    if(route==='/agent/settings')return json({user:{models:[]},server:{models:[this.model],hasApiKey:true},effective:{model:this.model,models:[this.model],keySource:'server'},warnings:[]});
    if(route==='/agent/runtime-settings')return json({harness:this.harness,choices:[{id:this.harness,label:this.harness,available:true}],model:{id:this.model,delivery:'native'}});
    if(route==='/agent/models')return json({models:[this.model],default:this.model});
