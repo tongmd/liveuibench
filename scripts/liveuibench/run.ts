@@ -104,7 +104,9 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
       if(error)return {...a,passed:false,message:error};
       if(browser&&a.type==='input_available')return {...a,passed:gui?.inputCount>0,message:'Measured visible complete-app DOM'};
       if(browser&&a.type==='action_available')return {...a,passed:gui?.actionCount>0,message:'Measured visible complete-app DOM'};
-      return {...a,...checkAssertion(a,ctx)};
+      const checked=checkAssertion(a,ctx);
+      const missingDshEvidence=browser&&!checked.passed&&['route_enters_orchestrator','appworld_api_called','appworld_db_changed','route_exists'].includes(a.type)&&!ctx.actionResult?.trace?.length&&!Object.keys(ctx.actionResult?.toolResults||{}).length&&!ctx.actionResult?.toolDbChanges?.length;
+      return {...a,...checked,...(missingDshEvidence?{unsupported:true}:{})};
      });const result={id:ep.id,kind:ep.kind,error,passed:!error&&assertions.length>0&&assertions.every(a=>a.passed),assertions,response,gui};episodes.push(result);await json(path.join(groupDir,`episode-${ei+1}.json`),result);
     }
     if(o.evaluator!=='behavior'){
