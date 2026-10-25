@@ -2,8 +2,8 @@ import { isDeepStrictEqual } from 'node:util';
 
 export type Assertion = { id: string; type: string; scope?: 'owner'|'app'; key?: string; value?: unknown; path?: string[]; fromStep?: string; selector?: string; text?: string; property?: string; count?: number; min?:number; max?:number; minWidth?:number;maxWidth?:number;minHeight?:number;maxHeight?:number };
 export type Step = { id: string; kind: 'message'|'reopen'; message?: string; assertions: Assertion[] };
-export type Case = { schemaVersion: 'liveuibench.longitudinal.v1'; id: string; track: 'agent-memory'|'personalized-ui'; source: { kind: 'authored'; [key:string]:unknown }; owner: string; sessions: { id:string; owner?:string; resetConversation:true; steps:Step[] }[] };
-export type Context = { caseId:string; owner:string; sessionId:string; stepId?:string };
+export type Case = { schemaVersion: 'liveuibench.longitudinal.v1'; id: string; track: 'agent-memory'|'personalized-ui'; source: { kind: 'authored'; [key:string]:unknown }; owner: string; sessions: { id:string; owner?:string; appKey?:string; resetConversation:true; steps:Step[] }[] };
+export type Context = { caseId:string; owner:string; appKey:string; sessionId:string; stepId?:string };
 export type DOMNode = { visible:boolean; text:string; computedStyle:Record<string,string>;bounds?:{width:number;height:number} };
 export type Observation = { provenance: { kind:'real'|'fixture'; memory:'scoped-readback'|'unsupported'; state:'persistent-readback'|'unsupported'; dom:'browser-computed'|'unsupported' }; memory: { owner:Record<string,unknown>; app:Record<string,unknown> }; state:unknown; dom:Record<string,DOMNode[]> };
 // The adapter receives neither future user messages nor evaluation assertions.
@@ -24,6 +24,7 @@ export function validateCase(input:unknown):asserts input is Case {
  const sessions=new Set<string>(),steps=new Set<string>(),assertionIds=new Set<string>();
  for(const session of c.sessions){
   requireValue(typeof session.id==='string'&&!sessions.has(session.id)&&session.resetConversation===true&&Array.isArray(session.steps)&&session.steps.length,'Invalid/duplicate session');sessions.add(session.id);
+  requireValue(session.appKey===undefined||(typeof session.appKey==='string'&&session.appKey.length),'Invalid app key');
   requireValue(session.owner===undefined||(typeof session.owner==='string'&&session.owner.length),'Invalid session owner');
   for(const s of session.steps){
    requireValue(typeof s.id==='string'&&!steps.has(s.id)&&['message','reopen'].includes(s.kind)&&Array.isArray(s.assertions)&&s.assertions.length,'Invalid/duplicate step');
@@ -45,7 +46,7 @@ export function validateCase(input:unknown):asserts input is Case {
  }
 }
 function pathValue(state:unknown,path:string[]){let value:any=state;for(const part of path){if(value===null||typeof value!=='object'||!Object.hasOwn(value,part))return {exists:false,value:undefined};value=value[part];}return {exists:true,value};}
-function check(a:Assertion,o:Observation,history:Map<string,{owner:string;observation:Observation}>,owner:string){
+function check(a:Assertion,o:Observation,history:Map<string,{owner:string;appKey:string;observation:Observation}>,owner:string,appKey:string){
  if(a.type.startsWith('memory-')){
   if(o.provenance.memory!=='scoped-readback')return false;
   const memory=o.memory?.[a.scope!];if(!memory||typeof memory!=='object')return false;
@@ -55,7 +56,7 @@ function check(a:Assertion,o:Observation,history:Map<string,{owner:string;observ
   if(o.provenance.state!=='persistent-readback')return false;
   const actual=pathValue(o.state,a.path!);if(!actual.exists)return false;
   if(a.type==='state-equals')return isDeepStrictEqual(actual.value,a.value);
-  const before=history.get(a.fromStep!);if(!before||before.owner!==owner||before.observation.provenance.state!=='persistent-readback')return false;
+  const before=history.get(a.fromStep!);if(!before||before.owner!==owner||before.appKey!==appKey||before.observation.provenance.state!=='persistent-readback')return false;
   const baseline=pathValue(before.observation.state,a.path!);return baseline.exists&&isDeepStrictEqual(actual.value,baseline.value);
  }
  if(o.provenance.dom!=='browser-computed'||!Object.hasOwn(o.dom??{},a.selector!))return false;
@@ -69,13 +70,14 @@ function check(a:Assertion,o:Observation,history:Map<string,{owner:string;observ
  return matches.length>0&&matches.every(n=>n.computedStyle?.[a.property!]===a.value);
 }
 async function executeCase(c:Case,adapter:Adapter,results:any[]){
- validateCase(c);requireValue(['real','fixture'].includes(adapter.mode),'Invalid adapter mode');requireValue(adapter.capabilities&&['sessionReset','reopen','scopedMemory','persistentState','computedDOM'].every(key=>(adapter.capabilities as any)[key]===true),'Adapter capabilities unsupported');const appIds=new Map<string,string>(),conversations=new Set<string>();const execution={kind:adapter.mode,comparable:false,realModelCalls:adapter.mode==='fixture'?0:null};const history=new Map<string,{owner:string;observation:Observation}>();
- for(const session of c.sessions){const context:Context={caseId:c.id,owner:session.owner??c.owner,sessionId:session.id};
+ validateCase(c);requireValue(['real','fixture'].includes(adapter.mode),'Invalid adapter mode');requireValue(adapter.capabilities&&['sessionReset','reopen','scopedMemory','persistentState','computedDOM'].every(key=>(adapter.capabilities as any)[key]===true),'Adapter capabilities unsupported');const appIds=new Map<string,string>(),conversations=new Set<string>();const execution={kind:adapter.mode,comparable:false,realModelCalls:adapter.mode==='fixture'?0:null};const history=new Map<string,{owner:string;appKey:string;observation:Observation}>();
+ for(const session of c.sessions){const context:Context={caseId:c.id,owner:session.owner??c.owner,appKey:session.appKey??'primary',sessionId:session.id};
   const sessionReceipt=await adapter.beginSession(context,{resetConversation:true,preserveOwnerState:true});
   requireValue(sessionReceipt?.owner===context.owner&&sessionReceipt.conversationReset===true&&typeof sessionReceipt.conversationId==='string'&&sessionReceipt.conversationId.length&&!conversations.has(sessionReceipt.conversationId)&&typeof sessionReceipt.appId==='string'&&sessionReceipt.appId.length,'Missing fresh-session receipt');
-  requireValue(!appIds.has(context.owner)||appIds.get(context.owner)===sessionReceipt.appId,'App identity changed across session');
-  requireValue(![...appIds.entries()].some(([owner,id])=>owner!==context.owner&&id===sessionReceipt.appId),'Cross-owner app identity collision');
-  appIds.set(context.owner,sessionReceipt.appId);conversations.add(sessionReceipt.conversationId);
+  const appScope=JSON.stringify([context.owner,context.appKey]);
+  requireValue(!appIds.has(appScope)||appIds.get(appScope)===sessionReceipt.appId,'App identity changed across session');
+  requireValue(![...appIds.entries()].some(([scope,id])=>scope!==appScope&&id===sessionReceipt.appId),'Cross-owner/app identity collision');
+  appIds.set(appScope,sessionReceipt.appId);conversations.add(sessionReceipt.conversationId);
   try {for(const step of session.steps){const current={...context,stepId:step.id};let outcome:any;
    try { const action=await adapter.act(current,step.kind==='message'?{kind:'message',message:step.message!}:{kind:'reopen'});
     if(action.status==='completed'&&step.kind==='reopen')requireValue(action.receipt?.reopened===true&&action.receipt.appId===sessionReceipt.appId&&action.receipt.owner===context.owner,'Missing same-app reopen receipt');
@@ -84,8 +86,8 @@ async function executeCase(c:Case,adapter:Adapter,results:any[]){
      const request={memoryKeys:step.assertions.filter(a=>a.type.startsWith('memory-')).map(a=>({scope:a.scope!,key:a.key!})),selectors:step.assertions.filter(a=>a.type.startsWith('dom-')).map(a=>({selector:a.selector!,properties:a.property?[a.property]:[]}))};
      const observation=await adapter.observe(current,request);
      requireValue(observation?.provenance?.kind===adapter.mode,'Observation execution mode mismatch');
-     const assertions=step.assertions.map(a=>({id:a.id,passed:check(a,observation,history,current.owner)}));
-     outcome={stepId:step.id,status:assertions.every(a=>a.passed)?'passed':'failed',assertions,observation};history.set(step.id,{owner:current.owner,observation:structuredClone(observation)});
+     const assertions=step.assertions.map(a=>({id:a.id,passed:check(a,observation,history,current.owner,current.appKey)}));
+     outcome={stepId:step.id,status:assertions.every(a=>a.passed)?'passed':'failed',assertions,observation};history.set(step.id,{owner:current.owner,appKey:current.appKey,observation:structuredClone(observation)});
     }
    }catch(error){outcome={stepId:step.id,status:'failed',reason:error instanceof Error?error.message:'Adapter failure',assertions:step.assertions.map(a=>({id:a.id,passed:false}))};}
    results.push(outcome);
