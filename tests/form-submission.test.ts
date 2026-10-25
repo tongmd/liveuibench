@@ -98,3 +98,37 @@ test('explicit agent.invoke binding locates the AI form behind ordinary forms wi
   await assert.rejects(browser.submit('Do not guess between bindings',1),/Ambiguous/);assert.equal(requests.length,2);
  }finally{await browser.close();await fs.rm(out,{recursive:true,force:true});}
 });
+
+test('only an explicit action may map a whole command to one named task field beside optional controls',()=>{
+ const fields=[field('Task','',{tag:'textarea',required:true}),field('Category','',{tag:'select',options:[{value:'all',label:'All'},{value:'work',label:'Work'}],value:'all'})];
+ assert.deepEqual(planFormSubmission(fields,'Find my saved notes',{explicitlyBound:true}),[{kind:'fill',target:'Task',value:'Find my saved notes'}]);
+ assert.deepEqual(planFormSubmission(fields,'Task: Find notes; Category: Work',{explicitlyBound:true}),[{kind:'fill',target:'Task',value:'Find notes'},{kind:'select',target:'Category',value:'work'}]);
+ assert.deepEqual(planFormSubmission([{...fields[0],label:'Command',inputId:'task'},fields[1]],'Find notes',{explicitlyBound:true}),[{kind:'fill',target:'Task',value:'Find notes'}]);
+ assert.throws(()=>planFormSubmission(fields,'Find my saved notes'),/missing required|no unambiguous/);
+ assert.throws(()=>planFormSubmission([...fields,field('Prompt')],'Do not guess',{explicitlyBound:true}),/multiple natural-language/);
+ assert.throws(()=>planFormSubmission([...fields,field('Title','text',{required:true})],'Do not fill Title',{explicitlyBound:true}),/missing required value for Title/);
+ assert.throws(()=>planFormSubmission([field('Description'),fields[1]],'Unclear meaning',{explicitlyBound:true}),/no unambiguous/);
+});
+
+test('bound task plus optional select executes while ambiguous or additional missing required fields cause zero interaction',async t=>{
+ let chrome:string|undefined;
+ for(const candidate of [process.env.CHROME_PATH,process.env.PUPPETEER_EXECUTABLE_PATH,'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome','/usr/bin/chromium','/usr/bin/chromium-browser','/usr/bin/google-chrome']) {if(!candidate)continue;try{await fs.access(candidate);chrome=candidate;break;}catch{}}
+ if(!chrome){t.skip('Chrome unavailable; bound command field interaction is unexecuted');return;}
+ const out=await fs.mkdtemp(path.join(os.tmpdir(),'dsh-bound-command-'));const requests:any[]=[];
+ const html=`<!doctype html><html><body><h1>Tasks</h1><form id="commands"><label>Command<textarea id="task" required></textarea></label><label>Category<select id="category"><option value="all">All</option><option value="work">Work</option></select></label><button data-liveui-action="agent.invoke">Run</button></form><script>
+ document.getElementById('commands').onsubmit=async event=>{event.preventDefault();await liveuiagent.ai(document.getElementById('task').value,{category:document.getElementById('category').value});};</script></body></html>`;
+ const transport={async request(route:string,body?:any){if(route.endsWith('/action')){requests.push(body);return{id:'job-'+requests.length,status:'done',result:{ok:true}};}return{html,store:{}};}};
+ const browser=new CompleteAppBrowser(transport,'dsh_command_fields_fixture',out,chrome);
+ try{
+  await browser.open();const response=await browser.submit('Find my saved notes');
+  assert.deepEqual(response.selection.fields,['Command']);assert.equal(requests.length,1);assert.equal(requests[0].prompt,'Find my saved notes');assert.equal(requests[0].context.category,'all');
+  await browser.frame!.evaluate(()=>{const label=document.createElement('label');label.id='extra';label.textContent='Title';const input=document.createElement('input');input.required=true;label.append(input);document.getElementById('commands')!.append(label);});
+  await assert.rejects(browser.submit('Must not alter the task'),/missing required value for Title/);
+  assert.equal(requests.length,1);assert.equal(await browser.frame!.evaluate(()=>(document.getElementById('task') as HTMLTextAreaElement).value),'Find my saved notes');
+  await browser.frame!.evaluate(()=>{document.getElementById('extra')!.remove();const label=document.createElement('label');label.id='extra';label.textContent='Prompt';label.append(document.createElement('textarea'));document.getElementById('commands')!.append(label);});
+  await assert.rejects(browser.submit('Must not choose a command field'),/multiple natural-language/);assert.equal(requests.length,1);
+  assert.equal(await browser.frame!.evaluate(()=>(document.getElementById('task') as HTMLTextAreaElement).value),'Find my saved notes');
+  await browser.frame!.evaluate(()=>{document.getElementById('extra')!.remove();document.querySelector('button')!.removeAttribute('data-liveui-action');});
+  await assert.rejects(browser.submit('Unbound rules remain strict'),/no unambiguous/);assert.equal(requests.length,1);
+ }finally{await browser.close();await fs.rm(out,{recursive:true,force:true});}
+});

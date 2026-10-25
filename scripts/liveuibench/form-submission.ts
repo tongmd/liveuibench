@@ -1,21 +1,24 @@
 import type {CompleteAppStep} from '../../liveuiagent/server/complete-app-evaluator.js';
-type Field={target:string;label:string;tag:string;type:string;value?:string;disabled?:boolean;required?:boolean;options?:Array<{value:string;label:string}>};
+type Field={target:string;label:string;tag:string;type:string;inputName?:string;inputId?:string;value?:string;disabled?:boolean;required?:boolean;options?:Array<{value:string;label:string}>};
 const textTypes = new Set(['','text','search','email','url','tel']);
 const escape = (text:string) => text.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 function unsupported(message:string):never {throw Error(`Unsupported form interaction: ${message}`);}
-export function planFormSubmission(fields:Field[],message:string):CompleteAppStep[] {
+export function planFormSubmission(fields:Field[],message:string,options:{explicitlyBound?:boolean}={}):CompleteAppStep[] {
   if(!message.trim() || message.length>4000)unsupported('message must contain 1..4000 characters');
   const editable=fields.filter(field=>!field.disabled && (field.tag==='textarea'||field.tag==='select'||textTypes.has(field.type)||['number','date','time'].includes(field.type)));
   if(!editable.length)unsupported('no editable fields');
   const labels=editable.map(field=>field.label.trim().toLowerCase());
   if(labels.some(label=>!label)||new Set(labels).size!==labels.length)unsupported('field labels are missing or ambiguous');
+  const commandFields=options.explicitlyBound?editable.filter(field=>(field.tag==='textarea'||['','text'].includes(field.type))&&field.tag!=='select'&&/task|request|instruction|prompt/i.test([field.label,field.inputName,field.inputId].filter(Boolean).join(' '))):[];
+  if(commandFields.length>1)unsupported('multiple natural-language command fields in the explicit action form');
+  const commandTarget=commandFields[0]?.target;
   const plan:CompleteAppStep[]=[];
   for(const field of editable){
     const expression=new RegExp('(?:^|[;\\n])\\s*'+escape(field.label.trim())+'\\s*(?::|=|\\bis\\b)\\s*(.*?)(?=[;\\n]|$)','gi');
     const matches=[...message.matchAll(expression)];
     if(matches.length>1)unsupported(`duplicate value for ${field.label}`);
     let value=matches[0]?.[1]?.trim();
-    if(value===undefined && editable.length===1 && (textTypes.has(field.type)||field.tag==='textarea'))value=message;
+    if(value===undefined && ((editable.length===1 && (textTypes.has(field.type)||field.tag==='textarea'))||field.target===commandTarget))value=message;
     if(value===undefined){if(field.required&&!field.value)unsupported(`missing required value for ${field.label}`);continue;}
     if((value.startsWith('"')&&value.endsWith('"'))||(value.startsWith("'")&&value.endsWith("'")))value=value.slice(1,-1);
     if(field.tag==='select'){

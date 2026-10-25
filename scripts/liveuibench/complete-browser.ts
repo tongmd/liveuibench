@@ -6,7 +6,7 @@ export class CompleteAppBrowser extends RuntimeBrowser {
   override async snapshot(name?: string) {
     const snapshot = await super.snapshot(name);
     const details = await this.frame!.evaluate(() => Array.from(document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('[data-liveui-eval-id]')).map(node => ({
-      target: node.getAttribute('data-liveui-eval-id')!, required: Boolean(node.required),
+      target: node.getAttribute('data-liveui-eval-id')!, required: Boolean(node.required), inputName:node.name, inputId:node.id,
       label: node.getAttribute('aria-label') || Array.from(node.labels || []).map(label => {const copy=label.cloneNode(true) as HTMLElement;copy.querySelectorAll('input,textarea,select,button').forEach(control=>control.remove());return copy.textContent?.trim() || '';}).join(' ').trim() || node.getAttribute('placeholder') || node.name || node.id,
       options: node instanceof HTMLSelectElement ? Array.from(node.options).filter(option => !option.disabled).map(option => ({value:option.value,label:option.textContent?.trim() || ''})) : undefined,
     })));
@@ -50,7 +50,7 @@ export class CompleteAppBrowser extends RuntimeBrowser {
       return form ? Array.from(form.elements).map(control => control.getAttribute('data-liveui-eval-id')).filter((id): id is string => Boolean(id)) : null;
     }, selectedButton.target);
     const fields = formTargets === null ? before.fields : before.fields.filter(field => formTargets.includes(field.target));
-    const plan = planFormSubmission(fields, message);
+    const plan = planFormSubmission(fields, message, {explicitlyBound:selected.explicitlyBound});
     // Validate the whole plan before touching controls; ambiguous input is a failure.
     for (const step of plan) await this.perform(step);
     const ready = await this.actionButton(await this.snapshot(), ordinal);
