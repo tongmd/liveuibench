@@ -1,5 +1,5 @@
 """Offline artifact sealing/import. Never generates HTML or copies source world/auth."""
-import pathlib,json,hashlib,uuid,sqlite3,os
+import pathlib,json,hashlib,uuid,sqlite3,os,re
 
 def sha(p):return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 def atom(p,v):
@@ -20,7 +20,7 @@ def verify(root,expected):
 def import_case(root,expected,case_id,owner,prefix,account_root,runtime_db,receipt_dir):
  root=pathlib.Path(root).resolve();v=verify(root,expected)
  if v['caseId']!=case_id:raise ValueError('Replay case mismatch')
- if not owner or len(owner)>200 or not prefix.startswith('strict12-'):raise ValueError('Only explicitly scoped replay owners are allowed')
+ if not isinstance(owner,str) or not owner or not isinstance(prefix,str) or len(prefix)>100 or not re.fullmatch(r'artifact-replay-[A-Za-z0-9][A-Za-z0-9_-]{0,79}-',prefix) or len(prefix)+len(owner)>200:raise ValueError('Only bounded artifact-replay namespaces and combined owner identity <=200 are allowed')
  account_root=pathlib.Path(account_root).resolve();directory=account_root/'accounts'/hashlib.sha256((prefix+owner).encode()).hexdigest()
  # Exclusive account creation; never overwrite a real or previously loaded account.
  directory.mkdir(parents=True,exist_ok=False,mode=0o700);apps=[];mapping=[]
@@ -39,13 +39,13 @@ def import_case(root,expected,case_id,owner,prefix,account_root,runtime_db,recei
   atom(directory/'state.json',{'apps':apps,'jobs':[],'memory':{'manual':'','entries':[]},'memoryFormatVersion':1,'seedVersion':1});db.commit()
  except Exception:db.rollback();raise
  finally:db.close()
- receipt={'caseId':case_id,'owner':owner,'accountHash':directory.name,'groups':mapping,'reusedArtifact':True,'generationModelCalls':0,'sourceArtifactManifestSha256':expected,'initialStore':'fresh empty object; original source store/world/auth never copied'};atom(pathlib.Path(receipt_dir)/(hashlib.sha256(owner.encode()).hexdigest()+'.json'),receipt);return receipt
+ receipt={'caseId':case_id,'owner':owner,'ownerPrefix':prefix,'accountRoot':str(account_root),'accountHash':directory.name,'groups':mapping,'reusedArtifact':True,'generationModelCalls':0,'sourceArtifactManifestSha256':expected,'initialStore':'fresh empty object; original source store/world/auth never copied'};atom(pathlib.Path(receipt_dir)/(hashlib.sha256(owner.encode()).hexdigest()+'.json'),receipt);return receipt
 
 def load_or_import(config,owner):
  receipt_file=pathlib.Path(config['receiptDir'])/(hashlib.sha256(owner.encode()).hexdigest()+'.json')
  if receipt_file.exists():
   value=json.loads(receipt_file.read_text())
-  if value.get('owner')!=owner or value.get('sourceArtifactManifestSha256')!=config['manifestSha256'] or value.get('caseId')!=config['caseId']:raise ValueError('Existing replay receipt identity mismatch')
+  if value.get('owner')!=owner or value.get('ownerPrefix')!=config['ownerPrefix'] or value.get('accountRoot')!=str(pathlib.Path(config['accountRoot']).resolve()) or value.get('sourceArtifactManifestSha256')!=config['manifestSha256'] or value.get('caseId')!=config['caseId']:raise ValueError('Existing replay receipt identity mismatch')
   verify(config['manifestRoot'],config['manifestSha256']);return value
  return import_case(config['manifestRoot'],config['manifestSha256'],config['caseId'],owner,config['ownerPrefix'],config['accountRoot'],config['runtimeDb'],config['receiptDir'])
 if __name__=='__main__':

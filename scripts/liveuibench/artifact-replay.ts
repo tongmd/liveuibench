@@ -9,7 +9,7 @@ export async function readReplayConfiguration(file:string):Promise<ReplayConfigu
  const config=JSON.parse(await fs.readFile(file,'utf8'));
  for(const field of ['manifestRoot','importer','accountRoot','runtimeDb','receiptDir'])if(typeof config[field]!=='string'||!path.isAbsolute(config[field]))throw Error('Artifact replay requires absolute management paths');
  for(const field of ['manifestSha256','importerSha256'])if(!/^[a-f\d]{64}$/.test(config[field]))throw Error('Artifact replay requires SHA-locked inputs');
- if(!/^strict12-/.test(config.ownerPrefix))throw Error('Artifact replay requires a unique isolated owner scope');
+ if(typeof config.ownerPrefix!=='string'||config.ownerPrefix.length>100||!/^artifact-replay-[A-Za-z0-9][A-Za-z0-9_-]{0,79}-$/.test(config.ownerPrefix))throw Error('Artifact replay requires a unique isolated owner scope');
  if(hash(await fs.readFile(config.importer))!==config.importerSha256)throw Error('Artifact replay importer changed');
  if(hash(await fs.readFile(path.join(config.manifestRoot,'manifest.json')))!==config.manifestSha256)throw Error('Artifact replay manifest changed');
  return config;
@@ -24,7 +24,7 @@ function importArtifacts(configFile:string,owner:string,importer:string,groupInd
  });
 }
 export async function reuseArtifact(transport:Transport,configFile:string,caseId:string,groupIndex:number,intentionIndex:number,prompt:string){
- const c=await readReplayConfiguration(configFile);if(c.caseId!==caseId)throw Error('Replay configuration case does not match selected case');
+ const c=await readReplayConfiguration(configFile);if(c.ownerPrefix.length+transport.user.length>200)throw Error('Artifact replay combined namespace and owner identity exceeds200');if(c.caseId!==caseId)throw Error('Replay configuration case does not match selected case');
  const receipt=await importArtifacts(configFile,transport.user,c.importer,groupIndex,intentionIndex,prompt);
  const group=receipt.groups.find((x:any)=>x.groupIndex===groupIndex);
  if(!group||group.intentionIndex!==intentionIndex||group.promptSha256!==hash(prompt))throw Error('Replay ordered group/intention/prompt identity mismatch');
