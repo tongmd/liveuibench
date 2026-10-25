@@ -9,6 +9,7 @@ import {evaluateRenderedGui} from '../../liveuiagent/server/gui-evaluator-agent.
 import {httpTransport,type Transport} from './transport.js';
 import {CompleteAppBrowser} from './complete-browser.js';
 import {mockTransport} from './mock-runtime.js';
+import {dshActionEvidence} from './dsh-evidence.js';
 import {lockResources} from './resource-lock.js';
 const ROOT=fileURLToPath(new URL('../../',import.meta.url));
 export type Options={harness:'native'|'dsh';model:string;cases:string;split:'dev'|'public_test'|'all';limit:number;out:string;evaluator:'behavior'|'gui'|'both';mode:'live'|'mock';apiBase:string;only?:string;prepareHook?:string;worldMode:'isolated'|'prepared'|'unmanaged';chrome?:string;agentEvaluator:boolean;revisionPrompt?:string;timeoutMs:number;fixtureContacts:boolean;isolationEvidence?:{runId:string;runtimePort:number;worldPort:number;storage:string}};
@@ -96,12 +97,11 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
       else if(ep.kind==='reopen'){
        if(browser){await browser.close();await browser.open();gui=await browser.snapshot('reopen');response=await transport.request('/agent/complete/apps/'+encodeURIComponent(appId));ctx.reopenState=response.store;ctx.reopenData=response.store;}
        else{response=await transport.request('/agent/query-state',{});const app=(response.apps||[]).find((a:any)=>a.appId===appId);if(!app)throw new Error('App missing after fresh reopen query');ctx.reopenState=app.runtimeState;ctx.reopenData=app.appData;pkg=app.appPackage||pkg;ctx.pkg=pkg;}
-      }else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult={runtimeState:{intentResult:{text:gui.visibleText}}};}
+      }else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText);}
       else{const {actionId,route}=executableActionByOrdinal(pkg,ep.actionOrdinal||1);response=await transport.request('/agent/action',{appId,actionId,eventPayload:payloadForRoute(route,ep.userMessage||intention.intention),platform:'web',harness:o.harness,llm:{model:o.model}});ctx.actionResult=response;pkg=response.appPackage||pkg;ctx.pkg=pkg;}
      }catch(e:any){error=e.message;}
      const assertions=ep.assertions.map(a=>{
       if(error)return {...a,passed:false,message:error};
-      if(browser&&['route_enters_orchestrator','appworld_api_called','appworld_db_changed','route_exists'].includes(a.type))return {...a,passed:false,unsupported:true,message:'DSH has no native route/AppWorld audit evidence for this assertion'};
       if(browser&&a.type==='input_available')return {...a,passed:gui?.inputCount>0,message:'Measured visible complete-app DOM'};
       if(browser&&a.type==='action_available')return {...a,passed:gui?.actionCount>0,message:'Measured visible complete-app DOM'};
       return {...a,...checkAssertion(a,ctx)};
@@ -133,7 +133,7 @@ export async function runBenchmark(o:Options){
 async function runLockedBenchmark(o:Options){
  const source=await fs.readFile(o.cases,'utf8');const cases=selectCases(JSON.parse(source),o);
  await fs.mkdir(path.dirname(o.out),{recursive:true});await fs.mkdir(o.out); // EEXIST preserves every previous run.
- const report:any={benchmark:'LiveUIBench',mode:o.mode,comparable:comparableProtocol(o)&&Boolean(o.isolationEvidence)&&!o.fixtureContacts,configuration:o,datasetSha256:createHash('sha256').update(source).digest('hex'),plannedCases:cases.length,startedAt:new Date().toISOString(),status:'running',limitations:o.harness==='dsh'?['Native route and AppWorld audit assertions have no DSH evidence adapter and fail explicitly. Browser DOM/store checks are diagnostic.']:[],results:[]};
+ const report:any={benchmark:'LiveUIBench',mode:o.mode,comparable:comparableProtocol(o)&&Boolean(o.isolationEvidence)&&!o.fixtureContacts,configuration:o,datasetSha256:createHash('sha256').update(source).digest('hex'),plannedCases:cases.length,startedAt:new Date().toISOString(),status:'running',limitations:o.harness==='dsh'?['DSH audit assertions require completed host bridge evidence bound to the current application; absent evidence fails. Route assertions still require executable workflow metadata. Browser DOM/store checks and unverified isolation remain diagnostic.']:[],results:[]};
  if(o.fixtureContacts)report.limitations.push('Assisted diagnostic: fixture contacts were exposed to generation before their workflow turn. Exclude from unassisted benchmark comparisons.');
  if(o.mode==='live'&&!o.isolationEvidence)report.limitations.push('Fresh runtime/database/world isolation was not verified by the managed parallel launcher; this run is diagnostic.');
  if(process.env.LIVEUIBENCH_AUTHORIZATION)report.limitations.push('Authenticated gateway account isolation is not verified; persistent personal memory may cross cases.');

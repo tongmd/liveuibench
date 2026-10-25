@@ -66,7 +66,7 @@ npm run bench:liveui -- \
   --out artifacts/liveuibench/dsh-one
 ```
 
-The driver opens the generated HTML in Chrome, interacts with visible controls, and reloads persisted state. DSH lacks the native AppWorld trace and database evidence required for several assertions; these remain failed and unsupported. DSH results are diagnostic and cannot be compared directly with native workflow scores.
+The driver opens the generated HTML in Chrome, interacts with visible controls, and reloads persisted state. DSH audit checks consume host-produced evidence from the current browser action. A completed `/agent/complete/apps/:id/action` job may return `evidence` with `schemaVersion: 1`, the exact external `appId`, and `trace`, `toolResults`, and `toolDbChanges` in the native scorer's format. The job must include its `id` and `status: "done"`. These fields must come from server-side execution and simulator database observations; model-generated `result` content is never audit evidence. Missing evidence fails its assertion. Workflow-route checks still require executable package workflow metadata; an HTML button alone does not establish a route. DSH runs remain diagnostic until per-case runtime/world isolation is established and cannot be compared directly with managed native workflow scores.
 
 Dataset revise episodes are action turns. To test app code revision separately, add `--revision-prompt "Improve the layout while preserving my records"`.
 
