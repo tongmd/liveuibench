@@ -76,6 +76,11 @@ async function prepare(hook:string,item:BenchCase,fixture:string,out:string){
 }
 function failedEpisodes(episodes:Episode[],error:string){return episodes.map(ep=>({id:ep.id,kind:ep.kind,error,passed:false,assertions:ep.assertions.map(a=>({...a,passed:false,message:error}))}));}
 export function metrics(results:any[]){const assertions=results.flatMap(r=>(r.groups||[]).flatMap((g:any)=>(g.episodes||[]).flatMap((e:any)=>e.assertions||[])));const failed=results.filter(r=>r.status==='failed').length;const passed=results.filter(r=>r.status==='passed').length;return {selectedCases:results.length,passedCases:passed,failedCases:failed,skippedCases:results.filter(r=>r.status==='skipped').length,fullWorkflowRate:results.length?passed/results.length:0,executedCasePassRate:passed+failed?passed/(passed+failed):0,assertions:assertions.length,passedAssertions:assertions.filter(a=>a.passed).length,assertionPassRate:assertions.length?assertions.filter(a=>a.passed).length/assertions.length:0};}
+export function legacyActionRequest(pkg:any,appId:string,episode:Episode,intention:string,harness:string,model:string){
+ const {actionId,route}=executableActionByOrdinal(pkg,episode.actionOrdinal||1);
+ // Mint once per explicit logical episode; transport must reuse this body, never recreate it on retry.
+ return {requestId:randomUUID(),appId,actionId,eventPayload:payloadForRoute(route,episode.userMessage||intention),platform:'web',harness,llm:{model}};
+}
 // Combine only the actually returned action evidence from this GUI episode.
 // Final visible/runtime state is from the last real response, never a model plan.
 export function observedNativeGuiActions(results:any[]){
@@ -126,7 +131,7 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
        else{response=await transport.request('/agent/query-state',{});const app=(response.apps||[]).find((a:any)=>a.appId===appId);if(!app)throw new Error('App missing after fresh reopen query');ctx.reopenState=app.runtimeState;ctx.reopenData=app.appData;pkg=app.appPackage||pkg;ctx.pkg=pkg;}
       }else if(nativeBrowser){response=o.nativeInteraction==='visible-gui-v1'?await nativeBrowser.interact(ep.userMessage||intention.intention,{maxSteps:o.guiMaxSteps??20,maxClicks:o.guiMaxClicks??8,deadlineMs:o.guiEpisodeMs??o.timeoutMs}):await nativeBrowser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=o.nativeInteraction==='visible-gui-v1'?observedNativeGuiActions(response.actionResults):response.actionResult;pkg=ctx.actionResult?.appPackage||pkg;ctx.pkg=pkg;}
       else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText,ctx.caseMessages);}
-      else{const {actionId,route}=executableActionByOrdinal(pkg,ep.actionOrdinal||1);response=await transport.request('/agent/action',{appId,actionId,eventPayload:payloadForRoute(route,ep.userMessage||intention.intention),platform:'web',harness:o.harness,llm:{model:o.model}});ctx.actionResult=response;pkg=response.appPackage||pkg;ctx.pkg=pkg;}
+      else{const actionRequest=legacyActionRequest(pkg,appId,ep,intention.intention,o.harness,o.model);response=await transport.request('/agent/action',actionRequest);ctx.actionResult=response;pkg=response.appPackage||pkg;ctx.pkg=pkg;}
      }catch(e:any){error=e.message;if(o.nativeInteraction==='visible-gui-v1'&&e?.nativeGuiInteraction)response=e.nativeGuiInteraction;}
      const assertions=ep.assertions.map(a=>{
       if(error)return {...a,passed:false,message:error};
