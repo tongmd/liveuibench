@@ -43,10 +43,10 @@ function environment(values:Record<string,string|undefined>){
 test('cancelling a cooperative exit-zero preparation prevents generation and records failure',{timeout:15000},async()=>{
  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'liveui-cancel-hook-'));
  const endpoint=await canary();const restore=environment({APPWORLD_API_BASE:undefined});
- const marker=path.join(directory,'hook.pid');const hook=path.join(directory,'prepare');let pid:number|undefined;
+ const marker=path.join(directory,'hook.pid');const hook=path.join(directory,'prepare');let pid:number|undefined;let running:Promise<any>|undefined;
  await fs.writeFile(hook,`#!${process.execPath}\nconst fs=require('node:fs');\nprocess.on('SIGTERM',()=>process.exit(0));\nfs.writeFileSync(${JSON.stringify(marker)},String(process.pid));\nsetInterval(()=>{},1000);\n`,{mode:0o755});
  try{
-  const running=runBenchmark(await options(directory,hook,endpoint.apiBase));
+  running=runBenchmark(await options(directory,hook,endpoint.apiBase));
   await waitFor(()=>exists(marker),'preparation hook did not start');pid=Number(await fs.readFile(marker,'utf8'));
   await Promise.all([stopPreparations(),stopPreparations()]);
   const report=await running;
@@ -57,19 +57,19 @@ test('cancelling a cooperative exit-zero preparation prevents generation and rec
   assert.equal(alive(pid),false,'stopPreparations must await termination');
   await stopPreparations();
  }finally{
-  await stopPreparations();if(pid&&alive(pid))process.kill(pid,'SIGKILL');restore();await endpoint.close();await fs.rm(directory,{recursive:true,force:true});
+  await stopPreparations();await running?.catch(()=>{});if(pid&&alive(pid))process.kill(pid,'SIGKILL');restore();await endpoint.close();await fs.rm(directory,{recursive:true,force:true});
  }
 });
 
 test('cancelling actual AppWorld preparation during readiness does not orphan its detached child',{timeout:15000},async()=>{
  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'liveui-cancel-world-'));
  const endpoint=await canary();const port=await freePort();const state=path.join(directory,'world-control');
- const fake=path.join(directory,'fake-appworld');const marker=path.join(directory,'world.pid');let pid:number|undefined;
+ const fake=path.join(directory,'fake-appworld');const marker=path.join(directory,'world.pid');let pid:number|undefined;let running:Promise<any>|undefined;
  // A real executable accepts the AppWorld argv but deliberately never becomes ready.
  await fs.writeFile(fake,`#!${process.execPath}\nconst fs=require('node:fs');\nfs.writeFileSync(${JSON.stringify(marker)},String(process.pid));\nsetInterval(()=>{},1000);\n`,{mode:0o755});
  const restore=environment({LIVEUIBENCH_APPWORLD_BIN:fake,LIVEUIBENCH_APPWORLD_ROOT:directory,LIVEUIBENCH_APPWORLD_PORT:String(port),LIVEUIBENCH_WORLD_STATE_DIR:state,APPWORLD_API_BASE:`http://127.0.0.1:${port}`});
  try{
-  const running=runBenchmark(await options(directory,path.join(root,'scripts/liveuibench/prepare-appworld.mjs'),endpoint.apiBase));
+  running=runBenchmark(await options(directory,path.join(root,'scripts/liveuibench/prepare-appworld.mjs'),endpoint.apiBase));
   await waitFor(async()=>await exists(marker)&&await exists(path.join(state,'process.json')),'fake AppWorld child was not started and recorded');
   pid=Number(await fs.readFile(marker,'utf8'));assert.equal(alive(pid),true);
   const record=JSON.parse(await fs.readFile(path.join(state,'process.json'),'utf8'));assert.equal(record.pid,pid);assert.equal(record.port,port);
@@ -78,7 +78,7 @@ test('cancelling actual AppWorld preparation during readiness does not orphan it
   assert.equal(report.status,'failed');assert.equal(report.metrics.passedAssertions,0);assert.deepEqual(endpoint.calls,[]);
   assert.equal(await exists(path.join(directory,'report','cancellation-fixture','preparation.json')),false,'cancelled readiness cannot issue a preparation receipt');
  }finally{
-  await stopPreparations();if(!pid&&await exists(marker))pid=Number(await fs.readFile(marker,'utf8'));
+  await stopPreparations();await running?.catch(()=>{});if(!pid&&await exists(marker))pid=Number(await fs.readFile(marker,'utf8'));
   if(pid&&alive(pid))process.kill(pid,'SIGKILL');restore();await endpoint.close();await fs.rm(directory,{recursive:true,force:true});
  }
 });
