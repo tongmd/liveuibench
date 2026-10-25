@@ -19,6 +19,29 @@ export function nativeGuiSurface(operation:'snapshot'|'resolve',target?:string):
  return{fields,buttons,visibleText:(root as HTMLElement).innerText};
 }
 export async function readNativeGuiSurface(page:any){return page.mainFrame().isolatedRealm().evaluate(`(()=>{const __name=(fn)=>fn;return (${nativeGuiSurface.toString()})('snapshot');})()`);}
+/** Wait before arming the write gate. A visible element may still be moving in
+ * the product's opening sheet animation; coordinate clicks are unsafe then. */
+export async function waitForNativeGuiClickReady(page:any,step:NativeGuiStep,deadline:number){
+ if(step.kind!=='click'||!step.target)throw Error('Native GUI actionable wait requires a click target');
+ const realm=page.mainFrame().isolatedRealm();
+ const handle=await realm.evaluateHandle(`(()=>{const __name=(fn)=>fn;return (${nativeGuiSurface.toString()})('resolve',${JSON.stringify(step.target)});})()`);
+ try{
+  const element=handle.asElement();if(!element)throw Error('Native GUI target is not an element');
+  await element.scrollIntoView();
+  const ready=await realm.waitForFunction((e:Element)=>{
+   if(!e.isConnected)return false;
+   const r=e.getBoundingClientRect();const x=r.left+r.width/2,y=r.top+r.height/2;
+   const hit=document.elementFromPoint(x,y);if(!hit||!(hit===e||e.contains(hit)))return false;
+   for(let node:Element|null=e;node;node=node.parentElement)if(node.getAnimations().some(a=>a.playState==='running'||a.pending))return false;
+   const scope:any=globalThis;const prior=scope.__nativeGuiClickReady;
+   const rect=[r.x,r.y,r.width,r.height];const now=performance.now();
+   if(!prior||prior.element!==e||rect.some((v,i)=>Math.abs(v-prior.rect[i])>0.25)){scope.__nativeGuiClickReady={element:e,rect,since:now};return false;}
+   return now-prior.since>=100;
+  },{polling:'raf',timeout:Math.max(1,deadline-Date.now())},element);await ready.dispose();
+  // Re-resolve after waiting: a rerender or changed row cannot inherit this ticket.
+  const fresh=await realm.evaluateHandle(`(()=>{const __name=(fn)=>fn;return (${nativeGuiSurface.toString()})('resolve',${JSON.stringify(step.target)});})()`);await fresh.dispose();
+ }finally{await handle.dispose();}
+}
 export async function applyNativeGuiStep(page:any,step:NativeGuiStep){
  const realm=page.mainFrame().isolatedRealm();
  if(!step.target)throw Error('Native GUI step lacks target');

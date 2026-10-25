@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import puppeteer from 'puppeteer-core';
 import type {Transport} from './transport.js';
 import {nativeChromeExecutable,nativeFetchAcknowledgementBootstrap,waitForNativeFetchAcknowledgement} from './native-browser-support.js';
-import {readNativeGuiSurface,applyNativeGuiStep,type NativeGuiStep} from './native-interaction.js';
+import {readNativeGuiSurface,applyNativeGuiStep,waitForNativeGuiClickReady,type NativeGuiStep} from './native-interaction.js';
 import {executableActionByOrdinal} from './scorer.js';
 
 /** Uses the product's actual Native A2UI web renderer, not an alternate test
@@ -80,6 +80,7 @@ export class NativeAppBrowser {
    if(step.kind==='unsupported')throw Object.assign(Error('Unsupported Native GUI episode: '+(step.reason||'no supported visible operation')),{code:'native_gui_unsupported'});
    if(step.kind==='done')return{protocol:'native-visible-gui-v1',interactionStatus:'done',unresolved:false,rendererSha256:this.rendererSha,budget:{episodeMs:Math.min(this.timeoutMs,options.deadlineMs??this.timeoutMs),maxSteps:options.maxSteps,maxClicks},steps:observations,guiClicks,plannerExecutions,plannerRequests,plannerModelCalls,plannerModelCallsKnown:plannerModelCalls,unknownPlannerInvocations,plannerCallScope:'logical step inference invocations; provider retry attempts unknown',businessActionCalls:this.businessActionCalls-initialCalls,attemptedActionRequests:this.attemptedActionRequests-initialAttempts,actionResults,lastActionResult:actionResults.at(-1),actionResult:actionResults.at(-1),gui:await bounded(this.snapshotInteraction('native-interaction'))};
    pendingStep=step;pendingSnapshot=snapshot;const before=this.businessActionCalls;this.actionResult=undefined;this.actionError=undefined;
+   if(step.kind==='click')await bounded(waitForNativeGuiClickReady(this.page,step,deadline));
    const turn=step.kind==='click'?await this.page.evaluate(()=>(window as any).__liveuiBenchNativeFetch.begin()):undefined;
    if(step.kind==='click'){if(guiClicks>=maxClicks)throw Error('Native GUI click budget exhausted');guiClicks++;const button=snapshot.buttons.find((b:any)=>b.target===step.target);if(!button||button.disabled)throw Error('Native GUI click target is not a current enabled bound action');this.guiGate={actionId:String(button.actionId).replace(/^actions\./,''),used:false};}else this.guiGate=undefined;
    await bounded(applyNativeGuiStep(this.page,step));if(this.unresolved||this.actionError)throw this.actionError||Error('Unarmed Native GUI action rejected');
