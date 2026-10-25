@@ -74,3 +74,27 @@ test('selected button scopes required fields to its native form including extern
   assert.equal(entity.bridgeResults.length,1);assert.equal(entity.bridgeResults[0].id,'job-2');
  } finally {await browser.close();await fs.rm(out,{recursive:true,force:true});}
 });
+
+test('explicit agent.invoke binding locates the AI form behind ordinary forms without providing success evidence',async t=>{
+ let chrome:string|undefined;
+ for(const candidate of [process.env.CHROME_PATH,process.env.PUPPETEER_EXECUTABLE_PATH,'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome','/usr/bin/chromium','/usr/bin/chromium-browser','/usr/bin/google-chrome']) {if(!candidate)continue;try{await fs.access(candidate);chrome=candidate;break;}catch{}}
+ if(!chrome){t.skip('Chrome unavailable; explicit action binding is unexecuted');return;}
+ const out=await fs.mkdtemp(path.join(os.tmpdir(),'dsh-explicit-action-'));const requests:any[]=[];
+ const html=`<!doctype html><html><body><h1>Books</h1><form id="add"><label>Title<input id="title" required></label><button>Add book</button></form>
+ <form id="commands" data-liveui-action="agent.invoke"><label>Task command<input id="command" required></label><button id="run">Run command</button></form>
+ <script>document.getElementById('add').onsubmit=event=>{event.preventDefault();throw Error('Ordinary add form must not be submitted');};
+ document.getElementById('commands').onsubmit=async event=>{event.preventDefault();await liveuiagent.ai(document.getElementById('command').value,{title:document.getElementById('title').value});};</script></body></html>`;
+ const transport={async request(route:string,body?:any){if(route.endsWith('/action')){requests.push(body);return{id:'job-'+requests.length,status:'done',result:{ok:true}};}return{html,store:{}};}};
+ const browser=new CompleteAppBrowser(transport,'dsh_binding_fixture',out,chrome);
+ try {
+  await browser.open();
+  const first=await browser.submit('Find my books',1);
+  assert.equal(first.selection.button,'Run command');assert.deepEqual(first.selection.fields,['Task command']);
+  assert.equal(requests.length,1);assert.equal(requests[0].prompt,'Find my books');assert.equal(requests[0].context.title,'');
+  assert.equal(first.bridgeResults[0].evidence,undefined,'binding metadata must not manufacture host audit evidence');
+  await browser.frame!.evaluate(()=>{document.getElementById('commands')!.removeAttribute('data-liveui-action');document.getElementById('run')!.setAttribute('data-liveui-action','agent.invoke');});
+  await browser.submit('Use the explicit button',1);assert.equal(requests.length,2);assert.equal(requests[1].prompt,'Use the explicit button');
+  await browser.frame!.evaluate(()=>{document.querySelector('#add button')!.setAttribute('data-liveui-action','agent.invoke');});
+  await assert.rejects(browser.submit('Do not guess between bindings',1),/Ambiguous/);assert.equal(requests.length,2);
+ }finally{await browser.close();await fs.rm(out,{recursive:true,force:true});}
+});

@@ -12,11 +12,36 @@ export class CompleteAppBrowser extends RuntimeBrowser {
     })));
     return {...snapshot, fields:snapshot.fields.map(field => ({...field,...details.find(detail => detail.target === field.target)}))};
   }
+  private async actionButton(snapshot: Awaited<ReturnType<CompleteAppBrowser['snapshot']>>, ordinal: number) {
+    const buttons = snapshot.buttons.filter(button => !button.disabled);
+    const boundTarget = await this.frame!.evaluate(visibleTargets => {
+      const bindings = Array.from(document.querySelectorAll<HTMLElement>('[data-liveui-action="agent.invoke"]'));
+      if (!bindings.length) return null;
+      const visible = new Set(visibleTargets);
+      const candidates = new Set<string>();
+      for (const binding of bindings) {
+        const controls = binding instanceof HTMLFormElement ? Array.from(binding.elements) : [binding];
+        for (const control of controls) {
+          const target = control.getAttribute('data-liveui-eval-id');
+          const box = control.getBoundingClientRect();
+          const style = getComputedStyle(control);
+          if (!box.width || !box.height || style.visibility === 'hidden' || style.display === 'none' || (control as HTMLButtonElement).disabled) continue;
+          if (target && visible.has(target)) candidates.add(target);
+        }
+      }
+      if (candidates.size !== 1) throw Error(`Ambiguous or unavailable agent.invoke binding: ${candidates.size} visible actions`);
+      return [...candidates][0];
+    }, buttons.map(button => button.target));
+    if (!Number.isInteger(ordinal) || ordinal < 1 || (boundTarget !== null && ordinal !== 1)) throw Error(`No visible action ordinal ${ordinal}`);
+    const button = boundTarget === null ? buttons[ordinal - 1] : buttons.find(button => button.target === boundTarget);
+    if (!button) throw Error(`No visible action ordinal ${ordinal}`);
+    return {button, explicitlyBound:boundTarget !== null};
+  }
   override async submit(message: string, ordinal = 1) {
     this.bridgeResults = [];
     const before = await this.snapshot();
-    const selectedButton = before.buttons.filter(item => !item.disabled)[ordinal - 1];
-    if (!Number.isInteger(ordinal) || ordinal < 1 || !selectedButton) throw Error(`No visible action ordinal ${ordinal}`);
+    const selected = await this.actionButton(before, ordinal);
+    const selectedButton = selected.button;
     const formTargets = await this.frame!.evaluate(target => {
       const button = Array.from(document.querySelectorAll<HTMLElement>('[data-liveui-eval-id]')).find(node => node.getAttribute('data-liveui-eval-id') === target);
       if (!button) throw Error('Selected action disappeared before form mapping');
@@ -28,8 +53,9 @@ export class CompleteAppBrowser extends RuntimeBrowser {
     const plan = planFormSubmission(fields, message);
     // Validate the whole plan before touching controls; ambiguous input is a failure.
     for (const step of plan) await this.perform(step);
-    const button = (await this.snapshot()).buttons.filter(item => !item.disabled)[ordinal - 1];
-    if (!Number.isInteger(ordinal) || ordinal < 1 || !button) throw Error(`No visible action ordinal ${ordinal}`);
+    const ready = await this.actionButton(await this.snapshot(), ordinal);
+    if (ready.explicitlyBound !== selected.explicitlyBound) throw Error('Action binding changed during form entry');
+    const button = ready.button;
     await this.perform({kind:'click',target:button.target});
     // Allow the app's AI continuation to enqueue its storage write before capture.
     await this.settle();
