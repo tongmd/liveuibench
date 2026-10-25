@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';import {validateExpanded,runAnchored,hash,episodeIds} from '../scripts/longitudinal/anchored.js';
 const base=JSON.parse(readFileSync('benchmarks/liveuibench.json','utf8')),expanded=JSON.parse(readFileSync('benchmarks/liveuibench-expanded.json','utf8'));
-test('every source case, group and original assertion is retained exactly',()=>{const v=validateExpanded(expanded,base);assert.equal(v.sourceCases,319);assert.equal(v.sourceApplicationGroups,336);assert.equal(v.extensions,672)});
+test('every source case, group and original assertion is retained exactly',()=>{const v=validateExpanded(expanded,base);assert.equal(v.sourceCases,base.cases.length);assert.equal(v.sourceApplicationGroups,base.cases.reduce((n:number,c:any)=>n+c.intentions.length,0));assert.equal(v.extensions,v.sourceApplicationGroups*2)});
 test('editing an original gold cannot pass the expanded-source audit',()=>{const bad=structuredClone(expanded);bad.cases[0].episodes[0].assertions[0].value=false;assert.throws(()=>validateExpanded(bad,base),/Original case changed/)});
 test('shared-world mappings are covered independently',()=>{for(const c of expanded.cases.filter((c:any)=>c.episodeGroups)){assert.equal(c.longitudinalExtensions.length,c.intentions.length*2)}});
 test('missing baseline driver is unsupported, with full extension denominator',async()=>{const e=expanded.cases[0].longitudinalExtensions[0];const r=await runAnchored(base.cases[0],e,{} as any);assert.equal(r.status,'unsupported');assert.equal(r.executedSteps,0);assert(r.plannedSteps>0)});

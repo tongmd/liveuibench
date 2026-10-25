@@ -1,16 +1,16 @@
 {
   "schemaVersion": "liveuibench.source-expansion-provenance.v1",
   "sourceFile": "benchmarks/liveuibench.json",
-  "sourceFileSha256": "2ccb27174d314af4e5353d53a24f0d9b1637d6437e154924338b26f946c502b6",
-  "expandedFileSha256": "47e9048a63b79799f85a0d45ccad448256fd4426fe8a0bcaaea2a8bf97d69493",
+  "sourceFileSha256": "26fc400c176c7eb02ff43c0f5d0b60cc091b1f3f34f499dd7aae624d82f00c16",
+  "expandedFileSha256": "18ef8716dc87065a7c68af467f9dbf42f2b05f8a81fdb5e4b0749b13f4fcd42a",
   "counts": {
-    "sourceCases": 319,
-    "sourceGroups": 336,
-    "extensions": 672,
-    "sessions": 4032,
-    "addedSteps": 5040,
-    "addedAssertions": 23184,
-    "inheritedEpisodes": 1315
+    "sourceCases": 500,
+    "sourceGroups": 517,
+    "extensions": 1034,
+    "sessions": 6204,
+    "addedSteps": 7755,
+    "addedAssertions": 35673,
+    "inheritedEpisodes": 2039
   },
   "sourceCases": [
     {
@@ -4210,11 +4210,2364 @@
         "todoist-moving-quote-pipeline__g0__memory",
         "todoist-moving-quote-pipeline__g0__ui"
       ]
+    },
+    {
+      "caseId": "authored-500-note-field-log",
+      "split": "dev",
+      "caseSha256": "08d9cb636dd158b72339ee996b5941e2acab06b52d6bc1644a282b94b9acc50b",
+      "intentionSha256s": [
+        "0e662d529958d072b1c36c910fc73afa0a93a0a10f1238cd49068181b8f247d9"
+      ],
+      "episodeSha256": "9052edce33e0684e680bc656e9ffcabbb3d3894ddf9c335b56562b2224c84c5d",
+      "extensionIds": [
+        "authored-500-note-field-log__g0__memory",
+        "authored-500-note-field-log__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-reading-questions",
+      "split": "dev",
+      "caseSha256": "6741c75e608c8278635dbe47babdcb748cb908c732d15ba90bae144dec3c103f",
+      "intentionSha256s": [
+        "fce92a8dcf156b642f82c77fd2e4551627592fc87946bcf1c0abc67530723ecf"
+      ],
+      "episodeSha256": "142d386d135e69a7571fe8279a9fff84bba03221718cea4486c7055a17ddc49d",
+      "extensionIds": [
+        "authored-500-note-reading-questions__g0__memory",
+        "authored-500-note-reading-questions__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-workshop-retro",
+      "split": "dev",
+      "caseSha256": "c073278fe8d1df947896cfba82c5c7282de3486f9540fbf5d251e017b796c49c",
+      "intentionSha256s": [
+        "253739dfa97e079274741e42bf1704ab25ab902531d59bd47c2d34367007c19c"
+      ],
+      "episodeSha256": "b38dd2f1938457ce267dc72c4d75c4fc82e5a28045dfe0788ae83aa3604e5e2c",
+      "extensionIds": [
+        "authored-500-note-workshop-retro__g0__memory",
+        "authored-500-note-workshop-retro__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-recipe-correction",
+      "split": "dev",
+      "caseSha256": "97efaeffb6a0f0f8eead525583fa2b95fabec6b2ca836a94234eb48a50e4abbf",
+      "intentionSha256s": [
+        "fd87ae5e4a3b7a34e8145ced529205f4a7108cc0866e5460d64601be13652227"
+      ],
+      "episodeSha256": "c384f2b8905534ae981628593643ce23aa0fb0d1bc64a8c2203cf02e152d8971",
+      "extensionIds": [
+        "authored-500-note-recipe-correction__g0__memory",
+        "authored-500-note-recipe-correction__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-packing-check",
+      "split": "dev",
+      "caseSha256": "4771825f8804953e486b7f29b2698db75fc6c787c02867f25000c50c36c9f398",
+      "intentionSha256s": [
+        "5e03908af3b1fffb7edcd6b458fc787cdeefe482d4de85534b28c81a49f0a8c1"
+      ],
+      "episodeSha256": "7ba59da0bc976683691f70cd05998c19b2edd1dc59ef7b5ce14900528a4b8a4c",
+      "extensionIds": [
+        "authored-500-note-packing-check__g0__memory",
+        "authored-500-note-packing-check__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-meeting-decisions",
+      "split": "dev",
+      "caseSha256": "b97ada6eec0205ab414aa0b739f157646bee2d197e4707cadfd18726537bd702",
+      "intentionSha256s": [
+        "7963406389e4bf3529e8e05fad5039c35868b672f4c0c69344a9f4825e7e7e95"
+      ],
+      "episodeSha256": "a96af043de59ef4e59fb1c5597b76e32581761bd684dc07679c5ed00bd8ecd85",
+      "extensionIds": [
+        "authored-500-note-meeting-decisions__g0__memory",
+        "authored-500-note-meeting-decisions__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-garden-measure",
+      "split": "dev",
+      "caseSha256": "00c9ec3e9f005abd88d5d4132f3f27204185aa6a35879c18553f92c7a137b9d2",
+      "intentionSha256s": [
+        "3f66be6473508e9a79ff88af204bf7e7045597b95267fdaf7b35276bfbe6fe2d"
+      ],
+      "episodeSha256": "2b510ca2c295a3c8150e05e2897981b70f91ea71b0196dba46326f85038d8283",
+      "extensionIds": [
+        "authored-500-note-garden-measure__g0__memory",
+        "authored-500-note-garden-measure__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-study-glossary",
+      "split": "dev",
+      "caseSha256": "20dacb6607198e6d828171cffcd949d0a42187753a50dba2ae9b032e02355d37",
+      "intentionSha256s": [
+        "b997f1d3fd3c32db5cafd81eb1d8b4132612b1fe4d543522fd6c354cb7456dd7"
+      ],
+      "episodeSha256": "8b3dd2f5459fde395b7d3c5f44d8ea3869417816f6d94f911cda69ca432f2f8f",
+      "extensionIds": [
+        "authored-500-note-study-glossary__g0__memory",
+        "authored-500-note-study-glossary__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-repair-manual",
+      "split": "dev",
+      "caseSha256": "39ecb8edae62005d6c11482cc34520f48f7fdf56476ad4584b5a103f80899924",
+      "intentionSha256s": [
+        "b8f45b66c08c1178d1be107d05c948579ac3d357ec6abb6c0519c44082be82c4"
+      ],
+      "episodeSha256": "e6dfc83a75a566914f4f9b31818f4edb99fc312b148a18b685b81eb71dfd686e",
+      "extensionIds": [
+        "authored-500-note-repair-manual__g0__memory",
+        "authored-500-note-repair-manual__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-interview-order",
+      "split": "dev",
+      "caseSha256": "fcaa8c7e6e450a8e33934cda44b4f2d4d080c66e1c917117717cd2bc6989151c",
+      "intentionSha256s": [
+        "ba6274a04a35f9e41171f9df2f5e76ff3fff38126a6dd34e9a0a3b5511505c98"
+      ],
+      "episodeSha256": "4c362545ba4903817edb89d6d42ce0b221c2c1e2e97aa974456312187f682299",
+      "extensionIds": [
+        "authored-500-note-interview-order__g0__memory",
+        "authored-500-note-interview-order__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-book-label",
+      "split": "dev",
+      "caseSha256": "2bc536bac0d1ce6f7e8555d7041097e71710d28dc64fc3b58ac1da473fabbca3",
+      "intentionSha256s": [
+        "5fa85a81773a44ddbe71d11c2f7ff1a106e10b10b0f67fc0a6b7934d46df37b1"
+      ],
+      "episodeSha256": "c6c84ccfde3c86fe1f45b5e628e45c33e9aad58b985d4adaa34d5bab2461fe6e",
+      "extensionIds": [
+        "authored-500-note-book-label__g0__memory",
+        "authored-500-note-book-label__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-noise-journal",
+      "split": "dev",
+      "caseSha256": "62de94f2911ff1b4c59e80d01063b8b12acc33d417e577750bddee6488423f72",
+      "intentionSha256s": [
+        "2f946dfd75013cf9d4903d27b613c34fc49c504bd1e146b9b14779fa35a1e616"
+      ],
+      "episodeSha256": "b954d14e98f0baf18f86ca446c6649235392024a4c5c7c2da9870956cdf2c11e",
+      "extensionIds": [
+        "authored-500-note-noise-journal__g0__memory",
+        "authored-500-note-noise-journal__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-language-edit",
+      "split": "dev",
+      "caseSha256": "a3ce7dc792f738e82de515c6cd66a7882a71e1fa6c0ab2a2355a0156f9f1c4b9",
+      "intentionSha256s": [
+        "5dbfba2b5dcb3e168a85d7b8f23183db8660dae805d5db7f7005b19b2f1f5f09"
+      ],
+      "episodeSha256": "5e7fff4884d88868846047d1429927fcb76ab0039f4c9e68c8c5165c7c979b19",
+      "extensionIds": [
+        "authored-500-note-language-edit__g0__memory",
+        "authored-500-note-language-edit__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-lab-checklist",
+      "split": "dev",
+      "caseSha256": "7c2f4c79a91620e0523c7cc21c4c4d32dcfd039c15af70d95ea3bed729b30688",
+      "intentionSha256s": [
+        "f9381d42cb76ec2f3a4254ae03e55538bfa64d89b993e8b9feed04d497f51769"
+      ],
+      "episodeSha256": "afaefb6dec54e819adfe11eac8cec7dad5160504cfabaf6982282056ca5a9158",
+      "extensionIds": [
+        "authored-500-note-lab-checklist__g0__memory",
+        "authored-500-note-lab-checklist__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-trip-budget",
+      "split": "dev",
+      "caseSha256": "11cd8862cc2851114a39c9e76d2fe4f363f5da4f60cb610938895b3b253ff606",
+      "intentionSha256s": [
+        "a1cffa3186f0c5867f1ded52b3b09030fcb8df228a5488ae3ec8ddb9c34a32d3"
+      ],
+      "episodeSha256": "28954af55ec92c5cc71f8ab2d3690420bcda575f00bc75963256e89d6d5fb499",
+      "extensionIds": [
+        "authored-500-note-trip-budget__g0__memory",
+        "authored-500-note-trip-budget__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-lesson-outline",
+      "split": "dev",
+      "caseSha256": "f2f607b6fb3c8b7516d46f35285e99a855b1a99242faaf3d5b3a3409aebc3332",
+      "intentionSha256s": [
+        "6324249e3e9c5ac5996edb657b6f9f100a64c22769f18cc1758dd28bfcb3d49b"
+      ],
+      "episodeSha256": "db1914a853e973b43256f51aed5968c20e6b63d0ec3aac4429a0728da44b538a",
+      "extensionIds": [
+        "authored-500-note-lesson-outline__g0__memory",
+        "authored-500-note-lesson-outline__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-sourdough-log",
+      "split": "dev",
+      "caseSha256": "e394f416e5d2f8761e2e571d37b3cd155600a17c69c802569bbea9d50b6a0752",
+      "intentionSha256s": [
+        "9ae1ad3701d4951d3df0d6e2d9ad70c570f2506d2c96482108f8211aa1935135"
+      ],
+      "episodeSha256": "049c112f8394d7ba0a84f704cd405fc640ea23ca71b815626b4c0a5104a7a1b1",
+      "extensionIds": [
+        "authored-500-note-sourdough-log__g0__memory",
+        "authored-500-note-sourdough-log__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-poem-draft",
+      "split": "dev",
+      "caseSha256": "553d60b01c51956d16b9321a8612b963a9ee9495d749295ff9e816bd839a63d3",
+      "intentionSha256s": [
+        "967dd7a06695546e92311d7d8561207bd7475ce7c4e3726e7e7260350d269dd0"
+      ],
+      "episodeSha256": "ffeb9820df4b3242960ff21b14ee157cf054f236213ef249143a14555b46db16",
+      "extensionIds": [
+        "authored-500-note-poem-draft__g0__memory",
+        "authored-500-note-poem-draft__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-group-agreement",
+      "split": "dev",
+      "caseSha256": "defb8c34f82f7644ee46c941e155118f05b2bed05c2509b09cb6475a0a29c742",
+      "intentionSha256s": [
+        "daf808b4d87c0c9741a8c86142b405f5c262186d36a78f4d5732f7d0500683df"
+      ],
+      "episodeSha256": "3ceeea3b3b4f986ad955c54c3ae95d53479c9072e3fb4d91d25e10cfd7bc9078",
+      "extensionIds": [
+        "authored-500-note-group-agreement__g0__memory",
+        "authored-500-note-group-agreement__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-map-notes",
+      "split": "dev",
+      "caseSha256": "afee55e08913ccd2cfdf0ac77579f734b73ceb6f2d0cc50bb400ca613c4d8d52",
+      "intentionSha256s": [
+        "dee51bbc0e3559835cf70afcc6ef450f6407b76ee72c58777d2b0ce9a609e249"
+      ],
+      "episodeSha256": "5eeb0d8d6344eace7275b7c24675132d52e237d45b4b4a85519c99b752f04b74",
+      "extensionIds": [
+        "authored-500-note-map-notes__g0__memory",
+        "authored-500-note-map-notes__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-exhibition-title",
+      "split": "dev",
+      "caseSha256": "2256d6ee77ee43a4a88de476665d7c6ac80adc0bc156c574360ed089686e9b43",
+      "intentionSha256s": [
+        "5ee22862f800226757d3eb59b0ac6e25a4b2f10e7ab55f0d9fdc5a5f8661404f"
+      ],
+      "episodeSha256": "88454e671e129f2a0cc123f8ee781ae5cd4f107259c39efd0a118a79fc4f0d78",
+      "extensionIds": [
+        "authored-500-note-exhibition-title__g0__memory",
+        "authored-500-note-exhibition-title__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-equipment-check",
+      "split": "dev",
+      "caseSha256": "0affeda35d60b92058a9c107b1ff01f483464a5f3080102c90c760bac48e1113",
+      "intentionSha256s": [
+        "3ae9c1f87c8ebf23f32ee8ebe3c9612dd04273cb18e862d06ad71437a3f24b6a"
+      ],
+      "episodeSha256": "be51f2310ec15d9ec2fea957cfc310f85b6d388bddc45ab5f841e62b417a2f1d",
+      "extensionIds": [
+        "authored-500-note-equipment-check__g0__memory",
+        "authored-500-note-equipment-check__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-practice-sequence",
+      "split": "dev",
+      "caseSha256": "92e303f47d4559ae5dcf923cfe2ef34cc6024b984f209a57746602ef4f170ca1",
+      "intentionSha256s": [
+        "c7c353d35c200adbe476bcfe0c577edda4d0f8af4552c2b9ddb2b938a452e1a4"
+      ],
+      "episodeSha256": "419825bba6e63ab2e24ccf1a9ff9320979088fcb30bb14592418d5195484b9fd",
+      "extensionIds": [
+        "authored-500-note-practice-sequence__g0__memory",
+        "authored-500-note-practice-sequence__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-project-recap",
+      "split": "dev",
+      "caseSha256": "e97089e48ab37d6ce49dcfc8fec1e8fa652f43b9d06c8f23dfbfee8d231c9d24",
+      "intentionSha256s": [
+        "1fbfa55ae7a0c39d80602621caa067f52946475580b88a98d024a1bba2a03f78"
+      ],
+      "episodeSha256": "bca103fdafb8ad800d4b72a0a64059f64d140d7912848e25c83f4ce229aa2bcb",
+      "extensionIds": [
+        "authored-500-note-project-recap__g0__memory",
+        "authored-500-note-project-recap__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-archive-index",
+      "split": "dev",
+      "caseSha256": "cecd1253ae2d26a03f8bddab3eee199c581610c9e762179e1413bc7942fc6bbd",
+      "intentionSha256s": [
+        "28ced7c7718fe0d57de0d0b6d674da44c5c9577e4888d390710bf8d0ebd35506"
+      ],
+      "episodeSha256": "24f2084d8cc64e48a4a141170461a859812061432ed50895c7b1b1aa5bf1ca12",
+      "extensionIds": [
+        "authored-500-note-archive-index__g0__memory",
+        "authored-500-note-archive-index__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-tea-diary",
+      "split": "dev",
+      "caseSha256": "b412d3d94c177e086c6595e49f53618ef5972b032af0c8202f27878499d5e87c",
+      "intentionSha256s": [
+        "c9b34eddf7b03daf70cf17cb2eb39206773672a03de8f302719237f4edfded47"
+      ],
+      "episodeSha256": "4c51cc908109e3adb6ddbe8394b7dd3983f52c22a1c91d34e7ce149c76314497",
+      "extensionIds": [
+        "authored-500-note-tea-diary__g0__memory",
+        "authored-500-note-tea-diary__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-running-plan",
+      "split": "dev",
+      "caseSha256": "7bf68f531b9452864039bd7f8f3c072a7e3c97a9678db2ec64d7c2a3c6c45dfc",
+      "intentionSha256s": [
+        "c339f016cf008ee2bc21d6b22463f5a240ad2fb79dea889fdbe75057e6d5795b"
+      ],
+      "episodeSha256": "a0387ebf95ee2bbd862772b4f1286d06be8809ba2f8820a103b01e17592309e5",
+      "extensionIds": [
+        "authored-500-note-running-plan__g0__memory",
+        "authored-500-note-running-plan__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-board-rules",
+      "split": "dev",
+      "caseSha256": "64b8e78fe3e0523155e95f4d6142b479e81e8d7ba8048b4cd381fcec3d6105cb",
+      "intentionSha256s": [
+        "59380c33ede32002bb9c09195521bd18788cbb77e656957376df0761e4449c9c"
+      ],
+      "episodeSha256": "5dbaea3d5dfea643590e6ebefa35000552ea564ef006a734ce955816d626fb86",
+      "extensionIds": [
+        "authored-500-note-board-rules__g0__memory",
+        "authored-500-note-board-rules__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-checkin-heading",
+      "split": "dev",
+      "caseSha256": "ebf40e3da34345bac7aca709c70b07a1c276fbc76d00d85728aa2fb6436c7270",
+      "intentionSha256s": [
+        "84b19150750aad571fdd2769134645ad80e3a9789008752b5b38743620535345"
+      ],
+      "episodeSha256": "cc6d7b734f58f8939314359707e7880074cb5d91478bb359ccdd7d09576fed9a",
+      "extensionIds": [
+        "authored-500-note-checkin-heading__g0__memory",
+        "authored-500-note-checkin-heading__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-microphone-test",
+      "split": "dev",
+      "caseSha256": "9548eba1b62eae5bed432b5d66a38ff1936848bf2e3d587f0d04ff8ddfda988e",
+      "intentionSha256s": [
+        "b92e00af25f0ed611d8f21c2ea31ff23b6bf2aa6fca8bbdc279aa77237251aa4"
+      ],
+      "episodeSha256": "998b3b733b590b600806c3f5bd1f236b8c7ccc3716e486e8ffcba116193b24fe",
+      "extensionIds": [
+        "authored-500-note-microphone-test__g0__memory",
+        "authored-500-note-microphone-test__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-note-museum-list",
+      "split": "dev",
+      "caseSha256": "716479dc07ea73fc0f8d0a706d575b29fa16ef89ba08d404651b834385c58d04",
+      "intentionSha256s": [
+        "86a16e970a8a10774a1d8b51b87019a4cf7aedea2cf6ece2e1436d4246c44475"
+      ],
+      "episodeSha256": "4792a6c4197c9a7f1433d8ed582d90c0632f4d93e12a2f2e8d798ecabb204742",
+      "extensionIds": [
+        "authored-500-note-museum-list__g0__memory",
+        "authored-500-note-museum-list__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-weather-log",
+      "split": "dev",
+      "caseSha256": "34899e94ad7b34352ac4ec46ba2cb112732ae2cc47eb1dff42ffdc68ae81e00e",
+      "intentionSha256s": [
+        "bd57a05147f532be4138346b157ca97e22fd60e6f87a39d7b552912c274e2221"
+      ],
+      "episodeSha256": "47257f1eadc9a6929edc0bfed996e0af659b0dcef82605954551f772d8b7ec04",
+      "extensionIds": [
+        "authored-500-file-weather-log__g0__memory",
+        "authored-500-file-weather-log__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-workshop-agenda",
+      "split": "dev",
+      "caseSha256": "391a2c1411d28b29cfd2c0aea8cf4f55328a9b96f46bc91576bf9f1a9c67adc9",
+      "intentionSha256s": [
+        "4b5bc71e83213c8794627a357468421ecd88edac11ef94a7166942a86b00a8bd"
+      ],
+      "episodeSha256": "0bf386e8d622858cfc3887bc2661739fb29635381742f2f21f810bb5f2a55757",
+      "extensionIds": [
+        "authored-500-file-workshop-agenda__g0__memory",
+        "authored-500-file-workshop-agenda__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-photo-select",
+      "split": "dev",
+      "caseSha256": "7b6c78f1da476625a6020892d275cea29022c654c51ff0c8454e00e4029447fc",
+      "intentionSha256s": [
+        "37555ef8ed162852ada0fe8de21f624c922403ded42e8ce22072867f1a59a95d"
+      ],
+      "episodeSha256": "cad4c05c85dba1f23aa81e6694ce383fb254ef9c7ea0f1f41473e552e24eda6a",
+      "extensionIds": [
+        "authored-500-file-photo-select__g0__memory",
+        "authored-500-file-photo-select__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-sound-takes",
+      "split": "dev",
+      "caseSha256": "7269c4fbfc900ba0de4338e83e29e82b0ecd4408e0a117e4fade66928a32ec68",
+      "intentionSha256s": [
+        "33ab0dd359e18a06651df5c9551db5db5e6d62000b934d9d438f8e2e9a1bfafa"
+      ],
+      "episodeSha256": "ee4917dce639578f3138807ab131202eebe0b5298cac2e7ceada6c8c1a4f9321",
+      "extensionIds": [
+        "authored-500-file-sound-takes__g0__memory",
+        "authored-500-file-sound-takes__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-caption-fix",
+      "split": "dev",
+      "caseSha256": "6b1a4a7c21462b991a30976d5112cb7d3f66a4bb43f42fb29a20dd146a737e5f",
+      "intentionSha256s": [
+        "7065c45fd6493838b29dc0c213320b6e2656d97afd19173f48b064caf8ba320c"
+      ],
+      "episodeSha256": "d8fa582485c9cebd6c03aaf2cd4ba7c659395be0f44d0ea2f031ef8293ada27b",
+      "extensionIds": [
+        "authored-500-file-caption-fix__g0__memory",
+        "authored-500-file-caption-fix__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-trip-checklist",
+      "split": "dev",
+      "caseSha256": "81210bdbb27cb847a2535236daef647dae05a24dd754a28b48f17daba1a9c069",
+      "intentionSha256s": [
+        "d95345279444a69b98efdf3ac9241b3e22f7681e04328be88465be1ccb75f5a0"
+      ],
+      "episodeSha256": "7435af4faf455f3f9f6383ba672fc24d4b5e3ff437798303618e52ee9355239b",
+      "extensionIds": [
+        "authored-500-file-trip-checklist__g0__memory",
+        "authored-500-file-trip-checklist__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-lesson-sequence",
+      "split": "dev",
+      "caseSha256": "7aea2123aee9514f1ef612040c0762e2c01a1abd27972e538da8e87fc6cca6e6",
+      "intentionSha256s": [
+        "1617c86d6d91091b64ca625c332bbf84fdab2b65b8548cdafd2fee3e6bac3fed"
+      ],
+      "episodeSha256": "3ba335f2afc065b14bbf6f2b5b737e917d3d48d88251ee9a89b3ff0e9262f43e",
+      "extensionIds": [
+        "authored-500-file-lesson-sequence__g0__memory",
+        "authored-500-file-lesson-sequence__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-project-layout",
+      "split": "dev",
+      "caseSha256": "32b530ce00df615cfc37f288662ed4168673885448b1d9d9d39a2ff046e66f47",
+      "intentionSha256s": [
+        "fed9c18324bd61b84af7d7ffeefe74c98afbf7f47cfb4d78651b3f41f4849f7a"
+      ],
+      "episodeSha256": "cfe2f7c05903b18d3c463c089abdb018ac7d328a8d8bc738d51f94aaa72b755a",
+      "extensionIds": [
+        "authored-500-file-project-layout__g0__memory",
+        "authored-500-file-project-layout__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-recipe-card",
+      "split": "dev",
+      "caseSha256": "69ab1765199936c174dab7d5a395eebd4cce20a0b8e9980d3aada44545e33aa9",
+      "intentionSha256s": [
+        "0d9ddaa00321c83d51b9fb71e4a2768c67d369a21a7d56d6a88ec42eabda00dd"
+      ],
+      "episodeSha256": "2c5dd6d49cb18fc2881c5c45a35048d3b073a4a0b5142bb25f00a5c192eb91e2",
+      "extensionIds": [
+        "authored-500-file-recipe-card__g0__memory",
+        "authored-500-file-recipe-card__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-rehearsal-time",
+      "split": "dev",
+      "caseSha256": "47cabee4fe895d71ab556f6f8fb96e7bec630b94930c1c13c65acfbe62f6982a",
+      "intentionSha256s": [
+        "42376f5f56571b4b2fd330a3c5ac907cb548afa1b99267c7866fc676a3cccfe6"
+      ],
+      "episodeSha256": "bf51aaedd45053b529a3c7cec48fb134de7cc3bf58ed6d260f1a2abb301ce141",
+      "extensionIds": [
+        "authored-500-file-rehearsal-time__g0__memory",
+        "authored-500-file-rehearsal-time__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-field-copy",
+      "split": "dev",
+      "caseSha256": "647bd2324acff00cf84057c0360c4041175805f49d4de6047ced1202048f803a",
+      "intentionSha256s": [
+        "a3bb585896dd75dff16fee5077a245e2d56f407e8ee2afc38d47281c623ab961"
+      ],
+      "episodeSha256": "f5810815f303dab97efa361bc15d09aa5368bab3b8e4daddb782eb622dd7afb9",
+      "extensionIds": [
+        "authored-500-file-field-copy__g0__memory",
+        "authored-500-file-field-copy__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-draft-handoff",
+      "split": "dev",
+      "caseSha256": "2429a1d39ff2b48557ba1440eb66c47bf3aa9b7f2f736d2bc0bb01e0d3ea7ea7",
+      "intentionSha256s": [
+        "bacd739fcf19d79437c8bb38093cf8c838ab38058a6204355e6f70935e9378d4"
+      ],
+      "episodeSha256": "b49830b2247d693f70ee4a6e6e1a83584c8f7f4828823d43564c72b13c3887fe",
+      "extensionIds": [
+        "authored-500-file-draft-handoff__g0__memory",
+        "authored-500-file-draft-handoff__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-watercolor-notes",
+      "split": "dev",
+      "caseSha256": "a10082e9390ae0def3442f9ceddd9d17e27cd2d430131fd002fc8b096cd4b024",
+      "intentionSha256s": [
+        "7f81f495aadf2b3bfd4e3aee66a6f2d54a04ff79d9fc2eefa4ee07f824bf8474"
+      ],
+      "episodeSha256": "4efe9dfbc93a318d0e8949b088f310646c21e26811e2b9a3548f3791fcb217f2",
+      "extensionIds": [
+        "authored-500-file-watercolor-notes__g0__memory",
+        "authored-500-file-watercolor-notes__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-gear-status",
+      "split": "dev",
+      "caseSha256": "763863fce1ab3729dc4d29c57877101b7c31077e9792eb6cd7a515a220639190",
+      "intentionSha256s": [
+        "c3b04c08fac28036a4ef1700df4b0cd497a1ee72bbe944337db631f993d79dbf"
+      ],
+      "episodeSha256": "703db2b6b744f6f4052bdc3d72043b78efb1eb23e0f96e34370e62dce0a56153",
+      "extensionIds": [
+        "authored-500-file-gear-status__g0__memory",
+        "authored-500-file-gear-status__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-speaker-order",
+      "split": "dev",
+      "caseSha256": "04b1f604d3b12e50252b2726d4c1fa829e2563152a104d6a1616ec0f3509b867",
+      "intentionSha256s": [
+        "61c3fbeef89b2cd23d04bd069602d7c771979ae3dfcd1b6b8a2dd16350f68caf"
+      ],
+      "episodeSha256": "216f6c9e2f957234598e6a96114bb5422e1e49d30143cfb8746a6eefc547b2bd",
+      "extensionIds": [
+        "authored-500-file-speaker-order__g0__memory",
+        "authored-500-file-speaker-order__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-instrument-chart",
+      "split": "dev",
+      "caseSha256": "a98bc3d3f44e7d7423aab3f0667e6888186697c60b5d81e73667b169998bd171",
+      "intentionSha256s": [
+        "adffe71622c9e25862e9a08eb2ab159276cd6f081da6075f1598e4764742c383"
+      ],
+      "episodeSha256": "c5dfd2298daf0ab8b5b516d48e8f09eaba0f9e8290387551689cb7399000d13a",
+      "extensionIds": [
+        "authored-500-file-instrument-chart__g0__memory",
+        "authored-500-file-instrument-chart__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-train-plan",
+      "split": "dev",
+      "caseSha256": "49a5bee3551d308c69e42b326d86f2f9ba18c5b05ff91c8416f0ea7f9d307806",
+      "intentionSha256s": [
+        "1902b0e1722aff62f40fe86c3edceffd2f3d78ced772c66f8f54b39a144dc46c"
+      ],
+      "episodeSha256": "1bd4bcabc34ea46fd78745db884e7c45ffba7ab57c2794d93d947dc0372f070e",
+      "extensionIds": [
+        "authored-500-file-train-plan__g0__memory",
+        "authored-500-file-train-plan__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-garden-copy",
+      "split": "dev",
+      "caseSha256": "2fb7f1e76421ade07d399744cac66f800c7f537aea7262bc35709ab5197721ca",
+      "intentionSha256s": [
+        "27cc37b05a6d37817959a34469539f27a674708976943ff401eddf317bc482e8"
+      ],
+      "episodeSha256": "ca1597a42e2f29fdbbb99f64160b5727fdf69450805715e56bb5a46cbefeaaf4",
+      "extensionIds": [
+        "authored-500-file-garden-copy__g0__memory",
+        "authored-500-file-garden-copy__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-ceramic-move",
+      "split": "dev",
+      "caseSha256": "2c4873d289f321e2411a8158f9cde2d54b09c31194a5aa5236070b2c9f1df003",
+      "intentionSha256s": [
+        "757e1f566ed3f9b05252b771f6b15a8cbb560cca3cb72f0636e08a524a2c668c"
+      ],
+      "episodeSha256": "0af98ed1a0e599dc4fa100768dfee620c0cd4f4d0ddf6f05b0eca5811b1541b9",
+      "extensionIds": [
+        "authored-500-file-ceramic-move__g0__memory",
+        "authored-500-file-ceramic-move__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-bird-walk",
+      "split": "dev",
+      "caseSha256": "d80a1aa6df6fbbf73f40ef13891ec5631c25bf6cbd8533cf4b8a1362d67a60d5",
+      "intentionSha256s": [
+        "a0ebde8f0462581c3ba96c9c38e59d34c594936353a2fee21ce48d53a5033482"
+      ],
+      "episodeSha256": "c93e4a8dba7360483cab1c98396755a304f88dfe1947e41e35a396ac77c708e0",
+      "extensionIds": [
+        "authored-500-file-bird-walk__g0__memory",
+        "authored-500-file-bird-walk__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-library-list",
+      "split": "dev",
+      "caseSha256": "1b6b2a890e338a20bbb17f6892639c21f1f6cdacc0c663ae53c3baf990e509fe",
+      "intentionSha256s": [
+        "b2cb3b896706b16463f64f957a48c72e870f07bf525bf70dbb7c87e1f0ac6d39"
+      ],
+      "episodeSha256": "471f016805e95c3b9fc812d36c3d7ce49e267979bf536cdf1b772ddd7de53729",
+      "extensionIds": [
+        "authored-500-file-library-list__g0__memory",
+        "authored-500-file-library-list__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-editing-pass",
+      "split": "dev",
+      "caseSha256": "029dd7fe57c66402e3bd88387e60d9278b03a28c637a39a52d0e3cef781f1178",
+      "intentionSha256s": [
+        "0a48299e9e267f659e9eb6fd00d43a5a330053d0b504f4d7e9a7c9b9e480f30b"
+      ],
+      "episodeSha256": "71027f981ad6563dffabf867009a71d339749b6a551535a7865a34ca493f56a3",
+      "extensionIds": [
+        "authored-500-file-editing-pass__g0__memory",
+        "authored-500-file-editing-pass__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-film-project",
+      "split": "dev",
+      "caseSha256": "998a0c01399bd1ef8abb086e7639118e2e4372caca15a4878aca52a15bd81896",
+      "intentionSha256s": [
+        "9bf0abdaf47baad6e37b7d2351dafdc42e9c008913bb7e3427e908aa7e705edc"
+      ],
+      "episodeSha256": "25319e224d5a72fba7ac9f39861dd00756186d5b2cc2667ffd61326796dd42e2",
+      "extensionIds": [
+        "authored-500-file-film-project__g0__memory",
+        "authored-500-file-film-project__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-lamp-setting",
+      "split": "dev",
+      "caseSha256": "278e7752ce05111066a53c087b3fe5ec608fd329ee6488a81adf67f4e4daeba6",
+      "intentionSha256s": [
+        "4208c6dfe0694bd7f98c26654f265a20e6fa1633cb9751df0241cff11ef61d4f"
+      ],
+      "episodeSha256": "826da08a75b4c3ea20861a4db54fe12be28e4cf2e5226d4f95c146be3f16ed1a",
+      "extensionIds": [
+        "authored-500-file-lamp-setting__g0__memory",
+        "authored-500-file-lamp-setting__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-weaving-copy",
+      "split": "dev",
+      "caseSha256": "6d71f603a6d1161c09dc103fb9d051eda892be686d25230503d980537b665eb1",
+      "intentionSha256s": [
+        "8241c5d478870c61eb5db3ab9c04b9d2f138e713331555836db4b654650598de"
+      ],
+      "episodeSha256": "476032bcc08953a00942095d5029a1ea5fdd8e24bde5b2d47fbbb8e2feaa501a",
+      "extensionIds": [
+        "authored-500-file-weaving-copy__g0__memory",
+        "authored-500-file-weaving-copy__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-poster-rename",
+      "split": "dev",
+      "caseSha256": "1dd0275331e96d929cb73c43e9ff7c2180cd0b1109cebbb4f83676f80b4bde0e",
+      "intentionSha256s": [
+        "17599b7015b56d85b698135fc0985898e8d494eb96a7830563a8d813f63e638a"
+      ],
+      "episodeSha256": "a2acd49929131fa6a5b779439d6021cb0bb275f1c73d1abd00dc271255e04cdb",
+      "extensionIds": [
+        "authored-500-file-poster-rename__g0__memory",
+        "authored-500-file-poster-rename__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-hike-report",
+      "split": "dev",
+      "caseSha256": "9027015721756350101fecb3eb2d7c9b95021ec09a50a36088fd6426ed25f088",
+      "intentionSha256s": [
+        "eb2e95984f93ee2ca3d5e4fea4ba2b47fb0940ad01363084acba971f20c6cdf4"
+      ],
+      "episodeSha256": "ddfdcb94b5d7a9bd2f2f18fb7cbae209ac9d3063d3fd2f13e658300f8da32871",
+      "extensionIds": [
+        "authored-500-file-hike-report__g0__memory",
+        "authored-500-file-hike-report__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-volunteer-check",
+      "split": "dev",
+      "caseSha256": "f529a77aea890548bd1dfa67aca3a4f7aeeeba1a2d607819b45cc8e40938af8c",
+      "intentionSha256s": [
+        "ce2a8fe757684d83e923ba815934bb42c4b3c3c79e41643e6f4f26492a00b3f9"
+      ],
+      "episodeSha256": "d8b80e476399def98934ab84d86fb9d2befa125c174f9a9e5e5efafba0be5d88",
+      "extensionIds": [
+        "authored-500-file-volunteer-check__g0__memory",
+        "authored-500-file-volunteer-check__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-test-station",
+      "split": "dev",
+      "caseSha256": "ef3a4dfdf3ccff84240bfe5984416696ffa81811d0bae212ff10746576a573bc",
+      "intentionSha256s": [
+        "3ab88e6385780015b7dca5cb88aa3f9fcebbea18c7cfe5c06e00b650c7ecc18e"
+      ],
+      "episodeSha256": "d6dfa8bc717a20751076e2fb1015fa7b3544044f5f4b97f9d34580d86f120d4b",
+      "extensionIds": [
+        "authored-500-file-test-station__g0__memory",
+        "authored-500-file-test-station__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-file-archive-sort",
+      "split": "dev",
+      "caseSha256": "418518dc63a6601a3c3b34fa70f03cb73ee27af234c88572d0b5d1710de391ef",
+      "intentionSha256s": [
+        "ad56b848efd5855a602b32683074e317cb65700ef4958780746886da83eba967"
+      ],
+      "episodeSha256": "4ba8b27f298d840d647fc6b6504e373d6ea09e4d5bdc888c329830adba1d33ad",
+      "extensionIds": [
+        "authored-500-file-archive-sort__g0__memory",
+        "authored-500-file-archive-sort__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-research-delivery-01",
+      "split": "dev",
+      "caseSha256": "a253545c96c4810d44edd1f67df8d4917d7df7369fdd29d6f7a51b179897ffd6",
+      "intentionSha256s": [
+        "655a28f63721c88807480d97515e5dbd65be18bf751aa9292183058f17a7d418"
+      ],
+      "episodeSha256": "5142d70e2a5316e552e170b090e28db9aef338141ba03cb991c3022f8c0553bd",
+      "extensionIds": [
+        "authored-500-todoist-research-delivery-01__g0__memory",
+        "authored-500-todoist-research-delivery-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-research-delivery-02",
+      "split": "dev",
+      "caseSha256": "1a30966410911e30164b722465ab70acc3dbd42bb2877ba5db0e810b9264b407",
+      "intentionSha256s": [
+        "c9fd042763012aa3d15a5b2ff963ad4c10b3945d775315dfe425db0cbe72f389"
+      ],
+      "episodeSha256": "96479d0939b09bfe3b12745437302df5c3dcbd556aebf04ec9861f6a6459fac4",
+      "extensionIds": [
+        "authored-500-todoist-research-delivery-02__g0__memory",
+        "authored-500-todoist-research-delivery-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-research-delivery-03",
+      "split": "dev",
+      "caseSha256": "f8b7749840e02d788710ef573a94af189f2840137aba9834730f40f6d5eefd4c",
+      "intentionSha256s": [
+        "b65d3420777578fc77f2873bb5de175b897dacf8714073a1f11eb9b111482178"
+      ],
+      "episodeSha256": "338acc18bca4dd7edec3289f8acc47f5fe70451d6094ddcb54d4196b27c985a1",
+      "extensionIds": [
+        "authored-500-todoist-research-delivery-03__g0__memory",
+        "authored-500-todoist-research-delivery-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-research-delivery-04",
+      "split": "dev",
+      "caseSha256": "cf92cc8e284fac1463eac6e95999b30c827c9488b1c831839bc37848f3ccd353",
+      "intentionSha256s": [
+        "7be7f8a6e4cf87c6a5e497e29b86caccd64df3b9914663c25961a780b8febee9"
+      ],
+      "episodeSha256": "0af15ea3ce46ad3eeafea5e89ce47d9a8131763f6c980aa4ec15af0bd1ebf544",
+      "extensionIds": [
+        "authored-500-todoist-research-delivery-04__g0__memory",
+        "authored-500-todoist-research-delivery-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-research-delivery-05",
+      "split": "dev",
+      "caseSha256": "7a1f7c77fe9149526f7a39c0179cd86da89b35d0a43c49e420f8f1db7c3a6d81",
+      "intentionSha256s": [
+        "8ecb1ca0eff9baa02c4ce38476af4e495e4e4789c0f4aeb59cc660f8e1de230d"
+      ],
+      "episodeSha256": "a6979912b10af223286c0159798c8c01cab37b69fabc7f016150cef8500307ce",
+      "extensionIds": [
+        "authored-500-todoist-research-delivery-05__g0__memory",
+        "authored-500-todoist-research-delivery-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-household-maintenance-01",
+      "split": "dev",
+      "caseSha256": "0e34be4e338e51dcf3e247435ea16c41f0d76192be4e7064ea204d15c4effa25",
+      "intentionSha256s": [
+        "c15949c6a7dd6d14dd860ef417f3dda7403a5f6a13db1c2ffbcc94cc6d1280df"
+      ],
+      "episodeSha256": "688a01676a22d7e425656e82cadfd4be474c7078a6c5b42c2920d7aea90f28f4",
+      "extensionIds": [
+        "authored-500-todoist-household-maintenance-01__g0__memory",
+        "authored-500-todoist-household-maintenance-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-household-maintenance-02",
+      "split": "dev",
+      "caseSha256": "13da284c7bd977f563aeb79630acba5d01fb65d26af28fe6343c6b824b2f9d9e",
+      "intentionSha256s": [
+        "0b9a8d78ba183a5c3a7ad76ff5fae879fe09f761299f8f67013ff41d6c969b9d"
+      ],
+      "episodeSha256": "3d43428ffbb4cde43b4f6de847ee5f2347f63887588f0e57c9ceb20a78889666",
+      "extensionIds": [
+        "authored-500-todoist-household-maintenance-02__g0__memory",
+        "authored-500-todoist-household-maintenance-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-household-maintenance-03",
+      "split": "dev",
+      "caseSha256": "7754710a6f8da407d51cca1c0cbbbe787cb4fff8c44a49aa2675df7a4e4bca4a",
+      "intentionSha256s": [
+        "da5880752e923b40aa555a78bf0299238ae43375565d70ea67d95683c663224e"
+      ],
+      "episodeSha256": "2c5a968f9475bcbc1f5af130b974113f5fef5d14bde8e6abe7e2ab61430eb078",
+      "extensionIds": [
+        "authored-500-todoist-household-maintenance-03__g0__memory",
+        "authored-500-todoist-household-maintenance-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-household-maintenance-04",
+      "split": "dev",
+      "caseSha256": "93d99f03cfdb47410d69d5a4805f87ccdd6b43a656a236fbefa1debaaa748e6f",
+      "intentionSha256s": [
+        "f664b1cb5ae622950b1a1aaba184b136954391744759e925996cdd7408be1a81"
+      ],
+      "episodeSha256": "ec9a688c6d0bc94d8da7011e184b418a530ff8e6eddc691f5b7cf6167bdae7ea",
+      "extensionIds": [
+        "authored-500-todoist-household-maintenance-04__g0__memory",
+        "authored-500-todoist-household-maintenance-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-household-maintenance-05",
+      "split": "dev",
+      "caseSha256": "890c019ae39c3528b8a94d9f17a838fa0f5809bd4ad4208cd3b53cdba695a1d1",
+      "intentionSha256s": [
+        "2d4b627a23c5706ce7e2b010db4fb0aa9bebd39d7f235b9d38863f8db353ea27"
+      ],
+      "episodeSha256": "431889667ec13336583a870f675688e79f497fa521c06dcecf3bf3fab8dff957",
+      "extensionIds": [
+        "authored-500-todoist-household-maintenance-05__g0__memory",
+        "authored-500-todoist-household-maintenance-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-coursework-01",
+      "split": "dev",
+      "caseSha256": "be7a3138774a78a38665251f35e4e11a49ec9599e4929ed27c7680fde753884c",
+      "intentionSha256s": [
+        "5a7ab7722d3cfd8b6ba92497ba117b6e71ba33194d74e5d19d7b387611d20bc1"
+      ],
+      "episodeSha256": "87e27b768059e3ef15c9de41937fa6a1eb63b558a78cc03091112592d5e30ca6",
+      "extensionIds": [
+        "authored-500-todoist-coursework-01__g0__memory",
+        "authored-500-todoist-coursework-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-coursework-02",
+      "split": "dev",
+      "caseSha256": "09c5edb84ac2861406e24e4e8f7dcb62e7f21af10c81b43f5f48e3a5d67ab91c",
+      "intentionSha256s": [
+        "2765d54044e6a5408ba379d17502f68a907780c4dd87f8f34d1295f51d0cd732"
+      ],
+      "episodeSha256": "14ccac93ad9c28c6edc906a1c111426438aa239dedcc6c280b24a028110fec76",
+      "extensionIds": [
+        "authored-500-todoist-coursework-02__g0__memory",
+        "authored-500-todoist-coursework-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-coursework-03",
+      "split": "dev",
+      "caseSha256": "dbf94f076211ff51bd16c040b0fca73e691821f261188032624bdc3ff9c3fcab",
+      "intentionSha256s": [
+        "372c2b7c15309a8aaf38f9968f88b025e222370dda7079cd7b3785d43e7c19a1"
+      ],
+      "episodeSha256": "556bd419f58548c85910ca77860f2a6fb233155c2d00260be61f45fa917edaa9",
+      "extensionIds": [
+        "authored-500-todoist-coursework-03__g0__memory",
+        "authored-500-todoist-coursework-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-coursework-04",
+      "split": "dev",
+      "caseSha256": "7cfb4112d40b2265d6cd19b6254a08931105e3b1591aacb92528bf46a772303a",
+      "intentionSha256s": [
+        "2e7a9e205497bca6b5deff95a7aed6d1f9769543a1d735776c741851c3cb3117"
+      ],
+      "episodeSha256": "1e25450c1a4411ae317af9bd2e98214694ef19e8b75f32475eee47bf62d9ba99",
+      "extensionIds": [
+        "authored-500-todoist-coursework-04__g0__memory",
+        "authored-500-todoist-coursework-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-coursework-05",
+      "split": "dev",
+      "caseSha256": "f49ed20b12c771b2319ff6f96b9374b31fdd77898b3469bd1c26d20cc96ae889",
+      "intentionSha256s": [
+        "ab279cfb7be0a62036797b38f0b92072a459977577cb0e073a64fc5720f067da"
+      ],
+      "episodeSha256": "71cfcecccd8f95fb24fa3493ca183c404fe188ca5c8a7255756f109ba73aa549",
+      "extensionIds": [
+        "authored-500-todoist-coursework-05__g0__memory",
+        "authored-500-todoist-coursework-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-events-01",
+      "split": "dev",
+      "caseSha256": "a5e4e6a9c0fe415585e262945c5018a9dd8aa804fbe7429e90ad311481ba61ff",
+      "intentionSha256s": [
+        "87df29eb32e7057cecc104b48446bf25c2a194089662a00cd4a5bffa7609a052"
+      ],
+      "episodeSha256": "4c075a7ce6d14f477ef0e6b1a75cb1c5eb99564d31264a9962726a5727a99b8e",
+      "extensionIds": [
+        "authored-500-todoist-events-01__g0__memory",
+        "authored-500-todoist-events-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-events-02",
+      "split": "dev",
+      "caseSha256": "18d0431661e69f61fdd6942afb8f6575378f345bef056ae96216695a7d35b9c6",
+      "intentionSha256s": [
+        "0e8bec4e429906bc6afaeaf01688cf9071950a4452630e8b608580d55d6f295b"
+      ],
+      "episodeSha256": "3094223d64780734205dc35aed335b2c82b2b712907936fb5a61d30841249ceb",
+      "extensionIds": [
+        "authored-500-todoist-events-02__g0__memory",
+        "authored-500-todoist-events-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-events-03",
+      "split": "dev",
+      "caseSha256": "f315b2970dee4abaebc805671fbebfe33687a5c4a1fa208c2b44e010d9d00340",
+      "intentionSha256s": [
+        "3e8e8e373a3fee951c311df0b834179262a144c1861cfb7c4cbaebd1a25a39e2"
+      ],
+      "episodeSha256": "bc17b3ac9647c6ed5be267c7846252c0da42287c14fb46aa8786e6f787cb7ab4",
+      "extensionIds": [
+        "authored-500-todoist-events-03__g0__memory",
+        "authored-500-todoist-events-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-events-04",
+      "split": "dev",
+      "caseSha256": "bfc2abd40e16afeccf2ddb51348873f301aa54e58cdf2dff01e0706014aa4b85",
+      "intentionSha256s": [
+        "6e92ee50a074c2b6267238e056e1fa3d355a04f73003e62e60f833cdd11e9ca0"
+      ],
+      "episodeSha256": "08151d3208a40b5142f2fad9da6e9aebef239328c26a1d16f16406d1d4dcc20f",
+      "extensionIds": [
+        "authored-500-todoist-events-04__g0__memory",
+        "authored-500-todoist-events-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-events-05",
+      "split": "dev",
+      "caseSha256": "be150e0304d8c3c4e8e44e2d8d19e711b1c1bfab3665e5f38f75192f317308c3",
+      "intentionSha256s": [
+        "4de614cb2d5e9d93484edf07d2f08e54c27e172556a6adbf69c3c414aeda9206"
+      ],
+      "episodeSha256": "49d4be3dc661a590315859680814e84248365aa0532432502a90bfafaea66a13",
+      "extensionIds": [
+        "authored-500-todoist-events-05__g0__memory",
+        "authored-500-todoist-events-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-job-search-01",
+      "split": "dev",
+      "caseSha256": "787ef64b79b36fc2fbd8d603ccbf140b9e1a7695a98482a83b896ecddd1dee36",
+      "intentionSha256s": [
+        "d7beb90f8c68c881db5efe8629e0daf01a7d23433a83c7c274708aaa0397bd7a"
+      ],
+      "episodeSha256": "c474c2e283217ba71ee82f219e92b5661289929370d5ac21489b658770d9b00e",
+      "extensionIds": [
+        "authored-500-todoist-job-search-01__g0__memory",
+        "authored-500-todoist-job-search-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-job-search-02",
+      "split": "dev",
+      "caseSha256": "e5215b6c35ebfd95e37353981745869fde36e9810f9e529b24013a4eb46028fc",
+      "intentionSha256s": [
+        "38aae0a19770f7228145813f28b306a797e8d4ad1d2ccfcbe64e9a0020e94150"
+      ],
+      "episodeSha256": "fa85550dc5d60ccc39befb625f6d82a9ce2a239be8e9ee4e46ce71920f54131b",
+      "extensionIds": [
+        "authored-500-todoist-job-search-02__g0__memory",
+        "authored-500-todoist-job-search-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-job-search-03",
+      "split": "dev",
+      "caseSha256": "6c5a245c3fa65989823dd34df609bab12e881a2de6f7aa086d2bc3c3e5198d16",
+      "intentionSha256s": [
+        "90132b8ae3c36e3845c56e1099f2ac6a8e570a1d449153baad93dff59802bfa6"
+      ],
+      "episodeSha256": "37f0dc0444cbaee893633e817ab8618bf367e11516a9cc22a092fce7369960ab",
+      "extensionIds": [
+        "authored-500-todoist-job-search-03__g0__memory",
+        "authored-500-todoist-job-search-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-job-search-04",
+      "split": "dev",
+      "caseSha256": "af1b60dd3011b32a14241d344fce5c98c45e7cc577c53a8f3df3921da1ffbea7",
+      "intentionSha256s": [
+        "d578a744fa40eedee93b6c3c2318c19aed524fbfb95bffedbb6f7e297cb790ff"
+      ],
+      "episodeSha256": "adda2a96b1c5b4e919360efe8f2c06b461a2906fa1697d42682dfca1243dea33",
+      "extensionIds": [
+        "authored-500-todoist-job-search-04__g0__memory",
+        "authored-500-todoist-job-search-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-job-search-05",
+      "split": "dev",
+      "caseSha256": "9b2c1f18a0abbcbfd5f96aa8b9dc12d0a2a7a35fc34aad52af32e1b2d50a4e47",
+      "intentionSha256s": [
+        "c1796bf5a271defa094faf5427071bfd3d96d7f44d410b592af7fed1c8a67cec"
+      ],
+      "episodeSha256": "d95e6cf12ad56ca2a54ee89c077a265a12331316835f7e8f9d7b691b669f9135",
+      "extensionIds": [
+        "authored-500-todoist-job-search-05__g0__memory",
+        "authored-500-todoist-job-search-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-health-routines-01",
+      "split": "dev",
+      "caseSha256": "6725c82a4f2e0616dcfcd9e5c63c26d719ec61956b9c6273e853e0c1981a1bc7",
+      "intentionSha256s": [
+        "b9e4fb937214c85df3308212ccf50b5888f6eeadce65d285486b623e113ca0ea"
+      ],
+      "episodeSha256": "b3607a236b9a2dee0b0002611f98c561be91779ffeac7d4a89de43cd16b2da06",
+      "extensionIds": [
+        "authored-500-todoist-health-routines-01__g0__memory",
+        "authored-500-todoist-health-routines-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-health-routines-02",
+      "split": "dev",
+      "caseSha256": "d292a65309126ae4faed89510afcd36ea42c3f7e8407aa01775871737349db20",
+      "intentionSha256s": [
+        "07e8ed5ff534d14622d8239d16b0ebda7809972988068b69680c9c280ed196d0"
+      ],
+      "episodeSha256": "3c96a66507b3c5d69a8c9ed7e507bac4c0d40358874c50a99ce618abca4a8654",
+      "extensionIds": [
+        "authored-500-todoist-health-routines-02__g0__memory",
+        "authored-500-todoist-health-routines-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-health-routines-03",
+      "split": "dev",
+      "caseSha256": "99b02cf990db55cb5b5d118536fa3152f1d106412d2cb8bbe72c99e302d8658e",
+      "intentionSha256s": [
+        "29bf8bd237c051dfe1765306b7fc49366bbe4dcf27f89a9cfd3012ebd158caca"
+      ],
+      "episodeSha256": "5b1beb4b83da377ba1ece5414dfee6455f5cd374928a84d53be6abe55069ae66",
+      "extensionIds": [
+        "authored-500-todoist-health-routines-03__g0__memory",
+        "authored-500-todoist-health-routines-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-health-routines-04",
+      "split": "dev",
+      "caseSha256": "56f4ed3880dc5f8371d7a5c3e6e2407dda9c6d9833bef7762f68d95bc5924255",
+      "intentionSha256s": [
+        "9a120b7ae0f0eea76c2fcc6051c8fbf25400872588d31b884c6212543fe0e934"
+      ],
+      "episodeSha256": "25e667b19c6393286f5552f9bed4cce8b88c9cc0a96d859e6225aa17f877a837",
+      "extensionIds": [
+        "authored-500-todoist-health-routines-04__g0__memory",
+        "authored-500-todoist-health-routines-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-health-routines-05",
+      "split": "dev",
+      "caseSha256": "4cde21d06ec914c6a9fe3c1a5b9a0e14fa0b2e95736d466000f01be0d8a37128",
+      "intentionSha256s": [
+        "69b1da7256612afc134341ac0ee05ace56d6e263c938b146e1f865f11e6c794f"
+      ],
+      "episodeSha256": "696b8ab636a0859674d8bb8904b1f55c2c00263f037ef4eff60bdc9b5cf3008a",
+      "extensionIds": [
+        "authored-500-todoist-health-routines-05__g0__memory",
+        "authored-500-todoist-health-routines-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-creative-production-01",
+      "split": "dev",
+      "caseSha256": "c7c830cc5b87b32f3971f91c8c905a943e06fac78591755fda9cb237638a47f0",
+      "intentionSha256s": [
+        "cc3d1c996a62d5906d67e7712c8e72596b872b4e708e5f7f47ade8cf77d6c4b1"
+      ],
+      "episodeSha256": "646a59d177c04a1042edbacf0d90271372bbcdd61e617d6cd2e4f5f03c4fbba1",
+      "extensionIds": [
+        "authored-500-todoist-creative-production-01__g0__memory",
+        "authored-500-todoist-creative-production-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-creative-production-02",
+      "split": "dev",
+      "caseSha256": "bf8dd486ff13ebe5b97db727f7469cb13defa98351a2a12143696846d1344f21",
+      "intentionSha256s": [
+        "60dbbc6d6f2d9cdb408f83e55fad050b81d83c76c72f943a60073ed6cd2bc2ad"
+      ],
+      "episodeSha256": "735a1308decbb5cdb14c46537ac5c40201bc856ef2ebabf43a1da37072135ba6",
+      "extensionIds": [
+        "authored-500-todoist-creative-production-02__g0__memory",
+        "authored-500-todoist-creative-production-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-creative-production-03",
+      "split": "dev",
+      "caseSha256": "8094daa7af33e8b382ac41db742b1e2f85d0a7ecc3e41e24f93b8d09b531d24f",
+      "intentionSha256s": [
+        "7670391fc6a2e25e7da6f641ad816f199db0573ab8512bd4efc42bec1c537437"
+      ],
+      "episodeSha256": "ebd6a88fc680bcb6473206130a707f0e49c8b8ac5e2314e427f648208c983cce",
+      "extensionIds": [
+        "authored-500-todoist-creative-production-03__g0__memory",
+        "authored-500-todoist-creative-production-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-creative-production-04",
+      "split": "dev",
+      "caseSha256": "ef487e90df33b283ce8c3c65632d8779936d511ad1680e2949fca76fc75432f7",
+      "intentionSha256s": [
+        "8581f1e618415316dc3fc8bf830dc8ace42a12279dadc79c5a89528f9496ac0d"
+      ],
+      "episodeSha256": "967e3ee20038c5e9c196e810e5b6c5caffd7676204461218c0ab45158b641e65",
+      "extensionIds": [
+        "authored-500-todoist-creative-production-04__g0__memory",
+        "authored-500-todoist-creative-production-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-creative-production-05",
+      "split": "dev",
+      "caseSha256": "353d7c0ff2408221689aa16f5216c315cb34c66946ef56eb245102f843604a97",
+      "intentionSha256s": [
+        "c3886dee90c5c2d0438a26e51df309620478e5b4ec7d5ec951314f614ce06464"
+      ],
+      "episodeSha256": "7d5add1453343c436d67df18df079db466c3408e87dc53711829be2b778316d4",
+      "extensionIds": [
+        "authored-500-todoist-creative-production-05__g0__memory",
+        "authored-500-todoist-creative-production-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-volunteering-01",
+      "split": "dev",
+      "caseSha256": "a1946aadcc16077f9638bdb81d3579cb7fd879c98177c7a393197146c57fb2e8",
+      "intentionSha256s": [
+        "fda2cd004f2dc190072f75b7107ced5abd30ea5d3f57c1df222dc4ab2fd4485d"
+      ],
+      "episodeSha256": "8f7202e742ed8077ff1a96944088cd9c3fef0ab16f0f44642f4e059db7f1fe7f",
+      "extensionIds": [
+        "authored-500-todoist-volunteering-01__g0__memory",
+        "authored-500-todoist-volunteering-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-volunteering-02",
+      "split": "dev",
+      "caseSha256": "c00f11c63d461367f676b2cc6fe2590c610b3cf6ec87fcf8467b3a63d8ef7386",
+      "intentionSha256s": [
+        "e5d8befb7cdbb243725c5aa1daccee1b6fd052d7df0ddc60cc7218c7c5e0d211"
+      ],
+      "episodeSha256": "0f4d178cc38b2414452bb3bebe60189e8ca11b96525097fec180230c39ca895f",
+      "extensionIds": [
+        "authored-500-todoist-volunteering-02__g0__memory",
+        "authored-500-todoist-volunteering-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-volunteering-03",
+      "split": "dev",
+      "caseSha256": "15e39e4cedcc0d9c3cd82c8a86547adb72271d4948e64bd12de9afa38bb26a9a",
+      "intentionSha256s": [
+        "44ccf21f61a3c175e959dd7afe943be19f2794642198ca35d6caf4ff3563e9c7"
+      ],
+      "episodeSha256": "fac036da6d72bec77be99a40b48914325ddb3304095c3810a4bad69b5bcb40d0",
+      "extensionIds": [
+        "authored-500-todoist-volunteering-03__g0__memory",
+        "authored-500-todoist-volunteering-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-volunteering-04",
+      "split": "dev",
+      "caseSha256": "cf88fafd0feee5cacfa2e788eb7d90efbdec5bd0597c5070b0583eb8cc6e00e9",
+      "intentionSha256s": [
+        "8f951d49e44122c7103c8eaab2fca9587feddde9c41b1971d0f5f6736f1adfa8"
+      ],
+      "episodeSha256": "e50cce6f1b6e302bf71d7024d68e2142d1002fbd7218bc5f704fa689827f68fd",
+      "extensionIds": [
+        "authored-500-todoist-volunteering-04__g0__memory",
+        "authored-500-todoist-volunteering-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-volunteering-05",
+      "split": "dev",
+      "caseSha256": "852867991144e034c5e4ab5014251ef63e27f97c0e6320aeaa20a2fb64a9d89e",
+      "intentionSha256s": [
+        "51bb662333c8b9f717710480f2be0e7398f048cc80f957751e2c8215f53389f8"
+      ],
+      "episodeSha256": "d0d6cab4bccf42915a1444fbf077b35ebc58c67e90f050f23ef5c1defff103ec",
+      "extensionIds": [
+        "authored-500-todoist-volunteering-05__g0__memory",
+        "authored-500-todoist-volunteering-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-personal-admin-01",
+      "split": "dev",
+      "caseSha256": "df78b2304f422f9e170ce9daa9d42f80b5e3893b17f821a67c4b2264ce0c491b",
+      "intentionSha256s": [
+        "2b0ff3932c25c775e0a0603b518fc4e23016147c0a1e4e784e00e9217641ab92"
+      ],
+      "episodeSha256": "f6907bd563935988cb18d89640efaf152c95f385da22bdd7ab6a31afbd99eee2",
+      "extensionIds": [
+        "authored-500-todoist-personal-admin-01__g0__memory",
+        "authored-500-todoist-personal-admin-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-personal-admin-02",
+      "split": "dev",
+      "caseSha256": "00ec1ba072837450eadeb1ae9ee8dff8c687f06cb7e4178324a422b8a1363808",
+      "intentionSha256s": [
+        "32e66696640596000219446dc0ade581392d6250c57d5f1d107b7bb50255e497"
+      ],
+      "episodeSha256": "a50205d4ee816ece4c9c57aeebf2509c120328bb46787cecfc857ccd87bf844b",
+      "extensionIds": [
+        "authored-500-todoist-personal-admin-02__g0__memory",
+        "authored-500-todoist-personal-admin-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-personal-admin-03",
+      "split": "dev",
+      "caseSha256": "43bc87b90a2654b2243580ec02ab18120fc3273592ac1272fd04fd24b66447e3",
+      "intentionSha256s": [
+        "cd5ceebdc2c602ac35b3c70498b7c06dc41b1ba3db13d05752e5e94cf1a7c4b4"
+      ],
+      "episodeSha256": "70efaa6443a7881c1f65cf7c35a32738b56d7e011a518430dde74bfda0d83873",
+      "extensionIds": [
+        "authored-500-todoist-personal-admin-03__g0__memory",
+        "authored-500-todoist-personal-admin-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-personal-admin-04",
+      "split": "dev",
+      "caseSha256": "c84cb97fe2326b66c7efffda3c9b22d38bec3e36e924fb6bb23a0c013b025c41",
+      "intentionSha256s": [
+        "772d1931d3c71a538a62bce81b35afaa6da90c91f7cdb36f9e3e942f388806c6"
+      ],
+      "episodeSha256": "8a19315ab542280dcaeb70983b3c344ee549bb718c96df633e2c9ad2b8736338",
+      "extensionIds": [
+        "authored-500-todoist-personal-admin-04__g0__memory",
+        "authored-500-todoist-personal-admin-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-personal-admin-05",
+      "split": "dev",
+      "caseSha256": "7ddd4860aec4b9ba11b2bc8d66359f92b38f35ff3ccca1801670f0fd0069a8e0",
+      "intentionSha256s": [
+        "9e911538d48289503a1098098626a6ae529a974a5ec8b6cd6099e755151ee6dc"
+      ],
+      "episodeSha256": "9bafa5b2a1ce4014654a0824e2a7de9b2b115d297fdc4936b3843921f3ee1195",
+      "extensionIds": [
+        "authored-500-todoist-personal-admin-05__g0__memory",
+        "authored-500-todoist-personal-admin-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-quality-checklists-01",
+      "split": "dev",
+      "caseSha256": "74a33c1753e6696c1eea31e675eb4a07a861bd00cad7d211a95ca80e1cba5f4a",
+      "intentionSha256s": [
+        "612e40d07f378fae98d0139e6451967f5131e700aba29fa3f748dc83cbd16fbb"
+      ],
+      "episodeSha256": "6766ad3d8129a4311f29b841cceb72088b0da7d19fe214758c7a87b26099154c",
+      "extensionIds": [
+        "authored-500-todoist-quality-checklists-01__g0__memory",
+        "authored-500-todoist-quality-checklists-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-quality-checklists-02",
+      "split": "dev",
+      "caseSha256": "62bb06ebb3725b1e9c4685bd7cfc127a331da7ab216ef89a862f898964e7a274",
+      "intentionSha256s": [
+        "87ae99f4319104d6dd3d843bef2be149f2b3d25597721de0345d25679fe919b7"
+      ],
+      "episodeSha256": "9c0cc23644011575a9f90b035b0b8cf70058f3956907092f120ab6cce89dcb18",
+      "extensionIds": [
+        "authored-500-todoist-quality-checklists-02__g0__memory",
+        "authored-500-todoist-quality-checklists-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-quality-checklists-03",
+      "split": "dev",
+      "caseSha256": "e2c15e9bd4212b8ae04cbbe4d1d6469757213572c9ee41de9bfa18edaf500d40",
+      "intentionSha256s": [
+        "2f6bda71794f9d6ea09622396a0240927e478a3c12f37550a10d9b06195b1751"
+      ],
+      "episodeSha256": "ab6c31624457c6193679823adbb10f864413ca7003a772a3a9facbdfbf331d41",
+      "extensionIds": [
+        "authored-500-todoist-quality-checklists-03__g0__memory",
+        "authored-500-todoist-quality-checklists-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-quality-checklists-04",
+      "split": "dev",
+      "caseSha256": "db45da8abcf64f51acce4c5e4e910a7c774a17ec36bcc9d633c225280cab3aef",
+      "intentionSha256s": [
+        "0c23c9f10dcc91d490b4dba49c84de12eef1f91fd6b050449fb1a7d65dc63446"
+      ],
+      "episodeSha256": "2469a68b6addf9895c01d1310f2e7e4b1c422c0ee55d209e16591624ef0ad5ac",
+      "extensionIds": [
+        "authored-500-todoist-quality-checklists-04__g0__memory",
+        "authored-500-todoist-quality-checklists-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-quality-checklists-05",
+      "split": "dev",
+      "caseSha256": "1dd6a5886b3484c9b898efbab978fdd47f660cab29d58b6e7d930e9e9eaa393a",
+      "intentionSha256s": [
+        "f307acb09234a31af67dab71768e4b9375257a30f72aabd205182b5ba801cba0"
+      ],
+      "episodeSha256": "19f771b929c048f3b11be4bd8d49f015f6e28f543c217b0529c618e788f4af1e",
+      "extensionIds": [
+        "authored-500-todoist-quality-checklists-05__g0__memory",
+        "authored-500-todoist-quality-checklists-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-collection-organization-01",
+      "split": "dev",
+      "caseSha256": "9a0a742557024138cd74f89baf719bf312b798e0aa18f578a1f91b54263fd406",
+      "intentionSha256s": [
+        "6ceed2a82f10b5dd0d545ac21d6ac7d5546e4861bff6706eff6bcb8086f0ab59"
+      ],
+      "episodeSha256": "0b94aea137ff1e3cec96b50bec47c215d7bc6d9084a4646955e7185f73f83697",
+      "extensionIds": [
+        "authored-500-todoist-collection-organization-01__g0__memory",
+        "authored-500-todoist-collection-organization-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-collection-organization-02",
+      "split": "dev",
+      "caseSha256": "67e7416df3f405a4c20d9db846d5550870a40228f9b8c86aa1dfe939a2c0182b",
+      "intentionSha256s": [
+        "d96a7e97eaa44f5e68e8ef1959852fe9815beb5adf5cfd464286924adc3f54d1"
+      ],
+      "episodeSha256": "43082f8e4cda1d2cec81af3cdf62d71ab68441a114c761c950550f1db9d3218d",
+      "extensionIds": [
+        "authored-500-todoist-collection-organization-02__g0__memory",
+        "authored-500-todoist-collection-organization-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-collection-organization-03",
+      "split": "dev",
+      "caseSha256": "b8066b6c119402749b5fcbd83366ea4ad838c0b817d718b1f793ae2126279029",
+      "intentionSha256s": [
+        "74da890321759c038ef7cac8367fd0c58d498876497e656fe776ce7a76e4b896"
+      ],
+      "episodeSha256": "66089811b22d2bfedeb4ab02c940ef70c9e6830111d6871c4830a72de52e799b",
+      "extensionIds": [
+        "authored-500-todoist-collection-organization-03__g0__memory",
+        "authored-500-todoist-collection-organization-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-collection-organization-04",
+      "split": "dev",
+      "caseSha256": "c8ec03e1aa4d79daf86355c053ac65b222eb5314d2af6cc20009555a6bd72712",
+      "intentionSha256s": [
+        "530ea231d4c0900e74bc82210bc28eac13cb449733215ccf88c68144cadf8ed7"
+      ],
+      "episodeSha256": "b547259732104cd94fa7556e8b4114172a4127bdc64747c5a195ed29fa1d362f",
+      "extensionIds": [
+        "authored-500-todoist-collection-organization-04__g0__memory",
+        "authored-500-todoist-collection-organization-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-collection-organization-05",
+      "split": "dev",
+      "caseSha256": "f35c441ef62956e7be6a09df63e7eaf21afccf46a1e5911f36ed2a66fd96f768",
+      "intentionSha256s": [
+        "13ff120c960b5b18c4212fb1db6f49ce04a92f3ffb658ba2a43e51cde041ad3a"
+      ],
+      "episodeSha256": "c3636e74bae0cef7bb15c6be88fe751a84f0ba9b0c19fbeb6a0e6aed82cfa928",
+      "extensionIds": [
+        "authored-500-todoist-collection-organization-05__g0__memory",
+        "authored-500-todoist-collection-organization-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-retrospective-and-handoff-01",
+      "split": "dev",
+      "caseSha256": "e950d2c8c194b1930fc39077ec7340aec513023e07a88e7c776b02e019890d15",
+      "intentionSha256s": [
+        "15edba3ab0597017cd0be9b1a6bfea9aeb13c6c5321b25f043f6591b7ebfd485"
+      ],
+      "episodeSha256": "7d6b49d4df789163d4f4d4e06b23a68c9836b0b6418aae8df4bf1f6ee901fe08",
+      "extensionIds": [
+        "authored-500-todoist-retrospective-and-handoff-01__g0__memory",
+        "authored-500-todoist-retrospective-and-handoff-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-retrospective-and-handoff-02",
+      "split": "dev",
+      "caseSha256": "1eae5bb7c998496659c37267230c632011a63af842b62c50c8bab32e25a62b72",
+      "intentionSha256s": [
+        "66c4c2ff08b084fc1f1654e81a8f37eb06c7347e3864a0297633a62f9d417843"
+      ],
+      "episodeSha256": "4c1edf13b94c191e2a7e2e858890c7ba8c1a56d9e0ea5ebcb8eea3a3dcb48242",
+      "extensionIds": [
+        "authored-500-todoist-retrospective-and-handoff-02__g0__memory",
+        "authored-500-todoist-retrospective-and-handoff-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-retrospective-and-handoff-03",
+      "split": "dev",
+      "caseSha256": "a7df6b6057be5f165ad3c6327a390928133fe24df40ecd4efc86d39d4257db90",
+      "intentionSha256s": [
+        "e22fc17522efc6bd46e1ebe6b530119638f5729691325bd2bcaac223fcfd7af7"
+      ],
+      "episodeSha256": "0224f151a5b3314bd3e2d9cdbb586eeeb96b8ee463a8a5b9f74666a6ec73ba1f",
+      "extensionIds": [
+        "authored-500-todoist-retrospective-and-handoff-03__g0__memory",
+        "authored-500-todoist-retrospective-and-handoff-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-retrospective-and-handoff-04",
+      "split": "dev",
+      "caseSha256": "64af049eb85855bc2de6050188650d8b9603a9cc3a4db5bbddd394e2bc147cd0",
+      "intentionSha256s": [
+        "f784f6b09de6aaed626ffcb1a4a6376ba2aea4fc1e1178be0b776297b993b4d4"
+      ],
+      "episodeSha256": "899f1278efe1165b6e3ad241717a52db98cef4072f9e8169e2f3c096cdfc2afa",
+      "extensionIds": [
+        "authored-500-todoist-retrospective-and-handoff-04__g0__memory",
+        "authored-500-todoist-retrospective-and-handoff-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-todoist-retrospective-and-handoff-05",
+      "split": "dev",
+      "caseSha256": "97f1948773deae0a7661348313641ff379cebc26aa3f5c5c587d25a8da8ca729",
+      "intentionSha256s": [
+        "7440895ec6504c744dc948143b80636db84701771b568500232a434099fc495d"
+      ],
+      "episodeSha256": "f44c8761ab3e9196e2666c051d2be4863ee012a171368fe2bb41bb630d49241c",
+      "extensionIds": [
+        "authored-500-todoist-retrospective-and-handoff-05__g0__memory",
+        "authored-500-todoist-retrospective-and-handoff-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-shift-time-01",
+      "split": "dev",
+      "caseSha256": "7c1d8fe45f1e175a54ce82df80debcb9604d034567cedf7c7eb20c1682d189b7",
+      "intentionSha256s": [
+        "321194984413c0e8103acd12dc407606ca32c20e6b70fc77af34d7a26bb6746d"
+      ],
+      "episodeSha256": "2ba87a3e4b09ebda4338af8e5a3539614002ddf08c4054eb36b84fc372977fbe",
+      "extensionIds": [
+        "authored-500-phone-shift-time-01__g0__memory",
+        "authored-500-phone-shift-time-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-shift-time-02",
+      "split": "dev",
+      "caseSha256": "5ee6b87e045f139ea178952e013471024c5ef6297c8eeec44b3aeca264e87d1f",
+      "intentionSha256s": [
+        "c870acb8b6c52eae33b1a31fa384ca1cce73538baa595afc0448bf5f5324b170"
+      ],
+      "episodeSha256": "b6d467545f36919485f8bca2eb12ada10908a962f985b0164a1a6c0edc3fda4a",
+      "extensionIds": [
+        "authored-500-phone-shift-time-02__g0__memory",
+        "authored-500-phone-shift-time-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-shift-time-03",
+      "split": "dev",
+      "caseSha256": "0bab0e3d5cd8965ded3318bedacafd8ecd435993122a61e85dce949c70f59f3c",
+      "intentionSha256s": [
+        "7d7b8bf5b2da3a97901f8f2ccf30e8e99c76dc2324ec3203f770658908f6b779"
+      ],
+      "episodeSha256": "e352609b0b9189260e58aa23174f75b2a7e6305b1b36c26d901548878d495dd1",
+      "extensionIds": [
+        "authored-500-phone-shift-time-03__g0__memory",
+        "authored-500-phone-shift-time-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-shift-time-04",
+      "split": "dev",
+      "caseSha256": "9738a34395102d4e4aa7b650a36c13df64ace05785667c5dfd3380251c8d4f92",
+      "intentionSha256s": [
+        "807b088969e2000a585bd1fc9d5870e51a7d961582040066870af2463bbf19d1"
+      ],
+      "episodeSha256": "0452cfe01551697f31671faffd612dad5ee0674b7dd11749382bc425929a739c",
+      "extensionIds": [
+        "authored-500-phone-shift-time-04__g0__memory",
+        "authored-500-phone-shift-time-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-shift-time-05",
+      "split": "dev",
+      "caseSha256": "635ff609bf6f5150591446ff5bf8a0df92060e7d26d3c7b7d91b2030ed3cd8b4",
+      "intentionSha256s": [
+        "46ae9b871857e6c4dfd6ae7849d51caab0bd4423ff47cc7d9577acc9d7de4f91"
+      ],
+      "episodeSha256": "1d23b5719fa4166af05cac222d1c59d0a2e4ebf1438630a230f4ffd12579a31e",
+      "extensionIds": [
+        "authored-500-phone-shift-time-05__g0__memory",
+        "authored-500-phone-shift-time-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-change-repeat-01",
+      "split": "dev",
+      "caseSha256": "a11455676ec92198798ac1b42a1a2705b8efa7b015010419c996bbb5defa3c9a",
+      "intentionSha256s": [
+        "54ffd6690752ca86ade1ecd90d8ba1bd20348ae3cffaf0b19c7104bccd327fdb"
+      ],
+      "episodeSha256": "8da448da7812cb26ec24c19f16228fce3f15335ec18bb3c569c176497c2f223d",
+      "extensionIds": [
+        "authored-500-phone-change-repeat-01__g0__memory",
+        "authored-500-phone-change-repeat-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-change-repeat-02",
+      "split": "dev",
+      "caseSha256": "ebe9c30ffd3024bd5880a10f9e85ccda7fd06000876b3e5917478b2ada3ba1d3",
+      "intentionSha256s": [
+        "8e9ab3e4f00ec29fccdcbc86267d38f9d4ced5124fe1e5fc47f53c714a4421a1"
+      ],
+      "episodeSha256": "758be4576297df91e28580510d096ce1a22dd72319d397e52266f67aa1fe399d",
+      "extensionIds": [
+        "authored-500-phone-change-repeat-02__g0__memory",
+        "authored-500-phone-change-repeat-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-change-repeat-03",
+      "split": "dev",
+      "caseSha256": "bb2530fc5a5225d85825c9489a74910894b9587e6d34dac26a36e9c72233288b",
+      "intentionSha256s": [
+        "fce074bcdcdd329f6dc4e1f57336e8e44bcea72c0dc2f00980f59dd816b3ca7b"
+      ],
+      "episodeSha256": "31b20bd2c78affefdde881e35da6e7a8ecaba74fc77143c9e76300a8443f3710",
+      "extensionIds": [
+        "authored-500-phone-change-repeat-03__g0__memory",
+        "authored-500-phone-change-repeat-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-change-repeat-04",
+      "split": "dev",
+      "caseSha256": "3a73d5dd1895e75102c4735d812db1a977fe23303b8aabddacf4a0170b895756",
+      "intentionSha256s": [
+        "1915369160ade0e264f86ecbe0a5805b1777d9ebe3164fdd751097f3bbfc91e6"
+      ],
+      "episodeSha256": "8e757146412a20bb3c465711155e8524b906981d28b8eadc6288c4bd98d4aa6f",
+      "extensionIds": [
+        "authored-500-phone-change-repeat-04__g0__memory",
+        "authored-500-phone-change-repeat-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-change-repeat-05",
+      "split": "dev",
+      "caseSha256": "39d1568e681d6751fca778bdfc483ba47fbbc995f7100f00fea6af90a03e3220",
+      "intentionSha256s": [
+        "e7e530346dbb1b6306d0cbb2aeff4fff5d068a769163d80f647289b23a604c61"
+      ],
+      "episodeSha256": "81b41c8237bae7c03b2ec3bde10ec9be45af6ba29c8896d265d4007d70187eba",
+      "extensionIds": [
+        "authored-500-phone-change-repeat-05__g0__memory",
+        "authored-500-phone-change-repeat-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-pause-alarm-01",
+      "split": "dev",
+      "caseSha256": "8283b744ed3ad8326c9f21e82e56592fa35a70c5de34f792cbb1adcaf676b94b",
+      "intentionSha256s": [
+        "5887a541a5ccd82e67d0962a8e9143af25ea16dba342062c7aaddcde494950d2"
+      ],
+      "episodeSha256": "fa2ab604db57673589abe910535c250e5c9918527a85d1fb4212c6c655924953",
+      "extensionIds": [
+        "authored-500-phone-pause-alarm-01__g0__memory",
+        "authored-500-phone-pause-alarm-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-pause-alarm-02",
+      "split": "dev",
+      "caseSha256": "73418f48ea933bb5db0097293a31ec6a62e6074d284cbd354b68f538f040a54d",
+      "intentionSha256s": [
+        "9d380799edb7d4bbc28c9f73908598779ef09cccdba72abe23a8bf05a0c53179"
+      ],
+      "episodeSha256": "35c83ee29d4c9c66b7f9ef5a9bc7e5861105be307d1c13a6f48cfc95fb4b5dd4",
+      "extensionIds": [
+        "authored-500-phone-pause-alarm-02__g0__memory",
+        "authored-500-phone-pause-alarm-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-pause-alarm-03",
+      "split": "dev",
+      "caseSha256": "092fa25f8471b812b1a70e212079877eab79b764e3daec6844a6a1a76014d84e",
+      "intentionSha256s": [
+        "70118a5286c3b822023a5c25a6b9bd275ef8d00348edcac617e20b06bf32a922"
+      ],
+      "episodeSha256": "588f313ee6278535786544e1799da7d79b9ba2892eefcfcc59500213b600d242",
+      "extensionIds": [
+        "authored-500-phone-pause-alarm-03__g0__memory",
+        "authored-500-phone-pause-alarm-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-pause-alarm-04",
+      "split": "dev",
+      "caseSha256": "ec83bedda9365aecb5373285de51c085d9f85d45b8553a07098003a1e92cf0d4",
+      "intentionSha256s": [
+        "bb4df6b82bdff81565eec75cb301cfb87781358b5209d12c75472f8a91d95a3f"
+      ],
+      "episodeSha256": "2ed628c6761bba30495a69c6084ff6f80b99108e6900e00e8e183f0887f6639b",
+      "extensionIds": [
+        "authored-500-phone-pause-alarm-04__g0__memory",
+        "authored-500-phone-pause-alarm-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-pause-alarm-05",
+      "split": "dev",
+      "caseSha256": "bb7b30a643e854bc3c73de6f53f36964fe116ebccf74514ba58f13ae7a6fbe3b",
+      "intentionSha256s": [
+        "9ea447f296b922262924e734936e1d251f8dfc46558803b7ec9cba48b0870176"
+      ],
+      "episodeSha256": "df9548c8742672f4c6b9eaa5a342856128056b944ef13a793a979b34d44860ba",
+      "extensionIds": [
+        "authored-500-phone-pause-alarm-05__g0__memory",
+        "authored-500-phone-pause-alarm-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-snooze-policy-01",
+      "split": "dev",
+      "caseSha256": "957c1650d6e4e01f46b8f9ad9cdf58724ed28619fa2b5a44a6d5d2ce6f212943",
+      "intentionSha256s": [
+        "23335677364fe6c5ed3b609eb7f77cb93b7007ca40a9ad946c9794f8a27a15dc"
+      ],
+      "episodeSha256": "bd0955b770ca2ac846fd946b1360e6b49403448122b2b2ddcceb5e5f1bb70d63",
+      "extensionIds": [
+        "authored-500-phone-snooze-policy-01__g0__memory",
+        "authored-500-phone-snooze-policy-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-snooze-policy-02",
+      "split": "dev",
+      "caseSha256": "1657c5f1d9900ded643a231aebbf4f6f9bef7502920d81c3dbfb22fcc74ce83b",
+      "intentionSha256s": [
+        "702f3237e0e86f0473b94cec99814325916b96026d1f6d8be1acdab58165277b"
+      ],
+      "episodeSha256": "9208da0536c39664a678519a2d8fd8d26aaa5e59de48f462fe1399b7f95ee6a9",
+      "extensionIds": [
+        "authored-500-phone-snooze-policy-02__g0__memory",
+        "authored-500-phone-snooze-policy-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-snooze-policy-03",
+      "split": "dev",
+      "caseSha256": "55ddb7d323e618800de903c3db9ff26b3b329307a9d05a96cb7bb670cfeb00ae",
+      "intentionSha256s": [
+        "8ac9ebeb0fe38640383a174980ee69d24eb865f29843d1b072ce7063888ab6d5"
+      ],
+      "episodeSha256": "dfad85a5d84b31991d0c5b2c8072e3cbee49017da6142b560750a44f08203966",
+      "extensionIds": [
+        "authored-500-phone-snooze-policy-03__g0__memory",
+        "authored-500-phone-snooze-policy-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-snooze-policy-04",
+      "split": "dev",
+      "caseSha256": "994ce7d069dd7c192b484b83fd46032585810221a8228731efce041b70997773",
+      "intentionSha256s": [
+        "45a452c28db037c964a2759a1eb341a3af234dc27d081c0b346e57558e93c717"
+      ],
+      "episodeSha256": "faca3f2e1332977b7bd97bfbcf656daff42c64acb8337582f8a81085acc6b2bc",
+      "extensionIds": [
+        "authored-500-phone-snooze-policy-04__g0__memory",
+        "authored-500-phone-snooze-policy-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-snooze-policy-05",
+      "split": "dev",
+      "caseSha256": "7822ccb804d4b6cccbdce9e5bf20fc1bdf6b3853dcf4cca7a14f4eca3118f19d",
+      "intentionSha256s": [
+        "4bca9e304e42a33b2b89486bf5df788b8ce6ae1819e1b3de2566688dad0634de"
+      ],
+      "episodeSha256": "70db47d05814350ddaf1a5f2c2bb5a5b8e946a6c469ab954ceb58e10271bbf56",
+      "extensionIds": [
+        "authored-500-phone-snooze-policy-05__g0__memory",
+        "authored-500-phone-snooze-policy-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-vibration-policy-01",
+      "split": "dev",
+      "caseSha256": "9a3352dbb459aef204be4dc691f8abab7fa28ed87188a9dfc5ded80a68566803",
+      "intentionSha256s": [
+        "f2490bb3dcaf3cddf61e97b84ff2aa95c4a4ad18ca3d1798ee658c8c4f8a8a0d"
+      ],
+      "episodeSha256": "d82c9b01d1de05e3fdb1285021ccf027c7e6faf6fbc24eadbf2f4488b8282f0c",
+      "extensionIds": [
+        "authored-500-phone-vibration-policy-01__g0__memory",
+        "authored-500-phone-vibration-policy-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-vibration-policy-02",
+      "split": "dev",
+      "caseSha256": "acedb5dcb978d0b57e35dd0045b0cfd96ccb33c7a87f92044f036f160339cec7",
+      "intentionSha256s": [
+        "88aab551443079e29836e8744fbd0389f7313c6d3eeff89fa49e7a1fb340faa2"
+      ],
+      "episodeSha256": "2fe92356b89c9c38f07cf260b6e3884fb023e9615d27b0a363b285582256bcaa",
+      "extensionIds": [
+        "authored-500-phone-vibration-policy-02__g0__memory",
+        "authored-500-phone-vibration-policy-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-vibration-policy-03",
+      "split": "dev",
+      "caseSha256": "fd59d3a920f9674f59ff4b2a9b76327e0b09536dd73e6049028927f3e74e829d",
+      "intentionSha256s": [
+        "143f4536f4cc976fb2de09b5354a78e766f6ea3550335403b6c5d63f47a0e1ce"
+      ],
+      "episodeSha256": "e9d9b4f8b639d81d2d75f6678c8c7e734d7492de1126133d50453005ac70f0cc",
+      "extensionIds": [
+        "authored-500-phone-vibration-policy-03__g0__memory",
+        "authored-500-phone-vibration-policy-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-vibration-policy-04",
+      "split": "dev",
+      "caseSha256": "fe0934882a3672194f48212c775b47c1555a6dec831a893bf0735c0a5be8e2de",
+      "intentionSha256s": [
+        "e56683542331c92515036a72b55ac64fc07fca3d2ee37ea48a9a626942764686"
+      ],
+      "episodeSha256": "6154956170c893a5af91bc2aa51bc644de8babce98dc0d544eb5bbcc38954c60",
+      "extensionIds": [
+        "authored-500-phone-vibration-policy-04__g0__memory",
+        "authored-500-phone-vibration-policy-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-vibration-policy-05",
+      "split": "dev",
+      "caseSha256": "97cdd23396562183992582ce310bad6e116641d079a75838ae772c644c802625",
+      "intentionSha256s": [
+        "1a276b7a02ff86071e4c646388f515baad52809c9be82d23a2ead4c47983eacd"
+      ],
+      "episodeSha256": "8d82f64fb3ffe368ae3412c4fcc99d2f466d6d1b062b8d657b46b93abbd09432",
+      "extensionIds": [
+        "authored-500-phone-vibration-policy-05__g0__memory",
+        "authored-500-phone-vibration-policy-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-rename-alarm-01",
+      "split": "dev",
+      "caseSha256": "5a2b17a1f62ff178f36cabf5fb0f3b25d0b153a757d86a774961ddf74ec80245",
+      "intentionSha256s": [
+        "0ef8d7f93fc6676982ca942ab16a95d46a8e240a72178f433c80570e6983277b"
+      ],
+      "episodeSha256": "b06b04f0ad1be5b7c6b8e710ad441366b1fc5c14d4e7ab23a6ea259ae8d2c9d3",
+      "extensionIds": [
+        "authored-500-phone-rename-alarm-01__g0__memory",
+        "authored-500-phone-rename-alarm-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-rename-alarm-02",
+      "split": "dev",
+      "caseSha256": "21c65db040d281e9a824704f53d29990a93e28112b62fcdbd6504ed890fee5b1",
+      "intentionSha256s": [
+        "a430adcd49f4c728c05f30567915ae3d7d11b5196b249cdb301b0b58c1405be0"
+      ],
+      "episodeSha256": "c7fc69c088f4408db06de86ab8bed589ed43f49ec52121feb8cbaa5cd74392a0",
+      "extensionIds": [
+        "authored-500-phone-rename-alarm-02__g0__memory",
+        "authored-500-phone-rename-alarm-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-rename-alarm-03",
+      "split": "dev",
+      "caseSha256": "8671c75bb140acc01e97defd74e00584fde7673fae5aae6d86b0d930fc95890c",
+      "intentionSha256s": [
+        "df3810e33a60e2a6becf585a42711c42eed25c0decb83456565cb8b92e72015a"
+      ],
+      "episodeSha256": "527166200a30148139b9d17d190086bf9320880d21ba8c4f22f5b86e504b12bb",
+      "extensionIds": [
+        "authored-500-phone-rename-alarm-03__g0__memory",
+        "authored-500-phone-rename-alarm-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-rename-alarm-04",
+      "split": "dev",
+      "caseSha256": "a376de42afa8dd0e8916641659a72db3d71894a18c83c8182b509c824cbbc5f9",
+      "intentionSha256s": [
+        "2fd6f9821e24758c7d2c689d695796701472aabef31cac8bf0de099c2606b1d9"
+      ],
+      "episodeSha256": "267e9ee9b9e6d7c0580959be4876574fb06661ce642f9db94cbd404f94b2ecfd",
+      "extensionIds": [
+        "authored-500-phone-rename-alarm-04__g0__memory",
+        "authored-500-phone-rename-alarm-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-rename-alarm-05",
+      "split": "dev",
+      "caseSha256": "a17d79b018f81908790b78b3953fcc0c80529cead1afc689fd905981f8e4c310",
+      "intentionSha256s": [
+        "69564183019ea7f4e949855da7ec9ba70e13ec0fd73e388ab28ad565b4d2300e"
+      ],
+      "episodeSha256": "932987e3152e2bb7e3b476e98e8bd2f5c404e4b62d05f3c137e19483308bdab7",
+      "extensionIds": [
+        "authored-500-phone-rename-alarm-05__g0__memory",
+        "authored-500-phone-rename-alarm-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-add-companion-01",
+      "split": "dev",
+      "caseSha256": "87b6931d379579bb5e57473266567b1a207c5c56ccb55c5f70ea065358ce29ee",
+      "intentionSha256s": [
+        "5a60fce09eff3975c662022eed4b05d409123cf33580a27a423f6464acee0996"
+      ],
+      "episodeSha256": "bc177fc8b5de4d5b10897963e7f2f2c601f66c3555e4154f26b1ccb2b851df03",
+      "extensionIds": [
+        "authored-500-phone-add-companion-01__g0__memory",
+        "authored-500-phone-add-companion-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-add-companion-02",
+      "split": "dev",
+      "caseSha256": "735683a9a935ba1452066c2ec8afcad7ab76afbdac4c788a25f601d751630de7",
+      "intentionSha256s": [
+        "546bf9ef65be7814440b85ef38662577a33608df6b833f6966ff29ea0ea4fbcb"
+      ],
+      "episodeSha256": "54121b9c3fa647ebbf9d32f3abdcccd0dde888c78968571a832f4a6962ed4598",
+      "extensionIds": [
+        "authored-500-phone-add-companion-02__g0__memory",
+        "authored-500-phone-add-companion-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-add-companion-03",
+      "split": "dev",
+      "caseSha256": "9863e1ce4821c66f3b1f6840b9d6a0a274d998543ffb5e6a710278201020fb70",
+      "intentionSha256s": [
+        "2d832e949791c25417c3d695e3dd0fc8ba12a8f0d93caf16af79eaa57f7389e5"
+      ],
+      "episodeSha256": "ede36f8698a2e2ddbbbc9f81d3d920728d958aaac2acfc789300a760cc008b29",
+      "extensionIds": [
+        "authored-500-phone-add-companion-03__g0__memory",
+        "authored-500-phone-add-companion-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-add-companion-04",
+      "split": "dev",
+      "caseSha256": "1f48222577ac59394ff005df0f2dcd35b63c9c6a4b7d37a20dc917b755e1922d",
+      "intentionSha256s": [
+        "93f0b1af228c09275919026e462830415f8018aa767beaef2c8f5515d966b084"
+      ],
+      "episodeSha256": "40098959954bb947c03f7c69cf795b79002cff17da969a1ad17bf192c875b875",
+      "extensionIds": [
+        "authored-500-phone-add-companion-04__g0__memory",
+        "authored-500-phone-add-companion-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-add-companion-05",
+      "split": "dev",
+      "caseSha256": "c4a90de44fb8a4fecd77cfd24525ee2cf9c2b0036e2bb59eb776d529c436cbed",
+      "intentionSha256s": [
+        "fed8f8d5404ba59355d857ae0916f2b883f57ed5b4ebdcc60c136d11e6a114b4"
+      ],
+      "episodeSha256": "f502b8bad1b7718214261c25617a3ebfab2dd6cdf6a8afd1f5c44b263f81fbef",
+      "extensionIds": [
+        "authored-500-phone-add-companion-05__g0__memory",
+        "authored-500-phone-add-companion-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-resume-alarm-01",
+      "split": "dev",
+      "caseSha256": "d1f8e2a2dbd350ac8d5171b687e584f30db33bc308c1295c3ff020240009ac5e",
+      "intentionSha256s": [
+        "e0f87d1cd7db6261e7845f040e0357b4e8b3d76f8341129a0aaf595c1ff06596"
+      ],
+      "episodeSha256": "8a9a43cc1a55714687e7e93f1010c91294b63a9af6cdda3205b2aef6b1bb2dd4",
+      "extensionIds": [
+        "authored-500-phone-resume-alarm-01__g0__memory",
+        "authored-500-phone-resume-alarm-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-resume-alarm-02",
+      "split": "dev",
+      "caseSha256": "f138247d7c73e4f873b62418c67873e39f623cc55d8025afe25ff02dfd4d86b4",
+      "intentionSha256s": [
+        "f355657cc1b60d8d9b1b55b3a7d683d7c2ab53600a723161155778e779107990"
+      ],
+      "episodeSha256": "6aa00b02a0a94e6e041d459bcc44957d6a344a7edf373e323ff22d9310eb56c2",
+      "extensionIds": [
+        "authored-500-phone-resume-alarm-02__g0__memory",
+        "authored-500-phone-resume-alarm-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-resume-alarm-03",
+      "split": "dev",
+      "caseSha256": "61c796bfb4e00402cf327f73571e2453006f84f5ee4b45ff9d40605c0575e3a6",
+      "intentionSha256s": [
+        "96cce6111bc183945fa58261e285a3d8a63009183c259e421db2d397bd568c49"
+      ],
+      "episodeSha256": "a9dc851b3cdbca3bd165c1083930ff2106551f83ec9351245bf734259c949bdd",
+      "extensionIds": [
+        "authored-500-phone-resume-alarm-03__g0__memory",
+        "authored-500-phone-resume-alarm-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-resume-alarm-04",
+      "split": "dev",
+      "caseSha256": "54deb946310b105360ca324205e082d3bb7a519ac360194a0939add8c25c0e22",
+      "intentionSha256s": [
+        "0451c0379db37d68b31abb09920c8c82cc07f217ba31a1329d6eed3525db5eda"
+      ],
+      "episodeSha256": "8662b838fbdbb0e35d9443cf9b4140c6123cf1e9818a87dfc5fd3b26aef89a4d",
+      "extensionIds": [
+        "authored-500-phone-resume-alarm-04__g0__memory",
+        "authored-500-phone-resume-alarm-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-resume-alarm-05",
+      "split": "dev",
+      "caseSha256": "cd4c088de30e518183d8a15811fefe814804a6cff8abb74ed816f71869c7928e",
+      "intentionSha256s": [
+        "d1ca2205e6b31326ddceeda8b79c6f98c11ab9ba87a921010ec11f83df628cbe"
+      ],
+      "episodeSha256": "606a063da048a57a3b664ce826efd39acc11d255cea5c72bdf16466802d58014",
+      "extensionIds": [
+        "authored-500-phone-resume-alarm-05__g0__memory",
+        "authored-500-phone-resume-alarm-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-number-01",
+      "split": "dev",
+      "caseSha256": "fe1ec152576c8a396e7c4031cba469acefcd67661102733e820e7201228edf43",
+      "intentionSha256s": [
+        "8547a989d05cfef5f168b6bfff889a48d021e99dfd2188ecfea84ff311bb560c"
+      ],
+      "episodeSha256": "77bcc959afee2c958ebe70e622f046e3f6476fe321cad62356edacab106501f6",
+      "extensionIds": [
+        "authored-500-phone-correct-number-01__g0__memory",
+        "authored-500-phone-correct-number-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-number-02",
+      "split": "dev",
+      "caseSha256": "697fd262aa79e0811dab107c92e8101b5d2c32aa707a17d58f0da78465c0ebc2",
+      "intentionSha256s": [
+        "a75f96b62037f3ff519a3f05b9eb621ab76400723c0ede997470d29b16a586eb"
+      ],
+      "episodeSha256": "08833deef536d11d703f3979068f2f0e0d63e7a01541e3e60754eee02a5814c2",
+      "extensionIds": [
+        "authored-500-phone-correct-number-02__g0__memory",
+        "authored-500-phone-correct-number-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-number-03",
+      "split": "dev",
+      "caseSha256": "2dfb6761c029737d51a7dc45617956d2cca75facba44b33d7b65a93f39355f99",
+      "intentionSha256s": [
+        "f4cb5d8c059d920d1bcc51aa147160ab3c64c5f91078ad376643085fa88d0a34"
+      ],
+      "episodeSha256": "d5ee9ae038fc3533bf2916109ac92e488cd177d236442f488544874d5c797a28",
+      "extensionIds": [
+        "authored-500-phone-correct-number-03__g0__memory",
+        "authored-500-phone-correct-number-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-number-04",
+      "split": "dev",
+      "caseSha256": "3d118d4b170dee409b9ccaa211588d0facf15832dac442d917086cadd3414c07",
+      "intentionSha256s": [
+        "cd6e8519cfcdaeaafef20e4cc18f0f0d2529f1fd05f5f36eb74f2200229fbdcd"
+      ],
+      "episodeSha256": "df8e19c9ae90d327bdf2c37dfe6d2bff62d7f2f375e2560f6a2916ad00da6ebc",
+      "extensionIds": [
+        "authored-500-phone-correct-number-04__g0__memory",
+        "authored-500-phone-correct-number-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-number-05",
+      "split": "dev",
+      "caseSha256": "d8c1de675d779ee9eb575e58382c506cd18b699cc8ded17cadb8993ce947a39c",
+      "intentionSha256s": [
+        "dd79733b0ba6ec6b245074953b1079f4ccfe5b9b6b1e08fdb1e10e960a143e3f"
+      ],
+      "episodeSha256": "a2066c4296a6129630e2863c2294413197e92362ea4c3aa2065bef5ee71e6d71",
+      "extensionIds": [
+        "authored-500-phone-correct-number-05__g0__memory",
+        "authored-500-phone-correct-number-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-email-01",
+      "split": "dev",
+      "caseSha256": "66974b200b4485b9f05ff3dfbf748709e05fff4e40a717bb82ceeeb7892a1a3d",
+      "intentionSha256s": [
+        "e156aea0346c85bf965fd28035361da08762b03dc9bfeb09b0584d0d5d7deb9d"
+      ],
+      "episodeSha256": "04958b54d31d7890340de5e39f5bf5b886972d13fc5eec65e86ad130236853eb",
+      "extensionIds": [
+        "authored-500-phone-correct-email-01__g0__memory",
+        "authored-500-phone-correct-email-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-email-02",
+      "split": "dev",
+      "caseSha256": "cfe2a5ee84c1da523c743400003bd928f12f40d7a7db366ba71e20da55495338",
+      "intentionSha256s": [
+        "94e59bc4a48bfd3ba12b8b547f2098c3c504571c2a1efb339b86713674d77e05"
+      ],
+      "episodeSha256": "dd1cf0f1687e0367bf13fce4a63e3ccf65ff69ea403e9a5879c6eb27cc851eaf",
+      "extensionIds": [
+        "authored-500-phone-correct-email-02__g0__memory",
+        "authored-500-phone-correct-email-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-email-03",
+      "split": "dev",
+      "caseSha256": "f1fce587e5e710af2da7a947dc86f2a8273d9dc3fd150fbf6ae622f9f2a63b06",
+      "intentionSha256s": [
+        "72fa892f48c6995f3370df0705d2477536dcc5d8daa3a66930c1474795514f77"
+      ],
+      "episodeSha256": "093eed61b58991d81cd37577588b6bd0c5b7c4c357f137b8403786b76269d66b",
+      "extensionIds": [
+        "authored-500-phone-correct-email-03__g0__memory",
+        "authored-500-phone-correct-email-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-email-04",
+      "split": "dev",
+      "caseSha256": "e775d56a98b069145ed66e961fd0702d4ea1c3c82bbfef9ce514f1e569eecce4",
+      "intentionSha256s": [
+        "d6aaf3dc25459d491605e4eac8c19f7dbecf35a72f39fdb798302b3bdacbfa5e"
+      ],
+      "episodeSha256": "b0e90033e20e5a2614e195488a6a0aea279a82363d36cd0eec0bd13294c199ec",
+      "extensionIds": [
+        "authored-500-phone-correct-email-04__g0__memory",
+        "authored-500-phone-correct-email-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-correct-email-05",
+      "split": "dev",
+      "caseSha256": "1bb9ebcc5d8944564c7026aee0e084d68a74497bdfbf1ce084da39ae0ae8aa62",
+      "intentionSha256s": [
+        "07c3e9c0c46fb014b701630d09e18668497d6d2f7ada71084a1b647e9dfeced7"
+      ],
+      "episodeSha256": "7329dccc471c4b14e5c7aacb526558899599a618a3ad06d07407bf269572db4c",
+      "extensionIds": [
+        "authored-500-phone-correct-email-05__g0__memory",
+        "authored-500-phone-correct-email-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-move-address-01",
+      "split": "dev",
+      "caseSha256": "ff8e9caeff4c3a1d6488259ffc1365591241f9767d48c23b7a63b209580e1eb2",
+      "intentionSha256s": [
+        "66e5e76fb54263fad958904e02953406b7b750088b971a0d76f98674ba73e97e"
+      ],
+      "episodeSha256": "bcff320f84c2ea7537426e18de18c0b11baf6d34fd3d23b881afecf009f72b7e",
+      "extensionIds": [
+        "authored-500-phone-move-address-01__g0__memory",
+        "authored-500-phone-move-address-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-move-address-02",
+      "split": "dev",
+      "caseSha256": "ce747faf31a95a94adf181549323d1d11df304c1b9f633993d48b14144da7ad5",
+      "intentionSha256s": [
+        "3c06b8e6e64d03ae02560526e936e7cd03816739fab5f681d100374195a9ca4d"
+      ],
+      "episodeSha256": "ea689738078988ed48dda4b4be2dc6f6ebf67cf9dd89b880fbdad130b100ce04",
+      "extensionIds": [
+        "authored-500-phone-move-address-02__g0__memory",
+        "authored-500-phone-move-address-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-move-address-03",
+      "split": "dev",
+      "caseSha256": "7a331955a41e545283acca95ef5ef2d998fc47d3cf270ec47a13dade1ed67b49",
+      "intentionSha256s": [
+        "752c9fc9bebd89297c6f28a9f872a4bd712680dcb5e92ecd6c3ab36c99c8eb4b"
+      ],
+      "episodeSha256": "a949b725271c5412fcb40da2e3b755858e0df3ef77f39369ba4a2d0bda6426a8",
+      "extensionIds": [
+        "authored-500-phone-move-address-03__g0__memory",
+        "authored-500-phone-move-address-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-move-address-04",
+      "split": "dev",
+      "caseSha256": "bdc1fcd41dbe6f46e89f56a861606616187a90ce03c00d750641862e1bc972c9",
+      "intentionSha256s": [
+        "ec1901167a5583462d976599c7fd829ef41b53f8a400f65a6fb704267a5d8960"
+      ],
+      "episodeSha256": "7c35d183fe7b49b60aeb85f04a30416bd56e8a8207611d6b95d5ad9fdb5103d6",
+      "extensionIds": [
+        "authored-500-phone-move-address-04__g0__memory",
+        "authored-500-phone-move-address-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-move-address-05",
+      "split": "dev",
+      "caseSha256": "3867608fcc0afc8d2dc201d9d5149a2279192c121b77fe90d0272c02ab92207d",
+      "intentionSha256s": [
+        "7ef1dccd8209702cef899581d16e2a2674d1e1f8c99bdc9689e37d2cd2b51c3f"
+      ],
+      "episodeSha256": "725991e04426451f3153b2c94de10ec591223fc7999d272372a7c21e45ff4728",
+      "extensionIds": [
+        "authored-500-phone-move-address-05__g0__memory",
+        "authored-500-phone-move-address-05__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-relationship-change-01",
+      "split": "dev",
+      "caseSha256": "752757fc6bd7d04517dbef88e35cba791b659ce0c6f3aed697e917755caa3dfd",
+      "intentionSha256s": [
+        "ceb877c3657e2b6b09e48b9af5063c39df9fc7f2e8bc8451a8fd9ecb8c334311"
+      ],
+      "episodeSha256": "cbfc6652347024ec6d14cd4739cc9a872e4162977eafe254b067b73199f6c988",
+      "extensionIds": [
+        "authored-500-phone-relationship-change-01__g0__memory",
+        "authored-500-phone-relationship-change-01__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-relationship-change-02",
+      "split": "dev",
+      "caseSha256": "2cdb9890e49c91017bcd5e88d15f02df38469cea50599d7dbf02afa7818c1976",
+      "intentionSha256s": [
+        "62417cf779cfb9d9ecc124ddab44b73b280ff0524fe8ab25bc4f43fbc83f27bc"
+      ],
+      "episodeSha256": "76ac3da28f811e1cc0ed9645e80085bf432fdb0653f6b57f1579d56a1ffeaac9",
+      "extensionIds": [
+        "authored-500-phone-relationship-change-02__g0__memory",
+        "authored-500-phone-relationship-change-02__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-relationship-change-03",
+      "split": "dev",
+      "caseSha256": "4b4510df56ea315cb5614d1a8be05e57cf8e9ce891d3963f7bac02442601cd82",
+      "intentionSha256s": [
+        "6a48baa975b3ad239ddab3844cab00d7fb44047d457be2793f70db59c2f02c89"
+      ],
+      "episodeSha256": "07362157933d76f45d2168e43191259df090bb7e688d94d3895d3c792f39f4d7",
+      "extensionIds": [
+        "authored-500-phone-relationship-change-03__g0__memory",
+        "authored-500-phone-relationship-change-03__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-relationship-change-04",
+      "split": "dev",
+      "caseSha256": "d5455349e4cbf7dc9240f033cf47efd0ab3bbfc097adcd5c8ab5bc3cde482b21",
+      "intentionSha256s": [
+        "14e9a15f48a526c7c14c5d4db9c11f983367edc2f168f8d6421330e244bc464a"
+      ],
+      "episodeSha256": "e63a0286822b5ba3286c0b35dc08290238336cfac65950830eefb3d4f54e91e0",
+      "extensionIds": [
+        "authored-500-phone-relationship-change-04__g0__memory",
+        "authored-500-phone-relationship-change-04__g0__ui"
+      ]
+    },
+    {
+      "caseId": "authored-500-phone-relationship-change-05",
+      "split": "dev",
+      "caseSha256": "36d19f61536a363af45e82b9cb4f596e6de9f05ad2a90ff641efb4ad6ca0c995",
+      "intentionSha256s": [
+        "728432a50c1df392ce2a5861a705538b3520487bf19d7a1b8eca035411d241e1"
+      ],
+      "episodeSha256": "0fdf94bcde5dd5fe2c3500983608be3587493c023903993cd3273bd193c95eb3",
+      "extensionIds": [
+        "authored-500-phone-relationship-change-05__g0__memory",
+        "authored-500-phone-relationship-change-05__g0__ui"
+      ]
     }
   ],
   "coverageLimitations": [
     "These continuations evaluate explicit app-scoped presentation preference acquisition, correction, forgetting, and interface continuity in original task applications; they do not establish autonomous episodic memory extraction or learned domain-business policy.",
-    "A shared controlled six-session structure is reused for each original intention group; 672 continuations are not 672 independent new source scenarios.",
+    "A shared controlled six-session structure is reused for each original intention group; The continuation count is not a count of additional independent source scenarios.",
     "UI size checks target the actual primary container and primary controls exposed by a verified adapter; this is not an exhaustive accessibility audit.",
     "No real runtime adapter or model execution is bundled by the data generator; unsupported implementations must retain the denominator."
   ],

@@ -2,7 +2,7 @@
 
 [arXiv paper](https://arxiv.org/abs/2610.27977) · [BibTeX](../citation.bib)
 
-**319 cases: 147 dev + 172 public test**, with 230 initial-world fixtures. Each workflow generates an app, opens it, submits data, revises a request, and reopens saved state. Sealed test cases are excluded.
+**500 cases: 328 dev + 172 public test**, with the original 230 initial-world fixtures. The original 319 objects and fixtures are unchanged; 181 authored development variants add note, file, task and alarm workflows. The additions are unmeasured development data, not a new held-out test set. Their literal entities are created by their current messages rather than assumed to exist in a dedicated fixture. Each workflow generates an app, opens it, submits data, revises a request, and reopens saved state. Sealed test cases are excluded.
 
 ## Parallel evaluation
 
@@ -18,7 +18,7 @@ npm run bench:parallel -- \
   --out artifacts/liveuibench/native-dev
 ```
 
-For the full bundled dataset, use `--split all --limit 319`. Choose a new output directory for every run.
+For the full bundled dataset, use `--split all --limit 500`. Choose a new output directory for every run.
 
 Each case owns a runtime process, SQLite database, app registry, AppWorld instance, ports, and evidence directory. Episode groups within a case share its world. The runner bounds concurrency, retains failures, and stops its worker processes on completion or cancellation. Managed parallel evaluation supports **LiveUIAgent (`native`) only**.
 
@@ -88,7 +88,7 @@ Replay imports byte-identical delivered HTML into a new owner with empty stores 
 
 ## Agent Memory and personalized interfaces
 
-`longitudinal.json` contains 28 authored development cases: 16 Agent Memory cases and 12 personalized-interface cases. The original 319 cases, fixtures, and scorer remain unchanged. It does not establish a held-out test set or measured model performance.
+`longitudinal.json` contains 28 authored development cases: 16 Agent Memory cases and 12 personalized-interface cases. The original 319 case objects, fixtures, and scorer remain unchanged; the core file also includes 181 later authored development variants. It does not establish a held-out test set or measured model performance.
 
 Each case contains ordered sessions and messages. A fresh session must reset the conversation while retaining that owner's application, records, and persistent memory. A different owner must have a distinct owner scope; a reopen must return the same application. The adapter must provide lifecycle receipts rather than treating a new session label as evidence of a reset.
 
@@ -113,7 +113,7 @@ The development prompts contain explicitly authored synthetic records and prefer
 
 ## Source-bound expansion
 
-`liveuibench-expanded.json` preserves every original case and appends continuations to each original intention group: 336 memory continuations and 336 personalized-interface continuations. The 17 shared-world cases retain all application mappings. These are 672 continuations of 319 source cases, not 672 new independent base tasks or additional held-out samples. Existing development/public-test splits are inherited; authoring used the released source tasks, so the expanded public-test portion is not a newly sealed test set.
+`liveuibench-expanded.json` preserves every original case and appends continuations to each original intention group: 517 memory continuations and 517 personalized-interface continuations. The 17 shared-world cases retain all application mappings. These are 1,034 continuations of 500 source cases, not 1,034 new independent base tasks or additional held-out samples. Existing development/public-test splits are inherited; authoring used the released source tasks, so the expanded public-test portion is not a newly sealed test set.
 
 The generator `scripts/longitudinal/expand-source.mjs` records source dataset bytes and per-case/per-intention hashes. The expanded dataset keeps all original prompts, expected behaviors, episodes, and assertions unchanged. Original workflow checks and continuation checks have separate reports and denominators.
 

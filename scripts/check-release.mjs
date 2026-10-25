@@ -14,7 +14,7 @@ console.log('Published dataset and '+provenance.fixtures.length+' fixture hashes
 const longitudinal=JSON.parse(fs.readFileSync('benchmarks/longitudinal.json','utf8'));
 const longitudinalProvenance=JSON.parse(fs.readFileSync('benchmarks/longitudinal-provenance.json','utf8'));
 if(hash(fs.readFileSync('benchmarks/longitudinal.json'))!==longitudinalProvenance.datasetSha256
- || hash(dataset)!==longitudinalProvenance.originalDatasetSha256
+ || (provenance.authoredExpansion?.originalDatasetSha256 ?? hash(dataset))!==longitudinalProvenance.originalDatasetSha256
  || longitudinal.caseCount!==longitudinal.cases.length
  || longitudinal.cases.length!==longitudinalProvenance.statistics.cases
  || longitudinal.cases.some(c=>c.source?.kind!=='authored'))throw Error('Longitudinal provenance mismatch');
@@ -25,3 +25,12 @@ const expandedProvenance=JSON.parse(fs.readFileSync('benchmarks/liveuibench-expa
 if(hash(dataset)!==expandedProvenance.sourceFileSha256||hash(fs.readFileSync('benchmarks/liveuibench-expanded.json'))!==expandedProvenance.expandedFileSha256||expanded.cases.length!==rows.length)throw Error('Expanded dataset provenance mismatch');
 for(let i=0;i<rows.length;i++){const {extensionIds,longitudinalExtensions,...original}=expanded.cases[i];if(JSON.stringify(original)!==JSON.stringify(rows[i])||longitudinalExtensions.length!==rows[i].intentions.length*2)throw Error('Expanded source case changed or missing coverage');}
 console.log('Expanded original cases and per-application coverage verified.');
+
+if(provenance.authoredExpansion){
+ const additions=JSON.parse(fs.readFileSync('benchmarks/authored-500-provenance.json','utf8'));
+ const prefix=rows.slice(0,additions.originalCaseCount);
+ if(prefix.length!==319||rows.length!==500||additions.addedCaseCount!==181)throw Error('Authored expansion count mismatch');
+ for(const c of prefix)if(hash(Buffer.from(JSON.stringify(c)))!==additions.originalCaseSha256[c.id])throw Error('Original case changed: '+c.id);
+ if(rows.slice(319).some(c=>c.split!=='dev'||c.fixturesRef!==false)||JSON.stringify(rows.slice(319).map(c=>c.id))!==JSON.stringify(additions.addedCaseIds))throw Error('Authored expansion provenance mismatch');
+ console.log('Original 319 objects unchanged; 181 authored development additions verified.');
+}
