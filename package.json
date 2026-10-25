@@ -17,7 +17,8 @@
     "bench:parallel": "tsx scripts/liveuibench/parallel.ts",
     "check:docs": "node scripts/check-docs.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "bench:longitudinal": "tsx scripts/longitudinal/run.ts"
+    "bench:longitudinal": "tsx scripts/longitudinal/run.ts",
+    "bench:expanded": "tsx scripts/longitudinal/run-expanded.ts"
   },
   "dependencies": {
     "better-sqlite3": "^12.10.0",

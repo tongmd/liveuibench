@@ -2,7 +2,7 @@
 
 [arXiv paper](https://arxiv.org/abs/2610.27977) · [BibTeX](../citation.bib)
 
-**319 cases: 147 dev + 172 public test**, with 230 initial-world fixtures. Each workflow generates an app, opens it, submits data, revises a request, and reopens saved state. Sealed test cases are excluded.
+**500 cases: 328 dev + 172 public test**, with the original 230 initial-world fixtures. The original 319 objects and fixtures are unchanged; 181 authored development variants add note, file, task and alarm workflows. The additions are unmeasured development data, not a new held-out test set. Their literal entities are created by their current messages rather than assumed to exist in a dedicated fixture. Each workflow generates an app, opens it, submits data, revises a request, and reopens saved state. Sealed test cases are excluded.
 
 ## Parallel evaluation
 
@@ -18,7 +18,7 @@ npm run bench:parallel -- \
   --out artifacts/liveuibench/native-dev
 ```
 
-For the full bundled dataset, use `--split all --limit 319`. Choose a new output directory for every run.
+For the full bundled dataset, use `--split all --limit 500`. Choose a new output directory for every run.
 
 Each case owns a runtime process, SQLite database, app registry, AppWorld instance, ports, and evidence directory. Episode groups within a case share its world. The runner bounds concurrency, retains failures, and stops its worker processes on completion or cancellation. Managed parallel evaluation supports **LiveUIAgent (`native`) only**.
 
@@ -88,7 +88,7 @@ Replay imports byte-identical delivered HTML into a new owner with empty stores 
 
 ## Agent Memory and personalized interfaces
 
-`longitudinal.json` contains 28 authored development cases: 16 Agent Memory cases and 12 personalized-interface cases. The original 319 cases, fixtures, and scorer remain unchanged. It does not establish a held-out test set or measured model performance.
+`longitudinal.json` contains 28 authored development cases: 16 Agent Memory cases and 12 personalized-interface cases. The original 319 case objects, fixtures, and scorer remain unchanged; the core file also includes 181 later authored development variants. It does not establish a held-out test set or measured model performance.
 
 Each case contains ordered sessions and messages. A fresh session must reset the conversation while retaining that owner's application, records, and persistent memory. A different owner must have a distinct owner scope; a reopen must return the same application. The adapter must provide lifecycle receipts rather than treating a new session label as evidence of a reset.
 
@@ -109,3 +109,25 @@ The reset and reopen receipts are adapter claims and require an independent live
 No built-in live-runtime adapter is included in this task-set release. An adapter must actually implement session reset, memory-store reads, application reopening, owner isolation, and browser observation before reporting live results. Fixture tests check protocol mechanics only. Reports distinguish fixture from real execution, retain unexecuted assertions in the denominator, and never establish comparability with the original benchmark. Memory-enabled versus disabled comparisons require independent fresh worlds and the same task sequence; removing memory while leaving the original conversation or cached application preferences intact is not a valid memory ablation.
 
 The development prompts contain explicitly authored synthetic records and preferences. They are not recovered private user histories, and the data files contain no experiment outcomes. `longitudinal-provenance.json` records the release contents and hashes.
+
+
+## Source-bound expansion
+
+`liveuibench-expanded.json` preserves every original case and appends continuations to each original intention group: 517 memory continuations and 517 personalized-interface continuations. The 17 shared-world cases retain all application mappings. These are 1,034 continuations of 500 source cases, not 1,034 new independent base tasks or additional held-out samples. Existing development/public-test splits are inherited; authoring used the released source tasks, so the expanded public-test portion is not a newly sealed test set.
+
+The generator `scripts/longitudinal/expand-source.mjs` records source dataset bytes and per-case/per-intention hashes. The expanded dataset keeps all original prompts, expected behaviors, episodes, and assertions unchanged. Original workflow checks and continuation checks have separate reports and denominators.
+
+```bash
+node scripts/longitudinal/expand-source.mjs
+npm run bench:expanded -- --validate
+npm run bench:expanded -- --case spotify-weekly-commute-playlist \
+  --adapter ./your-audited-adapter.mjs --out artifacts/expanded.json
+```
+
+`bootstrapOriginal` must execute the complete original case using the original business driver in a fresh isolated namespace. Its receipt binds the source hash, every ordered original episode, the owner, world, intention-to-app mapping, and original report. Each selected continuation receives its own fresh original workflow execution; do not replay mutations after an unresolved request or copy old generated HTML. Original failure is reported and blocks the continuation. A missing original driver is unsupported, retaining the planned continuation denominator.
+
+After bootstrap, every conversation and reopen must retain that owner, world and target app. Only the current message is sent through `act`; no future instructions or assertions are model inputs. `bootstrapOriginal` is a trusted evaluation-driver interface and its gold assertions must remain outside agent context. A live adapter must be independently audited; receipts alone do not prove real-world correctness.
+
+The observer reads persistent records, scoped memory, runtime action identities, and actual computed browser styles. Semantic selectors `@source.primaryRecords` and `@source.primaryActions` must map to the original application's genuine main records and actions, never added hidden test containers. Baseline records cannot be silently omitted; preserved actions must retain their runtime identity. Visible action retention does not prove all business operations remain functional. Style restoration is compared with the original baseline, without prescribing the implementation's private preference schema.
+
+No built-in live adapter currently bridges the original business runner and these continuations. This release supplies expanded data, validation, and a fail-closed adapter protocol, not measured model performance. Do not pool these scores with the original protocol or claim full long-horizon, autonomous-memory, or UI quality coverage from these explicit preference tasks.

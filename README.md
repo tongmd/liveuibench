@@ -21,7 +21,7 @@ For an existing checkout, run `git submodule update --init --recursive` first. T
 
 ## Dataset
 
-The release includes 319 cases across the development and public test splits, with 230 initial-world fixtures. Ordered interactions cover opening an application, submitting information, revising a request, and reopening saved state.
+The release includes 500 cases (328 development and 172 public test), with the original 230 initial-world fixtures. The original 319 cases are retained unchanged; 181 authored development variants add concrete note, file, task and alarm workflows. New cases have no dedicated initial-world fixture and must run in an isolated authenticated account. These additions are authored data, not measured model results or a new held-out set. Ordered interactions cover opening an application, submitting information, revising a request, and reopening saved state.
 
 - [Cases](benchmarks/liveuibench.json)
 - [Fixtures](benchmarks/fixtures/)
@@ -30,7 +30,7 @@ The release includes 319 cases across the development and public test splits, wi
 
 The published benchmark data and fixture hashes are preserved.
 
-A separate 28-case [longitudinal task set](benchmarks/longitudinal.json) adds Agent Memory and personalized interfaces. It tests preference learning across fresh conversations, corrections and forgetting, owner isolation, interface changes, and retained records and controls. These authored development cases use a separate protocol; their results must not be pooled with the original workflow scores. Validate the dataset without model calls with `npm run bench:longitudinal -- --dataset benchmarks/longitudinal.json --validate`. See the [evaluation guide](benchmarks/README.md#agent-memory-and-personalized-interfaces) for the adapter and evidence contract.
+The [expanded dataset](benchmarks/liveuibench-expanded.json) extends all 500 cases and their 517 application groups with 1,034 source-bound Agent Memory and personalized-interface continuations. Original intentions, episodes, assertions, splits, and fixtures are retained. Each continuation runs after the original business workflow in the same owner, world, and application, with new conversations for learning, correction, forgetting, interface adaptation, and preservation checks. Validate with `npm run bench:expanded -- --validate`. See the [evaluation guide](benchmarks/README.md#source-bound-expansion). The earlier 28 standalone probes remain available as development fixtures; they are not the main expansion. No model scores are reported.
 
 
 ## Run Evaluation

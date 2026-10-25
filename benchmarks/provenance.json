@@ -9,8 +9,8 @@
   "excludedSplits": [
     "sealed_test"
   ],
-  "caseCount": 319,
-  "datasetSha256": "2ccb27174d314af4e5353d53a24f0d9b1637d6437e154924338b26f946c502b6",
+  "caseCount": 500,
+  "datasetSha256": "26fc400c176c7eb02ff43c0f5d0b60cc091b1f3f34f499dd7aae624d82f00c16",
   "omittedMetadata": [
     "auditNote",
     "worldEvidence"
@@ -936,5 +936,15 @@
       "id": "todoist-moving-quote-pipeline",
       "sha256": "5b0b079eecd0f6e0e952fa94e13cfd2f4cf0b69dfdeb1c7852831a58335eb582"
     }
-  ]
+  ],
+  "authoredExpansion": {
+    "originalCaseCount": 319,
+    "originalDatasetSha256": "2ccb27174d314af4e5353d53a24f0d9b1637d6437e154924338b26f946c502b6",
+    "originalGitCommit": "5270a4942ffdb477a526a19da13aa0039abc9a90",
+    "addedCaseCount": 181,
+    "addedSplit": "dev",
+    "authorship": "Authored template variants with concrete creation, revision and reopen tasks; not human-collected or model-evaluated.",
+    "provenanceFile": "authored-500-provenance.json",
+    "modelResults": null
+  }
 }
