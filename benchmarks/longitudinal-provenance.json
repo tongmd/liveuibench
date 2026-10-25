@@ -1,0 +1,18 @@
+{
+  "kind": "authored-development-extension",
+  "modelEvaluated": false,
+  "realModelCalls": 0,
+  "statistics": {
+    "cases": 28,
+    "sessions": 90,
+    "steps": 133,
+    "assertions": 556
+  },
+  "tracks": {
+    "agent-memory": 16,
+    "personalized-ui": 12
+  },
+  "datasetSha256": "db62d9b5e8d39e24cadff5e69c1b822d1361bba993c583147cd1a563322d9341",
+  "originalDatasetSha256": "2ccb27174d314af4e5353d53a24f0d9b1637d6437e154924338b26f946c502b6",
+  "source": "Authored synthetic development probes. No private user histories or observed model outcomes."
+}
