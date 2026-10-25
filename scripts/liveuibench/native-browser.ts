@@ -8,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 import puppeteer from 'puppeteer-core';
 import type {Transport} from './transport.js';
 import {nativeChromeExecutable,nativeFetchAcknowledgementBootstrap,waitForNativeFetchAcknowledgement} from './native-browser-support.js';
-import {readNativeGuiSurface,applyNativeGuiStep,waitForNativeGuiClickReady,type NativeGuiStep} from './native-interaction.js';
+import {readNativeGuiSurface,applyNativeGuiStep,waitForNativeGuiClickReady,waitForNativeSurfaceReady,type NativeGuiStep} from './native-interaction.js';
 import {executableActionByOrdinal} from './scorer.js';
 
 /** Uses the product's actual Native A2UI web renderer, not an alternate test
@@ -45,6 +45,7 @@ export class NativeAppBrowser {
   return gate.response;
  }
  async open(){
+  const openDeadline=Date.now()+this.timeoutMs;
   const manifest=JSON.parse(await fs.readFile(path.join(this.rendererRoot,'manifest.json'),'utf8'));const resources=manifest.resources||[{file:manifest.file,sha256:manifest.sha256}];const files=new Map<string,Buffer>();
   for(const r of resources){if(!/^[a-zA-Z0-9_.-]+$/.test(r.file))throw Error('Unsafe Native renderer resource');const b=await fs.readFile(path.join(this.rendererRoot,r.file));if(createHash('sha256').update(b).digest('hex')!==r.sha256)throw Error('Native renderer source SHA mismatch');files.set(r.file,b);}
   if(!files.has('index.html'))throw Error('Native renderer missing entry point');this.rendererSha=createHash('sha256').update(files.get('index.html')!).digest('hex');
@@ -61,9 +62,10 @@ export class NativeAppBrowser {
    const name=route==='/'?'index.html':route.slice(1);const data=files.get(name);if(!data)return json({error:'Unknown renderer resource'},404);res.writeHead(200,{'content-type':name.endsWith('.js')?'text/javascript':name.endsWith('.css')?'text/css':'text/html'});res.end(data);
   }catch(e:any){json({error:e.message},500);}});
   await new Promise<void>(r=>this.server!.listen(0,'127.0.0.1',r));
-  try{this.browser=await puppeteer.launch({executablePath:await nativeChromeExecutable(this.chrome),headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});this.page=await this.browser.newPage();await this.page.evaluateOnNewDocument(nativeFetchAcknowledgementBootstrap);await this.page.setViewport({width:1440,height:1000});this.page.on('pageerror',(e:any)=>this.errors.push(e.message));await this.page.goto(`http://127.0.0.1:${(this.server.address() as any).port}/liveui/`);await this.page.waitForFunction((id:string)=>[...document.querySelectorAll('[data-app-id]')].some(n=>n.getAttribute('data-app-id')===id),{timeout:15000},this.appId);const appHandle=await this.page.evaluateHandle((id:string)=>[...document.querySelectorAll('[data-app-id]')].find(n=>n.getAttribute('data-app-id')===id),this.appId);await appHandle.asElement().click({clickCount:2});await appHandle.dispose();await this.page.waitForSelector('.a2ui-host',{timeout:15000});}catch(e){if(this.page){await fs.mkdir(this.out,{recursive:true});await fs.writeFile(path.join(this.out,'native-open-failure.json'),JSON.stringify({errors:this.errors,text:await this.page.evaluate(()=>document.body.innerText)}));}await this.close();throw e;}
+  try{this.browser=await puppeteer.launch({executablePath:await nativeChromeExecutable(this.chrome),headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});this.page=await this.browser.newPage();await this.page.evaluateOnNewDocument(nativeFetchAcknowledgementBootstrap);await this.page.setViewport({width:1440,height:1000});this.page.on('pageerror',(e:any)=>this.errors.push(e.message));await this.page.goto(`http://127.0.0.1:${(this.server.address() as any).port}/liveui/`);await this.page.waitForFunction((id:string)=>[...document.querySelectorAll('[data-app-id]')].some(n=>n.getAttribute('data-app-id')===id),{timeout:15000},this.appId);const appHandle=await this.page.evaluateHandle((id:string)=>[...document.querySelectorAll('[data-app-id]')].find(n=>n.getAttribute('data-app-id')===id),this.appId);await appHandle.asElement().click({clickCount:2});await appHandle.dispose();await this.page.waitForSelector('.a2ui-host',{timeout:Math.min(15000,Math.max(1,openDeadline-Date.now()))});await waitForNativeSurfaceReady(this.page,openDeadline);}catch(e){if(this.page){await fs.mkdir(this.out,{recursive:true});await fs.writeFile(path.join(this.out,'native-open-failure.json'),JSON.stringify({errors:this.errors,text:await this.page.evaluate(()=>document.body.innerText)}));}await this.close();throw e;}
  }
  async snapshot(name:string){
+  await waitForNativeSurfaceReady(this.page,Date.now()+this.timeoutMs);
   const dom=await this.page.$eval('.a2ui-host',(root:Element)=>{return{visibleText:(root as HTMLElement).innerText,inputCount:[...root.querySelectorAll('input,textarea,select')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}).length,actionCount:[...root.querySelectorAll('[data-a2ui-action-id]')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}).length,iframeCount:root.querySelectorAll('iframe').length};});
   await fs.mkdir(this.out,{recursive:true});await this.page.screenshot({path:path.join(this.out,name+'.png'),fullPage:true});
   if(!dom.visibleText.trim()||dom.iframeCount||this.errors.length)throw Error('Native renderer did not produce an error-free visible component surface: '+this.errors.join('; '));

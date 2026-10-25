@@ -73,3 +73,22 @@ export async function applyNativeGuiStep(page:any,step:NativeGuiStep){
   await element.evaluate((e:any,action:NativeGuiStep)=>{if(action.kind==='check'&&e.getAttribute('role')==='switch'&&(e.getAttribute('aria-checked')==='true')!==action.checked)throw Error('Native GUI switch state was rejected');if(action.kind==='select'&&e.matches('.a2ui-choices[role=radiogroup]')&&![...e.querySelectorAll('button.a2ui-choice[aria-pressed=true]')].some((b:any)=>b.innerText.trim()===action.value))throw Error('Native GUI choice state was rejected');},step);
  }finally{await handle.dispose();}
 }
+
+/** Wait for the actual surface opening paint, without disabling animations or
+ * waiting for unrelated descendant/infinite decorative animations. */
+export async function waitForNativeSurfaceReady(page:any,deadline:number){
+ const remaining=deadline-Date.now();if(remaining<=0)throw Error('Native surface readiness deadline exceeded');
+ const handle=await page.mainFrame().isolatedRealm().waitForFunction(()=>{
+  const root=document.querySelector('.a2ui-host');if(!root)return false;
+  const nodes:Element[]=[];for(let n:Element|null=root;n;n=n.parentElement)nodes.push(n);
+  for(const n of nodes)for(const a of n.getAnimations()){
+   const end=a.effect?.getComputedTiming().endTime;
+   if(typeof end==='number'&&Number.isFinite(end)&&(a.playState==='running'||a.pending))return false;
+  }
+  const rect=root.getBoundingClientRect();if(!rect.width||!rect.height)return false;
+  const signature=JSON.stringify(nodes.map(n=>{const r=n.getBoundingClientRect(),s=getComputedStyle(n);return[r.x,r.y,r.width,r.height,s.visibility,s.opacity,s.filter,s.transform,s.clipPath];}));
+  const state=(globalThis as any).__liveuiSurfacePaint;
+  if(state?.root!==root||state.signature!==signature){(globalThis as any).__liveuiSurfacePaint={root,signature,frames:0};return false;}
+  return ++state.frames>=2;
+ },{polling:'raf',timeout:remaining});await handle.dispose();
+}
