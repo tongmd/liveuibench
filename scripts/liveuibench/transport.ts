@@ -1,25 +1,61 @@
+import {request as httpRequest} from 'node:http';
+import {request as httpsRequest} from 'node:https';
+
 export type Transport = { request(route: string, body?: any, method?: string): Promise<any>; user: string };
+
+// One deadline covers headers, the entire response body and asynchronous job polling.
+// Node's HTTP client has no separate implicit fetch/Undici headers timeout.
+function readResponse(url: URL, method: string, headers: Record<string,string>, body: string | undefined, deadline: number): Promise<{status:number;raw:string}> {
+  return new Promise((resolve,reject) => {
+    const remaining=deadline-Date.now();
+    const timeout=()=>Object.assign(new Error('HTTP request deadline exceeded'),{code:'ETIMEDOUT'});
+    if(remaining<=0){reject(timeout());return;}
+    const request=(url.protocol==='https:'?httpsRequest:httpRequest)(url,{method,headers},response=>{
+      const chunks:Buffer[]=[];
+      response.on('data',chunk=>chunks.push(Buffer.from(chunk)));
+      response.on('error',reject);
+      response.on('end',()=>resolve({status:response.statusCode||0,raw:Buffer.concat(chunks).toString('utf8')}));
+    });
+    const timer=setTimeout(()=>request.destroy(timeout()),remaining);
+    request.on('error',reject);
+    request.on('close',()=>clearTimeout(timer));
+    if(body!==undefined)request.write(body);
+    request.end();
+  });
+}
+
 export function httpTransport(base: string, user: string, timeoutMs = 900_000, onResponse?: (record:any)=>Promise<void>, authorization = process.env.LIVEUIBENCH_AUTHORIZATION): Transport {
   if (authorization && (!/^(Basic|Bearer) [^\r\n]+$/.test(authorization))) throw new Error('LIVEUIBENCH_AUTHORIZATION must be a Basic or Bearer header without line breaks');
   const url = new URL(base);
   if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) throw new Error('api-base must be an HTTP(S) URL without credentials/query/fragment');
-  return { user, async request(route, body, method = body === undefined ? 'GET' : 'POST') {
-    const started = Date.now();
-    const response = await fetch(base.replace(/\/$/,'') + route, {method, headers:{'Content-Type':'application/json','X-LiveUIAgent-User':user,...(authorization?{Authorization:authorization}:{})},body:body === undefined ? undefined : JSON.stringify(body),signal:AbortSignal.timeout(timeoutMs)});
-    const raw = await response.text();
-    let data:any;try { data=JSON.parse(raw); } catch { throw new Error(`${route}: non-JSON HTTP ${response.status}`); }
+  if(!Number.isFinite(timeoutMs)||timeoutMs<=0)throw new Error('HTTP timeout must be a positive finite number');
+  async function request(route:string,body:any,method:string,deadline:number):Promise<any>{
+    const started=Date.now();
+    let response:{status:number;raw:string};
+    try{
+      response=await readResponse(new URL(base.replace(/\/$/,'')+route),method,{'Content-Type':'application/json','X-LiveUIAgent-User':user,...(authorization?{Authorization:authorization}:{})},body===undefined?undefined:JSON.stringify(body),deadline);
+    }catch(cause){
+      const error=cause as NodeJS.ErrnoException;
+      // Preserve diagnosis without retaining a ClientRequest, headers or provider settings.
+      const diagnostic=Object.assign(new Error(error.message),{...(error.code?{code:error.code}:{})});
+      throw new Error(`${route}: HTTP transport failed${error.code?' ['+error.code+']':''}: ${error.message}`,{cause:diagnostic});
+    }
+    let data:any;try { data=JSON.parse(response.raw); } catch { throw new Error(`${route}: non-JSON HTTP ${response.status}`); }
     await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data});
-    if (!response.ok) throw new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`);
+    if (response.status<200||response.status>=300) throw new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`);
     if(response.status===202 && (data.id || data.jobId)) {
       const jobId=data.id || data.jobId;let job={status:'queued',...data};
       while(['queued','running'].includes(job.status)) {
-        if(Date.now()-started>=timeoutMs) throw new Error(`Job ${jobId} timed out`);
-        await new Promise(r=>setTimeout(r,500));
-        job=await this.request('/agent/complete/jobs/'+encodeURIComponent(jobId));
+        const remaining=deadline-Date.now();
+        if(remaining<=0)throw new Error(`Job ${jobId} timed out`);
+        await new Promise(r=>setTimeout(r,Math.min(500,remaining)));
+        if(Date.now()>=deadline)throw new Error(`Job ${jobId} timed out`);
+        job=await request('/agent/complete/jobs/'+encodeURIComponent(jobId),undefined,'GET',deadline);
       }
       if(job.status!=='done') throw new Error(`Job ${jobId} ${job.status}: ${job.error||'incomplete'}`);
       return job;
     }
     return data;
-  }};
+  }
+  return {user,request(route,body,method=body===undefined?'GET':'POST'){return request(route,body,method,Date.now()+timeoutMs);}};
 }
