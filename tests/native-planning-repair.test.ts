@@ -1,0 +1,17 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createServer} from 'node:http';import fs from 'node:fs/promises';import os from 'node:os';import path from 'node:path';
+import {NativeAppBrowser} from '../scripts/liveuibench/native-browser.js';import {httpTransport} from '../scripts/liveuibench/transport.js';
+async function run(failures:any[],maxSteps=3){
+ const requests:any[]=[],raw:any[]=[];const dir=await fs.mkdtemp(path.join(os.tmpdir(),'plan-repair-'));
+ const server=createServer(async(req,res)=>{let text='';for await(const c of req)text+=c;requests.push({route:req.url,body:JSON.parse(text)});const error=failures.shift();res.writeHead(error?.status??200,{'content-type':'application/json'});res.end(JSON.stringify(error??{step:{kind:'done',reason:'No further operation'},execution:{harness:'dsh',model:'mock'},plannerModelCalls:1,providerRequests:null}));});await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
+ const browser:any=new NativeAppBrowser(httpTransport(`http://127.0.0.1:${(server.address() as any).port}`,'fixture',1000,async x=>{raw.push(x)}),'fixture',dir,{},'dsh','mock');browser.page={mainFrame:()=>({isolatedRealm:()=>({evaluate:async()=>({fields:[],buttons:[],visibleText:'Fixture'})})})};browser.snapshotInteraction=async()=>({visibleText:'Fixture'});
+ try{let result,error;try{result=await browser.interact('Original current request',{maxSteps,deadlineMs:1000})}catch(e:any){error=e;result=e.nativeGuiInteraction;}return{result,error,requests,raw};}finally{server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));await fs.rm(dir,{recursive:true,force:true});}
+}
+const invalid={status:400,error:'control preparation contains unsupported fields: reason',code:'invalid_gui_interaction',planningContractInvalid:true,plannerModelCalls:1};
+test('one genuine HTTP planning-contract rejection consumes next step, typed feedback and no performed observation or business',async()=>{
+ const {result,error,requests,raw}=await run([{...invalid}]);assert.equal(error,undefined);assert.equal(requests.length,2);assert.equal(raw[0].status,400);assert.equal(raw[1].status,200);assert.equal(result.plannerModelCalls,2);assert.equal(result.plannerRequests,2);assert.equal(result.planningRepairs,1);assert.equal(result.planningFailures.length,1);assert.equal(result.guiClicks,0);assert.equal(result.businessActionCalls,0);assert.deepEqual(result.steps,[]);assert.deepEqual(requests[1].body.observations,[]);assert.equal(requests[1].body.planningFeedback.kind,'invalid_planning_contract');assert.equal(requests[1].body.stepsRemaining,2);assert.ok(requests[1].body.remainingBudgetMs<=requests[0].body.remainingBudgetMs);
+});
+test('second invalid ends and excluded errors never trigger a repair or business retry',async()=>{
+ const twice=await run([{...invalid},{...invalid}]);assert.ok(twice.error);assert.equal(twice.requests.length,2);assert.equal(twice.result.plannerModelCalls,2);assert.equal(twice.result.planningRepairs,1);
+ for(const error of [{...invalid,status:500},{...invalid,code:'action_deadline_exceeded'},{...invalid,planningContractInvalid:false},{...invalid,plannerModelCalls:0},{...invalid,status:401}]){const r=await run([error]);assert.ok(r.error);assert.equal(r.requests.length,1);assert.equal(r.result.planningRepairs,0);assert.equal(r.result.businessActionCalls,0);}
+ const exhausted=await run([{...invalid}],1);assert.ok(exhausted.error);assert.equal(exhausted.requests.length,1);assert.equal(exhausted.result.planningRepairs,0);
+});
