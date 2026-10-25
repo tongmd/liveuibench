@@ -5,13 +5,14 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import puppeteer from 'puppeteer-core';
 import type {Transport} from './transport.js';
+import {nativeChromeExecutable,nativeFetchAcknowledgementBootstrap,waitForNativeFetchAcknowledgement} from './native-browser-support.js';
 import {executableActionByOrdinal} from './scorer.js';
 
 /** Uses the product's actual Native A2UI web renderer, not an alternate test
  * renderer. The local server supplies shell metadata; only explicit query/action
  * requests cross the trusted transport. Browser never receives credentials. */
 export class NativeAppBrowser {
- private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;
+ private browser:any;private page:any;private server?:http.Server;private errors:string[]=[];private rendererSha='';private actionResult:any;private actionError:any;private unresolved=false;
  constructor(private transport:Transport,private appId:string,private out:string,private pkg:any,private harness:'native'|'dsh',private model:string,private chrome?:string,private rendererRoot=fileURLToPath(new URL('../../liveuiagent/frontend/snapshot/',import.meta.url)),private timeoutMs=900000){}
  async open(){
   const manifest=JSON.parse(await fs.readFile(path.join(this.rendererRoot,'manifest.json'),'utf8'));const resources=manifest.resources||[{file:manifest.file,sha256:manifest.sha256}];const files=new Map<string,Buffer>();
@@ -30,7 +31,7 @@ export class NativeAppBrowser {
    const name=route==='/'?'index.html':route.slice(1);const data=files.get(name);if(!data)return json({error:'Unknown renderer resource'},404);res.writeHead(200,{'content-type':name.endsWith('.js')?'text/javascript':name.endsWith('.css')?'text/css':'text/html'});res.end(data);
   }catch(e:any){json({error:e.message},500);}});
   await new Promise<void>(r=>this.server!.listen(0,'127.0.0.1',r));
-  try{this.browser=await puppeteer.launch({executablePath:this.chrome||process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});this.page=await this.browser.newPage();await this.page.setViewport({width:1440,height:1000});this.page.on('pageerror',(e:any)=>this.errors.push(e.message));await this.page.goto(`http://127.0.0.1:${(this.server.address() as any).port}/liveui/`);await this.page.waitForFunction((id:string)=>[...document.querySelectorAll('[data-app-id]')].some(n=>n.getAttribute('data-app-id')===id),{timeout:15000},this.appId);const appHandle=await this.page.evaluateHandle((id:string)=>[...document.querySelectorAll('[data-app-id]')].find(n=>n.getAttribute('data-app-id')===id),this.appId);await appHandle.asElement().click({clickCount:2});await appHandle.dispose();await this.page.waitForSelector('.a2ui-host',{timeout:15000});}catch(e){if(this.page){await fs.mkdir(this.out,{recursive:true});await fs.writeFile(path.join(this.out,'native-open-failure.json'),JSON.stringify({errors:this.errors,text:await this.page.evaluate(()=>document.body.innerText)}));}await this.close();throw e;}
+  try{this.browser=await puppeteer.launch({executablePath:await nativeChromeExecutable(this.chrome),headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});this.page=await this.browser.newPage();await this.page.evaluateOnNewDocument(nativeFetchAcknowledgementBootstrap);await this.page.setViewport({width:1440,height:1000});this.page.on('pageerror',(e:any)=>this.errors.push(e.message));await this.page.goto(`http://127.0.0.1:${(this.server.address() as any).port}/liveui/`);await this.page.waitForFunction((id:string)=>[...document.querySelectorAll('[data-app-id]')].some(n=>n.getAttribute('data-app-id')===id),{timeout:15000},this.appId);const appHandle=await this.page.evaluateHandle((id:string)=>[...document.querySelectorAll('[data-app-id]')].find(n=>n.getAttribute('data-app-id')===id),this.appId);await appHandle.asElement().click({clickCount:2});await appHandle.dispose();await this.page.waitForSelector('.a2ui-host',{timeout:15000});}catch(e){if(this.page){await fs.mkdir(this.out,{recursive:true});await fs.writeFile(path.join(this.out,'native-open-failure.json'),JSON.stringify({errors:this.errors,text:await this.page.evaluate(()=>document.body.innerText)}));}await this.close();throw e;}
  }
  async snapshot(name:string){
   const dom=await this.page.$eval('.a2ui-host',(root:Element)=>{return{visibleText:(root as HTMLElement).innerText,inputCount:[...root.querySelectorAll('input,textarea,select')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}).length,actionCount:[...root.querySelectorAll('[data-a2ui-action-id]')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}).length,iframeCount:root.querySelectorAll('iframe').length};});
@@ -39,6 +40,7 @@ export class NativeAppBrowser {
   return{...dom,evaluator:'actual-native-a2ui-browser',scope:'actual product renderer DOM; action click verified separately',rendererSha256:this.rendererSha,errors:[...this.errors],passed:Boolean(dom.visibleText.trim())&&dom.iframeCount===0&&this.errors.length===0};
  }
  async submit(message:string,ordinal=1){
+  if(this.unresolved)throw Error('Native UI action remains unresolved; further actions are blocked, do not retry.');
   const {actionId}=executableActionByOrdinal(this.pkg,ordinal);
   // A natural-language episode cannot safely fill several structured fields.
   const inputs=await this.page.$$('.a2ui-host input:not([type=hidden]):not([type=checkbox]):not([type=radio]),.a2ui-host textarea');const editable=[];
@@ -50,9 +52,10 @@ export class NativeAppBrowser {
   await editable[0].click();await editable[0].evaluate((e:HTMLInputElement)=>e.select());await this.page.keyboard.press('Backspace');await editable[0].type(message);
   const buttons=await this.page.$$('.a2ui-host [data-a2ui-action-id]');let selected:any;
   for(const b of buttons){if(await b.evaluate((e:Element,id:string)=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&[id,'actions.'+id].includes(e.getAttribute('data-a2ui-action-id')||'');},actionId)){if(selected)throw Error('Ambiguous Native GUI action binding');selected=b;}}
-  if(!selected)throw Error('Native GUI lacks selected ordinal action binding');this.actionResult=undefined;this.actionError=undefined;await selected.click();
-  const deadline=Date.now()+this.timeoutMs;while(this.actionResult===undefined&&!this.actionError){if(Date.now()>deadline)throw Error('Native GUI action response timed out');await new Promise(r=>setTimeout(r,50));}if(this.actionError)throw this.actionError;
-  if(this.actionResult.appPackage)this.pkg=this.actionResult.appPackage;await new Promise(r=>setTimeout(r,150));return{actionResult:this.actionResult,gui:await this.snapshot('native-action'),interactionScope:'actual native renderer input and bound button click'};
+  if(!selected)throw Error('Native GUI lacks selected ordinal action binding');this.actionResult=undefined;this.actionError=undefined;const turn=await this.page.evaluate(()=>(window as any).__liveuiBenchNativeFetch.begin());const deadline=Date.now()+this.timeoutMs;await selected.click();
+ while(this.actionResult===undefined&&!this.actionError){if(Date.now()>deadline){this.unresolved=true;throw Error('Native GUI action response timed out; do not retry.');}await new Promise(r=>setTimeout(r,50));}
+  try{await waitForNativeFetchAcknowledgement(this.page,turn,deadline);}catch(e){this.unresolved=true;throw e;}if(this.actionError)throw this.actionError;
+  if(this.actionResult.appPackage)this.pkg=this.actionResult.appPackage;return{actionResult:this.actionResult,gui:await this.snapshot('native-action'),interactionScope:'actual native renderer input and bound button click'};
  }
  async close(){
   const browser=this.browser;this.browser=null;
