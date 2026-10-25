@@ -19,7 +19,9 @@ export const nativeFetchAcknowledgementBootstrap=String.raw`(()=>{
  Object.defineProperty(window,'__liveuiBenchNativeFetch',{value:state});
  window.fetch=(input,init)=>{
   let route='';try{const u=new URL(typeof input==='string'?input:input.url,location.href);if(u.origin===location.origin)route=u.pathname.replace(/^\/liveui/,'');}catch{}
-  if(!route.startsWith('/agent/'))return originalFetch(input,init);
+  // Only state-changing action and its authoritative readback require body ACK.
+  // Shell metadata/history fetches may intentionally ignore their response body.
+  if(route!=='/agent/action'&&route!=='/agent/query-state')return originalFetch(input,init);
   const entry={id:++sequence,turn,action:route==='/agent/action',finishing:false};pending.set(entry.id,entry);version++;
   return new Promise((resolve,reject)=>{
    originalFetch(input,init).then(response=>{

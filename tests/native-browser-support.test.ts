@@ -16,9 +16,10 @@ test('Native fetch ACK waits for delayed body consumption and its readback conti
  const actionGate=new Promise<void>(r=>releaseAction=r),queryGate=new Promise<void>(r=>releaseQuery=r),actionStarted=new Promise<void>(r=>actionSeen=r),queryStarted=new Promise<void>(r=>querySeen=r);
  const server=http.createServer(async(req,res)=>{
   res.setHeader('content-type','application/json');
+  if(req.url==='/agent/chat-append'||req.url==='/agent/chat-history')return res.end('{}');
   if(req.url==='/agent/action'){actions++;actionSeen();res.write('{"ok":');await actionGate;return res.end('true}');}
   if(req.url==='/agent/query-state'){queries++;querySeen();res.write('{"record":');await queryGate;return res.end('"Observed record42"}');}
-  res.setHeader('content-type','text/html');res.end('<button id="run">Run</button><div id="result">Old visible state</div><script>document.querySelector("#run").onclick=async()=>{await(await fetch("/agent/action",{method:"POST"})).json();const data=JSON.parse(await(await fetch("/agent/query-state")).text());queueMicrotask(()=>requestAnimationFrame(()=>document.querySelector("#result").textContent=data.record));};</script>');
+  res.setHeader('content-type','text/html');res.end('<button id="run">Run</button><div id="result">Old visible state</div><script>document.querySelector("#run").onclick=async()=>{await fetch("/agent/chat-append",{method:"POST"}).then(()=>fetch("/agent/chat-history"));await(await fetch("/agent/action",{method:"POST"})).json();const data=JSON.parse(await(await fetch("/agent/query-state")).text());queueMicrotask(()=>requestAnimationFrame(()=>document.querySelector("#result").textContent=data.record));};</script>');
  });await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));let browser:any;
  t.after(async()=>{releaseAction();releaseQuery();if(browser)await browser.close();server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));});
  browser=await puppeteer.launch({executablePath:await nativeChromeExecutable(),headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});const page=await browser.newPage();await page.evaluateOnNewDocument(nativeFetchAcknowledgementBootstrap);await page.goto(`http://127.0.0.1:${(server.address() as any).port}`);
@@ -26,7 +27,7 @@ test('Native fetch ACK waits for delayed body consumption and its readback conti
  let settled=false;const waiting=waitForNativeFetchAcknowledgement(page,turn,Date.now()+15000).then(()=>{settled=true;});
  await new Promise(r=>setTimeout(r,250));assert.equal(settled,false,'HTTP headers and a Node result cannot stand in for response.json consumption');assert.equal(await page.$eval('#result',(e:Element)=>e.textContent),'Old visible state');
  releaseAction();await queryStarted;await new Promise(r=>setTimeout(r,250));assert.equal(settled,false,'the app continuation readback remains pending after action consumption');
- releaseQuery();await waiting;assert.equal(await page.$eval('#result',(e:Element)=>e.textContent),'Observed record42');assert.equal(actions,1);assert.equal(queries,1,'waiting must not resend business/readback requests');
+ releaseQuery();await waiting;assert.equal(await page.$eval('#result',(e:Element)=>e.textContent),'Observed record42');assert.equal((await page.evaluate(()=>(window as any).__liveuiBenchNativeFetch.status())).pending,0,'unconsumed shell metadata bodies do not block semantic ACK');assert.equal(actions,1);assert.equal(queries,1,'waiting must not resend business/readback requests');
  await page.evaluate(()=>{document.querySelector<HTMLButtonElement>('#run')!.onclick=()=>{void fetch('/agent/action',{method:'POST'});};});
  const unreadTurn=await page.evaluate(()=>(window as any).__liveuiBenchNativeFetch.begin());await page.click('#run');await assert.rejects(waitForNativeFetchAcknowledgement(page,unreadTurn,Date.now()+250),(e:any)=>e.code==='evaluator_ui_ack_timeout'&&e.unresolved===true);assert.equal(actions,2,'unread response is not automatically retried');
 });
