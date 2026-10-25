@@ -52,7 +52,7 @@
         {
           "id": "spotify-weekly-commute-playlist__submit",
           "kind": "submit",
-          "userMessage": "Vibe is upbeat indie, seed artists Phoenix and Two Door Cinema Club, about 20 songs for Monday Commute.",
+          "userMessage": "Vibe is upbeat indie, seed artists Noah Bennett and Ethan Wallace, about 20 songs for Monday Commute.",
           "assertions": [
             {
               "type": "route_enters_orchestrator",
