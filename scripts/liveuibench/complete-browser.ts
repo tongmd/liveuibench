@@ -5,16 +5,22 @@ import { planFormSubmission } from './form-submission.js';
 export class CompleteAppBrowser extends RuntimeBrowser {
   override async snapshot(name?: string) {
     const snapshot = await super.snapshot(name);
-    const details = await this.frame!.evaluate(() => Array.from(document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('[data-liveui-eval-id]')).map(node => ({
-      target: node.getAttribute('data-liveui-eval-id')!, required: Boolean(node.required), inputName:node.name, inputId:node.id,
+    const details = await this.identityRealm().evaluate(() => {
+      const ids = (globalThis as any).__liveuiEvalIdentity?.ids as WeakMap<Element,string> | undefined;
+      if (!ids) throw Error('Evaluator element identities unavailable');
+      return Array.from(document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input,textarea,select')).map(node => ({
+      target: ids.get(node)!, required: Boolean(node.required), inputName:node.name, inputId:node.id,
       label: node.getAttribute('aria-label') || Array.from(node.labels || []).map(label => {const copy=label.cloneNode(true) as HTMLElement;copy.querySelectorAll('input,textarea,select,button').forEach(control=>control.remove());return copy.textContent?.trim() || '';}).join(' ').trim() || node.getAttribute('placeholder') || node.name || node.id,
       options: node instanceof HTMLSelectElement ? Array.from(node.options).filter(option => !option.disabled).map(option => ({value:option.value,label:option.textContent?.trim() || ''})) : undefined,
-    })));
+    })).filter(detail => Boolean(detail.target));
+    });
     return {...snapshot, fields:snapshot.fields.map(field => ({...field,...details.find(detail => detail.target === field.target)}))};
   }
   private async actionButton(snapshot: Awaited<ReturnType<CompleteAppBrowser['snapshot']>>, ordinal: number) {
     const buttons = snapshot.buttons.filter(button => !button.disabled);
-    const boundTarget = await this.frame!.evaluate(visibleTargets => {
+    const boundTarget = await this.identityRealm().evaluate(visibleTargets => {
+      const ids = (globalThis as any).__liveuiEvalIdentity?.ids as WeakMap<Element,string> | undefined;
+      if (!ids) throw Error('Evaluator element identities unavailable');
       const bindings = Array.from(document.querySelectorAll<HTMLElement>('[data-liveui-action="agent.invoke"]'));
       if (!bindings.length) return null;
       const visible = new Set(visibleTargets);
@@ -26,7 +32,7 @@ export class CompleteAppBrowser extends RuntimeBrowser {
           ? Array.from(binding.elements).filter(control => (control as HTMLButtonElement).form === binding && ((control instanceof HTMLButtonElement && control.type === 'submit') || (control instanceof HTMLInputElement && ['submit','image'].includes(control.type))))
           : [binding];
         for (const control of controls) {
-          const target = control.getAttribute('data-liveui-eval-id');
+          const target = ids.get(control);
           const box = control.getBoundingClientRect();
           const style = getComputedStyle(control);
           if (!box.width || !box.height || style.visibility === 'hidden' || style.display === 'none' || (control as HTMLButtonElement).disabled) continue;
@@ -46,12 +52,14 @@ export class CompleteAppBrowser extends RuntimeBrowser {
     const before = await this.snapshot();
     const selected = await this.actionButton(before, ordinal);
     const selectedButton = selected.button;
-    const formTargets = await this.frame!.evaluate(target => {
-      const button = Array.from(document.querySelectorAll<HTMLElement>('[data-liveui-eval-id]')).find(node => node.getAttribute('data-liveui-eval-id') === target);
+    const formTargets = await this.identityRealm().evaluate(target => {
+      const ids = (globalThis as any).__liveuiEvalIdentity?.ids as WeakMap<Element,string> | undefined;
+      if (!ids) throw Error('Evaluator element identities unavailable');
+      const button = Array.from(document.querySelectorAll<HTMLElement>('button,[role=button],input[type=submit],input[type=button],a[href]')).find(node => ids.get(node) === target);
       if (!button) throw Error('Selected action disappeared before form mapping');
       const form = (button as HTMLButtonElement | HTMLInputElement).form;
       // Native form ownership includes controls outside the form linked by form=.
-      return form ? Array.from(form.elements).map(control => control.getAttribute('data-liveui-eval-id')).filter((id): id is string => Boolean(id)) : null;
+      return form ? Array.from(form.elements).map(control => ids.get(control)).filter((id): id is string => Boolean(id)) : null;
     }, selectedButton.target);
     const fields = formTargets === null ? before.fields : before.fields.filter(field => formTargets.includes(field.target));
     const plan = planFormSubmission(fields, message, {explicitlyBound:selected.explicitlyBound});
