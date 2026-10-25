@@ -17,6 +17,15 @@ jobs:
       - run: npm run setup
       - run: npm run build
       - run: npm test
+        env:
+          LIVEUIBENCH_CHROME_STARTUP_DIAGNOSTICS: "1"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chrome-startup-diagnostics
+          path: artifacts/chrome-startup/*.json
+          if-no-files-found: ignore
+          retention-days: 7
       - run: npm run bench:liveui -- --mock
       - run: npm run check:docs
       - run: npm run check:release
