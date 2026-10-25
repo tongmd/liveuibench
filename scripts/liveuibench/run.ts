@@ -99,7 +99,7 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
       else if(ep.kind==='reopen'){
        if(browser){await browser.close();await browser.open();gui=await browser.snapshot('reopen');response=await transport.request('/agent/complete/apps/'+encodeURIComponent(appId));ctx.reopenState=response.store;ctx.reopenData=response.store;}
        else{response=await transport.request('/agent/query-state',{});const app=(response.apps||[]).find((a:any)=>a.appId===appId);if(!app)throw new Error('App missing after fresh reopen query');ctx.reopenState=app.runtimeState;ctx.reopenData=app.appData;pkg=app.appPackage||pkg;ctx.pkg=pkg;}
-      }else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText);}
+      }else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText,ctx.caseMessages);}
       else{const {actionId,route}=executableActionByOrdinal(pkg,ep.actionOrdinal||1);response=await transport.request('/agent/action',{appId,actionId,eventPayload:payloadForRoute(route,ep.userMessage||intention.intention),platform:'web',harness:o.harness,llm:{model:o.model}});ctx.actionResult=response;pkg=response.appPackage||pkg;ctx.pkg=pkg;}
      }catch(e:any){error=e.message;}
      const assertions=ep.assertions.map(a=>{

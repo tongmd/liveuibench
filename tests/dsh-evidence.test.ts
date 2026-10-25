@@ -29,3 +29,34 @@ test('each turn is independent; duplicate completed jobs are not recounted and m
  assert.equal(check('appworld_api_called','file_system.create_file',r),true);
  assert.equal(check('appworld_db_changed','simple_note',dshActionEvidence([],appId,'')),false);
 });
+test('verified complete visible host text survives separate on-page input echo without changing echo filtering',()=>{
+ const message='Send Invoice #3310 to the billing address';
+ const text='Invoice #3310 was sent and is tracked as owing.';
+ const job={id:'visible',status:'done',evidence,result:{ok:true,text,data:{entities:[{name:'Invoice #3310',detail:'owing'}],stats:[{label:'Sent',value:1}]}}};
+ const visible=message+'\n'+text+'\nInvoice #3310\nowing\nSent\n1';
+ const r=dshActionEvidence([job],appId,visible,[message]);
+ assert.equal(checkAssertion({type:'visible_result_grounded',value:'Invoice #3310'},{actionResult:r,caseMessages:[message]}).passed,true);
+ assert.deepEqual(r.runtimeState.intentResult.visibleHostFragments,[text,'Invoice #3310','owing','Sent','1']);
+ const spaced=dshActionEvidence([job],appId,visible.replaceAll(' ',' \n '),[message]);
+ assert.ok(spaced.runtimeState.intentResult.visibleHostFragments.includes(text));
+});
+test('trusted visible host fragments reject echo-only hidden rejected stale and malformed results',()=>{
+ const message='Send Invoice #3310 to the billing address';
+ const text='Invoice #3310 was sent and is tracked as owing.';
+ const good={id:'visible',status:'done',evidence,result:{ok:true,text,data:{entities:[{name:'Invoice #3310'}],stats:[]}}};
+ const cases=[
+  {jobs:[good],visible:message},
+  {jobs:[good],visible:message+'\nInvoice #3310'},
+  {jobs:[{...good,result:{...good.result,text:message}}],visible:message},
+  {jobs:[{...good,result:{...good.result,ok:false}}],visible:message+'\n'+text},
+  {jobs:[{...good,evidence:{...evidence,appId:'old-app'}}],visible:message+'\n'+text},
+  {jobs:[{...good,status:'running'}],visible:message+'\n'+text},
+  {jobs:[{...good,evidence:undefined}],visible:message+'\n'+text},
+ ];
+ for(const c of cases){const r=dshActionEvidence(c.jobs,appId,c.visible,[message]);
+  assert.deepEqual(r.runtimeState.intentResult.visibleHostFragments,[]);
+  assert.equal(checkAssertion({type:'visible_result_grounded',value:'Invoice #3310'},{actionResult:r,caseMessages:[message]}).passed,false);
+ }
+ // Failed execution evidence still remains available to audit tools; no UI success is fabricated.
+ assert.ok(dshActionEvidence([{...good,result:{ok:false,text}}],appId,text,[message]).trace.length);
+});
