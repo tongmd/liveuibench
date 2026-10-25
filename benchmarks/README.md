@@ -109,3 +109,25 @@ The reset and reopen receipts are adapter claims and require an independent live
 No built-in live-runtime adapter is included in this task-set release. An adapter must actually implement session reset, memory-store reads, application reopening, owner isolation, and browser observation before reporting live results. Fixture tests check protocol mechanics only. Reports distinguish fixture from real execution, retain unexecuted assertions in the denominator, and never establish comparability with the original benchmark. Memory-enabled versus disabled comparisons require independent fresh worlds and the same task sequence; removing memory while leaving the original conversation or cached application preferences intact is not a valid memory ablation.
 
 The development prompts contain explicitly authored synthetic records and preferences. They are not recovered private user histories, and the data files contain no experiment outcomes. `longitudinal-provenance.json` records the release contents and hashes.
+
+
+## Source-bound expansion
+
+`liveuibench-expanded.json` preserves every original case and appends continuations to each original intention group: 336 memory continuations and 336 personalized-interface continuations. The 17 shared-world cases retain all application mappings. These are 672 continuations of 319 source cases, not 672 new independent base tasks or additional held-out samples. Existing development/public-test splits are inherited; authoring used the released source tasks, so the expanded public-test portion is not a newly sealed test set.
+
+The generator `scripts/longitudinal/expand-source.mjs` records source dataset bytes and per-case/per-intention hashes. The expanded dataset keeps all original prompts, expected behaviors, episodes, and assertions unchanged. Original workflow checks and continuation checks have separate reports and denominators.
+
+```bash
+node scripts/longitudinal/expand-source.mjs
+npm run bench:expanded -- --validate
+npm run bench:expanded -- --case spotify-weekly-commute-playlist \
+  --adapter ./your-audited-adapter.mjs --out artifacts/expanded.json
+```
+
+`bootstrapOriginal` must execute the complete original case using the original business driver in a fresh isolated namespace. Its receipt binds the source hash, every ordered original episode, the owner, world, intention-to-app mapping, and original report. Each selected continuation receives its own fresh original workflow execution; do not replay mutations after an unresolved request or copy old generated HTML. Original failure is reported and blocks the continuation. A missing original driver is unsupported, retaining the planned continuation denominator.
+
+After bootstrap, every conversation and reopen must retain that owner, world and target app. Only the current message is sent through `act`; no future instructions or assertions are model inputs. `bootstrapOriginal` is a trusted evaluation-driver interface and its gold assertions must remain outside agent context. A live adapter must be independently audited; receipts alone do not prove real-world correctness.
+
+The observer reads persistent records, scoped memory, runtime action identities, and actual computed browser styles. Semantic selectors `@source.primaryRecords` and `@source.primaryActions` must map to the original application's genuine main records and actions, never added hidden test containers. Baseline records cannot be silently omitted; preserved actions must retain their runtime identity. Visible action retention does not prove all business operations remain functional. Style restoration is compared with the original baseline, without prescribing the implementation's private preference schema.
+
+No built-in live adapter currently bridges the original business runner and these continuations. This release supplies expanded data, validation, and a fail-closed adapter protocol, not measured model performance. Do not pool these scores with the original protocol or claim full long-horizon, autonomous-memory, or UI quality coverage from these explicit preference tasks.

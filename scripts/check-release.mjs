@@ -19,3 +19,9 @@ if(hash(fs.readFileSync('benchmarks/longitudinal.json'))!==longitudinalProvenanc
  || longitudinal.cases.length!==longitudinalProvenance.statistics.cases
  || longitudinal.cases.some(c=>c.source?.kind!=='authored'))throw Error('Longitudinal provenance mismatch');
 console.log('Authored longitudinal dataset and original dataset hash verified.');
+
+const expanded=JSON.parse(fs.readFileSync('benchmarks/liveuibench-expanded.json','utf8'));
+const expandedProvenance=JSON.parse(fs.readFileSync('benchmarks/liveuibench-expanded.provenance.json','utf8'));
+if(hash(dataset)!==expandedProvenance.sourceFileSha256||hash(fs.readFileSync('benchmarks/liveuibench-expanded.json'))!==expandedProvenance.expandedFileSha256||expanded.cases.length!==rows.length)throw Error('Expanded dataset provenance mismatch');
+for(let i=0;i<rows.length;i++){const {extensionIds,longitudinalExtensions,...original}=expanded.cases[i];if(JSON.stringify(original)!==JSON.stringify(rows[i])||longitudinalExtensions.length!==rows[i].intentions.length*2)throw Error('Expanded source case changed or missing coverage');}
+console.log('Expanded original cases and per-application coverage verified.');
