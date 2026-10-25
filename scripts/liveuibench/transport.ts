@@ -1,5 +1,9 @@
+import {validateNativeActionNotStartedProof,nativeActionPayloadSha256,type NativeActionNotStartedProof} from '../../liveuiagent/server/native-action-not-started.js';
 import {request as httpRequest} from 'node:http';
 import {request as httpsRequest} from 'node:https';
+
+const verifiedNotStarted=new WeakMap<object,NativeActionNotStartedProof>();
+export function verifiedNativeActionNotStarted(error:unknown,binding:{appId:string;actionId:string;eventPayload:unknown}){const proof=error&&typeof error==='object'?verifiedNotStarted.get(error):undefined;return proof&&validateNativeActionNotStartedProof(proof,binding)?proof:undefined;}
 
 export type Transport = { request(route: string, body?: any, method?: string): Promise<any>; user: string };
 
@@ -41,8 +45,11 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
       throw new Error(`${route}: HTTP transport failed${error.code?' ['+error.code+']':''}: ${error.message}`,{cause:diagnostic});
     }
     let data:any;try { data=JSON.parse(response.raw); } catch { throw new Error(`${route}: non-JSON HTTP ${response.status}`); }
-    await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data});
-    if (response.status<200||response.status>=300) throw Object.assign(new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`),route==='/evaluator/interaction-step'&&Number.isInteger(data.plannerModelCalls)&&data.plannerModelCalls>=0&&data.plannerModelCalls<=1?{plannerModelCalls:data.plannerModelCalls,status:response.status,...(typeof data.code==='string'?{code:data.code}:{}),...(data.planningContractInvalid===true?{planningContractInvalid:true}:{}),planningError:typeof data.error==='string'?data.error.slice(0,500):'Planning contract rejected'}:{});
+    const actionFailure=route==='/agent/action'&&(response.status<200||response.status>=300);
+    let proofValid=false;try{proofValid=actionFailure&&data.workflowExecution?.status==='failed'&&data.workflowExecution?.externalEffectsMayHaveOccurred===false&&data.workflowExecution?.executionId===data.nativeActionNotStarted?.executionId&&validateNativeActionNotStartedProof(data.nativeActionNotStarted,{appId:body?.appId,actionId:body?.actionId,eventPayload:body?.eventPayload});}catch{/* Malformed or absent binding is not proof. */}
+    const proofAudit=actionFailure?{present:data.nativeActionNotStarted!==undefined,valid:proofValid,...(proofValid?{executionId:data.nativeActionNotStarted.executionId,eventPayloadSha256:nativeActionPayloadSha256(body.eventPayload)}:{})}:undefined;
+    await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data,...(proofAudit?{nativeActionNotStartedValidation:proofAudit}:{})});
+    if (response.status<200||response.status>=300) {const error=Object.assign(new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`),route==='/evaluator/interaction-step'&&Number.isInteger(data.plannerModelCalls)&&data.plannerModelCalls>=0&&data.plannerModelCalls<=1?{plannerModelCalls:data.plannerModelCalls,status:response.status,...(typeof data.code==='string'?{code:data.code}:{}),...(data.planningContractInvalid===true?{planningContractInvalid:true}:{}),planningError:typeof data.error==='string'?data.error.slice(0,500):'Planning contract rejected'}:{});if(proofValid){verifiedNotStarted.set(error,data.nativeActionNotStarted);Object.assign(error,{nativeActionNotStarted:data.nativeActionNotStarted,nativeActionNotStartedValidation:proofAudit});}throw error;}
     if(response.status===202 && (data.id || data.jobId)) {
       const jobId=data.id || data.jobId;let job={status:'queued',...data};
       while(['queued','running'].includes(job.status)) {
