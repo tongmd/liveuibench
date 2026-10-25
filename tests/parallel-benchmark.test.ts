@@ -49,7 +49,7 @@ test('wire boundary excludes fixture contacts, targets and future turns; evaluat
  });
  await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
  try{
-  const o=parseArgs(['--mock','--cases',source,'--out',path.join(tmp,'wire')]);Object.assign(o,{mode:'live',worldMode:'prepared',agentEvaluator:true,apiBase:`http://127.0.0.1:${(server.address() as any).port}`});
+  const o=parseArgs(['--mock','--cases',source,'--out',path.join(tmp,'wire')]);Object.assign(o,{mode:'live',evaluator:'behavior',worldMode:'prepared',agentEvaluator:true,apiBase:`http://127.0.0.1:${(server.address() as any).port}`});
   const report=await runBenchmark(o);
   assert.equal(report.status,'passed');assert.equal(report.comparable,false);
   assert.equal(report.results[0].groups[0].agentEvaluator.status,'failed');
@@ -76,7 +76,7 @@ test('all shared-world scripted groups precede active evaluators and revision di
   calls.push(req.url!);const result=req.url==='/evaluator/run'?{status:'passed'}:await runtime.request(req.url!,body);res.setHeader('Content-Type','application/json');res.end(JSON.stringify(result));
  });await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
  try{
-  const o=parseArgs(['--mock','--cases',source,'--out',path.join(tmp,'grouped')]);Object.assign(o,{mode:'live',worldMode:'prepared',agentEvaluator:true,revisionPrompt:'Make title larger',apiBase:`http://127.0.0.1:${(server.address() as any).port}`});
+  const o=parseArgs(['--mock','--cases',source,'--out',path.join(tmp,'grouped')]);Object.assign(o,{mode:'live',evaluator:'behavior',worldMode:'prepared',agentEvaluator:true,revisionPrompt:'Make title larger',apiBase:`http://127.0.0.1:${(server.address() as any).port}`});
   const r=await runBenchmark(o);assert.equal(r.results[0].groups.length,2);
   const firstDiagnostic=calls.findIndex(x=>x==='/agent/patch-app'||x==='/evaluator/run');
   assert.equal(calls.slice(0,firstDiagnostic).filter(x=>x==='/agent/run').length,2);

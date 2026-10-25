@@ -4,9 +4,11 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHash,randomUUID} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import type {ChildProcess} from 'node:child_process';
-import {checkAssertion,executableActionByOrdinal,payloadForRoute,type BenchCase,type Episode} from './scorer.js';
+import {includesAll,checkAssertion,executableActionByOrdinal,payloadForRoute,type BenchCase,type Episode} from './scorer.js';
 import {evaluateRenderedGui} from '../../liveuiagent/server/gui-evaluator-agent.js';
 import {httpTransport,type Transport} from './transport.js';
+import {NativeAppBrowser} from './native-browser.js';
+import {actualDelivery} from './actual-delivery.js';
 import {CompleteAppBrowser} from './complete-browser.js';
 import {mockTransport} from './mock-runtime.js';
 import {dshActionEvidence} from './dsh-evidence.js';
@@ -85,7 +87,7 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
   let seq=0;const baseTransport=o.mode==='mock'?mockTransport():httpTransport(o.apiBase,'bench-'+randomUUID(),o.timeoutMs,record=>json(path.join(out,`http-${String(++seq).padStart(4,'0')}.json`),record));
   const transport=o.mode==='live'&&o.harness==='dsh'?withDshWorkflowLlm(baseTransport,{model:o.model}):baseTransport;
   for(let gi=0;gi<groups.length;gi++){
-   const group=groups[gi];const groupDir=path.join(out,`group-${gi+1}`);await fs.mkdir(groupDir);const intention=item.intentions[group.intentionIndex];const episodes:any[]=[];const record:any={intentionIndex:group.intentionIndex,episodes};groupResults.push(record);let browser:CompleteAppBrowser|undefined;
+   const group=groups[gi];const groupDir=path.join(out,`group-${gi+1}`);await fs.mkdir(groupDir);const intention=item.intentions[group.intentionIndex];const episodes:any[]=[];const record:any={intentionIndex:group.intentionIndex,episodes};groupResults.push(record);let browser:CompleteAppBrowser|undefined;let nativeBrowser:NativeAppBrowser|undefined;
    try{
     const knownPeople=(o.fixtureContacts?(fixtureData.people||[]):[]).map((p:any)=>({name:[p.firstName,p.lastName].filter(Boolean).join(' '),email:p.email,phone:p.phone}));
     const generationInput={prompt:intention.intention,platform:'web',harness:o.harness,llm:{model:o.model},...(knownPeople.length?{knownPeople}:{})};await json(path.join(groupDir,'generation-input.json'),generationInput);
@@ -93,28 +95,34 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
     if(generated.type!==(o.artifactReplay?'artifact_reused':'app_created')||!generated.appPackage?.manifest?.appId)throw new Error('Generation did not return an app_created package');
     if(o.mode==='live'&&(generated.execution?.harness!==o.harness||generated.execution?.model!==o.model))throw new Error(`Requested runtime was not confirmed: expected ${o.harness}/${o.model}, received ${JSON.stringify(generated.execution||null)}`);
     let pkg=generated.appPackage;const appId=pkg.manifest.appId;record.appId=appId;record.execution=generated.execution||null;
-    if(o.harness==='dsh'){browser=new CompleteAppBrowser(transport,appId,groupDir,o.chrome);await browser.open();}
+    const delivery=o.mode==='mock'?'mock':actualDelivery(generated,Boolean(o.artifactReplay));record.actualDelivery=delivery;
+    if(delivery==='native')record.interactionScope=o.evaluator==='behavior'?'native-direct-api-behavior-only; GUI not assessed':'actual-native-renderer-input-and-click';
+    if(delivery==='native'&&o.evaluator!=='behavior'){nativeBrowser=new NativeAppBrowser(transport,appId,groupDir,pkg,o.harness,o.model,o.chrome,undefined,o.timeoutMs);await nativeBrowser.open();}
+    if(delivery==='html'){browser=new CompleteAppBrowser(transport,appId,groupDir,o.chrome);await browser.open();}
     for(let ei=0;ei<group.episodes.length;ei++){
      const ep=group.episodes[ei];let response:any;let ctx:any={pkg,caseMessages:[intention.intention,...group.episodes.slice(0,ei+1).map(e=>e.userMessage||'')]};let error:string|undefined;let gui:any;
      try{
-      if(ep.kind==='open'){if(browser)gui=await browser.snapshot('open');}
+      if(ep.kind==='open'){if(browser)gui=await browser.snapshot('open');else if(nativeBrowser)gui=await nativeBrowser.snapshot('open');}
       else if(ep.kind==='reopen'){
-       if(browser){await browser.close();await browser.open();gui=await browser.snapshot('reopen');response=await transport.request('/agent/complete/apps/'+encodeURIComponent(appId));ctx.reopenState=response.store;ctx.reopenData=response.store;}
+       if(nativeBrowser){await nativeBrowser.close();await nativeBrowser.open();gui=await nativeBrowser.snapshot('reopen');response=await transport.request('/agent/query-state',{});const app=(response.apps||[]).find((a:any)=>a.appId===appId);if(!app)throw Error('Native app missing after reopen');ctx.reopenState=app.runtimeState;ctx.reopenData=app.appData;pkg=app.appPackage||pkg;ctx.pkg=pkg;}
+       else if(browser){await browser.close();await browser.open();gui=await browser.snapshot('reopen');response=await transport.request('/agent/complete/apps/'+encodeURIComponent(appId));ctx.reopenState=response.store;ctx.reopenData=response.store;}
        else{response=await transport.request('/agent/query-state',{});const app=(response.apps||[]).find((a:any)=>a.appId===appId);if(!app)throw new Error('App missing after fresh reopen query');ctx.reopenState=app.runtimeState;ctx.reopenData=app.appData;pkg=app.appPackage||pkg;ctx.pkg=pkg;}
-      }else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText,ctx.caseMessages);}
+      }else if(nativeBrowser){response=await nativeBrowser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=response.actionResult;pkg=response.actionResult.appPackage||pkg;ctx.pkg=pkg;}
+      else if(browser){response=await browser.submit(ep.userMessage||intention.intention,ep.actionOrdinal||1);gui=response.gui;ctx.actionResult=dshActionEvidence(response.bridgeResults,appId,gui.visibleText,ctx.caseMessages);}
       else{const {actionId,route}=executableActionByOrdinal(pkg,ep.actionOrdinal||1);response=await transport.request('/agent/action',{appId,actionId,eventPayload:payloadForRoute(route,ep.userMessage||intention.intention),platform:'web',harness:o.harness,llm:{model:o.model}});ctx.actionResult=response;pkg=response.appPackage||pkg;ctx.pkg=pkg;}
      }catch(e:any){error=e.message;}
      const assertions=ep.assertions.map(a=>{
       if(error)return {...a,passed:false,message:error};
-      if(browser&&a.type==='input_available')return {...a,passed:gui?.inputCount>0,message:'Measured visible complete-app DOM'};
-      if(browser&&a.type==='action_available')return {...a,passed:gui?.actionCount>0,message:'Measured visible complete-app DOM'};
+      if((browser||nativeBrowser)&&a.type==='input_available')return {...a,passed:gui?.inputCount>0,message:nativeBrowser?'Measured actual Native renderer DOM':'Measured visible complete-app DOM'};
+      if((browser||nativeBrowser)&&a.type==='action_available')return {...a,passed:gui?.actionCount>0,message:nativeBrowser?'Measured actual Native renderer DOM':'Measured visible complete-app DOM'};
       const checked=checkAssertion(a,ctx);
+      if(nativeBrowser&&checked.passed&&['visible_result_grounded','state_persists'].includes(a.type)&&!includesAll(gui?.visibleText,a.value))return {...a,passed:false,message:'Backend evidence exists but the actual Native component surface does not visibly show this value'};
       const missingDshEvidence=browser&&!checked.passed&&['route_enters_orchestrator','appworld_api_called','appworld_db_changed','route_exists'].includes(a.type)&&!ctx.actionResult?.trace?.length&&!Object.keys(ctx.actionResult?.toolResults||{}).length&&!ctx.actionResult?.toolDbChanges?.length;
       return {...a,...checked,...(missingDshEvidence?{unsupported:true}:{})};
      });const result={id:ep.id,kind:ep.kind,error,passed:!error&&assertions.length>0&&assertions.every(a=>a.passed),assertions,response,gui};episodes.push(result);await json(path.join(groupDir,`episode-${ei+1}.json`),result);
     }
     if(o.evaluator!=='behavior'){
-     try{record.gui=browser?await browser.snapshot('gui-final'):evaluateRenderedGui({appPackage:pkg,appId});}catch(e:any){record.gui={passed:false,error:e.message};}await json(path.join(groupDir,'gui.json'),record.gui);
+     try{record.gui=nativeBrowser?await nativeBrowser.snapshot('gui-final'):browser?await browser.snapshot('gui-final'):evaluateRenderedGui({appPackage:pkg,appId});}catch(e:any){record.gui={passed:false,error:e.message};}await json(path.join(groupDir,'gui.json'),record.gui);
     }
     diagnostics.push(async()=>{
      try{if(o.revisionPrompt){const revised=await transport.request('/agent/patch-app',{appId,prompt:o.revisionPrompt,harness:o.harness,llm:{model:o.model}});const reopened=await transport.request('/agent/query-state',{});record.productRevision={passed:(reopened.apps||[]).some((a:any)=>a.appId===appId),response:revised};await json(path.join(groupDir,'product-revision.json'),record.productRevision);}}catch(e:any){record.productRevision={passed:false,error:e.message};await json(path.join(groupDir,'product-revision.json'),record.productRevision);}
@@ -124,7 +132,7 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
     // Scripted simulator assertions define workflow success. GUI heuristics and LLM judgments are separate diagnostics.
     record.passed=episodes.length>0&&episodes.every(e=>e.passed);
    }catch(e:any){record.error=e.message;record.passed=false;const remaining=group.episodes.slice(episodes.length);episodes.push(...failedEpisodes(remaining,e.message));}
-   finally{await browser?.close();await json(path.join(groupDir,'report.json'),record);}
+   finally{await nativeBrowser?.close();await browser?.close();await json(path.join(groupDir,'report.json'),record);}
   }
   // All shared-world scripted groups finish before any diagnostic can mutate state.
   for(const diagnostic of diagnostics)await diagnostic();

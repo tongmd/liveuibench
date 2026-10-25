@@ -6,7 +6,7 @@ export function withDshWorkflowLlm(transport:Transport,llm?:WorkflowLlm):Transpo
   const selected=Object.fromEntries(Object.entries(llm).filter(([key,value])=>['model','apiKey','apiBase'].includes(key)&&typeof value==='string'&&value.trim()).map(([key,value])=>[key,value!.trim()])) as WorkflowLlm;
   if(!Object.keys(selected).length)return transport;
   return {user:transport.user,async request(route,body,method){
-    const action=/^\/agent\/complete\/apps\/[^/]+\/action$/.test(route);
+    const action=route==='/agent/action'||/^\/agent\/complete\/apps\/[^/]+\/action$/.test(route);
     const generate=route==='/agent/run';
     const response=await transport.request(route,(action||generate)?{...body,llm:{...(body?.llm||{}),...selected}}:body,method);
     if((action||generate)&&selected.model&&(response?.execution?.harness!=='dsh'||response?.execution?.model!==selected.model)){

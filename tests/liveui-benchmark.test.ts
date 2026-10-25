@@ -27,12 +27,12 @@ test('offline fixture executes open, submit, revise, fresh reopen, GUI, and code
  await assert.rejects(runBenchmark(o),/EEXIST/);assert.equal(JSON.parse(await fs.readFile(path.join(o.out,'report.json'),'utf8')).status,'passed');
 });
 
-test('real HTTP transport executes same full workflow and preserves response artifacts',async()=>{
+test('HTTP behavior-only transport preserves workflow without claiming GUI assessment',async()=>{
  const runtime=mockTransport();const calls:string[]=[];const server=http.createServer(async(req,res)=>{
   const chunks:Buffer[]=[];for await(const c of req)chunks.push(c);const body=chunks.length?JSON.parse(Buffer.concat(chunks).toString()):undefined;calls.push(req.url!);assert.match(String(req.headers['x-liveuiagent-user']),/^bench-/);
   try{const result=await runtime.request(req.url!,body);res.setHeader('Content-Type','application/json');res.end(JSON.stringify(result));}catch(e:any){res.statusCode=500;res.end(JSON.stringify({error:e.message}));}
  });await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
- try{const port=(server.address() as any).port;const o=options('http');Object.assign(o,{mode:'live',worldMode:'prepared',apiBase:`http://127.0.0.1:${port}`});const r=await runBenchmark(o);assert.equal(r.status,'passed');assert.equal(r.comparable,false);assert.deepEqual(calls,['/agent/run','/agent/action','/agent/action','/agent/query-state']);assert.ok((await fs.readdir(path.join(o.out,smoke.cases[0].id))).some(f=>f.startsWith('http-')));}finally{await new Promise<void>(r=>server.close(()=>r()));}
+ try{const port=(server.address() as any).port;const o=options('http');Object.assign(o,{mode:'live',evaluator:'behavior',worldMode:'prepared',apiBase:`http://127.0.0.1:${port}`});const r=await runBenchmark(o);assert.equal(r.status,'passed');assert.equal(r.comparable,false);assert.deepEqual(calls,['/agent/run','/agent/action','/agent/action','/agent/query-state']);assert.equal(r.results[0].groups[0].gui,undefined);assert.match(r.results[0].groups[0].interactionScope,/GUI not assessed/);assert.ok((await fs.readdir(path.join(o.out,smoke.cases[0].id))).some(f=>f.startsWith('http-')));}finally{await new Promise<void>(r=>server.close(()=>r()));}
 });
 
 test('generation failure retains every planned assertion in denominator; no retry masks errors',async()=>{
