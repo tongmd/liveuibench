@@ -11,8 +11,8 @@ import {lockResources,releaseOwnedResources} from '../scripts/liveuibench/resour
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const pause=(ms:number)=>new Promise(resolve=>setTimeout(resolve,ms));
-async function waitFor(check:()=>Promise<boolean>,message:string){
- const deadline=Date.now()+6000;
+async function waitFor(check:()=>Promise<boolean>,message:string,timeoutMs=6000){
+ const deadline=Date.now()+timeoutMs;
  while(Date.now()<deadline){if(await check())return;await pause(25);}
  assert.fail(message);
 }
@@ -61,7 +61,7 @@ test('cancelling a cooperative exit-zero preparation prevents generation and rec
  }
 });
 
-test('cancelling actual AppWorld preparation during readiness does not orphan its detached child',{timeout:15000},async()=>{
+test('cancelling actual AppWorld preparation during readiness does not orphan its detached child',{timeout:30000},async()=>{
  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'liveui-cancel-world-'));
  const endpoint=await canary();const port=await freePort();const state=path.join(directory,'world-control');
  const fake=path.join(directory,'fake-appworld');const marker=path.join(directory,'world.pid');let pid:number|undefined;let running:Promise<any>|undefined;
@@ -70,7 +70,8 @@ test('cancelling actual AppWorld preparation during readiness does not orphan it
  const restore=environment({LIVEUIBENCH_APPWORLD_BIN:fake,LIVEUIBENCH_APPWORLD_ROOT:directory,LIVEUIBENCH_APPWORLD_PORT:String(port),LIVEUIBENCH_WORLD_STATE_DIR:state,APPWORLD_API_BASE:`http://127.0.0.1:${port}`});
  try{
   running=runBenchmark(await options(directory,path.join(root,'scripts/liveuibench/prepare-appworld.mjs'),endpoint.apiBase));
-  await waitFor(async()=>await exists(marker)&&await exists(path.join(state,'process.json')),'fake AppWorld child was not started and recorded');
+  // Parallel Chrome tests can delay fresh executable startup; keep cancellation's own bound unchanged.
+  await waitFor(async()=>await exists(marker)&&await exists(path.join(state,'process.json')),'fake AppWorld child was not started and recorded',15000);
   pid=Number(await fs.readFile(marker,'utf8'));assert.equal(alive(pid),true);
   const record=JSON.parse(await fs.readFile(path.join(state,'process.json'),'utf8'));assert.equal(record.pid,pid);assert.equal(record.port,port);
   await stopPreparations();const report=await running;
