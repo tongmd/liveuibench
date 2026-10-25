@@ -10,3 +10,12 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 if(rows.length!==provenance.caseCount||hash(dataset)!==provenance.datasetSha256||rows.some(c=>!['dev','public_test'].includes(c.split)))throw Error('Dataset provenance mismatch');
 for(const fixture of provenance.fixtures)if(hash(fs.readFileSync('benchmarks/fixtures/'+fixture.id+'.json'))!==fixture.sha256)throw Error('Fixture provenance mismatch: '+fixture.id);
 console.log('Published dataset and '+provenance.fixtures.length+' fixture hashes verified.');
+
+const longitudinal=JSON.parse(fs.readFileSync('benchmarks/longitudinal.json','utf8'));
+const longitudinalProvenance=JSON.parse(fs.readFileSync('benchmarks/longitudinal-provenance.json','utf8'));
+if(hash(fs.readFileSync('benchmarks/longitudinal.json'))!==longitudinalProvenance.datasetSha256
+ || hash(dataset)!==longitudinalProvenance.originalDatasetSha256
+ || longitudinal.caseCount!==longitudinal.cases.length
+ || longitudinal.cases.length!==longitudinalProvenance.statistics.cases
+ || longitudinal.cases.some(c=>c.source?.kind!=='authored'))throw Error('Longitudinal provenance mismatch');
+console.log('Authored longitudinal dataset and original dataset hash verified.');

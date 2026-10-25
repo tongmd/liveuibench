@@ -84,3 +84,28 @@ These use dedicated fixtures without model calls or AppWorld. Reports are marked
 Artifact replay is a separate DSH diagnostic mode. Seal a completed case with `python3 scripts/liveuibench/artifact-replay-seal.py --case-root CASE_ROOT --dataset DATASET --account-root DSH_DATA --generation-source-manifest SOURCE_MANIFEST --out SEALED_DIR`, then pass `--artifact-replay CONFIG.json` to the same one-case live DSH command above. The configuration supplies `caseId`, `manifestRoot`, `manifestSha256`, `importer`, `importerSha256`, `ownerPrefix` (a unique `artifact-replay-RUNID-` namespace), `accountRoot`, `runtimeDb`, and `receiptDir` as isolated management paths. The sealer requires the original first browser-delivery snapshot to match the generation output; missing groups remain unavailable and retain their evaluation denominator.
 
 Replay imports byte-identical delivered HTML into a new owner with empty stores and original scoped service plans. All available groups are registered before the runtime first loads that owner, so this is not the original sequential generation protocol and is never comparable. Reports explicitly identify reused artifacts, the source manifest, and zero generation-model calls for replay. Original generation costs remain separate; replay's real native actions can still incur model/API calls and business mutations. Runtime package loading, browser interaction, and the original business assertions still execute normally.
+
+
+## Agent Memory and personalized interfaces
+
+`longitudinal.json` contains 28 authored development cases: 16 Agent Memory cases and 12 personalized-interface cases. The original 319 cases, fixtures, and scorer remain unchanged. It does not establish a held-out test set or measured model performance.
+
+Each case contains ordered sessions and messages. A fresh session must reset the conversation while retaining that owner's application, records, and persistent memory. A different owner must have a distinct owner scope; a reopen must return the same application. The adapter must provide lifecycle receipts rather than treating a new session label as evidence of a reset.
+
+Each case has its own fresh namespace. Optional session `appKey` values distinguish applications within one owner; owner memory may transfer between those applications while application state and app-scoped memory remain separate. Application identity checks and memory isolation are explicit; the cross-app probes reuse synthetic record content and do not alone establish comprehensive database isolation.
+
+The Agent Memory track covers remembering and applying preferences, corrections, temporary overrides, scoped forgetting, isolation, and untrusted document content. A stored preference alone is insufficient: the task also checks its visible consequence or preserved application records. The personalized-interface track changes the actual interface, checks observable controls or computed styles, and checks that records and existing controls survive. These checks cover stated requirements; they do not claim comprehensive visual quality or all business workflows.
+
+```bash
+npm run bench:longitudinal -- --dataset benchmarks/longitudinal.json --validate
+npm run bench:longitudinal -- --dataset benchmarks/longitudinal.json \
+  --adapter ./path/to/your-adapter.mjs --out artifacts/longitudinal/report.json
+```
+
+Adapters execute only the current message and lifecycle operation. Future messages and assertions must not enter model context. Observations come from the memory store, normalized durable application state, and real browser DOM/computed styles. The normalized `state.records` view is an adapter contract, not a mandated application storage schema. CSS selectors address accessible controls and labels requested in the visible task. Missing observations, unsupported operations, and failed lifecycle receipts fail closed; claiming a preference or returning a screenshot description is not a DOM observation.
+
+The reset and reopen receipts are adapter claims and require an independent live-adapter audit. The observer receives only the keys/selectors needed for readback; it must be read-only and its requests must never be fed back into generation or used to alter memory or the interface. These are constrained accessibility development probes: their visible instructions request the exact ARIA names used by selectors, not hidden test IDs. Retaining a visible control does not prove that its business operation still works.
+
+No built-in live-runtime adapter is included in this task-set release. An adapter must actually implement session reset, memory-store reads, application reopening, owner isolation, and browser observation before reporting live results. Fixture tests check protocol mechanics only. Reports distinguish fixture from real execution, retain unexecuted assertions in the denominator, and never establish comparability with the original benchmark. Memory-enabled versus disabled comparisons require independent fresh worlds and the same task sequence; removing memory while leaving the original conversation or cached application preferences intact is not a valid memory ablation.
+
+The development prompts contain explicitly authored synthetic records and preferences. They are not recovered private user histories, and the data files contain no experiment outcomes. `longitudinal-provenance.json` records the release contents and hashes.

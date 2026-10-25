@@ -30,6 +30,9 @@ The release includes 319 cases across the development and public test splits, wi
 
 The published benchmark data and fixture hashes are preserved.
 
+A separate 28-case [longitudinal task set](benchmarks/longitudinal.json) adds Agent Memory and personalized interfaces. It tests preference learning across fresh conversations, corrections and forgetting, owner isolation, interface changes, and retained records and controls. These authored development cases use a separate protocol; their results must not be pooled with the original workflow scores. Validate the dataset without model calls with `npm run bench:longitudinal -- --dataset benchmarks/longitudinal.json --validate`. See the [evaluation guide](benchmarks/README.md#agent-memory-and-personalized-interfaces) for the adapter and evidence contract.
+
+
 ## Run Evaluation
 
 Install AppWorld and its data. Export `OPENAI_API_BASE`, `OPENAI_API_KEY`, and your model configuration, then run an isolated evaluation:
