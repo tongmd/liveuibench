@@ -47,9 +47,9 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
       const jobId=data.id || data.jobId;let job={status:'queued',...data};
       while(['queued','running'].includes(job.status)) {
         const remaining=deadline-Date.now();
-        if(remaining<=0)throw new Error(`Job ${jobId} timed out`);
+        if(remaining<=0)throw Object.assign(new Error(`Job ${jobId} timed out`),{code:'ETIMEDOUT'});
         await new Promise(r=>setTimeout(r,Math.min(500,remaining)));
-        if(Date.now()>=deadline)throw new Error(`Job ${jobId} timed out`);
+        if(Date.now()>=deadline)throw Object.assign(new Error(`Job ${jobId} timed out`),{code:'ETIMEDOUT'});
         job=await request('/agent/complete/jobs/'+encodeURIComponent(jobId),undefined,'GET',deadline);
       }
       if(job.status!=='done') throw new Error(`Job ${jobId} ${job.status}: ${job.error||'incomplete'}`);

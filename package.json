@@ -11,8 +11,8 @@
   "scripts": {
     "setup": "npm ci && npm --prefix liveuiagent ci --workspace @liveuiagent/dsh-plugin --include-workspace-root --no-audit --no-fund",
     "build": "npm --prefix liveuiagent run build",
-    "test": "tsx --test tests/*.test.ts",
-    "test:liveuibench": "tsx --test tests/*.test.ts",
+    "test": "tsx --test --test-concurrency=1 tests/*.test.ts",
+    "test:liveuibench": "tsx --test --test-concurrency=1 tests/*.test.ts",
     "bench:liveui": "tsx scripts/liveuibench/run.ts",
     "bench:parallel": "tsx scripts/liveuibench/parallel.ts",
     "check:docs": "node scripts/check-docs.mjs",

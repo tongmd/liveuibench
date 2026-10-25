@@ -19,9 +19,9 @@ test('HTTP headers and body both obey deadline with diagnostic cause preserved',
  });
 });
 test('HTTP asynchronous job polling shares generation deadline',async()=>{
- let polls=0;
- await fixture((req,res)=>{res.setHeader('content-type','application/json');if(req.url==='/generate'){res.writeHead(202);res.end(JSON.stringify({jobId:'fixture',status:'running'}));}else{polls++;res.end(JSON.stringify({status:'running'}));}},async base=>{
-  const started=Date.now();await assert.rejects(httpTransport(base,'fixture',650).request('/generate',{}),/timed out/);
-  assert.equal(polls,1);assert.ok(Date.now()-started<1600,'polls must not restart full deadline');
+ let polls=0;const routes:string[]=[];
+ await fixture((req,res)=>{routes.push(req.url!);res.setHeader('content-type','application/json');if(req.url==='/generate'){res.writeHead(202);res.end(JSON.stringify({jobId:'fixture',status:'running'}));}else{polls++;res.end(JSON.stringify({status:'running'}));}},async base=>{
+  const started=Date.now();await assert.rejects(httpTransport(base,'fixture',650).request('/generate',{}),(error:any)=>{assert.equal(error.code??error.cause?.code,'ETIMEDOUT');return true;});
+  assert.equal(polls,1);assert.deepEqual(routes,['/generate','/agent/complete/jobs/fixture']);assert.ok(Date.now()-started<1600,'polls must not restart full deadline');
  });
 });
