@@ -1,0 +1,75 @@
+<form id="liveui-task-form" class="primary" data-liveui-action="agent.invoke">
+        <div>
+          <label for="liveui-task">What should this week's commute sound like?</label>
+          <textarea id="liveui-task" name="task" required
+            placeholder="e.g. Build my commute playlist for this week: calm focus for a 35-minute drive, no repeats from last week, keep the synths."></textarea>
+          <p class="hint" id="seed-hint">Prefilled with last week's vibe — edit anything and run it again.</p>
+        </div>
+
+        <details id="compose" open>
+          <summary class="mono" style="cursor:pointer;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">Vibe desk</summary>
+          <div class="grid-2" style="margin-top:12px">
+            <div class="field">
+              <label for="vibe-input">Vibe</label>
+              <input id="vibe-input" name="vibe" list="vibe-list" placeholder="Focused &amp; steady" autocomplete="off">
+              <datalist id="vibe-list"></datalist>
+            </div>
+            <div class="field">
+              <label for="minutes-input">Drive length (minutes)</label>
+              <input id="minutes-input" name="minutes" type="number" min="5" max="240" step="5" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="mood-input">Energy / mood</label>
+              <select id="mood-input" name="mood">
+                <option value="calm">Calm &amp; low-key</option>
+                <option value="steady">Steady mid-tempo</option>
+                <option value="bright">Bright &amp; upbeat</option>
+                <option value="high">High energy</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tempo-input">Tempo target</label>
+              <input id="tempo-input" name="tempo" type="text" placeholder="85–100 BPM" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label>Anchor artists / tracks (optional)</label>
+            <div class="pick" id="anchor-pick"></div>
+            <input id="anchors-input" name="anchors" type="text" placeholder="Comma separated" autocomplete="off" style="margin-top:8px">
+          </div>
+          <div class="grid-3">
+            <div class="field">
+              <label for="familiarity-input">Familiarity</label>
+              <select id="familiarity-input" name="familiarity">
+                <option value="mostly familiar">Mostly familiar</option>
+                <option value="balanced">Balanced mix</option>
+                <option value="mostly new">Mostly new discoveries</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="target-input">Target length</label>
+              <select id="target-input" name="target">
+                <option value="fit drive length">Fit the drive exactly</option>
+                <option value="a little extra">Drive length + a little extra</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="name-input">Playlist name</label>
+              <input id="name-input" name="playlistName" type="text" placeholder="Auto from vibe + week" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label for="avoid-input">Avoid</label>
+            <input id="avoid-input" name="avoid" type="text" placeholder="Explicit lyrics, heavy distortion, repeats from last week…" autocomplete="off">
+          </div>
+          <label style="display:flex;gap:9px;align-items:center;text-transform:none;letter-spacing:0;font:14px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--ink)">
+            <input type="checkbox" id="repeat-input" name="avoidRepeats" style="width:auto" checked>
+            Skew away from last week's tracks
+          </label>
+        </details>
+
+        <div class="row">
+          <button id="liveui-task-submit" type="submit" data-liveui-action="agent.invoke">Build playlist</button>
+          <button type="button" class="ghost tiny" id="copy-last">Copy last week's request</button>
+        </div>
+      </form>

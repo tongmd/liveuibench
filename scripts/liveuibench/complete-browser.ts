@@ -20,7 +20,11 @@ export class CompleteAppBrowser extends RuntimeBrowser {
       const visible = new Set(visibleTargets);
       const candidates = new Set<string>();
       for (const binding of bindings) {
-        const controls = binding instanceof HTMLFormElement ? Array.from(binding.elements) : [binding];
+        // Keep parity with the delivery gate: form binding owns submits,
+        // while an explicitly bound control can also be type=button.
+        const controls = binding instanceof HTMLFormElement
+          ? Array.from(binding.elements).filter(control => (control as HTMLButtonElement).form === binding && ((control instanceof HTMLButtonElement && control.type === 'submit') || (control instanceof HTMLInputElement && ['submit','image'].includes(control.type))))
+          : [binding];
         for (const control of controls) {
           const target = control.getAttribute('data-liveui-eval-id');
           const box = control.getBoundingClientRect();

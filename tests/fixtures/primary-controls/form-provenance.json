@@ -1,0 +1,12 @@
+[
+  {
+    "sample": "amazon",
+    "artifactSha256": "390fb4c44a3ec26a49ef5380e411591ef21535963a736d4fe8e5ae5fd850e76a",
+    "formSha256": "cf81dca2ac55a1129e6f71f8a4cb34930b011810418fe3c3de3c84dc8b03a04f"
+  },
+  {
+    "sample": "spotify",
+    "artifactSha256": "fefd0b978cf2f111b3d519d24ac2ccb3efdd03d10052ada9d311fef6d6ffc936",
+    "formSha256": "09af4eaa63523a1420458f79ad3da4b3153bf0bf82771fa927eab0d8d43c0f8f"
+  }
+]

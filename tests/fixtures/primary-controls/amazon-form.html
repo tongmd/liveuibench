@@ -1,0 +1,8 @@
+<form id="liveui-task-form" data-liveui-action="agent.invoke">
+      <label for="liveui-task">What should I check or do?</label>
+      <textarea id="liveui-task" name="task" required placeholder="e.g. Check the live Amazon price of every item on my watch list and tell me which ones are at or below my target price."></textarea>
+      <div class="row" style="margin-top:12px">
+        <button id="liveui-task-submit" type="submit" data-liveui-action="agent.invoke">Check live Amazon prices</button>
+        <button type="button" class="ghost fixed" id="reset-request">Reset request text</button>
+      </div>
+    </form>
