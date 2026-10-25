@@ -10,6 +10,7 @@ import {httpTransport,type Transport} from './transport.js';
 import {CompleteAppBrowser} from './complete-browser.js';
 import {mockTransport} from './mock-runtime.js';
 import {dshActionEvidence} from './dsh-evidence.js';
+import {withDshWorkflowLlm} from './dsh-model-transport.js';
 import {lockResources} from './resource-lock.js';
 const ROOT=fileURLToPath(new URL('../../',import.meta.url));
 export type Options={harness:'native'|'dsh';model:string;cases:string;split:'dev'|'public_test'|'all';limit:number;out:string;evaluator:'behavior'|'gui'|'both';mode:'live'|'mock';apiBase:string;only?:string;prepareHook?:string;worldMode:'isolated'|'prepared'|'unmanaged';chrome?:string;agentEvaluator:boolean;revisionPrompt?:string;timeoutMs:number;fixtureContacts:boolean;isolationEvidence?:{runId:string;runtimePort:number;worldPort:number;storage:string}};
@@ -79,7 +80,8 @@ async function runCase(item:BenchCase,o:Options,out:string):Promise<any>{
    let expectedHash:string|null=null;try{expectedHash=createHash('sha256').update(await fs.readFile(fixture)).digest('hex');}catch(e:any){if(e.code!=='ENOENT')throw e;}
    if(receipt.prepared!==true||receipt.caseId!==item.id||receipt.apiBase!==`http://127.0.0.1:${o.isolationEvidence.worldPort}`||receipt.fixtureSha256!==expectedHash||receipt.fixtureSeeded!==Boolean(expectedHash)||!Number.isInteger(receipt.pid))throw Error('Managed world preparation receipt does not match this case, port and fixture');
   }
-  let seq=0;const transport=o.mode==='mock'?mockTransport():httpTransport(o.apiBase,'bench-'+randomUUID(),o.timeoutMs,record=>json(path.join(out,`http-${String(++seq).padStart(4,'0')}.json`),record));
+  let seq=0;const baseTransport=o.mode==='mock'?mockTransport():httpTransport(o.apiBase,'bench-'+randomUUID(),o.timeoutMs,record=>json(path.join(out,`http-${String(++seq).padStart(4,'0')}.json`),record));
+  const transport=o.mode==='live'&&o.harness==='dsh'?withDshWorkflowLlm(baseTransport,{model:o.model}):baseTransport;
   for(let gi=0;gi<groups.length;gi++){
    const group=groups[gi];const groupDir=path.join(out,`group-${gi+1}`);await fs.mkdir(groupDir);const intention=item.intentions[group.intentionIndex];const episodes:any[]=[];const record:any={intentionIndex:group.intentionIndex,episodes};groupResults.push(record);let browser:CompleteAppBrowser|undefined;
    try{

@@ -86,8 +86,8 @@ test('DSH actual Chrome workflow uses HTTP AI/store bridge and retains unsupport
  const html=`<!doctype html><html><head><style>body{padding:24px;font:16px system-ui}input,button{padding:12px}</style></head><body><h1>Notebook</h1><label for="note">Note</label><input id="note"><button id="save">Save note</button><p id="result"></p><script>const result=document.querySelector('#result');result.textContent=localStorage.getItem('note')||'Ready';document.querySelector('#save').onclick=async()=>{const r=await liveuiagent.ai(document.querySelector('#note').value,{});result.textContent=r.text;localStorage.setItem('note',r.text)};</script></body></html>`;
  const server=http.createServer(async(req,res)=>{const chunks:Buffer[]=[];for await(const c of req)chunks.push(c);const body=chunks.length?JSON.parse(Buffer.concat(chunks).toString()):undefined;calls.push(req.url!);res.setHeader('Content-Type','application/json');let result:any;
   if(req.url==='/agent/run')result={type:'app_created',appPackage:{manifest:{appId,name:'Notebook',intent:{kind:'complete_app'}}},execution:{harness:'dsh',model:'fixture-dsh'}};
-  else if(req.url===`/agent/complete/apps/${appId}/action`){turns++;res.statusCode=202;result={id:'job-'+turns,status:'queued'};}
-  else if(req.url?.startsWith('/agent/complete/jobs/'))result={id:'job-'+turns,status:'done',result:{text:turns===1?'Weekend plan':'Weekend plan updated'}};
+  else if(req.url===`/agent/complete/apps/${appId}/action`){assert.equal(body.llm.model,'fixture-dsh','browser action must retain the explicitly selected generation model');turns++;res.statusCode=202;result={id:'job-'+turns,status:'queued'};}
+  else if(req.url?.startsWith('/agent/complete/jobs/'))result={id:'job-'+turns,status:'done',execution:{harness:'dsh',model:'fixture-dsh'},result:{text:turns===1?'Weekend plan':'Weekend plan updated'}};
   else if(req.url===`/agent/complete/apps/${appId}/store`){store=body;result={ok:true};}
   else if(req.url===`/agent/complete/apps/${appId}`)result={app:{id:appId,name:'Notebook'},html,store};
   else{res.statusCode=404;result={error:'unknown mock route'};}res.end(JSON.stringify(result));
