@@ -1,11 +1,14 @@
+import {parsePlanningRecovery,planningInputBinding,type PlanningRecovery} from './planning-recovery.js';
 import {validateNativeActionNotStartedProof,nativeActionPayloadSha256,type NativeActionNotStartedProof} from '../../liveuiagent/server/native-action-not-started.js';
 import {request as httpRequest} from 'node:http';
 import {request as httpsRequest} from 'node:https';
 
+const planningRecoveries=new WeakMap<object,{proof:PlanningRecovery;binding:string}>();
+export function verifiedNativePlanningRecovery(error:unknown,user:string,body:any){const x=error&&typeof error==='object'?planningRecoveries.get(error):undefined;return x&&x.binding===planningInputBinding(user,body)?structuredClone(x.proof):undefined;}
 const verifiedNotStarted=new WeakMap<object,NativeActionNotStartedProof>();
 export function verifiedNativeActionNotStarted(error:unknown,binding:{appId:string;actionId:string;eventPayload:unknown}){const proof=error&&typeof error==='object'?verifiedNotStarted.get(error):undefined;return proof&&validateNativeActionNotStartedProof(proof,binding)?proof:undefined;}
 
-export type Transport = { request(route: string, body?: any, method?: string): Promise<any>; user: string };
+export type Transport = { request(route: string, body?: any, method?: string, options?:{deadlineAt?:number}): Promise<any>; user: string; requestTimeoutMs?:number };
 
 // One deadline covers headers, the entire response body and asynchronous job polling.
 // Node's HTTP client has no separate implicit fetch/Undici headers timeout.
@@ -26,6 +29,12 @@ function readResponse(url: URL, method: string, headers: Record<string,string>, 
     if(body!==undefined)request.write(body);
     request.end();
   });
+}
+
+function inferenceMetrics(value:any){
+ if(!value||typeof value!=='object')return undefined;
+ const keys=['providerRequests','responseBytes','upstreamStatus','prompt_tokens','completion_tokens','total_tokens','reasoning_tokens'];
+ return Object.fromEntries(keys.filter(k=>Number.isSafeInteger(value[k])&&value[k]>=0).map(k=>[k,value[k]]));
 }
 
 export function httpTransport(base: string, user: string, timeoutMs = 900_000, onResponse?: (record:any)=>Promise<void>, authorization = process.env.LIVEUIBENCH_AUTHORIZATION): Transport {
@@ -49,7 +58,7 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
     let proofValid=false;try{proofValid=actionFailure&&data.workflowExecution?.status==='failed'&&data.workflowExecution?.externalEffectsMayHaveOccurred===false&&data.workflowExecution?.executionId===data.nativeActionNotStarted?.executionId&&validateNativeActionNotStartedProof(data.nativeActionNotStarted,{appId:body?.appId,actionId:body?.actionId,eventPayload:body?.eventPayload});}catch{/* Malformed or absent binding is not proof. */}
     const proofAudit=actionFailure?{present:data.nativeActionNotStarted!==undefined,valid:proofValid,...(proofValid?{executionId:data.nativeActionNotStarted.executionId,eventPayloadSha256:nativeActionPayloadSha256(body.eventPayload)}:{})}:undefined;
     await onResponse?.({route,method,status:response.status,elapsedMs:Date.now()-started,response:data,...(proofAudit?{nativeActionNotStartedValidation:proofAudit}:{})});
-    if (response.status<200||response.status>=300) {const error=Object.assign(new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`),route==='/evaluator/interaction-step'&&Number.isInteger(data.plannerModelCalls)&&data.plannerModelCalls>=0&&data.plannerModelCalls<=1?{plannerModelCalls:data.plannerModelCalls,status:response.status,...(typeof data.code==='string'?{code:data.code}:{}),...(data.planningContractInvalid===true?{planningContractInvalid:true}:{}),planningError:typeof data.error==='string'?data.error.slice(0,500):'Planning contract rejected'}:{});if(proofValid){verifiedNotStarted.set(error,data.nativeActionNotStarted);Object.assign(error,{nativeActionNotStarted:data.nativeActionNotStarted,nativeActionNotStartedValidation:proofAudit});}throw error;}
+    if (response.status<200||response.status>=300) {const error=Object.assign(new Error(`${route}: HTTP ${response.status}: ${data.error || data.message || 'request failed'}`),route==='/evaluator/interaction-step'&&Number.isInteger(data.plannerModelCalls)&&data.plannerModelCalls>=0&&data.plannerModelCalls<=1?{plannerModelCalls:data.plannerModelCalls,status:response.status,...(typeof data.code==='string'?{code:data.code}:{}),...(data.planningContractInvalid===true?{planningContractInvalid:true}:{}),planningError:typeof data.error==='string'?data.error.slice(0,500):'Planning contract rejected'}:{});if(route==='/evaluator/interaction-step'){const metrics=inferenceMetrics(data.nativeInference);if(metrics)Object.assign(error,{nativeInference:metrics});const proof=parsePlanningRecovery(data,response.status);if(proof)planningRecoveries.set(error,{proof,binding:planningInputBinding(user,body)});}if(proofValid){verifiedNotStarted.set(error,data.nativeActionNotStarted);Object.assign(error,{nativeActionNotStarted:data.nativeActionNotStarted,nativeActionNotStartedValidation:proofAudit});}throw error;}
     if(response.status===202 && (data.id || data.jobId)) {
       const jobId=data.id || data.jobId;let job={status:'queued',...data};
       while(['queued','running'].includes(job.status)) {
@@ -64,5 +73,5 @@ export function httpTransport(base: string, user: string, timeoutMs = 900_000, o
     }
     return data;
   }
-  return {user,request(route,body,method=body===undefined?'GET':'POST'){return request(route,body,method,Date.now()+timeoutMs);}};
+  return {user,requestTimeoutMs:timeoutMs,request(route,body,method=body===undefined?'GET':'POST',options){const deadline=Math.min(Date.now()+timeoutMs,options?.deadlineAt??Infinity);if(!Number.isFinite(deadline))throw Error('Invalid HTTP deadline');return request(route,body,method,deadline);}};
 }
